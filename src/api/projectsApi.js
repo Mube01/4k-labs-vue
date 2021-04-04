@@ -1,0 +1,34 @@
+const axios = require('axios');
+
+
+function fetchProjects(){
+    var axios = require('axios');
+
+    var config = {
+    method: 'get',
+    url: 'http://127.0.0.1:5000/api_v1/get_projects',
+    headers: { }
+    };
+
+    return axios(config)
+
+}
+
+
+
+function fetchProject(project_code){
+    var axios = require('axios');
+    var token = localStorage.getItem('access_token')
+    token = token.substring(1,token.length-1)
+    var config = {
+        method: 'get',
+        url: `http://127.0.0.1:5000/api_v1/get_projects/${project_code}`,
+        headers: { 
+            Authorization: `Bearer ${token}`,
+        }
+    };
+
+    return axios(config)
+}
+
+export default {fetchProjects,fetchProject}

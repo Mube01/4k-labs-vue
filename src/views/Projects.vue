@@ -9,8 +9,11 @@
     <div v-show="showAddProject">
       <AddProject />
     </div>
-    <Project />
-    <Project />
+
+    <div :key="project.project_code" v-for="project in projects" class="Projects">
+        <Project :project="project"/>
+    </div>
+
   </div>
 </template>
 
@@ -20,8 +23,10 @@ import Project from "@/components/Project.vue";
 import Add from "@/components/Add.vue";
 import AddProject from "@/components/AddProject.vue";
 
+import {mapGetters,mapActions} from 'vuex'
+
 export default {
-  name: "Home",
+  name: "Projects",
   components: {
     Header,
     Project,
@@ -37,6 +42,19 @@ export default {
     toggleAdd() {
       this.showAddProject = !this.showAddProject;
     },
+    ...mapActions({
+      'fetchProjects':'projects/getAllProjects'
+    })
   },
+  computed:{
+    ...mapGetters({
+      'projects':'projects/listOfProjects'
+    })
+  },
+  created(){
+    this.fetchProjects().then(()=>{
+    })
+    console.log('succes full fetch')
+  }
 };
 </script>

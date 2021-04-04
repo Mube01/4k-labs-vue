@@ -1,28 +1,38 @@
 <template>
-  <router-link to="/task">
+  <router-link :to="'/projects/'+project.project_code">
     <div class="card col-md-12">
       <div class="card-body">
         <h3 class="card-title">
-          Project title
-          <p>Division</p>
+          {{project.project_title}}
+          <p>Division {{project.Division}}</p>
         </h3>
         <div class="links">
-          <a href="#" class="card-link">Github</a>
-          <a href="#" class="card-link">Docs</a>
+          <a :href="project.github" class="card-link">Github</a>
+          <a :href="project.docs" class="card-link">Docs</a>
         </div>
-        <p style="clear: both">Progress: 35%</p>
+        <p style="clear: both">Progress: {{project.progress}}%</p>
         <div class="progress">
           <div
             class="progress-bar bg-success"
             role="progressbar"
-            style="width: 35%"
-            aria-valuenow="35"
+            :style="{width:new String(project.progress+'%')}"
             aria-valuemin="0"
             aria-valuemax="100"
           ></div>
         </div>
         <hr />
-        <p>Members</p>
+        <div id="members">
+          <p id="member_class">Members</p>
+          <ul>
+            <li>
+              <span>
+                <div>
+                  A
+                </div>
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </router-link>
@@ -31,10 +41,26 @@
 <script>
 export default {
   name: "Project",
+  data(){
+    return{
+      color:'50%'
+    }
+  },
+  props:{
+    project:{
+        type:Object
+    }
+  }
 };
 </script>
 
 <style scoped>
+#member_class{
+  font-size: 13px;
+  margin-left: -300px;
+  display: flex;
+  justify-content:center;
+}
 .card {
   border-radius: 10px;
   margin: 20px 0 25px 0;

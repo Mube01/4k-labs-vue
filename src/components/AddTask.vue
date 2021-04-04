@@ -13,6 +13,11 @@ import Button from "./Button.vue";
 
 export default {
   name: "AddTask",
+  props:{
+    'project_code':{
+      type:String
+    }
+  },
   data() {
     return {
       text: "",
@@ -27,6 +32,12 @@ export default {
       if (!this.text) {
         alert("Please add a task");
         return;
+      }else{
+        this.$store.dispatch('projects/addTask',{'project_code':this.project_code,'task':this.text}).then((result) => {
+          console.log(result)
+        }).catch((err) => {
+          console.log(err)
+        });
       }
     },
   },
