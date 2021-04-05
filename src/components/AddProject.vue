@@ -8,7 +8,7 @@
         placeholder="Project Title"
       />
 
-      <Button type="submit" text="Add" color="green" />
+      <Button type="submit" text="Add" color="white" bgColor="green" />
     </form>
   </div>
 </template>
