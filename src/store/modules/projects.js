@@ -1,6 +1,6 @@
 import projectsApi from '../../api/projectsApi'
 import tasksApi from '../../api/tasksApi'
-
+import router from '../../router'
 
 export default {
     namespaced: true,
@@ -33,6 +33,9 @@ export default {
                     commit('saveProject',result.data.project)
                     resolve(result.data.project)
                 }).catch((err) => {
+                    if(err.response.status == 404){
+                        router.push('/404')
+                    }
                 });
             })
         },
