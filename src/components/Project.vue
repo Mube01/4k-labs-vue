@@ -1,21 +1,24 @@
 <template>
-  <router-link :to="'/projects/'+project.project_code">
+  <router-link :to="'/projects/' + project.project_code">
     <div class="card col-md-12">
       <div class="card-body">
         <h3 class="card-title">
-          {{project.project_title}}
-          <p>Division {{project.Division}}</p>
+          {{ project.project_title }}
+          <p>Division {{ project.Division }}</p>
         </h3>
         <div class="links">
           <a :href="project.github" class="card-link">Github</a>
           <a :href="project.docs" class="card-link">Docs</a>
         </div>
-        <p style="clear: both">Progress: {{project.progress}}%</p>
+        <p style="clear: both">
+          <span style="float: left">Progress:</span>
+          <span style="float: right">{{ project.progress }}%</span>
+        </p>
         <div class="progress">
           <div
             class="progress-bar bg-success"
             role="progressbar"
-            :style="{width:new String(project.progress+'%')}"
+            :style="{ width: new String(project.progress + '%') }"
             aria-valuemin="0"
             aria-valuemax="100"
           ></div>
@@ -23,15 +26,10 @@
         <hr />
         <div class="members">
           <p class="member_class">Members</p>
-          <ul class="avatar_shower">
-            <li>
-              <span class="spanPosition">
-                <div class="avatar">
-                  A
-                </div>
-              </span>
-            </li>
-          </ul>
+
+          <div class="avatar-circle">
+            <span class="initials">M</span>
+          </div>
         </div>
       </div>
     </div>
@@ -41,31 +39,43 @@
 <script>
 export default {
   name: "Project",
-  data(){
-    return{
-      color:'50%'
-    }
+  data() {
+    return {
+      color: "50%",
+    };
   },
-  props:{
-    project:{
-        type:Object
-    }
-  }
+  props: {
+    project: {
+      type: Object,
+    },
+  },
 };
 </script>
 
 <style scoped>
-.member_class{
-  font-size: 13px;
-  margin-left: -300px;
-  display: flex;
-  justify-content:center;
+.member_class {
+  font-size: 17px;
+  padding-top: 5px;
+  display: inline;
+  float: left;
 }
-.avatar_shower{
-  padding: 0px;
-  flex-direction: row;
-  margin-top: -40px;
-  margin-left: 320px;
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  text-align: center;
+  float: right;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+.initials {
+  position: relative;
+  top: 7px; /* 25% of parent */
+  font-size: 20px; /* 50% of parent */
+  line-height: 20px; /* 50% of parent */
+  color: #fff;
+  font-weight: bold;
 }
 .card {
   border-radius: 10px;
@@ -91,6 +101,8 @@ export default {
 }
 .progress {
   height: 25px;
+  clear: both;
+  margin-top: 50px;
 }
 p {
   font-size: 20px;

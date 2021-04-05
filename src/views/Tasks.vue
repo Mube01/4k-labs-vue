@@ -1,23 +1,46 @@
 <template>
-  <Header />
-  <div class="container">
-    <div class="status">
-      <h3>{{project.project_title}}</h3>
-      <p>Progress: {{project.progress || '0'}}%</p>
-    </div>
-    <Add
-      @toggle-add="toggleAdd"
-      :text="showAddTask ? 'X Close' : '+ Add New Task'"
-      :border="showAddTask ? '3px dashed red' : '3px dashed green'"
-    />
-    <div v-show="showAddTask">
-      <AddTask :project_code = "project_code" />
-    </div>
-  
-    <div :key="task.task_code" v-for="task in project.tasks" class="tasks">
-        <Task :task="task" />
-    </div>
+  <div>
+    <Header />
+    <div class="container">
+      <div class="status">
+        <h3>{{ project.project_title }}</h3>
+        <div class="links">
+          <a href="#" class="card-link">Github</a>
+          <a href="#" class="card-link">Docs</a>
+        </div>
+        <div class="left">
+          <p>Division:</p>
+          <p>Progress:</p>
+        </div>
+        <div class="right">
+          <p>division</p>
+          <p>{{ project.progress || "0" }}%</p>
+        </div>
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            :style="{ width: new String(project.progress + '%') }"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+      <br />
+      <h5>Members</h5>
+      <br />
+      <h5>Tasks</h5>
+      <Add
+        @toggle-add="toggleAdd"
+        :text="showAddTask ? 'X Close' : '+ Add New Task'"
+        :border="showAddTask ? '3px dashed red' : '3px dashed green'"
+      />
+      <div v-show="showAddTask">
+        <AddTask :project_code="project_code" />
+      </div>
 
+      <Task :key="task.task_code" v-for="task in project.tasks" :task="task" />
+    </div>
   </div>
 </template>
 
@@ -27,7 +50,7 @@ import Task from "@/components/Task.vue";
 import Add from "@/components/Add.vue";
 import AddTask from "@/components/AddTask.vue";
 
-import {mapGetters,mapActions} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Tasks",
@@ -48,34 +71,55 @@ export default {
       this.showAddTask = !this.showAddTask;
     },
     ...mapActions({
-      'fetchProject':'projects/getProject'
-    })
+      fetchProject: "projects/getProject",
+    }),
   },
-  created(){
+  created() {
     this.fetchProject(this.project_code).then((result) => {
-      console.log(result)
-    })
+      console.log(result);
+    });
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      'project':'projects/getProject'
-    })
-  }
+      project: "projects/getProject",
+    }),
+  },
 };
 </script>
 
 <style scoped>
 .status {
   margin: 20px 0px 0px 0px;
+  width: 100%;
 }
-
 h3 {
-  float: left;
   font-weight: 700;
   font-size: 25px;
+  margin-bottom: 15px;
+  float: left;
+}
+h5 {
+  clear: both;
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 15px;
 }
 p {
+  font-size: 18px;
+}
+.links {
   float: right;
-  font-size: 20px;
+}
+.left {
+  clear: both;
+  float: left;
+}
+.right {
+  float: right;
+}
+.progress {
+  height: 25px;
+  border: 1px solid #e6e6e6;
+  clear: both;
 }
 </style>

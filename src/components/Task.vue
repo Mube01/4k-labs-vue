@@ -1,5 +1,4 @@
 <template>
-{{taskdata}}
   <div class="card col-md-12">
     <div class="card-body">
       <div class="form-check">
@@ -9,15 +8,35 @@
           value=""
           id="flexCheckDefault"
           :checked="parseInt(taskdata.completed)"
-          @change="completeTask(taskdata.task_code,parseInt(taskdata.completed))"
+          @change="
+            completeTask(taskdata.task_code, parseInt(taskdata.completed))
+          "
         />
-        <label @dblclick = "todoEdit = true; task_name_changed=false"  v-show="!todoEdit" class="form-check-label" for="flexCheckDefault">
-          {{taskdata.task}}
-        </label>
-        <input @change=" task_name_changed = true " type="text" v-show="todoEdit" v-model="taskdata.task"
-          v-on:blur= "todoEdit=false; rename(taskdata)"
-          @keyup.enter = "todoEdit=false; rename(taskdata)"
+        <label
+          @dblclick="
+            todoEdit = true;
+            task_name_changed = false;
+          "
+          v-show="!todoEdit"
+          class="form-check-label"
+          for="flexCheckDefault"
         >
+          {{ taskdata.task }}
+        </label>
+        <input
+          @change="task_name_changed = true"
+          type="text"
+          v-show="todoEdit"
+          v-model="taskdata.task"
+          v-on:blur="
+            todoEdit = false;
+            rename(taskdata);
+          "
+          @keyup.enter="
+            todoEdit = false;
+            rename(taskdata);
+          "
+        />
       </div>
       <div class="more">
         <div class="dropdown">
@@ -31,8 +50,10 @@
           ></i>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" @click="todoEdit = true" >Rename</a>
-            <a class="dropdown-item" @click="delteTask(taskdata.task_code)">Delete</a>
+            <a class="dropdown-item" @click="todoEdit = true">Rename</a>
+            <a class="dropdown-item" @click="delteTask(taskdata.task_code)"
+              >Delete</a
+            >
           </div>
         </div>
       </div>
@@ -43,52 +64,60 @@
 <script>
 import Button from "./Button.vue";
 export default {
-  components: {  },
+  components: {},
   name: "Task",
-  props:{
-    task:{
-      type:Object
-    }
+  props: {
+    task: {
+      type: Object,
+    },
   },
-  data(){
-    return{
-      taskdata:this.task,
-      todoEdit:false,
-      task_title:this.task.task,
-      task_name_changed:false 
-    }
+  data() {
+    return {
+      taskdata: this.task,
+      todoEdit: false,
+      task_title: this.task.task,
+      task_name_changed: false,
+    };
   },
-  methods:{
-    rename(data){
-      if(this.task_name_changed){
+  methods: {
+    rename(data) {
+      if (this.task_name_changed) {
         var reqest_payload = {
-          'task_code':data.task_code,
-          'task':data.task
-        }
+          task_code: data.task_code,
+          task: data.task,
+        };
 
-        this.$store.dispatch('projects/renameTask',reqest_payload).then((result) => {
-          console.log(result)
-        }).catch((err) => {
-          console.log(err)
-        });
-        
+        this.$store
+          .dispatch("projects/renameTask", reqest_payload)
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
-    completeTask(task_code,completed){
-       this.$store.dispatch('projects/completeTask',{task_code,completed}).then((result) => {
-          console.log(result)
-        }).catch((err) => {
-          console.log(err)
+    completeTask(task_code, completed) {
+      this.$store
+        .dispatch("projects/completeTask", { task_code, completed })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
-    delteTask(task_code){
-      this.$store.dispatch('projects/deleteTask',task_code).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
-      });
-    }
-  }
+    delteTask(task_code) {
+      this.$store
+        .dispatch("projects/deleteTask", task_code)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

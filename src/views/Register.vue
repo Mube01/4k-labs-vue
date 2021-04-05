@@ -3,7 +3,15 @@
     <div class="login text-center">
       <form class="login" @submit.prevent="login">
         <img class="logo" src="@/assets/logo.webp" />
-        <h2>Login</h2>
+        <h2>Register</h2>
+        <label for="fullname">Fullname</label><br />
+        <input
+          required
+          v-model="fullname"
+          type="text"
+          id="fullname"
+          autocomplete="off"
+        />
         <label for="username">Username</label><br />
         <input
           required
@@ -15,7 +23,7 @@
         <br />
         <label for="password">Password</label><br />
         <input required v-model="password" type="password" id="password" />
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </div>
     <div class="footer text-center">
