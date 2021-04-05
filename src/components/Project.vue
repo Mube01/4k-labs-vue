@@ -21,12 +21,12 @@
           ></div>
         </div>
         <hr />
-        <div id="members">
-          <p id="member_class">Members</p>
-          <ul>
+        <div class="members">
+          <p class="member_class">Members</p>
+          <ul class="avatar_shower">
             <li>
-              <span>
-                <div>
+              <span class="spanPosition">
+                <div class="avatar">
                   A
                 </div>
               </span>
@@ -55,11 +55,17 @@ export default {
 </script>
 
 <style scoped>
-#member_class{
+.member_class{
   font-size: 13px;
   margin-left: -300px;
   display: flex;
   justify-content:center;
+}
+.avatar_shower{
+  padding: 0px;
+  flex-direction: row;
+  margin-top: -40px;
+  margin-left: 320px;
 }
 .card {
   border-radius: 10px;
