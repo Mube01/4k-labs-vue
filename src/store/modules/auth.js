@@ -23,7 +23,6 @@ export default {
                 login(username,password).then((result) => {
                     console.log(result.data)
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
-                    dispatch('user/addUserInformation',result.data.user,{root:true})
                     dispatch('storeUserInfo',result.data.user)
                     commit('authSuccesfull',result.data)
                     resolve()

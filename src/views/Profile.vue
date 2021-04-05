@@ -29,13 +29,12 @@
       <div class="row">
         <p class="title">Projects they are working on</p>
         <div class="col-md-12">
-          <Project />
+         
         </div>
       </div>
       <div class="row">
         <p class="title">Projects they have worked on</p>
         <div class="col-md-12">
-          <Project />
         </div>
       </div>
     </div>
@@ -53,7 +52,6 @@ export default {
   components: {
     Header,
     ProfilePicture,
-    Project,
     Button,
   },
 };
