@@ -28,6 +28,11 @@ const routes = [
     name:'Login',
     component:Login
   },
+  {
+    path:'/404',
+    name:'404',
+    component:() => import('../views/404.vue')
+  },
 ]
 
 const router = createRouter({
