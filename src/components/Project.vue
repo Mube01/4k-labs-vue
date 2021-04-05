@@ -26,7 +26,12 @@
         <hr />
         <div class="members">
           <p class="member_class">Members</p>
-          <CirclarProfile />
+          <ul>
+            <li :key=member.user_id v-for="member in project.team_members">
+             
+             <router-link :to="'/profile/' + member.user_id"><CirclarProfile :member="member" /></router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 import auth from './modules/auth'
 import user from './modules/user';
 import projects from './modules/projects';
+import profile from './modules/profile'
 export default createStore({
   state: {
   },
@@ -20,6 +22,8 @@ export default createStore({
   modules: {
     auth,
     user,
-    projects
-  }
+    projects,
+    profile
+  },
+  plugins: [createPersistedState()],
 })

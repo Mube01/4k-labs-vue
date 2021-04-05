@@ -8,19 +8,28 @@
             srcText="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgKCAgICAgICAgHCAoHBwcHCA8ICQcKFREWFiARHxMYHSggGBolJx8fITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw0NDysZFRkrNzctLTc3Nys3NysrKystLS0tKysrKysrLSsrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDB//EABYQAQEBAAAAAAAAAAAAAAAAAAABEf/EABkBAQEBAQEBAAAAAAAAAAAAAAECAwAEBv/EABgRAQEBAQEAAAAAAAAAAAAAAAABEQIS/9oADAMBAAIRAxEAPwDysyKQx4K+ukRRkS0kRkOGQLnKkKakGtJyDIZDIFzkSHDhkC5yMOHDg1c5GLCRqsCOLHHyzixrE7R5YxY0naPLGLG8Fh0XljA3gwovLGDG8BTeWaMasGOReWWbGxikWMWBuxmws7AkinBCjI50hhUKWsiKakC5FIVClpIijIGkikMhIXIDhwwLkCxpOVgxYUDgwNJwxnBjeDCMZDWLHCxmxnGwUWMjGsGFNjIxoFFjNjLdGFnYwLGgdZ2MppFOMGRSNQjmIpqRLWRSFNJaSKFGQNJFCiGkihkUjUC5BhKC5EsKwKxI4sccZxNYHDAMaRGMrCnCxmxnGxSmxkNYHIsZsZbFitRYwG7AWdjFjLYpRYyiCjGY1AYamQxoRpLWRNQGJayGQowNJEZDIQ0kRRC5EjIZAuRSLEQrAinHAsKcMZxYU4YymsFhTYyGgU2AWNCxybGA1QUWCxmxoVTOxms1us0s7GcDSKMYhgbjk8xNCGBrIY1BCmtJDDFDA1kJRC5EZA1A0kRRC5AUQrAinHAGk4YyinDAGg4WM4Glh1OMhoFFjLNbBRYwG7GSixmxmtiqjOxhElGOUagjULPkwiNRLWGGCGBpGoRDEtYSCFwxoQwNIikFwpGQKCaTiyjgcEknOwJIpoSRTQKVXJrIpBRYGcaqKLGBWrAWdjGEpWoxxjUEMLHktQRqCtYmoDEtY1CDA0hIMC4SilpEVEFwwpOUkk4pJOAwNJzmQ1Q5NAKKWUQU0UGgpoBoKKKzW6xSzoRBQ4xqMxqKeflqNRhqBrGjGSlpGzBCGsJgMC40gQ0hIIXDKWY0FJJApJOCS1kuSQcKkgUoEFFFBoKKKCCiis00FnaEkU64RplqLeblqGApaxqGCENI1CzGktIYQQ0jULMIXCRCFww6ydCpTq0Jx06Foc7SgnDSECLUkCm1K0Wg4i1BBybUkLSi0Vk0VTOpDUUa4NRiNRdebmtwxmFLSVuFiNQVrK1GoyZUtJWizpDSVoxkhcrRZlMoVpQ0uVpQQOlaE4akgXaQtGuTadFoRTqC0FNqotWiuTahqBZ2oWqs1SLSmUUa5QxiVqLrzc1uFmGJaytmVmGBpK3CxGktJWjGSFytFmUhcrSCC9OnWS461q1lOw61o0JztOjUHDSgHDSENKdI1WgptQQKLULVoKLUzSCi0JIo1wjUKW83JhiSWsaMSS1haiQaQkILjR1ILhSQUik4pJArUkXBak4IWpOFWjUikBIpqZtKMRWUkUUM1IooSRS//9k="
             imgWeight="250px"
           />
+          
         </div>
         <div class="col-md-5 my-4 pt-2">
-          <p>Username: <span class="value">{{user_info.username}}</span></p>
-          <p>Full name: <span class="value">{{user_info['Full NAME']}}</span></p>
+          <p>Username: <span class="value">
+            <label for="">{{user_info.username}}</label>
+          </span></p>
+          <p>Full name: <span class="value">{{user_info['Full Name']}}</span></p>
           <p>Division: <span class="value">{{user_info.Division}}</span></p>
           <p>Discription: <span class="value">{{user_info.Discription}}</span></p>
+          <Button
+            text="Edit Profile"
+            color="#333"
+            bgColor="white"
+            border="2px solid #333"
+          />
         </div>
         <div class="col-md-3 my-4 pt-2">
-          <p><a href="#">LinkedIn</a></p>
+          <p><a href="userinfo">LinkedIn</a></p>
           <p><a href="#">Github</a></p>
         </div>
       </div>
-      <div
+       <div
         :key="project.project_code"
         v-for="project in projects"
         class="Projects"
@@ -35,34 +44,35 @@
 import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import Project from "@/components/Project.vue";
+import Button from "@/components/Button.vue";
+import { mapGetters, mapActions } from "vuex";
+
 
 export default {
   name: "Home",
   components: {
     Header,
     ProfilePicture,
-    Project
+    Button,
+    Project,
   },
   data(){
-      return{
-          user_info:"",
-          user_code:"",
-      }
-  },
-  computed:{
-      projects(user_id){
-            return this.$store.getters['projects/listOfProjectsByUserId'](this.user_code)
-        }
+    return{
+      user_info:""
+    }
   },
   created(){
-      console.log('reloading state')
-      this.user_code = this.$router.currentRoute._value.params.user_code
-      this.$store.dispatch('profile/getUserInformation',this.user_code).then((result) => {
-          this.user_info = result
-      }).catch((err) => {
-          
-      });
+    this.user_info = this.$store.getters['user/getUserInformation']
+    console.log(this.user_info)
   },
+  computed: {
+    ...mapGetters({
+    }),
+    projects(user_id){
+      return this.$store.getters['projects/listOfProjectsByUserId'](this.user_info.user_id)
+    }
+  }
+
 };
 </script>
 

@@ -16,7 +16,7 @@
             imgWeight="45px"
           />
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <router-link to="/profile"
+            <router-link to="/me"
               ><a class="dropdown-item" href="#">Profile</a>
             </router-link>
             <a class="dropdown-item" href="#" @click="logout">Logout</a>

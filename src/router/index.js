@@ -6,7 +6,15 @@ const routes = [
   {
     path: '/',
     name: 'projects',
+    children:[
+     
+    ],
     component: () => import('../views/Projects.vue')
+  },
+  {
+    path:'/profile/:user_code',
+    name:'Profile',
+    component: () => import('../views/Profile.vue')
   },
   {
     path: '/projects/:projectCode',
@@ -14,9 +22,9 @@ const routes = [
     component: () => import('../views/Tasks.vue')
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import('../views/Profile.vue')
+    path: '/me',
+    name: 'Me',
+    component: () => import('../views/Me.vue')
   },
   {
     path: '/login',
