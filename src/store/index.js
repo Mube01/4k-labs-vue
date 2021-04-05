@@ -25,5 +25,7 @@ export default createStore({
     projects,
     profile
   },
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState({
+    storage: window.sessionStorage
+  })],
 })

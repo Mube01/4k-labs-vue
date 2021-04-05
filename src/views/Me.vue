@@ -11,22 +11,126 @@
           
         </div>
         <div class="col-md-5 my-4 pt-2">
-          <p>Username: <span class="value">
-            <label for="">{{user_info.username}}</label>
+          <p @dblclick="editUserInfo = true; field_value_changed = false">Username: <span class="value">
+            <label  v-show="!editUserInfo">{{user_info.username}}</label>
+            <input
+              type="text"
+              @change="field_value_changed = true"
+              v-model="user_info.username"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
           </span></p>
-          <p>Full name: <span class="value">{{user_info['Full Name']}}</span></p>
-          <p>Division: <span class="value">{{user_info.Division}}</span></p>
-          <p>Discription: <span class="value">{{user_info.Discription}}</span></p>
-          <Button
-            text="Edit Profile"
+          <p @dblclick="editUserInfo = true" >Full name: <span class="value">
+            <label v-show="!editUserInfo">{{user_info['Full Name']}}</label>
+             <input
+              type="text"
+              @change="field_value_changed = true"
+              v-model="user_info['Full Name']"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+          <p @dblclick="editUserInfo = true">Division: <span class="value">
+            <label  v-show="!editUserInfo">{{user_info.Division}}</label>
+            <input
+              type="text"
+              @change="field_value_changed = true"
+              v-model="user_info.Division"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+          <p  @dblclick="editUserInfo = true">Discription: <span class="value">
+            <label v-show="!editUserInfo">{{user_info.Discription}}</label>
+            <input
+              type="text"
+              @change="field_value_changed = true"
+              v-model="user_info.Discription"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+
+          <p @dblclick="editUserInfo = true">Password: <span class="value">
+            <label  v-show="!editUserInfo"></label>
+            <input
+              required
+              type="password"
+              @change="field_value_changed = true"
+              v-model="password"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+          <p @dblclick="editUserInfo = true">New Password: <span class="value">
+            <label  v-show="!editUserInfo"></label>
+            <input
+              type="password"
+              @change="field_value_changed = true"
+              v-model="newpassword"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+          <p @dblclick="editUserInfo = true">Confirm Password: <span class="value">
+            <label  v-show="!editUserInfo"></label>
+            <input
+              type="password"
+              @change="field_value_changed = true"
+              v-model="confirmpassword"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+          </span></p>
+          <Button 
+            :disabled = "!editUserInfo"
+            text="Update Profile"
             color="#333"
             bgColor="white"
             border="2px solid #333"
+            @click="updateInformation()"
           />
         </div>
         <div class="col-md-3 my-4 pt-2">
-          <p><a href="userinfo">LinkedIn</a></p>
-          <p><a href="#">Github</a></p>
+          <p><a @dblclick="sayHI()" href="#">
+          LinkedIn </a>
+          <input
+              type="text"
+              @change="field_value_changed = true"
+              v-model="user_info.Linkden"
+              v-show="editUserInfo"
+              @keyup.enter="
+              closeEdit();
+              "
+             >
+         </p>
+          <p><a href="#">
+            Github </a>
+            <input
+                type="text"
+                @change="field_value_changed = true"
+                v-model="user_info.Github "
+                v-show="editUserInfo"
+                @keyup.enter="
+                  closeEdit();
+                "
+              >
+         </p>
         </div>
       </div>
        <div
@@ -58,18 +162,62 @@ export default {
   },
   data(){
     return{
-      user_info:""
+      user_info:"",
+      editUserInfo : false,
+      field_value_changed:false,
+      password:"",
+      newpassword:"",
+      confirmpassword:"",
     }
   },
   created(){
     this.user_info = this.$store.getters['user/getUserInformation']
-    console.log(this.user_info)
   },
   computed: {
     ...mapGetters({
     }),
-    projects(user_id){
+    projects(){
       return this.$store.getters['projects/listOfProjectsByUserId'](this.user_info.user_id)
+    }
+  },
+  methods:{
+    updateInformation(){
+      console.log('the length is',this.newpassword.length)
+      if(this.password.length===0){
+        alert('password is requiered')
+      }
+      else if (this.newpassword !== this.confirmpassword){
+        alert('please confirm the new passwod')
+      }
+      else if(this.newpassword.length<3 && this.newpassword.length!==0){
+        alert('the length of the password must be greater than 3')
+      }
+      else{
+        this.editUserInfo = false
+        
+        var data = {
+          'password':this.password,
+          'username':this.user_info.username,
+          'Linkden' : this.user_info.Linkden,
+          'Github' : this.user_info.Github,
+          'Full Name':this.user_info['Full Name'],
+          'Discription': this.user_info.Discription,
+          'user_id':this.user_info.user_id
+        }
+        if(this.newpassword.length>=3){
+          data['newpassword'] = this.newpassword
+        }
+
+          // this.password = ""
+          // this.newpassword = ""
+        this.$store.dispatch('profile/editProfile',data)
+      }
+      
+    },
+    closeEdit(){
+      this.editUserInfo = false
+      this.password = ""
+      this.newpassword = ""
     }
   }
 
