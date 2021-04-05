@@ -5,7 +5,7 @@
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
-        <div class="dropdown">
+        <div v-show="isAuthenticated" class="dropdown">
           <ProfilePicture
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -23,14 +23,10 @@
           </div>
         </div>
 
-        <router-link class="link_class" to="/login"> Login </router-link>
+        <router-link v-show="!isAuthenticated" class="link_class" to="/login"> Login </router-link>
 
-        <router-link class="link_class" to="/register">| Register </router-link>
-
-        <router-link class="link_class" to="/projects"
-          >| Projects |</router-link
-        >
-
+        <router-link v-show="!isAuthenticated" class="link_class" to="/register">| Register </router-link>
+        
         <i class="fa fa-bell" aria-hidden="true"></i>
       </div>
     </div>
@@ -39,6 +35,7 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
+import mapGetters from "vuex"
 import { reject } from "q";
 export default {
   name: "Header",
@@ -57,6 +54,11 @@ export default {
         });
     },
   },
+  computed:{
+      isAuthenticated(){
+        return this.$store.getters['auth/isAuthenticated']
+      }
+  }
 };
 </script>
 

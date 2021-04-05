@@ -5,11 +5,6 @@ import store from '../store';
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/projects',
     name: 'projects',
     component: () => import('../views/Projects.vue')
   },
