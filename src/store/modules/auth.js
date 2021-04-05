@@ -53,6 +53,7 @@ export default {
         authLogout(state){
             state.status = false
             state.token = null
+            sessionStorage.clear();
         }
     },
   };
