@@ -13,7 +13,7 @@
           <p>Progress:</p>
         </div>
         <div class="right">
-          <p>division</p>
+          <p>{{project.Division}}</p>
           <p>{{ project.progress || "0" }}%</p>
         </div>
         <div class="progress">
