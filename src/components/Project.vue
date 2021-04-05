@@ -26,10 +26,7 @@
         <hr />
         <div class="members">
           <p class="member_class">Members</p>
-
-          <div class="avatar-circle">
-            <span class="initials">M</span>
-          </div>
+          <CirclarProfile />
         </div>
       </div>
     </div>
@@ -37,12 +34,17 @@
 </template>
 
 <script>
+import CirclarProfile from "./CircularProfile.vue";
+
 export default {
   name: "Project",
   data() {
     return {
       color: "50%",
     };
+  },
+  components: {
+    CirclarProfile,
   },
   props: {
     project: {
@@ -58,24 +60,6 @@ export default {
   padding-top: 5px;
   display: inline;
   float: left;
-}
-.avatar-circle {
-  width: 40px;
-  height: 40px;
-  background-color: blue;
-  text-align: center;
-  float: right;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-}
-.initials {
-  position: relative;
-  top: 7px; /* 25% of parent */
-  font-size: 20px; /* 50% of parent */
-  line-height: 20px; /* 50% of parent */
-  color: #fff;
-  font-weight: bold;
 }
 .card {
   border-radius: 10px;

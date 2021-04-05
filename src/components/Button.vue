@@ -1,6 +1,6 @@
 <template>
-  <button :style="{ background: color }">
-    <i class="fa fa-plus-circle" aria-hidden="true"></i> {{ text }}
+  <button :style="{ background: bgColor, color: color, border: border }">
+    {{ text }}
   </button>
 </template>
 
@@ -9,7 +9,9 @@ export default {
   name: "Button",
   props: {
     text: String,
+    bgColor: String,
     color: String,
+    border: String,
   },
 };
 </script>
@@ -19,10 +21,10 @@ button {
   padding: 10px 45px;
   border-radius: 5px;
   font-size: 20px;
-  color: white;
   border: none;
   margin: 2px 0 7px 0;
   opacity: 0.7;
+  font-weight: 600;
   transition: 0.5s;
 }
 

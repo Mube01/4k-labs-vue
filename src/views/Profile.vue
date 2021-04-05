@@ -29,7 +29,7 @@
       <div class="row">
         <p class="title">Projects they are working on</p>
         <div class="col-md-12">
-         
+
         </div>
       </div>
       <div class="row">
