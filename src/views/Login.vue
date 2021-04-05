@@ -35,7 +35,7 @@ export default {
       var res = this.$store.dispatch("auth/loginUser", this);
       res.then(() => {
         console.log("hi");
-        this.$router.push("/projects");
+        this.$router.push("/");
       });
     },
   },

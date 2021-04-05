@@ -5,7 +5,8 @@ export default {
         user:"",
     },
     getters:{
-        getUserInformation: state => state.user
+        getUserInformation: state => state.user,
+        getUserId: state => state.user.user_id
 
     },
     actions:{

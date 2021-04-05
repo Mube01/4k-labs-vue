@@ -1,11 +1,17 @@
 <template>
   <div class="avatar-circle">
-    <span class="initials">M</span>
+    <span class="initials">{{member.username[0].toUpperCase()}}</span>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props:{
+    member:{
+      type:Object
+    }
+  }
+};
 </script>
 
 <style scoped>

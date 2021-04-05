@@ -15,7 +15,10 @@ export default {
         },
         getProject(state){
             return state.project
-        }
+        },
+        listOfProjectsByUserId:(state)=>(user_id)=>{
+            return state.projects.filter((project)=>project.members.includes(user_id))
+        },
     },
     actions:{
         getAllProjects({commit}){
