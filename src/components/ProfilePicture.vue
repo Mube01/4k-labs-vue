@@ -1,19 +1,41 @@
 <template>
-  <img :src="srcText" :style="{ width: imgWeight, height: imgWeight }" />
+<div>
+      <img v-if="!srcText==false" :src="`http://127.0.0.1:5000/api_v1/get_profile/${srcText}`" :style="{ width: imgWeight, height: imgWeight }" />
+      <div v-if="srcText==false"  class="profile text-center" :style="{width: imgWeight, height: imgWeight}">
+      <span v-bind:style="{ fontSize: fontSize}">{{name[0].toUpperCase()}}</span>
+    </div>
+</div>
 </template>
 
 <script>
 export default {
   name: "ProfilePicture",
   props: {
-    srcText: String,
+    srcText:{
+      type:String,
+      default:'false'
+    },
     imgWeight: String,
+    fontSize: String,
+    name:{
+      type:String,
+      default:'u'
+    }
   },
 };
 </script>
 
 <style scoped>
 img {
-  border-radius: 10%;
+  border-radius: 50%;
+}
+.profile{
+  background-color: blue;
+  border-radius: 50%;
+}
+span{
+  color: white;
+  position: relative;
+  top: 20%;
 }
 </style>
