@@ -29,7 +29,7 @@
           <ul>
             <li :key=member.user_id v-for="member in project.team_members">
              
-             <router-link :to="'/profile/' + member.user_id"><CirclarProfile :member="member" /></router-link>
+             <router-link :to="'/profile/' + member.user_id"><CirclarProfile imgWeight="30px" :member="member" /></router-link>
             </li>
           </ul>
         </div>

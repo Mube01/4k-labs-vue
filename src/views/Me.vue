@@ -5,10 +5,11 @@
       <div class="row">
         <div class="col-md-4 text-center my-4">
           <ProfilePicture
-            srcText="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgKCAgICAgICAgHCAoHBwcHCA8ICQcKFREWFiARHxMYHSggGBolJx8fITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw0NDysZFRkrNzctLTc3Nys3NysrKystLS0tKysrKysrLSsrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDB//EABYQAQEBAAAAAAAAAAAAAAAAAAABEf/EABkBAQEBAQEBAAAAAAAAAAAAAAECAwAEBv/EABgRAQEBAQEAAAAAAAAAAAAAAAABEQIS/9oADAMBAAIRAxEAPwDysyKQx4K+ukRRkS0kRkOGQLnKkKakGtJyDIZDIFzkSHDhkC5yMOHDg1c5GLCRqsCOLHHyzixrE7R5YxY0naPLGLG8Fh0XljA3gwovLGDG8BTeWaMasGOReWWbGxikWMWBuxmws7AkinBCjI50hhUKWsiKakC5FIVClpIijIGkikMhIXIDhwwLkCxpOVgxYUDgwNJwxnBjeDCMZDWLHCxmxnGwUWMjGsGFNjIxoFFjNjLdGFnYwLGgdZ2MppFOMGRSNQjmIpqRLWRSFNJaSKFGQNJFCiGkihkUjUC5BhKC5EsKwKxI4sccZxNYHDAMaRGMrCnCxmxnGxSmxkNYHIsZsZbFitRYwG7AWdjFjLYpRYyiCjGY1AYamQxoRpLWRNQGJayGQowNJEZDIQ0kRRC5EjIZAuRSLEQrAinHAsKcMZxYU4YymsFhTYyGgU2AWNCxybGA1QUWCxmxoVTOxms1us0s7GcDSKMYhgbjk8xNCGBrIY1BCmtJDDFDA1kJRC5EZA1A0kRRC5AUQrAinHAGk4YyinDAGg4WM4Glh1OMhoFFjLNbBRYwG7GSixmxmtiqjOxhElGOUagjULPkwiNRLWGGCGBpGoRDEtYSCFwxoQwNIikFwpGQKCaTiyjgcEknOwJIpoSRTQKVXJrIpBRYGcaqKLGBWrAWdjGEpWoxxjUEMLHktQRqCtYmoDEtY1CDA0hIMC4SilpEVEFwwpOUkk4pJOAwNJzmQ1Q5NAKKWUQU0UGgpoBoKKKzW6xSzoRBQ4xqMxqKeflqNRhqBrGjGSlpGzBCGsJgMC40gQ0hIIXDKWY0FJJApJOCS1kuSQcKkgUoEFFFBoKKKCCiis00FnaEkU64RplqLeblqGApaxqGCENI1CzGktIYQQ0jULMIXCRCFww6ydCpTq0Jx06Foc7SgnDSECLUkCm1K0Wg4i1BBybUkLSi0Vk0VTOpDUUa4NRiNRdebmtwxmFLSVuFiNQVrK1GoyZUtJWizpDSVoxkhcrRZlMoVpQ0uVpQQOlaE4akgXaQtGuTadFoRTqC0FNqotWiuTahqBZ2oWqs1SLSmUUa5QxiVqLrzc1uFmGJaytmVmGBpK3CxGktJWjGSFytFmUhcrSCC9OnWS461q1lOw61o0JztOjUHDSgHDSENKdI1WgptQQKLULVoKLUzSCi0JIo1wjUKW83JhiSWsaMSS1haiQaQkILjR1ILhSQUik4pJArUkXBak4IWpOFWjUikBIpqZtKMRWUkUUM1IooSRS//9k="
+            :srcText="user_info['profile picture']"
             imgWeight="250px"
+            fontSize="100px"
+            :name="user_info.username[0]"
           />
-          
         </div>
         <div class="col-md-5 my-4 pt-2">
           <p @dblclick="editUserInfo = true; field_value_changed = false">Username: <span class="value">
@@ -19,6 +20,9 @@
               v-model="user_info.username"
               v-show="editUserInfo"
               @keyup.enter="
+              closeEdit();
+              "
+              v-on:blur="
               closeEdit();
               "
              >
@@ -33,19 +37,13 @@
               @keyup.enter="
               closeEdit();
               "
-             >
-          </span></p>
-          <p @dblclick="editUserInfo = true">Division: <span class="value">
-            <label  v-show="!editUserInfo">{{user_info.Division}}</label>
-            <input
-              type="text"
-              @change="field_value_changed = true"
-              v-model="user_info.Division"
-              v-show="editUserInfo"
-              @keyup.enter="
+              v-on:blur="
               closeEdit();
               "
              >
+          </span></p>
+          <p @dblclick="editUserInfo = true">Division: <span class="value">
+            <label >{{user_info.Division}}</label>
           </span></p>
           <p  @dblclick="editUserInfo = true">Discription: <span class="value">
             <label v-show="!editUserInfo">{{user_info.Discription}}</label>
@@ -57,10 +55,13 @@
               @keyup.enter="
               closeEdit();
               "
+              v-on:blur="
+              closeEdit();
+              "
              >
           </span></p>
 
-          <p @dblclick="editUserInfo = true">Password: <span class="value">
+          <p  v-show="editUserInfo" @dblclick="editUserInfo = true">Password: <span class="value">
             <label  v-show="!editUserInfo"></label>
             <input
               required
@@ -73,7 +74,7 @@
               "
              >
           </span></p>
-          <p @dblclick="editUserInfo = true">New Password: <span class="value">
+          <p v-show="editUserInfo" @dblclick="editUserInfo = true">New Password: <span class="value">
             <label  v-show="!editUserInfo"></label>
             <input
               type="password"
@@ -85,7 +86,7 @@
               "
              >
           </span></p>
-          <p @dblclick="editUserInfo = true">Confirm Password: <span class="value">
+          <p v-show="editUserInfo" @dblclick="editUserInfo = true">Confirm Password: <span class="value">
             <label  v-show="!editUserInfo"></label>
             <input
               type="password"
@@ -103,11 +104,11 @@
             color="#333"
             bgColor="white"
             border="2px solid #333"
-            @click="updateInformation()"
+            @click="updateInformation"
           />
         </div>
         <div class="col-md-3 my-4 pt-2">
-          <p><a @dblclick="sayHI()" href="#">
+          <p><a href="#">
           LinkedIn </a>
           <input
               type="text"
@@ -131,8 +132,14 @@
                 "
               >
          </p>
+          <p>
+          <label v-show="editUserInfo" @dblclick="editUserInfo = true">Upload Profile</label>
+          <input v-on:change="uploadProfile" v-show="editUserInfo" type="file" accept="image/*"/>
+          </p>
         </div>
       </div>
+      <br/>
+      <br/>
        <div
         :key="project.project_code"
         v-for="project in projects"
@@ -152,6 +159,13 @@ import Button from "@/components/Button.vue";
 import { mapGetters, mapActions } from "vuex";
 
 
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
 export default {
   name: "Home",
   components: {
@@ -168,9 +182,11 @@ export default {
       password:"",
       newpassword:"",
       confirmpassword:"",
+      image:"",
     }
   },
   created(){
+    console.log('this is abel km')
     this.user_info = this.$store.getters['user/getUserInformation']
   },
   computed: {
@@ -207,7 +223,9 @@ export default {
         if(this.newpassword.length>=3){
           data['newpassword'] = this.newpassword
         }
-
+        if(this.image.length!=0){
+          data['image'] = this.image
+        }
           // this.password = ""
           // this.newpassword = ""
         this.$store.dispatch('profile/editProfile',data)
@@ -218,10 +236,25 @@ export default {
       this.editUserInfo = false
       this.password = ""
       this.newpassword = ""
+    },
+    uploadProfile(e){
+      const selecterImage = e.target.files[0] 
+      this.createBase64Image(selecterImage)
+    },
+    createBase64Image(fileObject){
+      const reader = new FileReader()
+      reader.readAsDataURL(fileObject);
+      reader.onload = (e)=>{
+        var base64result = e.target.result
+        this.image = base64result.split(',')[1]
+      }
     }
   }
 
 };
+
+
+
 </script>
 
 <style scoped>
