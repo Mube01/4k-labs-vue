@@ -8,7 +8,7 @@
       <div class="more">
         <div class="dropdown">
           <button
-            class="btn btn-primary dropdown-toggle"
+            class="btn dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -57,5 +57,8 @@ export default {
 span {
   font-size: 20px;
   font-weight: 600;
+}
+.btn {
+  border-radius: 10px;
 }
 </style>
