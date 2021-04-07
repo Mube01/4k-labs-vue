@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div class="container">
-      <router-link to="/projects"
+      <router-link to="/"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">

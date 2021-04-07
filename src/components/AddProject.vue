@@ -1,9 +1,10 @@
 <template>
+
   <div class="text-center">
     <form @submit="onSubmit">
       <input
         type="text"
-        v-model="text"
+        v-model="project_title"
         name="text"
         placeholder="Project Title"
       />
@@ -15,21 +16,16 @@
           <Multiselect
             v-model="value"
             mode="tags"
-            placeholder="Select employees"
-            trackBy="name"
-            label="name"
+            placeholder="Select members"
+            trackBy="username"
+            label="username"
             :search="true"
-            :options="[
-              { value: 'judy', name: 'Judy', image: 'https://randomuser.me/api/portraits/med/women/1.jpg' },
-              { value: 'jane', name: 'Jane', image: 'https://randomuser.me/api/portraits/med/women/2.jpg' },
-              { value: 'john', name: 'John', image: 'https://randomuser.me/api/portraits/med/men/1.jpg' },
-              { value: 'joe', name: 'Joe', image: 'https://randomuser.me/api/portraits/med/men/2.jpg' }
-            ]"
+            :options="allMembers"
           >
               <template v-slot:tag="{ option, handleTagRemove, disabled }">
                 <div class="multiselect-tag is-user">
-                  <img :src="option.image">
-                  {{ option.name }}
+                  <img :src="option['profile picture']">
+                  {{ option.username }}
                   <i
                     v-if="!disabled"
                     @click.prevent
@@ -62,14 +58,25 @@
 <script>
 import Button from "./Button.vue";
 import Multiselect from "@vueform/multiselect";
+import {mapGetters,mapActions} from 'vuex'
 
 export default {
   name: "AddProject",
+  computed: {
+    ...mapGetters({
+      allMembers: "projects/getMembers",
+      user_id:"user/getUserId"
+    }),
+  },
   data() {
     return {
+
+      project_title:"",
+      description:"",
+      project_members : "",
       text: "",
-      value: null,
-      options: ["Batman", "Robin", "Joker"],
+      value: [],
+      
     };
   },
   components: {
@@ -77,12 +84,33 @@ export default {
     Multiselect,
   },
   methods: {
+    ...mapActions({
+      createProject:'projects/createNewProject'
+    }),
+
     onSubmit(e) {
       e.preventDefault();
-      if (!this.text) {
+      if (!this.project_title) {
         alert("Please add a project");
-        return;
       }
+      else if(this.value.length<1){
+          alert("minimum one member have to be adde")
+        }
+      var data = {
+        "project_title":this.project_title,
+        "tasks":[],
+        "members":this.value,
+        "user_id":this.user_id,
+        "github_link":"",
+        "docs_link":"",
+        "description":this.description
+      }
+      this.createProject(data).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        console.log(err)
+      });
+      this.$emit('projectAdded')
     },
   },
 };

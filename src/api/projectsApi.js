@@ -48,4 +48,12 @@ function createNewProject(data){
 
 }
 
-export default {fetchProjects,fetchProject,createNewProject}
+function getMembers(){
+    var config = {
+    method: 'get',
+    url: 'http://127.0.0.1:5000/api_v1/members',
+    };
+    return axios(config)
+}
+
+export default {fetchProjects,fetchProject,createNewProject,getMembers}

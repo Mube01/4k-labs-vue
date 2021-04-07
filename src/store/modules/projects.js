@@ -7,7 +7,8 @@ export default {
 
     state:{
         projects:"",
-        project:""
+        project:"",
+        members:""
     },
     getters:{
         listOfProjects(state){
@@ -19,12 +20,30 @@ export default {
         listOfProjectsByUserId:(state)=>(user_id)=>{
             return state.projects.filter((project)=>project.members.includes(user_id))
         },
+        getMembers(state){
+            var copy_members = state.members
+            for(let i = 0 ; i<copy_members.length; i++){
+                copy_members[i]['value'] = copy_members[i]['user_id']
+            }
+            return copy_members
+        }
     },
     actions:{
-        getAllProjects({commit}){
+        getMembers({commit}){
+            return new Promise((resolve,reject)=>{
+                projectsApi.getMembers().then((result) => {
+                    console.log(result.data.members)
+                    commit('storeMembers',result.data.members)
+                }).catch((err) => {
+                    reject(err.response.data)
+                });
+            })
+        },
+        getAllProjects({commit,dispatch}){
             return new Promise((resolve,reject)=>{
                 projectsApi.fetchProjects().then((result) => {
                     commit('storeAllProjects',result.data.projects)
+                    dispatch('getMembers')
                     resolve()
                 }).catch((err) => {
                 });
@@ -86,6 +105,7 @@ export default {
         },
         createNewProject({commit},data){
             return new Promise((resolve,reject)=>{
+                console.log(data)
                 projectsApi.createNewProject(data).then((result)=>{
                     commit('addProject',result.data.project)
                     resolve (result.data)
@@ -162,6 +182,9 @@ export default {
         },
         addProject(state,project){
             state.projects.push(project)
+        },
+        storeMembers(state,members){
+            state.members = members
         }
     }
   };

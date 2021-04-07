@@ -1,14 +1,15 @@
 <template>
   <div class="avatar-circle">
-    <span class="initials">{{member.username[0].toUpperCase()}}</span>
+    <span class="initials">{{ name[0].toUpperCase()}}</span>
   </div>
 </template>
 
 <script>
 export default {
   props:{
-    member:{
-      type:Object
+    name:{
+      type:String,
+      default:'u'
     }
   }
 };
