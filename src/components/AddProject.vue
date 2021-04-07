@@ -11,7 +11,6 @@
       <div class="full">
         <label for="addMembers">Add Members</label><br />
         <div>
-          <MultiSelect />
         </div>
       </div>
 
@@ -100,7 +99,5 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   background: #f1f1f1;
 }
-h3 {
-  margin-top: 0;
-}
+
 </style>

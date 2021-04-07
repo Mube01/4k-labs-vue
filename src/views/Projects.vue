@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 import Header from "@/components/Header.vue";
 import Project from "@/components/Project.vue";
 import Add from "@/components/Add.vue";
@@ -41,8 +42,7 @@ export default {
   data() {
     return {
       showAddProject: false,
-      value: null,
-      options: ["Batman", "Robin", "Joker"],
+
     };
   },
   methods: {
