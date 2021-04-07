@@ -8,23 +8,49 @@
         placeholder="Project Title"
       />
 
-      <Button type="submit" text="Add" color="white" bgColor="green" />
+      <div class="left">
+        <label for="addMembers">Add Members</label><br />
+        <div>
+          <Multiselect
+            style="margin-bottom: 15px"
+            v-model="value"
+            :options="options"
+          />
+        </div>
+      </div>
+
+      <div class="full">
+        <label for="description">Description</label><br />
+        <textarea
+          rows="7"
+          v-model="description"
+          type="text"
+          id="description"
+          autocomplete="off"
+        />
+      </div>
+
+      <Button type="submit" text="Add Project" color="white" bgColor="green" />
     </form>
   </div>
 </template>
 
 <script>
 import Button from "./Button.vue";
+import Multiselect from "@vueform/multiselect";
 
 export default {
   name: "AddProject",
   data() {
     return {
       text: "",
+      value: null,
+      options: ["Batman", "Robin", "Joker"],
     };
   },
   components: {
     Button,
+    Multiselect,
   },
   methods: {
     onSubmit(e) {
@@ -38,6 +64,7 @@ export default {
 };
 </script>
 
+<style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped>
 input {
   width: 100%;
@@ -45,5 +72,35 @@ input {
   margin: 5px 0 15px 0;
   border-radius: 5px;
   border: 1px solid #333;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.full {
+  clear: both;
+}
+label {
+  float: left;
+  font-size: 18px;
+  font-weight: 700;
+}
+select {
+  width: 450px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  border: 2px solid #666;
+  margin: 5px 0 15px 0;
+}
+select:focus {
+  border: 3px solid black;
+  padding: 14px 9px;
+}
+textarea {
+  width: 100%;
+  border: 2px solid #666;
+  margin-bottom: 10px;
 }
 </style>

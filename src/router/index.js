@@ -6,14 +6,14 @@ const routes = [
   {
     path: '/',
     name: 'projects',
-    children:[
-     
+    children: [
+
     ],
     component: () => import('../views/Projects.vue')
   },
   {
-    path:'/profile/:user_code',
-    name:'Profile',
+    path: '/profile/:user_code',
+    name: 'Profile',
     component: () => import('../views/Profile.vue')
   },
   {
@@ -31,16 +31,20 @@ const routes = [
     name: 'Login',
     component: Login
   },
-
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin.vue')
+  },
   {
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
   {
-    path:'/404',
-    name:'404',
-    component:() => import('../views/404.vue')
+    path: '/404',
+    name: '404',
+    component: () => import('../views/404.vue')
   },
 ]
 

@@ -27,9 +27,10 @@
         <div class="members">
           <p class="member_class">Members</p>
           <ul>
-            <li :key=member.user_id v-for="member in project.team_members">
-             
-             <router-link :to="'/profile/' + member.user_id"><CirclarProfile imgWeight="30px" :member="member" /></router-link>
+            <li :key="member.user_id" v-for="member in project.team_members">
+              <router-link :to="'/profile/' + member.user_id"
+                ><CirclarProfile imgWeight="30px" :member="member"
+              /></router-link>
             </li>
           </ul>
         </div>
@@ -104,5 +105,9 @@ h3 {
 }
 hr {
   margin: 30px 0 20px 0;
+}
+li {
+  display: inline;
+  list-style: none;
 }
 </style>

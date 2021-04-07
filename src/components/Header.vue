@@ -1,35 +1,32 @@
 <template>
   <div id="header">
     <div class="container">
-      <router-link to="/"
+      <router-link to="/projects"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
-        <div v-show="isAuthenticated" class="dropdown">
-          <ProfilePicture
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="false"
-            aria-expanded="false"
-            aria-hidden="false"
-            imgWeight="45px"
-            fontSize="20px"
-            :name="user_info.username[0]"
-            :srcText="user_info['profile picture']"
-          />
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <router-link to="/me"
-              ><a class="dropdown-item" href="#">Profile</a>
-            </router-link>
-            <a class="dropdown-item" href="#" @click="logout">Logout</a>
-          </div>
+        <div v-show="isAuthenticated">
+          <router-link to="/me">
+            <ProfilePicture
+              imgWeight="45px"
+              fontSize="20px"
+              :name="user_info.username[0]"
+              :srcText="user_info['profile picture']"
+            />
+          </router-link>
         </div>
 
-        <router-link v-show="!isAuthenticated" class="link_class" to="/login"> Login </router-link>
+        <router-link v-show="!isAuthenticated" class="link_class" to="/login">
+          Login
+        </router-link>
 
-        <router-link v-show="!isAuthenticated" class="link_class" to="/register">| Register </router-link>
-        
+        <router-link v-show="!isAuthenticated" class="link_class" to="/register"
+          >| Register
+        </router-link>
+
         <i class="fa fa-bell" aria-hidden="true"></i>
+
+        <a class="link_class" href="#" @click="logout">Logout</a>
       </div>
     </div>
   </div>
@@ -37,7 +34,7 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
-import mapGetters from "vuex"
+import mapGetters from "vuex";
 import { reject } from "q";
 export default {
   name: "Header",
@@ -56,21 +53,21 @@ export default {
         });
     },
   },
-  computed:{
-      isAuthenticated(){
-        return this.$store.getters['auth/isAuthenticated']
-      },
-      user_info(){
-        return this.$store.getters['user/getUserInformation']
-      }
-  }
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters["auth/isAuthenticated"];
+    },
+    user_info() {
+      return this.$store.getters["user/getUserInformation"];
+    },
+  },
 };
 </script>
 
 <style scoped>
 #header {
   width: 100%;
-  height: 150px;
+  height: 90px;
   background: white;
   display: block;
   overflow: hidden;
@@ -97,5 +94,9 @@ img.logo {
 .dropdown-item {
   position: relative;
   z-index: 100;
+}
+.link_class {
+  padding: 10px 0;
+  margin-left: 15px;
 }
 </style>
