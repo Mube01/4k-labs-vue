@@ -27,9 +27,6 @@
         </div>
       </div>
       <br />
-<<<<<<< HEAD
-      <h5>Members</h5>
-=======
 
       <div class="members">
           <h5 class="member_class">Members</h5>
@@ -47,7 +44,6 @@
           </ul>
         </div>
 
->>>>>>> creat_new_project
       <AddMember
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
@@ -56,37 +52,12 @@
         border="none"
       />
       <div v-show="showAddMember">
-<<<<<<< HEAD
-        <MultiSelect style="margin-top: 70px" />
-        <button>Add Members</button>
-      </div>
-
-      <div class="members">
-        <ul>
-          <li
-            :key="member.user_id"
-            v-for="member in project.project_code.team_members"
-          >
-            <router-link :to="'/profile/' + member.user_id">
-              <ProfilePicture
-                imgWeight="45px"
-                fontSize="20px"
-                :name="member.username[0]"
-                :srcText="member['profile picture']"
-              />
-              {{ member.username }}
-            </router-link>
-          </li>
-        </ul>
-      </div>
-=======
         <MultiSelect ref="selected_members" :memberIds="project.members" :allMembers="allMembers" style="margin-top: 70px" />
         <button @click="updateMembers()">Update Members</button>
       </div>
 
       
 
->>>>>>> creat_new_project
       <br />
       <h5>Tasks</h5>
       <Add
@@ -206,10 +177,7 @@ p {
 }
 li {
   float: left;
-<<<<<<< HEAD
-=======
   padding: 2px;
->>>>>>> creat_new_project
 }
 button {
   padding: 10px 45px;
@@ -223,12 +191,6 @@ button {
   font-weight: 600;
   transition: 0.5s;
 }
-<<<<<<< HEAD
-
-button:hover {
-  opacity: 1;
-}
-=======
 button:hover {
   opacity: 1;
 }
@@ -238,5 +200,4 @@ button:hover {
   display: inline;
   float: left;
 }
->>>>>>> creat_new_project
 </style>
