@@ -34,4 +34,18 @@ function fetchProject(project_code){
     return axios(config)
 }
 
-export default {fetchProjects,fetchProject}
+function createNewProject(data){
+    var config = {
+    method: 'post',
+    url: 'http://127.0.0.1:5000/api_v1/create_new_project',
+    headers: { 
+        'Content-Type': 'application/json'
+    },
+    data : JSON.stringify(data)
+    };
+
+    return axios(config)
+
+}
+
+export default {fetchProjects,fetchProject,createNewProject}

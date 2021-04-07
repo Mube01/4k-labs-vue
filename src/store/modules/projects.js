@@ -83,6 +83,16 @@ export default {
                     reject(err.response.data)
                 })
             })
+        },
+        createNewProject({commit},data){
+            return new Promise((resolve,reject)=>{
+                projectsApi.createNewProject(data).then((result)=>{
+                    commit('addProject',result.data.project)
+                    resolve (result.data)
+                }).catch((err)=>{
+                    reject(err.response.data)
+                })
+            })
         }
     },
     mutations:{
@@ -149,6 +159,9 @@ export default {
         },
         addTask(state,task){
             state.project.tasks.push(task)
+        },
+        addProject(state,project){
+            state.projects.push(project)
         }
     }
   };
