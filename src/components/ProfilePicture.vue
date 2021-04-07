@@ -1,26 +1,36 @@
 <template>
-<div>
-      <img v-if="!srcText==false" :src="`http://127.0.0.1:5000/api_v1/get_profile/${srcText}`" :style="{ width: imgWeight, height: imgWeight }" />
-      <div v-if="srcText==false"  class="profile text-center" :style="{width: imgWeight, height: imgWeight}">
-      <span v-bind:style="{ fontSize: fontSize}">{{name[0].toUpperCase()}}</span>
+  <div>
+    <img
+      v-if="!srcText == false"
+      :src="`http://127.0.0.1:5000/api_v1/get_profile/${srcText}`"
+      :style="{ width: imgWeight, height: imgWeight }"
+    />
+    <div
+      v-if="srcText == false"
+      class="profile text-center"
+      :style="{ width: imgWeight, height: imgWeight }"
+    >
+      <span v-bind:style="{ fontSize: fontSize }">{{
+        name[0].toUpperCase()
+      }}</span>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "ProfilePicture",
   props: {
-    srcText:{
-      type:String,
-      default:'false'
+    srcText: {
+      type: String,
+      default: "false",
     },
     imgWeight: String,
     fontSize: String,
-    name:{
-      type:String,
-      default:'u'
-    }
+    name: {
+      type: String,
+      default: "u",
+    },
   },
 };
 </script>
@@ -29,11 +39,11 @@ export default {
 img {
   border-radius: 50%;
 }
-.profile{
+.profile {
   background-color: blue;
   border-radius: 50%;
 }
-span{
+span {
   color: white;
   position: relative;
   top: 20%;
