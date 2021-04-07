@@ -7,7 +7,7 @@
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
       />
-      <div v-show="showAddProject">
+      <div @projectAdded="showAddProject = false" v-show="showAddProject">
         <AddProject />
       </div>
 

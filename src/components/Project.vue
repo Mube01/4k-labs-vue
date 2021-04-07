@@ -45,7 +45,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import ProfilePicture from "./ProfilePicture";
+=======
+import ProfilePicture from "./ProfilePicture.vue";
+>>>>>>> creat_new_project
 
 export default {
   name: "Project",
@@ -55,7 +59,11 @@ export default {
     };
   },
   components: {
+<<<<<<< HEAD
     ProfilePicture,
+=======
+    ProfilePicture
+>>>>>>> creat_new_project
   },
   props: {
     project: {

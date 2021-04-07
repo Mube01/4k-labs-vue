@@ -1,57 +1,55 @@
 <template>
-  <Multiselect
-    style="margin-bottom: 10px"
-    v-model="value"
-    mode="tags"
-    placeholder="Select Members"
-    trackBy="name"
-    label="name"
-    :search="true"
-    :options="[
-      {
-        value: 'judy',
-        name: 'Judy',
-        image: 'https://randomuser.me/api/portraits/med/women/1.jpg',
-      },
-      {
-        value: 'jane',
-        name: 'Jane',
-        image: 'https://randomuser.me/api/portraits/med/women/2.jpg',
-      },
-      {
-        value: 'john',
-        name: 'John',
-        image: 'https://randomuser.me/api/portraits/med/men/1.jpg',
-      },
-      {
-        value: 'joe',
-        name: 'Joe',
-        image: 'https://randomuser.me/api/portraits/med/men/2.jpg',
-      },
-    ]"
-  >
-    <template v-slot:tag="{ option, handleTagRemove, disabled }">
-      <div class="multiselect-tag is-user">
-        <img :src="option.image" />
-        {{ option.name }}
-        <i
-          v-if="!disabled"
-          @click.prevent
-          @mousedown.prevent.stop="handleTagRemove(option, $event)"
-        />
-      </div>
-    </template>
-  </Multiselect>
+  <div>
+          
+          <Multiselect
+            v-model="value"
+            mode="tags"
+            placeholder="Select members"
+            trackBy="username"
+            label="username"
+            :search="true"
+            :options="allMembers"
+          >
+              <template v-slot:tag="{ option, handleTagRemove, disabled }">
+                <div class="multiselect-tag is-user">
+                  <ProfilePicture
+                    imgWeight="35px"
+                    fontSize="15px"
+                    :name="option.username[0]"
+                    :srcText="option['profile picture']"
+                  />
+                  {{ option.username }}
+                  <i
+                    v-if="!disabled"
+                    @click.prevent
+                    @mousedown.prevent.stop="handleTagRemove(option, $event)"
+                  />
+                </div>
+              </template>
+          </Multiselect>
+
+
+        </div>
 </template>
 
 <script>
 import Multiselect from "@vueform/multiselect";
-
+import ProfilePicture from "./ProfilePicture"
 export default {
   name: "MultiSelect",
   components: {
     Multiselect,
+    ProfilePicture
   },
+  props:{
+    allMembers:Object,
+    memberIds:Array
+  },
+  computed:{
+     value(){
+        return this.memberIds || []
+     }
+  }
 };
 </script>
 

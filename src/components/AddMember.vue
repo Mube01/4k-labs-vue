@@ -35,7 +35,6 @@ button {
   font-weight: 600;
   transition: 0.5s;
 }
-
 button:hover {
   opacity: 1;
 }
