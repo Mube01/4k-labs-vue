@@ -3,12 +3,6 @@
     <Header />
 
     <div>
-    <Multiselect
-      v-model="value"
-      :options="options"
-      mode="multiple"
-
-    />
     </div>
     <div class="container">
       <Add
@@ -32,8 +26,6 @@
 </template>
 
 <script>
-import Multiselect from '@vueform/multiselect'
-
 
 import Header from "@/components/Header.vue";
 import Project from "@/components/Project.vue";
@@ -49,17 +41,10 @@ export default {
     Project,
     Add,
     AddProject,
-    Multiselect
   },
   data() {
     return {
       showAddProject: false,
-      value: null,
-      options: [
-        'Batman',
-        'Robin',
-        'Joker',
-      ]
     };
   },
   methods: {
