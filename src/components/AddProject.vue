@@ -8,14 +8,10 @@
         placeholder="Project Title"
       />
 
-      <div class="left">
+      <div class="full">
         <label for="addMembers">Add Members</label><br />
         <div>
-          <Multiselect
-            style="margin-bottom: 15px"
-            v-model="value"
-            :options="options"
-          />
+          <MultiSelect />
         </div>
       </div>
 
@@ -37,20 +33,18 @@
 
 <script>
 import Button from "./Button.vue";
-import Multiselect from "@vueform/multiselect";
+import MultiSelect from "./MultiSelect";
 
 export default {
   name: "AddProject",
   data() {
     return {
       text: "",
-      value: null,
-      options: ["Batman", "Robin", "Joker"],
     };
   },
   components: {
     Button,
-    Multiselect,
+    MultiSelect,
   },
   methods: {
     onSubmit(e) {
@@ -64,7 +58,6 @@ export default {
 };
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped>
 input {
   width: 100%;
@@ -102,5 +95,12 @@ textarea {
   width: 100%;
   border: 2px solid #666;
   margin-bottom: 10px;
+}
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  background: #f1f1f1;
+}
+h3 {
+  margin-top: 0;
 }
 </style>
