@@ -1,6 +1,5 @@
 <template>
   <div>
-          
           <Multiselect
             v-model="value"
             mode="tags"
