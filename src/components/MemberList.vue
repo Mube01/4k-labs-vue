@@ -59,6 +59,10 @@ span {
   font-weight: 600;
 }
 .btn {
-  border-radius: 10px;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  font-size: 18px;
 }
 </style>
