@@ -1,9 +1,6 @@
 <template>
   <div>
     <Header />
-
-    <div>
-    </div>
     <div class="container">
       <Add
         @toggle-add="toggleAdd"
@@ -45,6 +42,7 @@ export default {
   data() {
     return {
       showAddProject: false,
+
     };
   },
   methods: {

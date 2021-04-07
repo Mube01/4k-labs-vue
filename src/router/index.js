@@ -42,6 +42,11 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
+    path: '/update',
+    name: 'UpdateProfile',
+    component: () => import('../views/UpdateProfile.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/404.vue')

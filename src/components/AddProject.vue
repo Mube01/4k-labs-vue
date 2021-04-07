@@ -11,35 +11,6 @@
       <div class="full">
         <label for="addMembers">Add Members</label><br />
         <div>
-          
-          <Multiselect
-            v-model="value"
-            mode="tags"
-            placeholder="Select employees"
-            trackBy="name"
-            label="name"
-            :search="true"
-            :options="[
-              { value: 'judy', name: 'Judy', image: 'https://randomuser.me/api/portraits/med/women/1.jpg' },
-              { value: 'jane', name: 'Jane', image: 'https://randomuser.me/api/portraits/med/women/2.jpg' },
-              { value: 'john', name: 'John', image: 'https://randomuser.me/api/portraits/med/men/1.jpg' },
-              { value: 'joe', name: 'Joe', image: 'https://randomuser.me/api/portraits/med/men/2.jpg' }
-            ]"
-          >
-              <template v-slot:tag="{ option, handleTagRemove, disabled }">
-                <div class="multiselect-tag is-user">
-                  <img :src="option.image">
-                  {{ option.name }}
-                  <i
-                    v-if="!disabled"
-                    @click.prevent
-                    @mousedown.prevent.stop="handleTagRemove(option, $event)"
-                  />
-                </div>
-              </template>
-          </Multiselect>
-
-
         </div>
       </div>
 
@@ -61,20 +32,18 @@
 
 <script>
 import Button from "./Button.vue";
-import Multiselect from "@vueform/multiselect";
+import MultiSelect from "./MultiSelect";
 
 export default {
   name: "AddProject",
   data() {
     return {
       text: "",
-      value: null,
-      options: ["Batman", "Robin", "Joker"],
     };
   },
   components: {
     Button,
-    Multiselect,
+    MultiSelect,
   },
   methods: {
     onSubmit(e) {
@@ -88,7 +57,6 @@ export default {
 };
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped>
 input {
   width: 100%;
@@ -132,68 +100,4 @@ body {
   background: #f1f1f1;
 }
 
-h3 {
-  margin-top: 0;
-}
-
-.example {
-  background: #ffffff;
-  margin: 20px;
-  border-color: #e7e7e7;
-  padding: 40px;
-}
-
-.example pre {
-  background: #f9f9f9;
-  padding: 18px 6px;
-  overflow-x: scroll;
-}
-
-.output {
-  font-family: Courier, Courier New, Lucida Console, Monaco, Consolas;
-  background: #000000;
-  color: #ffffff;
-  padding: 20px;
-  margin-bottom: 20px;
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 13px;
-}
-
-.multiselect-tag.is-user {
-  padding: 5px 8px;
-  border-radius: 22px;
-  background: #35495e;
-  margin: 3px 3px 8px;
-}
-
-.multiselect-tag.is-user img {
-  width: 18px;
-  border-radius: 50%;
-  height: 18px;
-  margin-right: 8px;
-  border: 2px solid #ffffffbf;
-}
-
-.multiselect-tag.is-user i:before {
-  color: #ffffff;
-  border-radius: 50%;;
-}
-
-.user-image {
-  margin: 0 6px 0 0;
-  border-radius: 50%;
-  height: 22px;
-}
-
-.character-option-icon {
-  margin: 0 6px 0 0;
-  height: 22px;
-}
-
-.character-label-icon {
-  margin: 0 6px 0 0;
-  height: 26px;
-}
 </style>

@@ -2,12 +2,25 @@
   <div>
     <Header />
     <div class="container">
-      <Button
-        text="Generate Token"
-        color="white"
-        bgColor="green"
-        border="none"
-      />
+      <div class="dropdown">
+        <Button
+          text="Generate Token"
+          color="white"
+          bgColor="green"
+          border="none"
+          class="btn dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        />
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button class="dropdown-item" href="#">Web</button>
+          <button class="dropdown-item" href="#">Bots</button>
+          <button class="dropdown-item" href="#">Iot</button>
+        </div>
+      </div>
 
       <h4>Members</h4>
       <MemberList />
@@ -49,5 +62,9 @@ h4 {
   font-weight: 700;
   margin: 20px 0 20px 5px;
   letter-spacing: 1px;
+}
+.dropdown-item {
+  margin: 2px;
+  padding: 8px 15px;
 }
 </style>

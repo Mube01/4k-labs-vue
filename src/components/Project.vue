@@ -28,9 +28,14 @@
           <p class="member_class">Members</p>
           <ul>
             <li :key="member.user_id" v-for="member in project.team_members">
-              <router-link :to="'/profile/' + member.user_id"
-                ><CirclarProfile imgWeight="30px" :member="member"
-              /></router-link>
+              <router-link :to="'/profile/' + member.user_id">
+                <ProfilePicture
+                  imgWeight="45px"
+                  fontSize="20px"
+                  :name="member.username[0]"
+                  :srcText="member['profile picture']"
+                />
+              </router-link>
             </li>
           </ul>
         </div>
@@ -40,7 +45,7 @@
 </template>
 
 <script>
-import CirclarProfile from "./CircularProfile.vue";
+import ProfilePicture from "./ProfilePicture";
 
 export default {
   name: "Project",
@@ -50,7 +55,7 @@ export default {
     };
   },
   components: {
-    CirclarProfile,
+    ProfilePicture,
   },
   props: {
     project: {
@@ -109,5 +114,7 @@ hr {
 li {
   display: inline;
   list-style: none;
+  float: right;
+  margin-left: 10px;
 }
 </style>
