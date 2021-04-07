@@ -73,7 +73,6 @@ export default {
 
       project_title:"",
       description:"",
-      project_members : "",
       text: "",
       value: [],
       

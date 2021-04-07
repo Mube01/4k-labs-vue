@@ -1,6 +1,5 @@
 import projectsApi from '../../api/projectsApi'
 import tasksApi from '../../api/tasksApi'
-import router from '../../router'
 
 export default {
     namespaced: true,
@@ -15,7 +14,11 @@ export default {
             return state.projects
         },
         getProject(state){
-            return state.project
+            var project_copy = state.project
+            for(let i = 0 ; i<project_copy.team_members.length; i++){
+                project_copy.team_members[i]['value'] = project_copy.team_members[i]['user_id']
+            }
+            return project_copy
         },
         listOfProjectsByUserId:(state)=>(user_id)=>{
             return state.projects.filter((project)=>project.members.includes(user_id))
@@ -29,12 +32,15 @@ export default {
         }
     },
     actions:{
-        getMembers({commit}){
+        getMembers({commit,dispatch}){
             return new Promise((resolve,reject)=>{
                 projectsApi.getMembers().then((result) => {
                     console.log(result.data.members)
                     commit('storeMembers',result.data.members)
                 }).catch((err) => {
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 });
             })
@@ -46,73 +52,96 @@ export default {
                     dispatch('getMembers')
                     resolve()
                 }).catch((err) => {
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
+                    reject(err.response.data)
                 });
             })
         },
-        getProject({commit},project_code){
+        getProject({commit,dispatch},project_code){
             return new Promise((resolve,reject)=>{
                 projectsApi.fetchProject(project_code).then((result)=>{
                     commit('saveProject',result.data.project)
                     resolve(result.data.project)
                 }).catch((err) => {
-                    if(err.response.status == 404){
-                        router.push('/404')
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
                     }
+                    reject(err.response.data)
                 });
             })
         },
-        renameTask({commit},payload){
+        renameTask({commit,dispatch},payload){
             return new Promise((resolve,reject)=>{
                 var ans =  tasksApi.renameTask(payload.task_code,payload.task).then((result)=>{
                     resolve (result.data)
                 }).catch((err)=>{
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 })
             })
         },
-        completeTask({commit},data){
+        completeTask({commit,dispatch},data){
             return new Promise((resolve,reject)=>{
                 var ans =  tasksApi.completeTask(data.task_code).then((result)=>{
                     commit('completeTask',data)
                     commit('updateProgress')
                     resolve (result.data)
                 }).catch((err)=>{
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 })
             })
         },
-        deleteTask({commit},task_code){
+        deleteTask({commit,dispatch},task_code){
             return new Promise((resolve,reject)=>{
                 var ans =  tasksApi.deleteTask(task_code).then((result)=>{
                     commit('deleteTask',task_code)
                     commit('updateProgress')
                     resolve (result.data)
                 }).catch((err)=>{
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 })
             })
         },
-        addTask({commit},data){
+        addTask({commit,dispatch},data){
             return new Promise((resolve,reject)=>{
                 var ans =  tasksApi.addTask(data.project_code,data.task).then((result)=>{
                     commit('addTask',result.data.task)
                     commit('updateProgress')
                     resolve (result.data)
                 }).catch((err)=>{
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 })
             })
         },
-        createNewProject({commit},data){
+        createNewProject({commit,dispatch},data){
             return new Promise((resolve,reject)=>{
                 console.log(data)
                 projectsApi.createNewProject(data).then((result)=>{
                     commit('addProject',result.data.project)
                     resolve (result.data)
                 }).catch((err)=>{
+                    if(err.response.status == 401){
+                        dispatch('auth/logoutUser',err.response.data,{root:true})
+                    }
                     reject(err.response.data)
                 })
             })
+        },
+        updateProjectMembers({commit,dispatch},data){
+            console.log(data)
         }
     },
     mutations:{

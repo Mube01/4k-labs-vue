@@ -27,7 +27,37 @@
         </div>
       </div>
       <br />
-      <h5>Members</h5>
+
+      <div class="members">
+          <h5 class="member_class">Members</h5>
+          <ul  v-show="!showAddMember">
+            <li :key="member.user_id" v-for="member in project.team_members">
+              <router-link :to="'/profile/' + member.user_id">
+                <ProfilePicture
+                  imgWeight="45px"
+                  fontSize="20px"
+                  :name="member.username[0]"
+                  :srcText="member['profile picture']"
+                />
+              </router-link>
+            </li>
+          </ul>
+        </div>
+
+      <AddMember
+        @toggle-add="toggleAddMember"
+        :text="showAddMember ? 'Close' : 'Add Members'"
+        :bgColor="showAddMember ? 'red' : 'green'"
+        color="white"
+        border="none"
+      />
+      <div v-show="showAddMember">
+        <MultiSelect ref="selected_members" :memberIds="project.members" :allMembers="allMembers" style="margin-top: 70px" />
+        <button @click="updateMembers()">Update Members</button>
+      </div>
+
+      
+
       <br />
       <h5>Tasks</h5>
       <Add
@@ -49,6 +79,9 @@ import Header from "@/components/Header.vue";
 import Task from "@/components/Task.vue";
 import Add from "@/components/Add.vue";
 import AddTask from "@/components/AddTask.vue";
+import MultiSelect from "@/components/MultiSelect.vue";
+import ProfilePicture from "@/components/ProfilePicture.vue";
+import AddMember from "@/components/AddMember.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -59,9 +92,13 @@ export default {
     Task,
     Add,
     AddTask,
+    MultiSelect,
+    ProfilePicture,
+    AddMember,
   },
   data() {
     return {
+      showAddMember: false,
       showAddTask: false,
       project_code: this.$router.currentRoute._value.params.projectCode,
     };
@@ -70,9 +107,20 @@ export default {
     toggleAdd() {
       this.showAddTask = !this.showAddTask;
     },
+    toggleAddMember() {
+      console.log("click");
+      this.showAddMember = !this.showAddMember;
+    },
     ...mapActions({
-      fetchProject: "projects/getProject",
+      fetchProject: "projects/getProject"
     }),
+    updateMembers(){
+      var data = {
+        'project_code':this.project_code,
+        'team_members':Object.values(this.$refs.selected_members.value),
+      }
+      console.log(data)
+    }
   },
   created() {
     this.fetchProject(this.project_code).then((result) => {
@@ -82,6 +130,7 @@ export default {
   computed: {
     ...mapGetters({
       project: "projects/getProject",
+      allMembers: "projects/getMembers",
     }),
   },
 };
@@ -100,9 +149,13 @@ h3 {
 }
 h5 {
   clear: both;
+  float: left;
   font-size: 19px;
-  font-weight: 500;
-  margin-bottom: 15px;
+  font-weight: 600;
+  margin: 15px 5px;
+}
+Button {
+  float: right;
 }
 p {
   font-size: 18px;
@@ -121,5 +174,30 @@ p {
   height: 25px;
   border: 1px solid #e6e6e6;
   clear: both;
+}
+li {
+  float: left;
+  padding: 2px;
+}
+button {
+  padding: 10px 45px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  color: white;
+  margin: 5px 0 7px 0;
+  background-color: green;
+  opacity: 0.7;
+  font-weight: 600;
+  transition: 0.5s;
+}
+button:hover {
+  opacity: 1;
+}
+.member_class{
+  font-size: 17px;
+  padding-top: 5px;
+  display: inline;
+  float: left;
 }
 </style>
