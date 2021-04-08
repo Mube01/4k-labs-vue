@@ -141,7 +141,13 @@ export default {
             })
         },
         updateProjectMembers({commit,dispatch},data){
-            console.log(data)
+            return new Promise((resolve,reject)=>{
+                projectsApi.updateMembers(data).then((result) => {
+                    resolve(result.data)
+                }).catch((err) => {
+                    reject(err.response.data)
+                });
+            })
         }
     },
     mutations:{

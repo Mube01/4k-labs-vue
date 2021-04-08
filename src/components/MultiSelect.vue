@@ -45,11 +45,11 @@ export default {
     allMembers:Object,
     memberIds:Array
   },
-  computed:{
-     value(){
-        return this.memberIds || []
-     }
-  }
+  data() {
+    return {
+      value:this.memberIds || []
+    }
+  },
 };
 </script>
 

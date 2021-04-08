@@ -60,5 +60,24 @@ function getMembers(){
     };
     return axios(config)
 }
+function updateMembers(data){
+    
+    var config = {
+    method: 'post',
+    url: 'http://127.0.0.1:5000//api_v1/project/updatemembers',
+    headers: { 
+        'Content-Type': 'application/json'
+    },
+    data : JSON.stringify(data)
+    };
 
-export default {fetchProjects,fetchProject,createNewProject,getMembers}
+    axios(config)
+    .then(function (response) {
+    console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+    console.log(error);
+    });
+
+}
+export default {fetchProjects,fetchProject,createNewProject,getMembers,updateMembers}

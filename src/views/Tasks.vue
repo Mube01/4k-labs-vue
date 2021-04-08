@@ -108,11 +108,11 @@ export default {
       this.showAddTask = !this.showAddTask;
     },
     toggleAddMember() {
-      console.log("click");
       this.showAddMember = !this.showAddMember;
     },
     ...mapActions({
-      fetchProject: "projects/getProject"
+      fetchProject: "projects/getProject",
+      updatemembers: "projects/updateProjectMembers"
     }),
     updateMembers(){
       var data = {
@@ -120,11 +120,14 @@ export default {
         'team_members':Object.values(this.$refs.selected_members.value),
       }
       console.log(data)
+      this.updatemembers(data).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+      });
     }
   },
   created() {
     this.fetchProject(this.project_code).then((result) => {
-      console.log(result);
     });
   },
   computed: {
