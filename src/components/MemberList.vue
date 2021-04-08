@@ -49,6 +49,7 @@ export default {
 }
 .user {
   float: left;
+  padding: 10px 0;
 }
 .more {
   float: right;
@@ -64,5 +65,7 @@ span {
   font-weight: 500;
   letter-spacing: 0.5px;
   font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 </style>

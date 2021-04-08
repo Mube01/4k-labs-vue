@@ -3,51 +3,16 @@
     <Header />
     <div class="container text-center">
       <form class="login" @submit.prevent="login">
-        <h2>Edit Profile</h2>
-        <div class="left">
-          <label for="fullname">Fullname</label><br />
+        <h2>Edit Project</h2>
+        <div class="full">
+          <label for="title">Project Title</label><br />
           <input
             required
-            v-model="fullname"
+            v-model="project.project_title"
             type="text"
-            id="fullname"
+            id="title"
             autocomplete="off"
           />
-        </div>
-
-        <div class="right">
-          <label for="username">Username</label><br />
-          <input
-            required
-            v-model="username"
-            type="text"
-            id="username"
-            autocomplete="off"
-          />
-        </div>
-
-        <div class="left">
-          <label for="password">Password</label><br />
-          <input required v-model="password" type="password" id="password" />
-        </div>
-
-        <div class="right">
-          <label for="division">Select a division</label><br />
-          <select name="division" id="division">
-            <option value="web">Web</option>
-            <option value="bots">Bots</option>
-            <option value="iot">IoT</option>
-          </select>
-        </div>
-
-        <div class="right">
-          <label for="role">Role</label><br />
-          <input v-model="role" type="text" id="role" autocomplete="off" />
-        </div>
-
-        <div class="left">
-          <label for="pp">Profile Picture</label><br />
-          <input type="file" id="pp" />
         </div>
 
         <div class="full">
@@ -56,13 +21,8 @@
         </div>
 
         <div class="full">
-          <label for="linkedin">LinkedIn link</label><br />
-          <input
-            v-model="linkedin"
-            type="text"
-            id="linkedin"
-            autocomplete="off"
-          />
+          <label for="linkedin">Docs link</label><br />
+          <input v-model="docs" type="text" id="docs" autocomplete="off" />
         </div>
 
         <div class="full">
@@ -83,38 +43,41 @@
 
 <script>
 import Header from "@/components/Header.vue";
+
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "UpdateProfile",
   components: {
     Header,
   },
+  data() {
+    return {
+      project_code: this.$router.currentRoute._value.params.projectCode,
+    };
+  },
+  methods: {
+    ...mapActions({
+      fetchProject: "projects/getProject",
+    }),
+  },
+  created() {
+    this.fetchProject(this.project_code).then((result) => {
+      console.log(result);
+    });
+  },
+  computed: {
+    ...mapGetters({
+      project: "projects/getProject",
+    }),
+  },
 };
 </script>
 
 <style scoped>
-@media screen and (max-width: 480px) {
-  .left,
-  .right {
-    clear: both;
-  }
-  input,
-  select {
-    width: 100%;
-    clear: both;
-  }
-}
 h2 {
   font-weight: 700;
   margin: 25px 0;
-}
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-.full {
-  clear: both;
 }
 .full input {
   width: 100%;

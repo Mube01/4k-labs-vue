@@ -2,21 +2,15 @@
   <div>
     <Header />
     <div class="container">
-      <Add
-        @toggle-add="toggleAdd"
-        :text="showAddProject ? 'X Close' : '+ Add New Project'"
-        :border="showAddProject ? '3px dashed red' : '3px dashed green'"
-      />
-      <div v-show="showAddProject">
-        <AddProject />
-      </div>
-
+      <router-link to="/admin"><h4>Members</h4></router-link>
+      <h4>Projects</h4>
+      <GenerateToken style="float: right; margin: 15px 0 20px 0" />
       <div
         :key="project.project_code"
         v-for="project in projects"
         class="Projects"
       >
-        <Project :project="project" />
+        <ProjectList :project="project" />
       </div>
     </div>
   </div>
@@ -24,29 +18,19 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import Project from "@/components/Project.vue";
-import Add from "@/components/Add.vue";
-import AddProject from "@/components/AddProject.vue";
+import GenerateToken from "@/components/GenerateToken.vue";
+import ProjectList from "@/components/ProjectList.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Projects",
+  name: "AdminProjects",
   components: {
     Header,
-    Project,
-    Add,
-    AddProject,
-  },
-  data() {
-    return {
-      showAddProject: false,
-    };
+    GenerateToken,
+    ProjectList,
   },
   methods: {
-    toggleAdd() {
-      this.showAddProject = !this.showAddProject;
-    },
     ...mapActions({
       fetchProjects: "projects/getAllProjects",
     }),
@@ -62,3 +46,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+h4 {
+  float: left;
+  font-weight: 700;
+  margin: 30px 15px 30px 5px;
+  letter-spacing: 0.5px;
+}
+a h4 {
+  color: green;
+  opacity: 0.7;
+}
+a h4:hover {
+  opacity: 1;
+}
+</style>

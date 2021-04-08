@@ -1,6 +1,11 @@
 <template>
   <Multiselect
-    style="margin-bottom: 10px"
+    style="
+      margin-bottom: 10px;
+      background-color: white;
+      border: none;
+      border-radius: 10px;
+    "
     v-model="value"
     mode="tags"
     placeholder="Select Members"
@@ -60,12 +65,12 @@ export default {
 .multiselect-tag.is-user {
   padding: 3px 8px;
   border-radius: 22px;
-  background: #dcdcdc;
+  background: #f2f2f2;
   color: #505050;
   font-size: 15px;
   font-weight: 700;
   margin: 3px 3px 8px;
-  border: 2px solid #d0d0d0;
+  border: 1px solid #d0d0d0;
 }
 .multiselect-tag.is-user img {
   width: 35px;

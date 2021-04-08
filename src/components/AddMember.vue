@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "Button",
+  name: "AddMember",
   props: {
     text: String,
     bgColor: String,

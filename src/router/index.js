@@ -37,14 +37,24 @@ const routes = [
     component: () => import('../views/Admin.vue')
   },
   {
+    path: '/adminProjects',
+    name: 'AdminProjects',
+    component: () => import('../views/AdminProjects.vue')
+  },
+  {
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/update',
+    path: '/editProfile',
     name: 'UpdateProfile',
     component: () => import('../views/UpdateProfile.vue')
+  },
+  {
+    path: '/editProject/:projectCode',
+    name: 'UpdateProject',
+    component: () => import('../views/UpdateProject.vue')
   },
   {
     path: '/404',

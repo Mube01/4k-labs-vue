@@ -47,7 +47,7 @@ import ProfilePicture from "@/components/ProfilePicture.vue";
 import Project from "@/components/Project.vue";
 
 export default {
-  name: "Home",
+  name: "Profile",
   components: {
     Header,
     ProfilePicture,

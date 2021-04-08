@@ -10,8 +10,7 @@
 
       <div class="full">
         <label for="addMembers">Add Members</label><br />
-        <div>
-        </div>
+        <div></div>
       </div>
 
       <div class="full">
@@ -32,7 +31,6 @@
 
 <script>
 import Button from "./Button.vue";
-import MultiSelect from "./MultiSelect";
 
 export default {
   name: "AddProject",
@@ -43,7 +41,6 @@ export default {
   },
   components: {
     Button,
-    MultiSelect,
   },
   methods: {
     onSubmit(e) {
@@ -99,5 +96,4 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   background: #f1f1f1;
 }
-
 </style>

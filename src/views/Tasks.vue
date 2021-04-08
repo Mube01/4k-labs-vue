@@ -27,17 +27,25 @@
         </div>
       </div>
       <br />
-      <h5>Members</h5>
-      <AddMember
-        @toggle-add="toggleAddMember"
-        :text="showAddMember ? 'Close' : 'Add Members'"
-        :bgColor="showAddMember ? 'red' : 'green'"
-        color="white"
-        border="none"
-      />
-      <div v-show="showAddMember">
-        <MultiSelect style="margin-top: 70px" />
-        <button>Add Members</button>
+      <div class="left">
+        <h5>Members</h5>
+      </div>
+      <div class="right">
+        <AddMember
+          @toggle-add="toggleAddMember"
+          :text="showAddMember ? 'Close' : 'Add Members'"
+          :bgColor="showAddMember ? 'red' : 'green'"
+          color="white"
+          border="none"
+        />
+      </div>
+      <div
+        class="text-center"
+        style="text-align: center"
+        v-show="showAddMember"
+      >
+        <MultiSelect style="margin-top: 70px; clear: both" />
+        <button style="margin: auto">Add Members</button>
       </div>
 
       <div class="members">
@@ -59,6 +67,15 @@
         </ul>
       </div>
       <br />
+      <div class="text-center">
+        <router-link :to="'/editProject/' + project.project_code"
+          ><Button
+            color="black"
+            bgColor="#f2f2f2"
+            text="Edit Project"
+            border="2px solid black"
+        /></router-link>
+      </div>
       <h5>Tasks</h5>
       <Add
         @toggle-add="toggleAdd"
@@ -82,6 +99,7 @@ import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
+import Button from "@/components/Button.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -95,6 +113,7 @@ export default {
     MultiSelect,
     ProfilePicture,
     AddMember,
+    Button,
   },
   data() {
     return {
