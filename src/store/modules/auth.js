@@ -1,4 +1,5 @@
 import {login} from '../../api/authApi'
+import router from '../../router'
 
 const axios = require('axios');
 
@@ -33,11 +34,13 @@ export default {
                 });
             })
         },
-        logoutUser({commit}){
+        logoutUser({commit},data){
             return new Promise((resolve,reject)=>{
                 commit('authLogout')
                 localStorage.removeItem("access_token");
+                router.push('/login')    
                 resolve();
+
             })
         }
     },

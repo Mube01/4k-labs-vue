@@ -1,13 +1,15 @@
 <template>
   <div>
     <Header />
+
+    <div></div>
     <div class="container">
       <Add
         @toggle-add="toggleAdd"
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
       />
-      <div v-show="showAddProject">
+      <div @projectAdded="toggleShowAddProject" v-show="showAddProject">
         <AddProject />
       </div>
 
@@ -46,6 +48,9 @@ export default {
   methods: {
     toggleAdd() {
       this.showAddProject = !this.showAddProject;
+    },
+    toggleShowAddProject() {
+      this.showAddProject = false;
     },
     ...mapActions({
       fetchProjects: "projects/getAllProjects",

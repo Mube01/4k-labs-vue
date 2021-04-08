@@ -7,6 +7,10 @@
         <div class="links">
           <a href="#" class="card-link">Github</a>
           <a href="#" class="card-link">Docs</a>
+
+          <router-link :to="'/editProject/' + project.project_code">
+            <a href="#" class="card-link">Edit Project</a></router-link
+          >
         </div>
         <div class="left">
           <p>Division:</p>
@@ -27,32 +31,14 @@
         </div>
       </div>
       <br />
-      <div class="left">
-        <h5>Members</h5>
-      </div>
-      <div class="right">
-        <AddMember
-          @toggle-add="toggleAddMember"
-          :text="showAddMember ? 'Close' : 'Add Members'"
-          :bgColor="showAddMember ? 'red' : 'green'"
-          color="white"
-          border="none"
-        />
-      </div>
-      <div
-        class="text-center"
-        style="text-align: center"
-        v-show="showAddMember"
-      >
-        <MultiSelect style="margin-top: 70px; clear: both" />
-        <button style="margin: auto">Add Members</button>
-      </div>
 
       <div class="members">
-        <ul>
+        <h5 class="member_class">Members</h5>
+        <ul v-show="!showAddMember">
           <li
             :key="member.user_id"
-            v-for="member in project.project_code.team_members"
+            v-for="member in project.team_members"
+            style="margin-left: 10px"
           >
             <router-link :to="'/profile/' + member.user_id">
               <ProfilePicture
@@ -61,21 +47,33 @@
                 :name="member.username[0]"
                 :srcText="member['profile picture']"
               />
-              {{ member.username }}
             </router-link>
           </li>
         </ul>
       </div>
-      <br />
-      <div class="text-center">
-        <router-link :to="'/editProject/' + project.project_code"
-          ><Button
-            color="black"
-            bgColor="#f2f2f2"
-            text="Edit Project"
-            border="2px solid black"
-        /></router-link>
+
+      <AddMember
+        style="float: right"
+        @toggle-add="toggleAddMember"
+        :text="showAddMember ? 'Close' : 'Add Members'"
+        :bgColor="showAddMember ? 'red' : 'green'"
+        color="white"
+        border="none"
+      />
+      <div class="text-center" v-show="showAddMember">
+        <MultiSelect
+          ref="selected_members"
+          :memberIds="project.members"
+          :allMembers="allMembers"
+          style="margin-top: 70px"
+        />
+        <button @click="updateMembers()" style="margin-top: 10px">
+          Update Members
+        </button>
       </div>
+
+      <br />
+
       <h5>Tasks</h5>
       <Add
         @toggle-add="toggleAdd"
@@ -99,7 +97,6 @@ import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
-import Button from "@/components/Button.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -113,7 +110,6 @@ export default {
     MultiSelect,
     ProfilePicture,
     AddMember,
-    Button,
   },
   data() {
     return {
@@ -127,21 +123,32 @@ export default {
       this.showAddTask = !this.showAddTask;
     },
     toggleAddMember() {
-      console.log("click");
       this.showAddMember = !this.showAddMember;
     },
     ...mapActions({
       fetchProject: "projects/getProject",
+      updatemembers: "projects/updateProjectMembers",
     }),
+    updateMembers() {
+      var data = {
+        project_code: this.project_code,
+        team_members: Object.values(this.$refs.selected_members.value),
+      };
+      console.log(data);
+      this.updatemembers(data)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {});
+    },
   },
   created() {
-    this.fetchProject(this.project_code).then((result) => {
-      console.log(result);
-    });
+    this.fetchProject(this.project_code).then((result) => {});
   },
   computed: {
     ...mapGetters({
       project: "projects/getProject",
+      allMembers: "projects/getMembers",
     }),
   },
 };
@@ -165,8 +172,8 @@ h5 {
   font-weight: 600;
   margin: 15px 5px;
 }
-Button {
-  float: right;
+.card-link {
+  margin-left: 20px;
 }
 p {
   font-size: 18px;
@@ -188,6 +195,7 @@ p {
 }
 li {
   float: left;
+  list-style-type: none;
 }
 button {
   padding: 10px 45px;
@@ -201,7 +209,6 @@ button {
   font-weight: 600;
   transition: 0.5s;
 }
-
 button:hover {
   opacity: 1;
 }

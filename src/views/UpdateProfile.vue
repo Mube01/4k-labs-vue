@@ -3,7 +3,7 @@
     <Header />
     <div class="container text-center">
       <form class="login" @submit.prevent="login">
-        <h2>Edit Profile</h2>
+        <h2>Update Profile</h2>
         <div class="left">
           <label for="fullname">Fullname</label><br />
           <input
@@ -105,7 +105,7 @@ export default {
 }
 h2 {
   font-weight: 700;
-  margin: 25px 0;
+  margin: 20px 0;
 }
 .left {
   float: left;
@@ -148,9 +148,6 @@ input:focus {
 textarea {
   width: 100%;
   border: 2px solid #666;
-}
-textarea:focus {
-  outline-color: green;
 }
 button {
   padding: 10px 45px;

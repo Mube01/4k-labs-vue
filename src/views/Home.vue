@@ -1,7 +1,9 @@
 <template>
   <div>
     <Header />
-    <h1>THis is Home PAge</h1>
+    <div>
+      <h1>THis is Home PAge</h1>
+    </div>
   </div>
 </template>
 

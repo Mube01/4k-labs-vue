@@ -43,11 +43,9 @@
 
 <script>
 import Header from "@/components/Header.vue";
-
 import { mapGetters, mapActions } from "vuex";
-
 export default {
-  name: "UpdateProfile",
+  name: "UpdateProject",
   components: {
     Header,
   },
@@ -127,7 +125,6 @@ button {
   font-weight: 600;
   transition: 0.5s;
 }
-
 button:hover {
   opacity: 1;
 }

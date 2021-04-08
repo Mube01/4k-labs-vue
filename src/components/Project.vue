@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import ProfilePicture from "./ProfilePicture";
+import ProfilePicture from "./ProfilePicture.vue";
 
 export default {
   name: "Project",
@@ -55,7 +55,7 @@ export default {
     };
   },
   components: {
-    ProfilePicture,
+    ProfilePicture
   },
   props: {
     project: {
