@@ -7,6 +7,9 @@
         <div class="links">
           <a href="#" class="card-link">Github</a>
           <a href="#" class="card-link">Docs</a>
+        
+        <router-link :to="'/editProject/' + project.project_code">
+          <a href="#" class="card-link">Edit Project</a></router-link>
         </div>
         <div class="left">
           <p>Division:</p>
@@ -31,7 +34,7 @@
       <div class="members">
           <h5 class="member_class">Members</h5>
           <ul  v-show="!showAddMember">
-            <li :key="member.user_id" v-for="member in project.team_members">
+            <li :key="member.user_id" v-for="member in project.team_members" style="margin-left: 10px">
               <router-link :to="'/profile/' + member.user_id">
                 <ProfilePicture
                   imgWeight="45px"
@@ -44,21 +47,24 @@
           </ul>
         </div>
 
-      <AddMember
+      <AddMember style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
         :bgColor="showAddMember ? 'red' : 'green'"
         color="white"
         border="none"
       />
-      <div v-show="showAddMember">
+      <div class="text-center" v-show="showAddMember">
         <MultiSelect ref="selected_members" :memberIds="project.members" :allMembers="allMembers" style="margin-top: 70px" />
-        <button @click="updateMembers()">Update Members</button>
+        <button @click="updateMembers()"  style="margin-top: 10px">Update Members</button>
       </div>
 
       
 
       <br />
+
+      
+
       <h5>Tasks</h5>
       <Add
         @toggle-add="toggleAdd"
@@ -82,6 +88,7 @@ import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
+
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -157,8 +164,8 @@ h5 {
   font-weight: 600;
   margin: 15px 5px;
 }
-Button {
-  float: right;
+.card-link{
+  margin-left: 20px;
 }
 p {
   font-size: 18px;
@@ -180,7 +187,6 @@ p {
 }
 li {
   float: left;
-  padding: 2px;
 }
 button {
   padding: 10px 45px;
@@ -196,11 +202,5 @@ button {
 }
 button:hover {
   opacity: 1;
-}
-.member_class{
-  font-size: 17px;
-  padding-top: 5px;
-  display: inline;
-  float: left;
 }
 </style>

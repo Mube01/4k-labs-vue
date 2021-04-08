@@ -11,30 +11,10 @@
 
       <div class="full">
         <label for="addMembers">Add Members</label><br />
-        <div>
+        <div style="margin-top: -100px; clear: both; background-color: white">
           
-          <Multiselect
-            v-model="value"
-            mode="tags"
-            placeholder="Select members"
-            trackBy="username"
-            label="username"
-            :search="true"
-            :options="allMembers"
-          >
-              <template v-slot:tag="{ option, handleTagRemove, disabled }">
-                <div class="multiselect-tag is-user">
-                  <img :src="option['profile picture']">
-                  {{ option.username }}
-                  <i
-                    v-if="!disabled"
-                    @click.prevent
-                    @mousedown.prevent.stop="handleTagRemove(option, $event)"
-                  />
-                </div>
-              </template>
-          </Multiselect>
 
+         <MultiSelect ref="selected_members"  :allMembers="allMembers" style="margin-top: 70px" />
 
         </div>
       </div>
@@ -57,7 +37,7 @@
 
 <script>
 import Button from "./Button.vue";
-import Multiselect from "@vueform/multiselect";
+import MultiSelect from "./MultiSelect";
 import {mapGetters,mapActions} from 'vuex'
 
 export default {
@@ -74,13 +54,12 @@ export default {
       project_title:"",
       description:"",
       text: "",
-      value: [],
       
     };
   },
   components: {
     Button,
-    Multiselect,
+    MultiSelect,
   },
   methods: {
     ...mapActions({
@@ -89,16 +68,19 @@ export default {
 
     onSubmit(e) {
       e.preventDefault();
+      
+      var value  = Object.values(this.$refs.selected_members.value) || []
+
       if (!this.project_title) {
         alert("Please add a project");
       }
-      else if(this.value.length<1){
+      else if(value.length<1){
           alert("minimum one member have to be adde")
         }
       var data = {
         "project_title":this.project_title,
         "tasks":[],
-        "members":this.value,
+        "members":value,
         "user_id":this.user_id,
         "github_link":"",
         "docs_link":"",
