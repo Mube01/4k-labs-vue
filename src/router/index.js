@@ -42,6 +42,16 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
+    path: '/editProject/:projectCode',
+    name: 'UpdateProject',
+    component: () => import('../views/UpdateProject.vue')
+  },
+  {
+    path: '/adminProjects',
+    name: 'AdminProjects',
+    component: () => import('../views/AdminProjects.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/404.vue')

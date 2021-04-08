@@ -2,14 +2,9 @@
   <div>
     <Header />
     <div class="container">
-      <Button
-        text="Generate Token"
-        color="white"
-        bgColor="green"
-        border="none"
-      />
-
       <h4>Members</h4>
+      <router-link to="/adminProjects"><h4>Projects</h4></router-link>
+      <GenerateToken style="float: right; margin: 15px 0 20px 0" />
       <MemberList />
     </div>
   </div>
@@ -17,14 +12,14 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import Button from "@/components/Button.vue";
 import MemberList from "@/components/MemberList.vue";
+import GenerateToken from "@/components/GenerateToken.vue";
 export default {
   name: "Admin",
   components: {
     Header,
-    Button,
     MemberList,
+    GenerateToken,
   },
   data() {
     return {
@@ -40,14 +35,17 @@ export default {
 </script>
 
 <style scoped>
-Button {
-  float: right;
-  margin: 15px 0 20px 0;
-}
 h4 {
-  clear: both;
+  float: left;
   font-weight: 700;
-  margin: 20px 0 20px 5px;
-  letter-spacing: 1px;
+  margin: 30px 15px 30px 5px;
+  letter-spacing: 0.5px;
+}
+a h4 {
+  color: green;
+  opacity: 0.7;
+}
+a h4:hover {
+  opacity: 1;
 }
 </style>
