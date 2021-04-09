@@ -1,54 +1,51 @@
 <template>
   <div>
-          
-          <Multiselect
-            v-model="value"
-            mode="tags"
-            placeholder="Select members"
-            trackBy="username"
-            label="username"
-            :search="true"
-            :options="allMembers"
-          >
-              <template v-slot:tag="{ option, handleTagRemove, disabled }">
-                <div class="multiselect-tag is-user">
-                  <ProfilePicture
-                    imgWeight="35px"
-                    fontSize="15px"
-                    :name="option.username[0]"
-                    :srcText="option['profile picture']"
-                  />
-                  {{ option.username }}
-                  <i
-                    v-if="!disabled"
-                    @click.prevent
-                    @mousedown.prevent.stop="handleTagRemove(option, $event)"
-                  />
-                </div>
-              </template>
-          </Multiselect>
-
-
+    <Multiselect
+      v-model="value"
+      mode="tags"
+      placeholder="Select members"
+      trackBy="username"
+      label="username"
+      :search="true"
+      :options="allMembers"
+    >
+      <template v-slot:tag="{ option, handleTagRemove, disabled }">
+        <div class="multiselect-tag is-user">
+          <ProfilePicture
+            imgWeight="35px"
+            fontSize="15px"
+            :name="option.username[0]"
+            :srcText="option['profile picture']"
+          />
+          {{ option.username }}
+          <i
+            v-if="!disabled"
+            @click.prevent
+            @mousedown.prevent.stop="handleTagRemove(option, $event)"
+          />
         </div>
+      </template>
+    </Multiselect>
+  </div>
 </template>
 
 <script>
 import Multiselect from "@vueform/multiselect";
-import ProfilePicture from "./ProfilePicture"
+import ProfilePicture from "./ProfilePicture";
 export default {
   name: "MultiSelect",
   components: {
     Multiselect,
-    ProfilePicture
+    ProfilePicture,
   },
-  props:{
-    allMembers:Object,
-    memberIds:Array
+  props: {
+    allMembers: Object,
+    memberIds: Array,
   },
   data() {
     return {
-      value:this.memberIds || []
-    }
+      value: this.memberIds || [],
+    };
   },
 };
 </script>
@@ -58,12 +55,12 @@ export default {
 .multiselect-tag.is-user {
   padding: 3px 8px;
   border-radius: 22px;
-  background: #dcdcdc;
+  background: #f2f2f2;
   color: #505050;
   font-size: 15px;
   font-weight: 700;
   margin: 3px 3px 8px;
-  border: 2px solid #d0d0d0;
+  border: 1px solid #d0d0d0;
 }
 .multiselect-tag.is-user img {
   width: 35px;

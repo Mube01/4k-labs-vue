@@ -7,16 +7,17 @@
         <div class="links">
           <a href="#" class="card-link">Github</a>
           <a href="#" class="card-link">Docs</a>
-        
-        <router-link :to="'/editProject/' + project.project_code">
-          <a href="#" class="card-link">Edit Project</a></router-link>
+
+          <router-link :to="'/editProject/' + project.project_code">
+            <a href="#" class="card-link">Edit Project</a></router-link
+          >
         </div>
         <div class="left">
           <p>Division:</p>
           <p>Progress:</p>
         </div>
         <div class="right">
-          <p>{{project.Division}}</p>
+          <p>{{ project.Division }}</p>
           <p>{{ project.progress || "0" }}%</p>
         </div>
         <div class="progress">
@@ -32,22 +33,27 @@
       <br />
 
       <div class="members">
-          <h5 class="member_class">Members</h5>
-          <ul  v-show="!showAddMember">
-            <li :key="member.user_id" v-for="member in project.team_members" style="margin-left: 10px">
-              <router-link :to="'/profile/' + member.user_id">
-                <ProfilePicture
-                  imgWeight="45px"
-                  fontSize="20px"
-                  :name="member.username[0]"
-                  :srcText="member['profile picture']"
-                />
-              </router-link>
-            </li>
-          </ul>
-        </div>
+        <h5 class="member_class">Members</h5>
+        <ul v-show="!showAddMember">
+          <li
+            :key="member.user_id"
+            v-for="member in project.team_members"
+            style="margin-left: 10px"
+          >
+            <router-link :to="'/profile/' + member.user_id">
+              <ProfilePicture
+                imgWeight="45px"
+                fontSize="20px"
+                :name="member.username[0]"
+                :srcText="member['profile picture']"
+              />
+            </router-link>
+          </li>
+        </ul>
+      </div>
 
-      <AddMember style="float: right"
+      <AddMember
+        style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
         :bgColor="showAddMember ? 'red' : 'green'"
@@ -55,15 +61,18 @@
         border="none"
       />
       <div class="text-center" v-show="showAddMember">
-        <MultiSelect ref="selected_members" :memberIds="project.members" :allMembers="allMembers" style="margin-top: 70px" />
-        <button @click="updateMembers()"  style="margin-top: 10px">Update Members</button>
+        <MultiSelect
+          ref="selected_members"
+          :memberIds="project.members"
+          :allMembers="allMembers"
+          style="margin-top: 70px"
+        />
+        <button @click="updateMembers()" style="margin-top: 10px">
+          Update Members
+        </button>
       </div>
 
-      
-
       <br />
-
-      
 
       <h5>Tasks</h5>
       <Add
@@ -88,7 +97,6 @@ import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
-
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -119,23 +127,23 @@ export default {
     },
     ...mapActions({
       fetchProject: "projects/getProject",
-      updatemembers: "projects/updateProjectMembers"
+      updatemembers: "projects/updateProjectMembers",
     }),
-    updateMembers(){
+    updateMembers() {
       var data = {
-        'project_code':this.project_code,
-        'team_members':Object.values(this.$refs.selected_members.value),
-      }
-      console.log(data)
-      this.updatemembers(data).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-      });
-    }
+        project_code: this.project_code,
+        team_members: Object.values(this.$refs.selected_members.value),
+      };
+      console.log(data);
+      this.updatemembers(data)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {});
+    },
   },
   created() {
-    this.fetchProject(this.project_code).then((result) => {
-    });
+    this.fetchProject(this.project_code).then((result) => {});
   },
   computed: {
     ...mapGetters({
@@ -164,7 +172,7 @@ h5 {
   font-weight: 600;
   margin: 15px 5px;
 }
-.card-link{
+.card-link {
   margin-left: 20px;
 }
 p {
@@ -187,6 +195,7 @@ p {
 }
 li {
   float: left;
+  list-style-type: none;
 }
 button {
   padding: 10px 45px;

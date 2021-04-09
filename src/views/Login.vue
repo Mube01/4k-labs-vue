@@ -28,6 +28,7 @@
 import { mapActions } from "vuex";
 
 export default {
+  name: "Login",
   methods: {
     ...mapActions({}),
     // send user name and password by reading from the form

@@ -2,15 +2,14 @@
   <div>
     <Header />
 
-    <div>
-    </div>
+    <div></div>
     <div class="container">
       <Add
         @toggle-add="toggleAdd"
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
       />
-      <div @projectAdded="showAddProject = false" v-show="showAddProject">
+      <div @projectAdded="toggleShowAddProject" v-show="showAddProject">
         <AddProject />
       </div>
 
@@ -26,7 +25,6 @@
 </template>
 
 <script>
-
 import Header from "@/components/Header.vue";
 import Project from "@/components/Project.vue";
 import Add from "@/components/Add.vue";
@@ -51,6 +49,9 @@ export default {
     toggleAdd() {
       this.showAddProject = !this.showAddProject;
     },
+    toggleShowAddProject() {
+      this.showAddProject = false;
+    },
     ...mapActions({
       fetchProjects: "projects/getAllProjects",
     }),
@@ -66,5 +67,3 @@ export default {
   },
 };
 </script>
-
-<style src="@vueform/multiselect/themes/default.css"></style>

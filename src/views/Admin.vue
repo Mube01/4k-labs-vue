@@ -4,7 +4,9 @@
     <div class="container">
       <h4>Members</h4>
       <router-link to="/adminProjects"><h4>Projects</h4></router-link>
-      <GenerateToken style="float: right; margin: 15px 0 20px 0" />
+      <router-link to="/generate"
+        ><a href="#" class="link">Generate Token</a></router-link
+      >
       <MemberList />
     </div>
   </div>
@@ -13,13 +15,11 @@
 <script>
 import Header from "@/components/Header.vue";
 import MemberList from "@/components/MemberList.vue";
-import GenerateToken from "@/components/GenerateToken.vue";
 export default {
   name: "Admin",
   components: {
     Header,
     MemberList,
-    GenerateToken,
   },
   data() {
     return {
@@ -47,5 +47,9 @@ a h4 {
 }
 a h4:hover {
   opacity: 1;
+}
+.link {
+  float: right;
+  padding: 25px 0;
 }
 </style>

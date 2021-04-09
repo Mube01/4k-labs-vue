@@ -1,9 +1,9 @@
 <template>
   <div class="card col-md-12">
     <div class="card-body">
-      <router-link :to="'/projects/' + project.project_code">
-        <div class="project">
-          <span>{{ project.project_title }}</span>
+      <router-link :to="'/'">
+        <div class="token">
+          <span>token</span>
         </div>
       </router-link>
       <div class="more">
@@ -17,6 +17,7 @@
             aria-hidden="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Copy</a>
             <a class="dropdown-item" href="#">Delete</a>
           </div>
         </div>
@@ -44,7 +45,7 @@ export default {
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
 }
-.project {
+.token {
   float: left;
   padding: 10px 0;
 }

@@ -1,5 +1,4 @@
 <template>
-
   <div class="text-center">
     <form @submit="onSubmit">
       <input
@@ -12,10 +11,11 @@
       <div class="full">
         <label for="addMembers">Add Members</label><br />
         <div style="margin-top: -100px; clear: both; background-color: white">
-          
-
-         <MultiSelect ref="selected_members"  :allMembers="allMembers" style="margin-top: 70px" />
-
+          <MultiSelect
+            ref="selected_members"
+            :allMembers="allMembers"
+            style="margin-top: 70px"
+          />
         </div>
       </div>
 
@@ -38,23 +38,21 @@
 <script>
 import Button from "./Button.vue";
 import MultiSelect from "./MultiSelect";
-import {mapGetters,mapActions} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "AddProject",
   computed: {
     ...mapGetters({
       allMembers: "projects/getMembers",
-      user_id:"user/getUserId"
+      user_id: "user/getUserId",
     }),
   },
   data() {
     return {
-
-      project_title:"",
-      description:"",
+      project_title: "",
+      description: "",
       text: "",
-      
     };
   },
   components: {
@@ -63,35 +61,36 @@ export default {
   },
   methods: {
     ...mapActions({
-      createProject:'projects/createNewProject'
+      createProject: "projects/createNewProject",
     }),
 
     onSubmit(e) {
       e.preventDefault();
-      
-      var value  = Object.values(this.$refs.selected_members.value) || []
+
+      var value = Object.values(this.$refs.selected_members.value) || [];
 
       if (!this.project_title) {
         alert("Please add a project");
+      } else if (value.length < 1) {
+        alert("minimum one member have to be adde");
       }
-      else if(value.length<1){
-          alert("minimum one member have to be adde")
-        }
       var data = {
-        "project_title":this.project_title,
-        "tasks":[],
-        "members":value,
-        "user_id":this.user_id,
-        "github_link":"",
-        "docs_link":"",
-        "description":this.description
-      }
-      this.createProject(data).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
-      });
-      this.$emit('projectAdded')
+        project_title: this.project_title,
+        tasks: [],
+        members: value,
+        user_id: this.user_id,
+        github_link: "",
+        docs_link: "",
+        description: this.description,
+      };
+      this.createProject(data)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.$emit("projectAdded");
     },
   },
 };
@@ -187,7 +186,7 @@ h3 {
 
 .multiselect-tag.is-user i:before {
   color: #ffffff;
-  border-radius: 50%;;
+  border-radius: 50%;
 }
 
 .user-image {

@@ -52,6 +52,11 @@ const routes = [
     component: () => import('../views/AdminProjects.vue')
   },
   {
+    path: '/generate',
+    name: 'GenerateToken',
+    component: () => import('../views/GenerateToken.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/404.vue')
