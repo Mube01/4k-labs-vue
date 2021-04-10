@@ -9,8 +9,8 @@
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
       />
-      <div @projectAdded="toggleShowAddProject" v-show="showAddProject">
-        <AddProject />
+      <div v-show="showAddProject">
+        <AddProject @projectAdded="toggleShowAddProject"/>
       </div>
 
       <div
@@ -50,6 +50,7 @@ export default {
       this.showAddProject = !this.showAddProject;
     },
     toggleShowAddProject() {
+      console.log('got here')
       this.showAddProject = false;
     },
     ...mapActions({

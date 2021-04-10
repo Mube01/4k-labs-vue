@@ -13,11 +13,7 @@ export default {
             return state.projects
         },
         getProject(state) {
-            var project_copy = state.project
-            for (let i = 0; i < project_copy.team_members.length; i++) {
-                project_copy.team_members[i]['value'] = project_copy.team_members[i]['user_id']
-            }
-            return project_copy
+            return state.project
         },
         listOfProjectsByUserId: (state) => (user_id) => {
             return state.projects.filter((project) => project.members.includes(user_id))

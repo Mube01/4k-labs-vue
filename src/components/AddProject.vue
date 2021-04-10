@@ -65,6 +65,8 @@ export default {
     }),
 
     onSubmit(e) {
+      
+
       e.preventDefault();
 
       var value = Object.values(this.$refs.selected_members.value) || [];
@@ -86,11 +88,12 @@ export default {
       this.createProject(data)
         .then((result) => {
           console.log(result);
+          this.$emit("projectAdded");
         })
         .catch((err) => {
           console.log(err);
         });
-      this.$emit("projectAdded");
+      console.log('got heree finally')
     },
   },
 };
