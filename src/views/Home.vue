@@ -8,7 +8,7 @@
 
       <Division name="Devs" />
       <Division name="Bots" />
-      <Division name="IoT" />
+      <Division name="Things" />
     </div>
   </div>
 </template>
