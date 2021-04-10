@@ -3,14 +3,16 @@
     <div class="card-body">
       <div class="user">
         <ProfilePicture
-                  imgWeight="45px"
-                  fontSize="20px"
-                  :name="member.username[0]"
-                  :srcText="member['profile_picture']"
+          imgWeight="45px"
+          fontSize="20px"
+          :name="member.username[0]"
+          :srcText="member['profile_picture']"
         />
-        <span>{{member.username}}</span>
-        <span>{{member.Role}}</span>
-          <span>{{member.Division}}</span>
+        <div class="flex-container">
+          <div>{{ member.username }}</div>
+          <div>{{ member.Role }}</div>
+          <div>{{ member.Division }}</div>
+        </div>
       </div>
       <div class="more">
         <div class="dropdown">
@@ -29,11 +31,25 @@
             role="menu"
             aria-labelledby="dropdownMenu"
           >
-            <li :key="role" v-for="role in roles" class="dropdown-item" @click="changerole(role,member.user_id)">{{role}}</li>
+            <li
+              :key="role"
+              v-for="role in roles"
+              class="dropdown-item"
+              @click="changerole(role, member.user_id)"
+            >
+              {{ role }}
+            </li>
             <li class="dropdown-submenu">
               <a class="dropdown-item" tabindex="-1">Change Division</a>
               <ul class="dropdown-menu">
-                <li :key="division" v-for="division in divisions" @click="changedivision(division,member.user_id)" class="dropdown-item">{{division}}</li>
+                <li
+                  :key="division"
+                  v-for="division in divisions"
+                  @click="changedivision(division, member.user_id)"
+                  class="dropdown-item"
+                >
+                  {{ division }}
+                </li>
               </ul>
             </li>
           </ul>
@@ -44,42 +60,42 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 import ProfilePicture from "./ProfilePicture.vue";
 export default {
   name: "MemberList",
   components: { ProfilePicture },
   data() {
     return {
-      roles:['Intern','Regular Member','Team Leader','Alumni','Admin'],
-      divisions:["DEVS",'BOTS','THINGS']
-    }
+      roles: ["Intern", "Regular Member", "Team Leader", "Alumni", "Admin"],
+      divisions: ["DEVS", "BOTS", "THINGS"],
+    };
   },
-  props:{
-    member:{
-      type:Object
-    }
-  },
-  methods:{
-    ...mapActions({
-      'changeRole':'members/changeRole',
-      'changeDivsion':'members/changeDivsion'
-    }),
-    changerole(role,user_id){
-      this.changeRole({user_id,role}).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        
-      });
+  props: {
+    member: {
+      type: Object,
     },
-    changedivision(division,user_id){
-      this.changeDivsion({user_id,division}).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        
-      });
-    }
-  }
+  },
+  methods: {
+    ...mapActions({
+      changeRole: "members/changeRole",
+      changeDivsion: "members/changeDivsion",
+    }),
+    changerole(role, user_id) {
+      this.changeRole({ user_id, role })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {});
+    },
+    changedivision(division, user_id) {
+      this.changeDivsion({ user_id, division })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {});
+    },
+  },
 };
 </script>
 
@@ -92,16 +108,25 @@ export default {
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
 }
 .user {
-  float: left;
-  padding: 12px 0;
+  display: inline;
 }
 .more {
   float: right;
-  padding: 5px 0;
 }
-span {
+.flex-container {
+  float: left;
+  width: 70%;
+  text-align: justify;
+}
+.flex-container > div {
+  padding: 10px 0;
   font-size: 20px;
   font-weight: 600;
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline;
+  zoom: 1;
+  width: 33%;
 }
 .btn {
   border-radius: 5px;
