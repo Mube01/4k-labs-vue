@@ -48,7 +48,7 @@ export default {
       var res = this.$store.dispatch("auth/logoutUser");
       res
         .then(() => {
-          this.$router.push("/");
+          this.$router.push("/login");
         })
         .catch((err) => {
           reject(err);

@@ -3,6 +3,7 @@
     <div class="card-body">
       <div class="user">
         <ProfilePicture
+          style="float: left"
           imgWeight="45px"
           fontSize="20px"
           :name="member.username[0]"
@@ -116,6 +117,7 @@ export default {
 .flex-container {
   float: left;
   width: 70%;
+  margin-left: 10px;
   text-align: justify;
 }
 .flex-container > div {
