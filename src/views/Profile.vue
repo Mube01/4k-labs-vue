@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-4 text-center my-4">
           <ProfilePicture
-            :srcText="user_info['profile picture']"
+            :srcText="user_info['profile_picture']"
             imgWeight="250px"
             fontSize="100px"
             :name="user_info.username"
@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-5 my-4 pt-2">
           <p>Username: <span class="value">{{user_info.username}}</span></p>
-          <p>Full name: <span class="value">{{user_info['Full Name']}}</span></p>
+          <p>Full name: <span class="value">{{user_info.fullname}}</span></p>
           <p>Division: <span class="value">{{user_info.Division}}</span></p>
           <p>Discription: <span class="value">{{user_info.Discription}}</span></p>
         </div>

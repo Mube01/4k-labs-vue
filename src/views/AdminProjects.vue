@@ -4,8 +4,7 @@
     <div class="container">
       <router-link to="/admin"><h4>Members</h4></router-link>
       <h4>Projects</h4>
-      <router-link to="/generate"
-        ><a href="#" class="link">Generate Token</a></router-link
+      <router-link to="/generate"><h4> Generate Token</h4></router-link
       >
       <GenerateToken style="float: right; margin: 15px 0 20px 0" />
       <div
@@ -30,18 +29,11 @@ export default {
     ProjectList,
   },
   methods: {
-    ...mapActions({
-      fetchProjects: "projects/getAllProjects",
-    }),
   },
   computed: {
     ...mapGetters({
       projects: "projects/listOfProjects",
     }),
-  },
-  created() {
-    this.fetchProjects().then(() => {});
-    console.log("succes full fetch");
   },
 };
 </script>

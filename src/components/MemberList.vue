@@ -2,8 +2,15 @@
   <div class="card col-md-12">
     <div class="card-body">
       <div class="user">
-        <ProfilePicture fontSize="20px" name="M" />
-        <span>Mubarek Jemal</span>
+        <ProfilePicture
+                  imgWeight="45px"
+                  fontSize="20px"
+                  :name="member.username[0]"
+                  :srcText="member['profile_picture']"
+        />
+        <span>{{member.username}}</span>
+        <span>{{member.Role}}</span>
+          <span>{{member.Division}}</span>
       </div>
       <div class="more">
         <div class="dropdown">
@@ -22,16 +29,11 @@
             role="menu"
             aria-labelledby="dropdownMenu"
           >
-            <li class="dropdown-item"><a href="#">Intern</a></li>
-            <li class="dropdown-item"><a href="#">Member</a></li>
-            <li class="dropdown-item"><a href="#">Alumni</a></li>
-            <li class="dropdown-divider"></li>
+            <li :key="role" v-for="role in roles" class="dropdown-item" @click="changerole(role,member.user_id)">{{role}}</li>
             <li class="dropdown-submenu">
-              <a class="dropdown-item" tabindex="-1" href="#">Team Leader</a>
+              <a class="dropdown-item" tabindex="-1">Change Division</a>
               <ul class="dropdown-menu">
-                <li class="dropdown-item"><a href="#">Web</a></li>
-                <li class="dropdown-item"><a href="#">Bots</a></li>
-                <li class="dropdown-item"><a href="#">IoT</a></li>
+                <li :key="division" v-for="division in divisions" @click="changedivision(division,member.user_id)" class="dropdown-item">{{division}}</li>
               </ul>
             </li>
           </ul>
@@ -42,10 +44,42 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import ProfilePicture from "./ProfilePicture.vue";
 export default {
   name: "MemberList",
   components: { ProfilePicture },
+  data() {
+    return {
+      roles:['Intern','Regular Member','Team Leader','Alumni','Admin'],
+      divisions:["DEVS",'BOTS','THINGS']
+    }
+  },
+  props:{
+    member:{
+      type:Object
+    }
+  },
+  methods:{
+    ...mapActions({
+      'changeRole':'members/changeRole',
+      'changeDivsion':'members/changeDivsion'
+    }),
+    changerole(role,user_id){
+      this.changeRole({user_id,role}).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        
+      });
+    },
+    changedivision(division,user_id){
+      this.changeDivsion({user_id,division}).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        
+      });
+    }
+  }
 };
 </script>
 

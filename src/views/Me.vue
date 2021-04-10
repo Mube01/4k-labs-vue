@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-4 text-center my-4">
           <ProfilePicture
-            :srcText="user_info['profile picture']"
+            :srcText="user_info['profile_picture']"
             imgWeight="250px"
             fontSize="100px"
             :name="user_info.username[0]"
@@ -34,11 +34,11 @@
           <p @dblclick="editUserInfo = true">
             Full name:
             <span class="value">
-              <label v-show="!editUserInfo">{{ user_info["Full Name"] }}</label>
+              <label v-show="!editUserInfo">{{ user_info.fullname}}</label>
               <input
                 type="text"
                 @change="field_value_changed = true"
-                v-model="user_info['Full Name']"
+                v-model="user_info.fullname"
                 v-show="editUserInfo"
                 @keyup.enter="closeEdit()"
                 v-on:blur="closeEdit()"
@@ -225,7 +225,7 @@ export default {
           username: this.user_info.username,
           Linkden: this.user_info.Linkden,
           Github: this.user_info.Github,
-          "Full Name": this.user_info["Full Name"],
+          fullname: this.user_info.fullname,
           Discription: this.user_info.Discription,
           user_id: this.user_info.user_id,
         };

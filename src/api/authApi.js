@@ -14,5 +14,19 @@ function login (username,password){
     };
     return  axios(config)
 }
+function register(fullname,username,password,token){
+    var data = JSON.stringify({"username":username,"password":password,"fullname":fullname,"token":token});
 
-export {login}
+    var config = {
+    method: 'post',
+    url: 'http://127.0.0.1:5000/api_v1/register_member',
+    headers: { 
+        'Content-Type': 'application/json'
+    },
+    data : data
+    };
+
+    return axios(config)
+
+}
+export {login,register}

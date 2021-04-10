@@ -45,7 +45,7 @@
                 imgWeight="45px"
                 fontSize="20px"
                 :name="member.username[0]"
-                :srcText="member['profile picture']"
+                :srcText="member['profile_picture']"
               />
             </router-link>
           </li>
@@ -127,7 +127,7 @@ export default {
     },
     ...mapActions({
       fetchProject: "projects/getProject",
-      updatemembers: "projects/updateProjectMembers",
+      updatemembers: "members/updateProjectMembers",
     }),
     updateMembers() {
       var data = {
@@ -148,7 +148,7 @@ export default {
   computed: {
     ...mapGetters({
       project: "projects/getProject",
-      allMembers: "projects/getMembers",
+      allMembers: "members/getMembers",
     }),
   },
 };

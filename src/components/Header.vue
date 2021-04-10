@@ -11,7 +11,7 @@
               imgWeight="45px"
               fontSize="20px"
               :name="user_info.username[0]"
-              :srcText="user_info['profile picture']"
+              :srcText="user_info['profile_picture']"
             />
           </router-link>
         </div>
@@ -26,7 +26,9 @@
 
         <i class="fa fa-bell" aria-hidden="true"></i>
 
-        <a class="link_class" href="#" @click="logout">Logout</a>
+        <a class="link_class" @click="logout">Logout</a>
+
+        <router-link class="link_class" to="/admin">Admin</router-link>
       </div>
     </div>
   </div>

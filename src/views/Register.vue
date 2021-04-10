@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="login text-center">
-      <form class="login" @submit.prevent="login">
+      <form class="login" @submit.prevent="register">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Register</h2>
-        <label for="fullname">Fullname</label><br />
+        <label for="fullname">Full Name</label><br />
         <input
           required
           v-model="fullname"
@@ -23,11 +23,22 @@
         <br />
         <label for="password">Password</label><br />
         <input required v-model="password" type="password" id="password" />
+        <br />
+        
+        <label for="confirm_password">Confirm Password</label><br />
+        <input required v-model="confirm_password" type="password" id="confirm_password" />
+        <br/>
+        <label for="token">Token</label><br />
+        <input
+          required
+          v-model="token"
+          type="text"
+          id="token"
+          autocomplete="off"
+        />
+        <br />
         <button type="submit">Register</button>
       </form>
-    </div>
-    <div class="footer text-center">
-      <p>4K Labs - 2021</p>
     </div>
   </div>
 </template>
@@ -37,19 +48,40 @@ import { mapActions } from "vuex";
 
 export default {
   name: "Register",
-  methods: {
-    ...mapActions({}),
-    // send user name and password by reading from the form
-    login() {
-      var res = this.$store.dispatch("auth/loginUser", this);
-      res.then(() => {
-        console.log("hi");
-        this.$router.push("/projects");
-      });
-    },
+  data() {
+    return {
+      fullname:"",
+      password:"",
+      token:"",
+      username:"",
+      confirm_password:""
+    }
   },
-  created() {
-    console.log("log in Page");
+  methods: {
+    // send user name and password by reading from the form
+    register() {
+      //check if ther is space on the user name
+      if(this.username.indexOf(' ')>0){
+        alert("username cant have space")
+      }
+      // check if confirm passwod and password are the same
+      else if(this.password!==this.confirm_password){
+        alert("password and confirm password are not same please check your input again")
+      }
+      else{
+         var data = {
+        'fullname':this.fullname,
+        'username':this.username,
+        'password':this.password,
+        'token':this.token
+        }
+        this.$store.dispatch('auth/register',data).then((result) => {
+          console.log(result)
+        }).catch((err) => {
+          console.log(err)
+        });
+      }
+    },
   },
 };
 </script>
@@ -113,6 +145,7 @@ button:hover {
   position: absolute;
   bottom: 0;
   width: 100%;
+  margin-top: 200px;
 }
 .footer p {
   font-size: 17px;

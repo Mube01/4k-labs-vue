@@ -6,8 +6,7 @@ export default {
 
     state: {
         projects: "",
-        project: "",
-        members: ""
+        project: ""
     },
     getters: {
         listOfProjects(state) {
@@ -23,33 +22,13 @@ export default {
         listOfProjectsByUserId: (state) => (user_id) => {
             return state.projects.filter((project) => project.members.includes(user_id))
         },
-        getMembers(state) {
-            var copy_members = state.members
-            for (let i = 0; i < copy_members.length; i++) {
-                copy_members[i]['value'] = copy_members[i]['user_id']
-            }
-            return copy_members
-        }
     },
     actions: {
-        getMembers({ commit, dispatch }) {
-            return new Promise((resolve, reject) => {
-                projectsApi.getMembers().then((result) => {
-                    console.log(result.data.members)
-                    commit('storeMembers', result.data.members)
-                }).catch((err) => {
-                    if (err.response.status == 401) {
-                        dispatch('auth/logoutUser', err.response.data, { root: true })
-                    }
-                    reject(err.response.data)
-                });
-            })
-        },
         getAllProjects({ commit, dispatch }) {
             return new Promise((resolve, reject) => {
                 projectsApi.fetchProjects().then((result) => {
                     commit('storeAllProjects', result.data.projects)
-                    dispatch('getMembers')
+                    dispatch('members/getMembers',{},{root:true})
                     resolve()
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -140,15 +119,19 @@ export default {
                 })
             })
         },
-        updateProjectMembers({ commit, dispatch }, data) {
+        deleteProject({ commit, dispatch }, project_code) {
             return new Promise((resolve, reject) => {
-                projectsApi.updateMembers(data).then((result) => {
+                projectsApi.deleteProject(project_code).then((result) => {
+                    commit('deleteProject', project_code)
                     resolve(result.data)
                 }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
                     reject(err.response.data)
-                });
+                })
             })
-        }
+        },
     },
     mutations: {
         storeAllProjects(state, projectData) {
@@ -218,8 +201,8 @@ export default {
         addProject(state, project) {
             state.projects.push(project)
         },
-        storeMembers(state, members) {
-            state.members = members
+        deleteProject(state,project_code){
+            state.projects = state.projects.filter((project)=>project.project_code!==project_code)
         }
     }
 };

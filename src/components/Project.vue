@@ -33,7 +33,7 @@
                   imgWeight="45px"
                   fontSize="20px"
                   :name="member.username[0]"
-                  :srcText="member['profile picture']"
+                  :srcText="member['profile_picture']"
                 />
               </router-link>
             </li>

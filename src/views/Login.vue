@@ -29,8 +29,13 @@ import { mapActions } from "vuex";
 
 export default {
   name: "Login",
+   data() {
+    return {
+      password:"",
+      username:""
+    }
+  },
   methods: {
-    ...mapActions({}),
     // send user name and password by reading from the form
     login() {
       var res = this.$store.dispatch("auth/loginUser", this);

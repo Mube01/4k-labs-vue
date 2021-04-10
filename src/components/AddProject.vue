@@ -44,7 +44,7 @@ export default {
   name: "AddProject",
   computed: {
     ...mapGetters({
-      allMembers: "projects/getMembers",
+      allMembers: "members/getMembers",
       user_id: "user/getUserId",
     }),
   },

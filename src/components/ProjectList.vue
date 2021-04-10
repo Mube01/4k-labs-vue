@@ -17,7 +17,7 @@
             aria-hidden="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Delete</a>
+            <a class="dropdown-item" @click="deletepro(project.project_code)" >Delete</a>
           </div>
         </div>
       </div>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   name: "ProjectList",
   props: {
@@ -33,6 +35,18 @@ export default {
       type: Object,
     },
   },
+  methods:{
+    ...mapActions({
+      deleteProject:'projects/deleteProject'
+    }),
+    deletepro(project_code){
+      this.deleteProject(project_code).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
+  }
 };
 </script>
 
