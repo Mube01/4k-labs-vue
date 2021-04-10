@@ -4,15 +4,17 @@
     <div class="container">
       <h4>Members</h4>
       <router-link to="/adminProjects"><h4>Projects</h4></router-link>
-      <router-link to="/generate"
-        ><a href="#" class="link">Generate Token</a></router-link
+      <router-link to="/generate"><h4>Generate Token</h4></router-link
       >
-      <MemberList />
+      <div id="member list">
+            <div :key="member.user_id" v-for="member in members"><MemberList :member="member" /> </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import Header from "@/components/Header.vue";
 import MemberList from "@/components/MemberList.vue";
 export default {
@@ -29,8 +31,13 @@ export default {
   methods: {
     toggleAdd() {
       this.showAddProject = !this.showAddProject;
-    },
+    }
   },
+  computed:{
+    ...mapGetters({
+      'members':'members/getMembersAdmin'
+    })
+  }
 };
 </script>
 

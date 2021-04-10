@@ -15,7 +15,7 @@
             imgWeight="35px"
             fontSize="15px"
             :name="option.username[0]"
-            :srcText="option['profile picture']"
+            :srcText="option['profile_picture']"
           />
           {{ option.username }}
           <i

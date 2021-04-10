@@ -1,11 +1,10 @@
 <template>
   <div class="card col-md-12">
     <div class="card-body">
-      <router-link :to="'/'">
         <div class="token">
-          <span>token</span>
+          <span style="float:left;">{{token.token}}</span>
+            <span style="float:right;padding-left:200px;">{{token.Division}}</span>
         </div>
-      </router-link>
       <div class="more">
         <div class="dropdown">
           <i
@@ -17,8 +16,8 @@
             aria-hidden="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Copy</a>
-            <a class="dropdown-item" href="#">Delete</a>
+            <a class="dropdown-item">Copy</a>
+            <a class="dropdown-item">Delete</a>
           </div>
         </div>
       </div>
@@ -28,9 +27,9 @@
 
 <script>
 export default {
-  name: "ProjectList",
+  name: "TokenList",
   props: {
-    project: {
+    token: {
       type: Object,
     },
   },

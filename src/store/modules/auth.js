@@ -1,5 +1,6 @@
-import {login} from '../../api/authApi'
+import {login,register} from '../../api/authApi'
 import router from '../../router'
+import user from './user';
 
 const axios = require('axios');
 
@@ -41,6 +42,18 @@ export default {
                 router.push('/login')    
                 resolve();
 
+            })
+        },
+        register({commit},{fullname,username,password,token}){
+            console.log(fullname,username,password,token)
+            return new Promise((resolve,reject)=>{
+                register(fullname,username,password,token).then((result) => {
+                    console.log(result.data)
+                    router.push('/login')
+                    resolve(result.data)
+                }).catch((err) => {
+                    console.log(err.response.data)
+                });
             })
         }
     },
