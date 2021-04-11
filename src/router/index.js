@@ -3,22 +3,23 @@ import Home from '../views/Home.vue'
 import store from '../store';
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/portal/divisions',
+    name: 'Home',
     component: Home
   },
   {
-    path: '/projects',
+    path: '/portal/divisions/:division',
     name: 'Projects',
-    component: () => import('../views/Projects.vue')
+    component: () => import('../views/Projects.vue'),
+    props:true
   },
   {
-    path: '/profile/:user_code',
+    path: '/portal/profile/:user_code',
     name: 'Profile',
     component: () => import('../views/Profile.vue')
   },
   {
-    path: '/projects/:projectCode',
+    path: '/portal/projects/:projectCode',
     name: 'Task',
     component: () => import('../views/Tasks.vue')
   },
@@ -33,7 +34,7 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/admin',
+    path: '/portal/admin',
     name: 'Admin',
     component: () => import('../views/Admin.vue')
   },
@@ -66,7 +67,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes:routes 
 })
 
 router.beforeEach((to, from, next) => {

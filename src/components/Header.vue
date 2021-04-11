@@ -1,19 +1,12 @@
 <template>
   <div id="header">
     <div class="container">
-      <router-link to="/"
+      <router-link :to="{name:'Home'}"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
-          <router-link to="/me">
-            <ProfilePicture
-              imgWeight="45px"
-              fontSize="20px"
-              :name="user_info.username[0]"
-              :srcText="user_info['profile_picture']"
-            />
-          </router-link>
+         
         </div>
 
         <router-link v-show="!isAuthenticated" class="link_class" to="/login">
@@ -28,7 +21,7 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <router-link class="link_class" to="/admin">Admin</router-link>
+        <router-link class="link_class" :to="{name:'Admin'}">Admin</router-link>
       </div>
     </div>
   </div>
@@ -41,7 +34,6 @@ import { reject } from "q";
 export default {
   name: "Header",
   components: {
-    ProfilePicture,
   },
   methods: {
     logout() {

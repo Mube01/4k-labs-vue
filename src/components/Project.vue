@@ -1,5 +1,4 @@
 <template>
-  <router-link :to="'/projects/' + project.project_code">
     <div class="card col-md-12">
       <div class="card-body">
         <h3 class="card-title">
@@ -28,7 +27,7 @@
           <p class="member_class">Members</p>
           <ul>
             <li :key="member.user_id" v-for="member in project.team_members">
-              <router-link :to="'/profile/' + member.user_id">
+              <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
                 <ProfilePicture
                   imgWeight="45px"
                   fontSize="20px"
@@ -41,7 +40,6 @@
         </div>
       </div>
     </div>
-  </router-link>
 </template>
 
 <script>

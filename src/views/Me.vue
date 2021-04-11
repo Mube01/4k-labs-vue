@@ -5,10 +5,10 @@
       <div class="row">
         <div class="col-md-4 text-center my-4">
           <ProfilePicture
-            :srcText="user_info['profile_picture']"
+            srcText="user_info['profile_picture']"
             imgWeight="250px"
             fontSize="100px"
-            :name="user_info.username[0]"
+            name="user_info.username[0]"
           />
         </div>
         <div class="col-md-5 my-4 pt-2">

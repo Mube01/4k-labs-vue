@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <Header />
 
+    <Header/>
+  <div>
     <div></div>
     <div class="container">
       <Add
@@ -18,7 +18,9 @@
         v-for="project in projects"
         class="Projects"
       >
-        <Project :project="project" />
+          <router-link :to="{name:'Task', params:{'projectCode':project.project_code}}">
+            <Project :project="project" />
+          </router-link>
       </div>
     </div>
   </div>
@@ -35,14 +37,15 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Projects",
   components: {
-    Header,
     Project,
     Add,
     AddProject,
+    Header
   },
   data() {
     return {
       showAddProject: false,
+      division:this.$route.params.division
     };
   },
   methods: {
@@ -59,12 +62,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      projects: "projects/listOfProjects",
     }),
+
+    projects(){
+      return this.$store.getters['projects/divisionProjectGetter'](this.division)
+    }
   },
   created() {
-    this.fetchProjects().then(() => {});
-    console.log("succes full fetch");
+    console.log(this.$route.params.division)
   },
 };
 </script>
