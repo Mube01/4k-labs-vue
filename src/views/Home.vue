@@ -6,9 +6,9 @@
         <span>Welcome to 4K Labs</span>
       </div>
 
-      <Division name="Devs" />
-      <Division name="Bots" />
-      <Division name="Things" />
+      <Division name="Devs" background="html.jpg" />
+      <Division name="Bots" background="robot.jpg" />
+      <Division name="Things" background="iot.jpg" />
     </div>
   </div>
 </template>

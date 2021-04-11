@@ -1,8 +1,10 @@
 <template>
   <router-link to="/projects/">
-    <div class="card col-md-12">
+    <div class="card col-md-12" :style="inlineStyle">
       <div class="card-body">
-        <h3 class="card-title">{{ name }}</h3>
+        <h3 class="card-title">
+          {{ name }}
+        </h3>
       </div>
     </div></router-link
   >
@@ -13,6 +15,17 @@ export default {
   name: "Division",
   props: {
     name: String,
+    background: String,
+  },
+  computed: {
+    bgImage() {
+      return require("@/assets/" + this.background);
+    },
+    inlineStyle() {
+      return {
+        backgroundImage: `url(${this.bgImage})`,
+      };
+    },
   },
 };
 </script>
@@ -21,13 +34,14 @@ export default {
 .card {
   border-radius: 10px;
   margin: 20px 0 25px 0;
-  padding: 60px;
+  padding: 65px;
   text-align: center;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   transition: 0.3s;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-size: cover;
+  background-position: center center;
 }
 
 .card:hover {
@@ -35,6 +49,10 @@ export default {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 h3 {
-  color: #333;
+  font-weight: 700;
+  font-size: 30px;
+  color: #f2f2f2;
+  text-shadow: 3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8), 0px 4px 7px rgba(81, 67, 21, 0.8);
 }
 </style>

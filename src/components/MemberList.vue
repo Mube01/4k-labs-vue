@@ -45,9 +45,9 @@
               <ul class="dropdown-menu">
                 <li
                   :key="division"
+                  class="dropdown-item"
                   v-for="division in divisions"
                   @click="changedivision(division, member.user_id)"
-                  class="dropdown-item"
                 >
                   {{ division }}
                 </li>
