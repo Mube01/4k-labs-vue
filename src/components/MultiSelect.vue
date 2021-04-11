@@ -17,7 +17,7 @@
             :name="option.username[0]"
             :srcText="option['profile_picture']"
           />
-          {{ option.username }}
+          <span>{{ option.username }}</span>
           <i
             v-if="!disabled"
             @click.prevent
@@ -68,6 +68,9 @@ export default {
   height: 35px;
   margin-right: 8px;
   border: 1px solid #ffffffbf;
+}
+span {
+  margin-left: 10px;
 }
 .multiselect-tag.is-user i:before {
   color: #505050;

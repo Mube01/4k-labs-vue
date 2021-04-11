@@ -1,14 +1,21 @@
 <template>
   <div>
     <Header />
-    <div>
-      <h1>THis is Home PAge</h1>
+    <div class="container">
+      <div class="text-center mt-3">
+        <span>Welcome to 4K Labs</span>
+      </div>
+
+      <Division name="Devs" />
+      <Division name="Bots" />
+      <Division name="Things" />
     </div>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
+import Division from "@/components/Division.vue";
 import { reject } from "q";
 export default {
   name: "Home",
@@ -26,9 +33,15 @@ export default {
   },
   components: {
     Header,
+    Division,
   },
 };
 </script>
 
-<style>
+<style scoped>
+span {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 20px 0;
+}
 </style>
