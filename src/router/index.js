@@ -4,7 +4,7 @@ import store from '../store';
 const routes = [
   {
     path:'/',
-    redirect: { name: 'Login' }
+    redirect: { name: 'Test' }
   },
   {
     path: '/portal/divisions',
@@ -77,7 +77,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home') {
+  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home' && to.name !== 'Register') {
     next({ name: 'Login' })
   }
   else next()

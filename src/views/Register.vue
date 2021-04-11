@@ -76,7 +76,7 @@ export default {
         'token':this.token
         }
         this.$store.dispatch('auth/register',data).then((result) => {
-          console.log(result)
+           this.$router.push({name:'Login'});
         }).catch((err) => {
           console.log(err)
         });
