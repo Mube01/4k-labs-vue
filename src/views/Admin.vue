@@ -3,8 +3,8 @@
     <Header />
     <div class="container">
       <h4>Members</h4>
-      <router-link to="/adminProjects"><h4>Projects</h4></router-link>
-      <router-link to="/generate"><h4>Generate Token</h4></router-link
+      <router-link :to="{name:'AdminProjects'}"><h4>Projects</h4></router-link>
+      <router-link :to="{name:'GenerateToken'}"><h4>Generate Token</h4></router-link
       >
       <div id="member list">
             <div :key="member.user_id" v-for="member in members"><MemberList :member="member" /> </div>

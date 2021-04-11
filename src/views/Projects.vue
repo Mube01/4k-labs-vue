@@ -18,7 +18,7 @@
         v-for="project in projects"
         class="Projects"
       >
-          <router-link :to="{name:'Task', params:{'projectCode':project.project_code}}">
+          <router-link :to="{name:'Tasks', params:{'projectCode':project.project_code}}">
             <Project :project="project" />
           </router-link>
       </div>
@@ -42,10 +42,15 @@ export default {
     AddProject,
     Header
   },
+  props:{
+    division:{
+      type:String,
+      required:true
+    }
+  },
   data() {
     return {
       showAddProject: false,
-      division:this.$route.params.division
     };
   },
   methods: {

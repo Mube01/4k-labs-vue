@@ -3,6 +3,10 @@ import Home from '../views/Home.vue'
 import store from '../store';
 const routes = [
   {
+    path:'/',
+    redirect: { name: 'Login' }
+  },
+  {
     path: '/portal/divisions',
     name: 'Home',
     component: Home
@@ -16,15 +20,17 @@ const routes = [
   {
     path: '/portal/profile/:user_code',
     name: 'Profile',
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Profile.vue'),
+    props:true
   },
   {
     path: '/portal/projects/:projectCode',
-    name: 'Task',
-    component: () => import('../views/Tasks.vue')
+    name: 'Tasks',
+    component: () => import('../views/Tasks.vue'),
+    props:true
   },
   {
-    path: '/me',
+    path: '/portal/me',
     name: 'Me',
     component: () => import('../views/Me.vue')
   },
@@ -44,17 +50,17 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/editProject/:projectCode',
+    path: '/portal/editProject/:projectCode',
     name: 'UpdateProject',
     component: () => import('../views/UpdateProject.vue')
   },
   {
-    path: '/adminProjects',
+    path: '/portal/adminProjects',
     name: 'AdminProjects',
     component: () => import('../views/AdminProjects.vue')
   },
   {
-    path: '/generate',
+    path: '/portal/generate',
     name: 'GenerateToken',
     component: () => import('../views/GenerateToken.vue')
   },

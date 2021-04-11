@@ -8,7 +8,7 @@
           <a href="#" class="card-link">Github</a>
           <a href="#" class="card-link">Docs</a>
 
-          <router-link :to="'/editProject/' + project.project_code">
+          <router-link :to="{name:'UpdateProject',params:{projectCode:project_code}}">
             <a href="#" class="card-link">Edit Project</a></router-link
           >
         </div>
@@ -40,7 +40,7 @@
             v-for="member in project.team_members"
             style="margin-left: 10px"
           >
-            <router-link :to="'/profile/' + member.user_id">
+            <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
               <ProfilePicture
                 imgWeight="45px"
                 fontSize="20px"
