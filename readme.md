@@ -8,5 +8,7 @@ TODO<br/>
     [ ]route access decorators on the backend\
     [ ]remove the # sign from the routes\
     [ ] update profile picture automatically\
-    [ ] add proxy for the api
+    [ ] add proxy for the api\
+    [ ] add busy loading while fetching data from the backend
+    
     
