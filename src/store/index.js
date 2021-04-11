@@ -38,6 +38,5 @@ export default createStore({
     members
   },
   plugins: [createPersistedState({
-    storage: window.sessionStorage
   })],
 })

@@ -1,11 +1,9 @@
 <template>
-  <router-link to="/projects/">
     <div class="card col-md-12">
       <div class="card-body">
         <h3 class="card-title">{{ name }}</h3>
       </div>
-    </div></router-link
-  >
+    </div>
 </template>
 
 <script>

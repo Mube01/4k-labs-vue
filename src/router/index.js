@@ -3,27 +3,34 @@ import Home from '../views/Home.vue'
 import store from '../store';
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path:'/',
+    redirect: { name: 'Login' }
+  },
+  {
+    path: '/portal/divisions',
+    name: 'Home',
     component: Home
   },
   {
-    path: '/projects',
+    path: '/portal/divisions/:division',
     name: 'Projects',
-    component: () => import('../views/Projects.vue')
+    component: () => import('../views/Projects.vue'),
+    props:true
   },
   {
-    path: '/profile/:user_code',
+    path: '/portal/profile/:user_code',
     name: 'Profile',
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Profile.vue'),
+    props:true
   },
   {
-    path: '/projects/:projectCode',
-    name: 'Task',
-    component: () => import('../views/Tasks.vue')
+    path: '/portal/projects/:projectCode',
+    name: 'Tasks',
+    component: () => import('../views/Tasks.vue'),
+    props:true
   },
   {
-    path: '/me',
+    path: '/portal/me',
     name: 'Me',
     component: () => import('../views/Me.vue')
   },
@@ -33,7 +40,7 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/admin',
+    path: '/portal/admin',
     name: 'Admin',
     component: () => import('../views/Admin.vue')
   },
@@ -43,17 +50,17 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/editProject/:projectCode',
+    path: '/portal/editProject/:projectCode',
     name: 'UpdateProject',
     component: () => import('../views/UpdateProject.vue')
   },
   {
-    path: '/adminProjects',
+    path: '/portal/adminProjects',
     name: 'AdminProjects',
     component: () => import('../views/AdminProjects.vue')
   },
   {
-    path: '/generate',
+    path: '/portal/generate',
     name: 'GenerateToken',
     component: () => import('../views/GenerateToken.vue')
   },
@@ -66,7 +73,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes:routes 
 })
 
 router.beforeEach((to, from, next) => {

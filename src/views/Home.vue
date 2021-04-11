@@ -6,9 +6,9 @@
         <span>Welcome to 4K Labs</span>
       </div>
 
-      <Division name="Devs" />
-      <Division name="Bots" />
-      <Division name="Things" />
+      <div :key="division" v-for="division in divisions" id="divisions">
+        <router-link :to="{name:'Projects', params:{division:division}}"> <Division :name="division" /></router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -16,25 +16,32 @@
 <script>
 import Header from "@/components/Header.vue";
 import Division from "@/components/Division.vue";
+import {mapActions} from 'vuex'
 import { reject } from "q";
 export default {
-  name: "Home",
+  name: "Divisions",
   methods: {
-    logout() {
-      var res = this.$store.dispatch("auth/logoutUser");
-      res
-        .then(() => {
-          this.$router.push("/login");
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    },
+    ...mapActions({
+      fetchProject:'projects/getAllProjects'
+    })
+  },
+  created(){
+    this.fetchProject().then((result) => {
+      console.log('successully fetch projects ',result)
+    }).catch((err) => {
+      console.log(err)  
+    });
+  },
+  data() {
+    return {
+      divisions:['BOTS','DEVS','THINGS']
+    }
   },
   components: {
     Header,
     Division,
   },
+
 };
 </script>
 

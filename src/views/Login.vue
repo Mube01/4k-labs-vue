@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Login",
@@ -35,18 +35,25 @@ export default {
       username:""
     }
   },
+  computed:{
+    ...mapGetters({
+      isAuthenticated:['auth/isAuthenticated']
+    })
+  },
   methods: {
     // send user name and password by reading from the form
     login() {
       var res = this.$store.dispatch("auth/loginUser", this);
       res.then(() => {
         console.log("hi");
-        this.$router.push("/");
+        this.$router.push({'name':'Home'});
       });
     },
   },
   created() {
-    console.log("log in Page");
+    if(this.isAuthenticated){
+      this.$router.push({'name':'Home'});
+    }
   },
 };
 </script>
