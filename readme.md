@@ -6,7 +6,7 @@ TODO<br/>
     [x]assign teamleader for the project\
     [ ]refresh token after request on the backend\
     [ ]route access decorators on the backend\
-    [ ]remove the # sign from the routes\
+    [x]remove the # sign from the routes\
     [ ] update profile picture automatically\
     [ ] add proxy for the api\
     [ ] add busy loading while fetching data from the backend\
