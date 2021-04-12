@@ -1,15 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Divisions from '../views/Divisions.vue'
 import store from '../store';
 const routes = [
   {
     path:'/',
-    redirect: { name: 'Test' }
+    redirect: { name: 'Divisions' }
   },
   {
     path: '/portal/divisions',
-    name: 'Home',
-    component: Home
+    name: 'Divisions',
+    component: Divisions
   },
   {
     path: '/portal/divisions/:division',

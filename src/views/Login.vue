@@ -46,13 +46,13 @@ export default {
       var res = this.$store.dispatch("auth/loginUser", this);
       res.then(() => {
         console.log("hi");
-        this.$router.push({'name':'Home'});
+        this.$router.push({'name':'Divisions'});
       });
     },
   },
   created() {
     if(this.isAuthenticated){
-      this.$router.push({'name':'Home'});
+      this.$router.push({'name':'Divisions'});
     }
   },
 };
