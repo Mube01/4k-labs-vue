@@ -1,15 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Divisions from '../views/Divisions.vue'
 import store from '../store';
 const routes = [
   {
     path:'/',
-    redirect: { name: 'Login' }
+    redirect: { name: 'Divisions' }
   },
   {
     path: '/portal/divisions',
-    name: 'Home',
-    component: Home
+    name: 'Divisions',
+    component: Divisions
   },
   {
     path: '/portal/divisions/:division',
@@ -77,7 +77,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home') {
+  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home' && to.name !== 'Register') {
     next({ name: 'Login' })
   }
   else next()

@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div class="container">
-      <router-link :to="{name:'Home'}"
+      <router-link :to="{name:'Divisions'}"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
@@ -48,7 +48,7 @@ export default {
       var res = this.$store.dispatch("auth/logoutUser");
       res
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push({name:'Login'});
         })
         .catch((err) => {
           reject(err);
