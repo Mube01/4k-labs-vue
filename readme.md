@@ -10,5 +10,11 @@ TODO<br/>
     [ ] update profile picture automatically\
     [ ] add proxy for the api\
     [ ] add busy loading while fetching data from the backend
+    [ ] update profile from anoter page
+    [ ] update project name and description
+    [ ] delete token for the admin
+    [ ] update gourp members interactivley
+    [ ] update profile picture automatically
+    
     
     
