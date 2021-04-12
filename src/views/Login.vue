@@ -45,7 +45,6 @@ export default {
     login() {
       var res = this.$store.dispatch("auth/loginUser", this);
       res.then(() => {
-        console.log("hi");
         this.$router.push({'name':'Divisions'});
       });
     },

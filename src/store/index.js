@@ -24,9 +24,12 @@ export default createStore({
     getKeyByValueRole({dispatch},value) {
       var roleMap = this.state.roleMap 
       return Object.keys(roleMap).find(key => roleMap[key] === value);
-    }
+    },
   },
   getters:{
+    getRoleByKey:(state)=>(roleID)=>{
+      return state.roleMap[roleID]
+    }
 
   },
   modules: {

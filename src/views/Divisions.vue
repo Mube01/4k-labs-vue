@@ -1,13 +1,14 @@
 <template>
   <div>
-    <Header />
-    <div class="container">
+    <Loading  v-show="loading"/>
+    <Header v-show="!loading" />
+    <div v-show="!loading" class="container">
       <div class="text-center mt-3">
         <span>Welcome to 4K Labs</span>
       </div>
 
       <div :key="division" v-for="division in divisions" id="divisions">
-        <router-link :to="{name:'Projects', params:{division:division}}"> <Division :name="division" /></router-link>
+        <router-link :to="{name:'Projects', params:{division:division.name}}"> <Division :name="division.name" :background="division.image" /></router-link>
       </div>
     </div>
   </div>
@@ -16,8 +17,8 @@
 <script>
 import Header from "@/components/Header.vue";
 import Division from "@/components/Division.vue";
+import Loading from "@/components/Loading.vue";
 import {mapActions} from 'vuex'
-import { reject } from "q";
 export default {
   name: "Divisions",
   methods: {
@@ -28,18 +29,34 @@ export default {
   created(){
     this.fetchProject().then((result) => {
       console.log('successully fetch projects ',result)
+      this.loading = false
     }).catch((err) => {
       console.log(err)  
     });
   },
   data() {
     return {
-      divisions:['BOTS','DEVS','THINGS']
+      divisions:[
+        {
+          name:'BOTS',
+          image:'BOTS.jpg'
+        },
+        {
+          name:'DEVS',
+          image:'DEVS.jpg'
+        },
+        {
+          name:'THINGS',
+          image:'THINGS.jpg'
+        }
+      ],
+      loading:true
     }
   },
   components: {
     Header,
     Division,
+    Loading
   },
 
 };
@@ -51,4 +68,5 @@ span {
   font-weight: 700;
   margin: 20px 0;
 }
+
 </style>

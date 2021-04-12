@@ -8,6 +8,7 @@
         @toggle-add="toggleAdd"
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
+        v-show="division==user_info.Division && user_info.Role === 2"
       />
       <div v-show="showAddProject">
         <AddProject @projectAdded="toggleShowAddProject"/>
@@ -67,6 +68,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      user_info:'user/getUserInformation'
     }),
 
     projects(){

@@ -2,16 +2,18 @@
   <div class="card col-md-12">
     <div class="card-body">
       <div class="user">
-        <ProfilePicture
+        <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
+          <ProfilePicture
           style="float: left"
           imgWeight="45px"
           fontSize="20px"
           :name="member.username[0]"
           :srcText="member['profile_picture']"
-        />
+          />
+        </router-link>
         <div class="flex-container">
           <div>{{ member.username }}</div>
-          <div>{{ member.Role }}</div>
+          <div>{{ roleGetter(member.Role) }}</div>
           <div>{{ member.Division }}</div>
         </div>
       </div>
@@ -61,7 +63,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions,mapGetters } from "vuex";
 import ProfilePicture from "./ProfilePicture.vue";
 export default {
   name: "MemberList",
@@ -97,6 +99,11 @@ export default {
         .catch((err) => {});
     },
   },
+  computed:{
+    ...mapGetters({
+      roleGetter:'getRoleByKey'
+    })
+  }
 };
 </script>
 

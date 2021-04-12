@@ -23,7 +23,7 @@ export default {
             console.log(login())
             return new Promise((resolve,reject)=>{
                 login(username,password).then((result) => {
-                    console.log(result.data)
+                    console.log(result.data.user)
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
                     commit('authSuccesfull',result.data)
@@ -35,7 +35,7 @@ export default {
                 });
             })
         },
-        logoutUser({commit},data){
+        logoutUser({commit}){
             return new Promise((resolve,reject)=>{
                 commit('authLogout')
                 localStorage.removeItem("access_token");
@@ -44,6 +44,15 @@ export default {
 
             })
         },
+        deleteAccessTokens({commit}){
+            return new Promise((resolve,reject)=>{
+                commit('authLogout')
+                localStorage.removeItem("access_token");
+                resolve();
+
+            })
+        },
+
         register({commit},{fullname,username,password,token}){
             console.log(fullname,username,password,token)
             return new Promise((resolve,reject)=>{

@@ -58,6 +58,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      logoutUser:'auth/deleteAccessTokens'
+    }),
     // send user name and password by reading from the form
     register() {
       //check if ther is space on the user name
@@ -83,6 +86,13 @@ export default {
       }
     },
   },
+  created(){
+    this.logoutUser().then((result) => {
+      console.log('logged out')
+    }).catch((err) => {
+      
+    });
+  }
 };
 </script>
 

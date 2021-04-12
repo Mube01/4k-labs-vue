@@ -172,8 +172,10 @@ export default {
                     total++;
                 }
             }
+            var percentile = 0
+            total==0?percentile=0:percentile(total * 100 / len).toFixed(2)
 
-            var percentile = (total * 100 / len).toFixed(2)
+            console.log('the percentiole is ',percentile,' ', total)
             state.project.progress = percentile
 
             // change the percentile from the parent component

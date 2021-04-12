@@ -1,7 +1,7 @@
 <template>
   <div class="card col-md-12">
     <div class="card-body">
-      <router-link :to="'/projects/' + project.project_code">
+      <router-link :to="{name:'Tasks', params:{projectCode:project.project_code}}">
         <div class="project">
           <span>{{ project.project_title }}</span>
         </div>

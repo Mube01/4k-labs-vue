@@ -1,5 +1,5 @@
 <template>
-    <div class="card col-md-12">
+    <div class="card col-md-6">
       <div class="card-body">
         <h3 class="card-title">
           {{ project.project_title }}
