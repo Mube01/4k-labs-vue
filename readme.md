@@ -6,9 +6,15 @@ TODO<br/>
     [x]assign teamleader for the project\
     [ ]refresh token after request on the backend\
     [ ]route access decorators on the backend\
-    [ ]remove the # sign from the routes\
+    [x]remove the # sign from the routes\
     [ ] update profile picture automatically\
     [ ] add proxy for the api\
-    [ ] add busy loading while fetching data from the backend
+    [ ] add busy loading while fetching data from the backend\
+    [ ] update profile from anoter page\
+    [ ] update project name and description\
+    [ ] delete token for the admin\
+    [ ] update gourp members interactivley\
+    [ ] update profile picture automatically\
+    
     
     
