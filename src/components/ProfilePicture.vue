@@ -1,7 +1,7 @@
 <template>
   <div>
     <img
-      v-if="!srcText == false"
+      v-if="srcText.length>0"
       :src="`http://127.0.0.1:5000/api_v1/get_profile/${srcText}`"
       :style="{ width: imgWeight, height: imgWeight }"
     />
@@ -23,7 +23,7 @@ export default {
   props: {
     srcText: {
       type: String,
-      default: "false",
+      default:""
     },
     imgWeight: String,
     fontSize: String,

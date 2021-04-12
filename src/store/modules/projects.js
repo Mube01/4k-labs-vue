@@ -13,15 +13,14 @@ export default {
             return state.projects
         },
         getProject(state) {
-            var project_copy = state.project
-            for (let i = 0; i < project_copy.team_members.length; i++) {
-                project_copy.team_members[i]['value'] = project_copy.team_members[i]['user_id']
-            }
-            return project_copy
+            return state.project
         },
         listOfProjectsByUserId: (state) => (user_id) => {
-            return state.projects.filter((project) => project.members.includes(user_id))
+            return state.projects
         },
+        divisionProjectGetter:(state)=>(division)=>{
+            return state.projects.filter((project)=>project.Division===division)
+        }
     },
     actions: {
         getAllProjects({ commit, dispatch }) {
@@ -29,7 +28,7 @@ export default {
                 projectsApi.fetchProjects().then((result) => {
                     commit('storeAllProjects', result.data.projects)
                     dispatch('members/getMembers',{},{root:true})
-                    resolve()
+                    resolve(result.data.projects)
                 }).catch((err) => {
                     if (err.response.status == 401) {
                         dispatch('auth/logoutUser', err.response.data, { root: true })

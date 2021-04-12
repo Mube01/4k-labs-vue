@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <Header />
 
+    <Header/>
+  <div>
     <div></div>
     <div class="container">
       <Add
@@ -9,8 +9,8 @@
         :text="showAddProject ? 'X Close' : '+ Add New Project'"
         :border="showAddProject ? '3px dashed red' : '3px dashed green'"
       />
-      <div @projectAdded="toggleShowAddProject" v-show="showAddProject">
-        <AddProject />
+      <div v-show="showAddProject">
+        <AddProject @projectAdded="toggleShowAddProject"/>
       </div>
 
       <div
@@ -18,7 +18,9 @@
         v-for="project in projects"
         class="Projects"
       >
-        <Project :project="project" />
+          <router-link :to="{name:'Tasks', params:{'projectCode':project.project_code}}">
+            <Project :project="project" />
+          </router-link>
       </div>
     </div>
   </div>
@@ -35,10 +37,16 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Projects",
   components: {
-    Header,
     Project,
     Add,
     AddProject,
+    Header
+  },
+  props:{
+    division:{
+      type:String,
+      required:true
+    }
   },
   data() {
     return {
@@ -50,6 +58,7 @@ export default {
       this.showAddProject = !this.showAddProject;
     },
     toggleShowAddProject() {
+      console.log('got here')
       this.showAddProject = false;
     },
     ...mapActions({
@@ -58,12 +67,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      projects: "projects/listOfProjects",
     }),
+
+    projects(){
+      return this.$store.getters['projects/divisionProjectGetter'](this.division)
+    }
   },
   created() {
-    this.fetchProjects().then(() => {});
-    console.log("succes full fetch");
+    console.log(this.$route.params.division)
   },
 };
 </script>

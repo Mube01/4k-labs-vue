@@ -1,12 +1,12 @@
 <template>
   <div id="header">
     <div class="container">
-      <router-link to="/"
+      <router-link :to="{name:'Divisions'}"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
-          <router-link to="/me">
+          <router-link :to="{name:'Me'}">
             <ProfilePicture
               imgWeight="45px"
               fontSize="20px"
@@ -28,7 +28,7 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <router-link class="link_class" to="/admin">Admin</router-link>
+        <router-link class="link_class" :to="{name:'Admin'}">Admin</router-link>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@ export default {
       var res = this.$store.dispatch("auth/logoutUser");
       res
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push({name:'Login'});
         })
         .catch((err) => {
           reject(err);

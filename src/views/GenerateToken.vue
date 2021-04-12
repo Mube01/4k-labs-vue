@@ -3,8 +3,8 @@
     <Header />
 
     <div class="container">
-      <router-link to="/admin"><h4>Members</h4></router-link>
-      <router-link to="/adminProjects"><h4>Projects</h4></router-link>
+      <router-link :to="{name:'Admin'}"><h4>Members</h4></router-link>
+      <router-link :to="{name:'AdminProjects'}"><h4>Projects</h4></router-link>
       <div class="dropdown">
         <Button
           text="Generate New Token"
