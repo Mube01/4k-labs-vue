@@ -5,10 +5,6 @@
       <div class="text-center mt-3">
         <span>Welcome to 4K Labs</span>
       </div>
-
-      <div :key="division" v-for="division in divisions" id="divisions">
-        <router-link :to="{name:'Projects', params:{division:division}}"> <Division :name="division" /></router-link>
-      </div>
     </div>
   </div>
 </template>
