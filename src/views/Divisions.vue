@@ -8,7 +8,7 @@
       </div>
 
       <div :key="division" v-for="division in divisions" id="divisions">
-        <router-link :to="{name:'Projects', params:{division:division.name}}"> <Division :name="division.name" :background="division.image" /></router-link>
+        <router-link :to="{name:'Projects', params:{division:division.name}}"> <Division :name="division.name" :background="division.image" class="col-md-4" style="display:inline-block"/></router-link>
       </div>
     </div>
   </div>
