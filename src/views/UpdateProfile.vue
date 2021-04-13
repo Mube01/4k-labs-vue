@@ -2,9 +2,9 @@
   <div>
     <Header />
     <div class="container text-center">
-      <form class="login" @submit.prevent="login">
+      <form class="login" @submit.prevent="updateInformation()">
         <h2>Update Profile</h2>
-        <div class="left">
+        <div class="left col-md-6">
           <label for="fullname">Fullname</label><br />
           <input
             required
@@ -15,7 +15,7 @@
           />
         </div>
 
-        <div class="right">
+        <div class="right col-md-6">
           <label for="username">Username</label><br />
           <input
             required
@@ -26,50 +26,54 @@
           />
         </div>
 
-        <div class="left">
+        <div class="left col-md-6">
           <label for="password">Password</label><br />
           <input required v-model="password" type="password" id="password" />
         </div>
 
-        <div class="right">
-          <label for="division">Select a division</label><br />
-          <select name="division" id="division">
-            <option value="web">Web</option>
-            <option value="bots">Bots</option>
-            <option value="iot">IoT</option>
-          </select>
-        </div>
+        
 
-        <div class="right">
-          <label for="role">Role</label><br />
-          <input v-model="role" type="text" id="role" autocomplete="off" />
-        </div>
 
-        <div class="left">
+        <div class="right col-md-6">
           <label for="pp">Profile Picture</label><br />
-          <input type="file" id="pp" />
+          <input
+            id="pp"
+            v-on:change="uploadProfile"
+            type="file"
+            accept="image/*"
+          />
         </div>
 
-        <div class="full">
+        <div class="left col-md-6">
+          <label for="password">New Password</label><br />
+          <input  v-model="newpassword" type="password" id="password" />
+        </div>
+
+        <div class="right col-md-6">
+          <label for="password">Confirm Password</label><br />
+          <input  v-model="confirmpassword" type="password" id="password" />
+        </div>
+
+        <div class="full  col-md-12">
           <label for="github">Github link</label><br />
-          <input v-model="github" type="text" id="github" autocomplete="off" />
+          <input v-model="Github" type="text" id="github" autocomplete="off" />
         </div>
 
-        <div class="full">
+        <div class="full col-md-12">
           <label for="linkedin">LinkedIn link</label><br />
           <input
-            v-model="linkedin"
+            v-model="Linkden"
             type="text"
             id="linkedin"
             autocomplete="off"
           />
         </div>
 
-        <div class="full">
+        <div class="full col-md-12">
           <label for="description">Description</label><br />
           <textarea
             rows="7"
-            v-model="description"
+            v-model="Discription"
             type="text"
             id="description"
             autocomplete="off"
@@ -82,12 +86,90 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import Header from "@/components/Header.vue";
 export default {
   name: "UpdateProfile",
   components: {
     Header,
   },
+  computed:{
+    ...mapGetters({
+      user_info:'user/getUserInformation'
+    })
+  },
+  data() {
+    return {
+      fullname:"",
+      username:"",
+      Github:"",
+      Linkden:"",
+      Discription:"",
+      password: "",
+      newpassword: "",
+      confirmpassword: "",
+      image: "",
+      user_id:""
+    }
+  },
+  created(){
+    this.fullname = this.user_info.fullname
+    this.username = this.user_info.username
+    this.Github  = this.user_info.Github
+    this.Linkden = this.user_info.Linkden
+    this.Discription = this.user_info.Discription
+    this.user_id = this.user_info.user_id
+  },
+  methods:{
+    updateInformation() {
+      console.log("the length is", this.newpassword.length);
+      if (this.password.length === 0) {
+        alert("password is requiered");
+      } else if (this.newpassword !== this.confirmpassword) {
+        alert("please confirm the new passwod");
+      } else if (this.newpassword.length < 3 && this.newpassword.length !== 0) {
+        alert("the length of the password must be greater than 3");
+      } else {
+        this.editUserInfo = false;
+
+        var data = {
+          password: this.password,
+          username: this.username,
+          Linkden: this.Linkden,
+          Github: this.Github,
+          fullname: this.fullname,
+          Discription: this.Discription,
+          user_id: this.user_info.user_id,
+        };
+        if (this.newpassword.length >= 3) {
+          data["newpassword"] = this.newpassword;
+        }
+        if (this.image.length != 0) {
+          data["image"] = this.image;
+        }
+        // this.password = ""
+        // this.newpassword = ""
+        this.$store.dispatch("profile/editProfile", data).then((result) => {
+          console.log('profile updated succesfully')
+          this.$router.push({name:'Me'})
+        }).catch((err) => {
+          
+        });
+      }
+    },
+    uploadProfile(e) {
+      const selecterImage = e.target.files[0];
+      this.createBase64Image(selecterImage);
+    },
+    createBase64Image(fileObject) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileObject);
+      reader.onload = (e) => {
+        var base64result = e.target.result;
+        this.image = base64result.split(",")[1];
+      };
+    },
+  }
 };
 </script>
 
@@ -125,7 +207,7 @@ label {
   float: left;
 }
 input {
-  width: 450px;
+  width: 100%;
   padding: 8px;
   border-radius: 5px;
   border: 2px solid #666;
@@ -133,13 +215,6 @@ input {
 }
 input[type="file"] {
   padding: 6px;
-}
-select {
-  width: 450px;
-  padding: 10px 10px;
-  border-radius: 5px;
-  border: 2px solid #666;
-  margin: 5px 0 15px 0;
 }
 input:focus {
   outline: none;

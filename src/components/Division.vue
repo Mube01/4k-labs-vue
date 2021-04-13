@@ -1,5 +1,5 @@
 <template>
-    <div class="card col-md-12" :style="inlineStyle">
+    <div class="card" :style="inlineStyle">
       <div class="card-body">
         <h3 class="card-title">
           {{ name }}

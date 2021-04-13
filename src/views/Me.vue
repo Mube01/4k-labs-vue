@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <div class="row">
-        <div class="col-md-4 text-center my-4">
+        <div class="col-lg-4 text-center my-4">
           <ProfilePicture
             :srcText="user_info['profile_picture']"
             imgWeight="250px"
@@ -11,7 +11,7 @@
             :name=user_info.username[0]
           />
         </div>
-        <div class="col-md-5 my-4 pt-2">
+        <div class="col-lg-5 my-4 pt-2">
           <p
             @dblclick="
               editUserInfo = true;
@@ -106,16 +106,16 @@
               />
             </span>
           </p>
-          <Button
-            :disabled="!editUserInfo"
-            text="Edit Profile"
-            color="#333"
-            bgColor="white"
-            border="2px solid #333"
-            @click="updateInformation"
-          />
+          <router-link :to="{name:'UpdateProfile'}">
+            <Button
+              text="Edit Profile"
+              color="#333"
+              bgColor="white"
+              border="2px solid #333"
+            />
+          </router-link>
         </div>
-        <div class="col-md-3 my-4 pt-2">
+        <div class="col-lg-3 my-4 pt-2">
           <p>
             <a href="#"> LinkedIn </a>
             <input
@@ -209,54 +209,7 @@ export default {
     },
   },
   methods: {
-    updateInformation() {
-      console.log("the length is", this.newpassword.length);
-      if (this.password.length === 0) {
-        alert("password is requiered");
-      } else if (this.newpassword !== this.confirmpassword) {
-        alert("please confirm the new passwod");
-      } else if (this.newpassword.length < 3 && this.newpassword.length !== 0) {
-        alert("the length of the password must be greater than 3");
-      } else {
-        this.editUserInfo = false;
-
-        var data = {
-          password: this.password,
-          username: this.user_info.username,
-          Linkden: this.user_info.Linkden,
-          Github: this.user_info.Github,
-          fullname: this.user_info.fullname,
-          Discription: this.user_info.Discription,
-          user_id: this.user_info.user_id,
-        };
-        if (this.newpassword.length >= 3) {
-          data["newpassword"] = this.newpassword;
-        }
-        if (this.image.length != 0) {
-          data["image"] = this.image;
-        }
-        // this.password = ""
-        // this.newpassword = ""
-        this.$store.dispatch("profile/editProfile", data);
-      }
-    },
-    closeEdit() {
-      this.editUserInfo = false;
-      this.password = "";
-      this.newpassword = "";
-    },
-    uploadProfile(e) {
-      const selecterImage = e.target.files[0];
-      this.createBase64Image(selecterImage);
-    },
-    createBase64Image(fileObject) {
-      const reader = new FileReader();
-      reader.readAsDataURL(fileObject);
-      reader.onload = (e) => {
-        var base64result = e.target.result;
-        this.image = base64result.split(",")[1];
-      };
-    },
+    
   },
 };
 </script>

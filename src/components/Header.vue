@@ -10,7 +10,7 @@
             <ProfilePicture
               imgWeight="45px"
               fontSize="20px"
-              :name="user_info.username[0]"
+              name="user_info.username[0]"
               :srcText="user_info['profile_picture']"
             />
           </router-link>

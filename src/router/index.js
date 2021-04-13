@@ -55,6 +55,11 @@ const routes = [
     component: () => import('../views/UpdateProject.vue')
   },
   {
+    path: '/portal/edit-profile',
+    name: 'UpdateProfile',
+    component: () => import('../views/UpdateProfile.vue')
+  },
+  {
     path: '/portal/adminProjects',
     name: 'AdminProjects',
     component: () => import('../views/AdminProjects.vue')
