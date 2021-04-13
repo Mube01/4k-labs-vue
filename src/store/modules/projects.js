@@ -1,5 +1,6 @@
 import projectsApi from '../../api/projectsApi'
 import tasksApi from '../../api/tasksApi'
+import members from './members';
 
 export default {
     namespaced: true,
@@ -20,6 +21,9 @@ export default {
         },
         divisionProjectGetter:(state)=>(division)=>{
             return state.projects.filter((project)=>project.Division===division)
+        },
+        projectMemberGetter:(state)=>{
+            return state.project.members
         }
     },
     actions: {
@@ -106,7 +110,6 @@ export default {
         },
         createNewProject({ commit, dispatch }, data) {
             return new Promise((resolve, reject) => {
-                console.log(data)
                 projectsApi.createNewProject(data).then((result) => {
                     commit('addProject', result.data.project)
                     resolve(result.data)
@@ -131,6 +134,10 @@ export default {
                 })
             })
         },
+        updateProjectMembers({commit,rootGetters},data){
+            var allMembers = rootGetters['members/getMembers'];
+            commit('updateProjectMembers',{'selectedMembers':data.team_members,'allMembers':allMembers})
+        }
     },
     mutations: {
         storeAllProjects(state, projectData) {
@@ -149,15 +156,19 @@ export default {
          */
         completeTask(state, data) {
 
-            console.log('update_task')
-
-            let len = state.project.tasks.length
+            console.log('the original  is ',data.completed)
+            var copyTasks = state.project.tasks
             data.completed = (data.completed == '1') ? '0' : '1'
-            for (var i = 0; i < len; i++) {
-                if (state.project.tasks[i].task_code == data.task_code) {
-                    state.project.tasks[i].completed = data.completed
+            console.log('the reversed is ',data.completed)
+            for (var i = 0; i < copyTasks.length; i++) {
+                if(copyTasks[i].task_code == data.task_code){
+
+                    console.log('the copy is ',copyTasks[i].task_code,' ',data.task_code)
+                    copyTasks[i].completed = data.completed
                 }
             }
+            console.log(copyTasks)
+            // state.project.tasks = ['abel','abebe'];
         },
         /**
          * this update progress doesn't take any parameter
@@ -173,7 +184,14 @@ export default {
                 }
             }
             var percentile = 0
-            total==0?percentile=0:percentile(total * 100 / len).toFixed(2)
+
+            console.log('the total is ',total);
+
+            if(total==0){
+                percentile = 0;
+            }else{
+                percentile = total*100/len
+            }
 
             console.log('the percentiole is ',percentile,' ', total)
             state.project.progress = percentile
@@ -204,6 +222,18 @@ export default {
         },
         deleteProject(state,project_code){
             state.projects = state.projects.filter((project)=>project.project_code!==project_code)
+        },
+        updateProjectMembers(state,members){
+            var selected = members.selectedMembers;
+            var all = members.allMembers
+            state.project.members = members.selectedMembers;
+            var finalSelect = []
+            all.forEach(element => {
+                if(selected.includes(element.user_id)){
+                    finalSelect.push(element)
+                }
+            });
+            state.project.team_members = finalSelect
         }
     }
 };

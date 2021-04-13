@@ -156,7 +156,9 @@
         v-for="project in projects"
         class="Projects"
       >
-        <Project :project="project" />
+        <router-link :to="{name:'Tasks', params:{'projectCode':project.project_code}}">
+            <Project :project="project" />
+          </router-link>
       </div>
     </div>
   </div>

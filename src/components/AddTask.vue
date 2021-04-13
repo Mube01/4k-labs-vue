@@ -40,6 +40,8 @@ export default {
           })
           .then((result) => {
             console.log(result);
+            this.$emit('taskAdded')
+            this.text = ""
           })
           .catch((err) => {
             console.log(err);

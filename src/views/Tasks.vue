@@ -81,7 +81,7 @@
         :border="showAddTask ? '3px dashed red' : '3px dashed green'"
       />
       <div v-show="showAddTask">
-        <AddTask :project_code="project_code" />
+        <AddTask @taskAdded="showAddTask=false" :project_code="project_code" />
       </div>
 
       <Task :key="task.task_code" v-for="task in project.tasks" :task="task" />
@@ -124,20 +124,24 @@ export default {
     },
     toggleAddMember() {
       this.showAddMember = !this.showAddMember;
+      if(!this.showAddMember){
+        this.$refs.selected_members.value = this.project.members
+      }
     },
     ...mapActions({
       fetchProject: "projects/getProject",
       updatemembers: "members/updateProjectMembers",
+      updateProjectMembers: "projects/updateProjectMembers"
     }),
     updateMembers() {
+      this.showAddMember = false
       var data = {
         project_code: this.project_code,
         team_members: Object.values(this.$refs.selected_members.value),
       };
-      console.log(data);
       this.updatemembers(data)
         .then((result) => {
-          console.log(result);
+          this.updateProjectMembers(data)
         })
         .catch((err) => {});
     },
