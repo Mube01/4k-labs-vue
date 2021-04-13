@@ -14,7 +14,8 @@ TODO<br/>
     [ ] update project name and description\
     [ ] delete token for the admin\
     [x] update gourp members interactivley\
-    [ ] task progress calculator 
+    [x] task progress calculator \
+    [ ] error and success on the pages \
     
     
     
