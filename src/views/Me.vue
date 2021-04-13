@@ -12,100 +12,34 @@
           />
         </div>
         <div class="col-lg-5 my-4 pt-2">
-          <p
-            @dblclick="
-              editUserInfo = true;
-              field_value_changed = false;
-            "
-          >
+          <p>
             Username:
             <span class="value">
-              <label v-show="!editUserInfo">{{ user_info.username }}</label>
-              <input
-                type="text"
-                @change="field_value_changed = true"
-                v-model="user_info.username"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-                v-on:blur="closeEdit()"
-              />
+              <label>{{ user_info.username }}</label>
             </span>
           </p>
-          <p @dblclick="editUserInfo = true">
+          <p>
             Full name:
             <span class="value">
-              <label v-show="!editUserInfo">{{ user_info.fullname}}</label>
-              <input
-                type="text"
-                @change="field_value_changed = true"
-                v-model="user_info.fullname"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-                v-on:blur="closeEdit()"
-              />
+              <label>{{ user_info.fullname}}</label>
+              
             </span>
           </p>
-          <p @dblclick="editUserInfo = true">
+          <p>
             Division:
             <span class="value">
               <label>{{ user_info.Division }}</label>
             </span>
           </p>
-          <p @dblclick="editUserInfo = true">
+          <p>
             Discription:
             <span class="value">
-              <label v-show="!editUserInfo">{{ user_info.Discription }}</label>
-              <input
-                type="text"
-                @change="field_value_changed = true"
-                v-model="user_info.Discription"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-                v-on:blur="closeEdit()"
-              />
+              <label>{{ user_info.Discription }}</label>
             </span>
           </p>
 
-          <p v-show="editUserInfo" @dblclick="editUserInfo = true">
-            Password:
-            <span class="value">
-              <label v-show="!editUserInfo"></label>
-              <input
-                required
-                type="password"
-                @change="field_value_changed = true"
-                v-model="password"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-              />
-            </span>
-          </p>
-          <p v-show="editUserInfo" @dblclick="editUserInfo = true">
-            New Password:
-            <span class="value">
-              <label v-show="!editUserInfo"></label>
-              <input
-                type="password"
-                @change="field_value_changed = true"
-                v-model="newpassword"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-              />
-            </span>
-          </p>
-          <p v-show="editUserInfo" @dblclick="editUserInfo = true">
-            Confirm Password:
-            <span class="value">
-              <label v-show="!editUserInfo"></label>
-              <input
-                type="password"
-                @change="field_value_changed = true"
-                v-model="confirmpassword"
-                v-show="editUserInfo"
-                @keyup.enter="closeEdit()"
-              />
-            </span>
-          </p>
+         
+      
           <router-link :to="{name:'UpdateProfile'}">
             <Button
               text="Edit Profile"
@@ -117,35 +51,18 @@
         </div>
         <div class="col-lg-3 my-4 pt-2">
           <p>
-            <a href="#"> LinkedIn </a>
-            <input
-              type="text"
-              @change="field_value_changed = true"
-              v-model="user_info.Linkden"
-              v-show="editUserInfo"
-              @keyup.enter="closeEdit()"
-            />
+            <a :href="user_info.Linkden"> Linkden </a>
+           
           </p>
           <p>
-            <a href="#"> Github </a>
-            <input
-              type="text"
-              @change="field_value_changed = true"
-              v-model="user_info.Github"
-              v-show="editUserInfo"
-              @keyup.enter="closeEdit()"
-            />
+            <a :href="user_info.Github"> Github </a>
+           
           </p>
           <p>
             <label v-show="editUserInfo" @dblclick="editUserInfo = true"
               >Upload Profile</label
             >
-            <input
-              v-on:change="uploadProfile"
-              v-show="editUserInfo"
-              type="file"
-              accept="image/*"
-            />
+            
           </p>
         </div>
       </div>
