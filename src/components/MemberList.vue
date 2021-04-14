@@ -83,13 +83,27 @@ export default {
     ...mapActions({
       changeRole: "members/changeRole",
       changeDivsion: "members/changeDivsion",
+      errorAlert:'errorAlert',
+      successAlert:'successAlert'
     }),
     changerole(role, user_id) {
-      this.changeRole({ user_id, role })
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((err) => {});
+      if(role === 'Admin'){
+        if (this.isSuperAdmin){
+              this.changeRole({ user_id, role }).then((result) => {
+              console.log(result);
+            })
+            .catch((err) => {});
+        }
+        else{
+          this.errorAlert('only Super Admin Can change the admis Admin')
+        }
+      }
+      else{
+         this.changeRole({ user_id, role }).then((result) => {
+              console.log(result);
+            })
+            .catch((err) => {});
+      } 
     },
     changedivision(division, user_id) {
       this.changeDivsion({ user_id, division })
@@ -101,7 +115,9 @@ export default {
   },
   computed:{
     ...mapGetters({
-      roleGetter:'getRoleByKey'
+      roleGetter:'getRoleByKey',
+      user_info:'user/getUserInformation',
+      isSuperAdmin:'user/isSuperAdmin'
     })
   }
 };

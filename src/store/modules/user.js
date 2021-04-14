@@ -7,7 +7,9 @@ export default {
     },
     getters:{
         getUserInformation: state => state.user,
-        getUserId: state => state.user.user_id
+        getUserId: state => state.user.user_id,
+        getUserRole: state => state.user.Role,
+        isSuperAdmin: state => state.user.superadmin
 
     },
     actions:{
@@ -20,11 +22,18 @@ export default {
             }).catch((err) => {
                 
             });
+        },
+        clearUserInformation({commit}){
+            commit("clearUserInformation")
         }
     },
     mutations:{
         addUserInformation(state,userData){
+            console.log('the user data is ',userData)
             state.user = userData
+        },
+        clearUserInformation(state){
+            state.user = ""
         }
     }
   };

@@ -49,14 +49,13 @@ export default {
                 });
             })
         },
-        logoutUser({commit}){
+        logoutUser({commit,dispatch}){
             return new Promise((resolve,reject)=>{
                 commit('authLogout')
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("refresh_token");
                 router.push('/login')    
                 resolve();
-
             })
         },
         deleteAccessTokens({commit}){

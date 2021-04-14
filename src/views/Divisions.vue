@@ -23,9 +23,14 @@
 import Header from "@/components/Header.vue";
 import Division from "@/components/Division.vue";
 import Loading from "@/components/Loading.vue";
-import { mapActions } from "vuex";
+import { mapActions,mapGetters } from "vuex";
 export default {
   name: "Divisions",
+  computed:{
+    ...mapGetters({
+      'user_info':'user/isSuperAdmin'
+    })
+  },
   methods: {
     ...mapActions({
       fetchProject: "projects/getAllProjects",

@@ -25,12 +25,16 @@ export default {
             console.log('updating user_inforamtion')
             dispatch('user/addUserInformation',user,{root:true})
         },
-        getMembers({ commit, dispatch }) {
+        getMembers({ commit, dispatch,rootGetters }) {
             return new Promise((resolve, reject) => {
                 membersApi.getMembers().then((result) => {
                     console.log(result.data.members)
                     commit('storeMembers', result.data.members)
-                    dispatch('updateUser',result.data.members)
+                    console.log('is the man admin ', rootGetters['user/isSuperAdmin'])
+                    if(! rootGetters['user/isSuperAdmin']){
+                        console.log('the user is not a  admin')
+                        dispatch('updateUser',result.data.members)
+                    }
                 }).catch((err) => {
                     if (err.response.status == 401) {
                         dispatch('auth/logoutUser', err.response.data, { root: true })
