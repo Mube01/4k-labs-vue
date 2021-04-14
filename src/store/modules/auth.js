@@ -20,18 +20,17 @@ export default {
             dispatch('user/addUserInformation',userData,{root:true})
         },
         loginUser({dispatch,commit},{username,password}){
-            console.log(login())
             return new Promise((resolve,reject)=>{
                 login(username,password).then((result) => {
                     console.log(result.data.user)
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
                     commit('authSuccesfull',result.data)
-                    resolve()
+                    resolve(result.data)
                 }).catch((err) => {
                     commit('authError')
                     localStorage.removeItem("access_token");
-                    reject(err)
+                    reject(err.response.data)
                 });
             })
         },

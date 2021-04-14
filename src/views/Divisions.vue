@@ -28,7 +28,6 @@ export default {
   },
   created(){
     this.fetchProject().then((result) => {
-      console.log('successully fetch projects ',result)
       this.loading = false
     }).catch((err) => {
       console.log(err)  
