@@ -3,8 +3,8 @@
     <div class="login text-center">
       <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
-        <h2>Login</h2>
-        <label for="username">Username</label><br />
+        <h2>Admin Login</h2>
+        <label for="username">Admin Username</label><br />
         <input
           required
           v-model="username"
@@ -13,7 +13,7 @@
           autocomplete="off"
         />
         <br />
-        <label for="password">Password</label><br />
+        <label for="password">Admin Password</label><br />
         <input required v-model="password" type="password" id="password" />
         <button @click="login()">Login</button>
       </form>
@@ -47,7 +47,7 @@ export default {
     }),
     // send user name and password by reading from the form
     login() {
-      this.$store.dispatch("auth/loginUser", this).then((result) => {
+      this.$store.dispatch("auth/adminLogin", this).then((result) => {
         this.successAlert('login successfull')
         this.$router.push({'name':'Divisions'});
       }).catch((err) => {

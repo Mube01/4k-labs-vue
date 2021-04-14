@@ -17,7 +17,9 @@ export default {
             return state.project
         },
         listOfProjectsByUserId: (state) => (user_id) => {
-            return state.projects
+            return state.projects.filter((project)=>{
+                return project.members.includes(user_id)
+            })
         },
         divisionProjectGetter:(state)=>(division)=>{
             return state.projects.filter((project)=>project.Division===division)

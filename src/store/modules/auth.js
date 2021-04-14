@@ -1,6 +1,5 @@
-import {login,register} from '../../api/authApi'
+import {login,register,adminLogin} from '../../api/authApi'
 import router from '../../router'
-import user from './user';
 
 const axios = require('axios');
 
@@ -19,10 +18,26 @@ export default {
         storeUserInfo({dispatch},userData){
             dispatch('user/addUserInformation',userData,{root:true})
         },
+        adminLogin({dispatch,commit},{username,password}){
+            return new Promise((resolve,reject)=>{
+                adminLogin(username,password).then((result) => {
+                    console.log(result.data)
+                    localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
+                    localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
+                    dispatch('storeUserInfo',result.data.user)
+                    commit('authSuccesfull',result.data)
+                    resolve(result.data)
+                }).catch((err) => {
+                    commit('authError')
+                    localStorage.removeItem("access_token");
+                    reject(err.response.data)
+                });
+            })
+        },
         loginUser({dispatch,commit},{username,password}){
             return new Promise((resolve,reject)=>{
                 login(username,password).then((result) => {
-                    console.log(result.data.user)
+                    localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
                     commit('authSuccesfull',result.data)
@@ -38,6 +53,7 @@ export default {
             return new Promise((resolve,reject)=>{
                 commit('authLogout')
                 localStorage.removeItem("access_token");
+                localStorage.removeItem("refresh_token");
                 router.push('/login')    
                 resolve();
 

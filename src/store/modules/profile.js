@@ -31,6 +31,17 @@ export default {
                     
                 });
             })
+        },
+        updateAdminProfile({dispatch},data){         
+            return new Promise((resolve,reject)=>{
+                profileApi.updateAdminProfile(data).then((result) => {
+                    console.log(result.data)
+                    dispatch('user/addUserInformation',result.data.data,{root:true})
+                    resolve(result.data)
+                }).catch((err) => {
+                    
+                });
+            })
         }
     },
     mutations:{

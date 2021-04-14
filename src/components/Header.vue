@@ -7,14 +7,29 @@
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
-          <router-link :to="{ name: 'Me' }">
-            <ProfilePicture
-              imgWeight="45px"
-              fontSize="20px"
-              :name="user_info.username[0]"
-              :srcText="user_info['profile_picture']"
-            />
-          </router-link>
+
+          <div v-if="!user_info.superadmin">
+              <router-link :to="{ name: 'Me' }">
+              <ProfilePicture
+                imgWeight="45px"
+                fontSize="20px"
+                :name="user_info.username[0]"
+                :srcText="user_info['profile_picture']"
+              />
+            </router-link>
+          </div>
+
+           <div v-if="user_info.superadmin">
+              <router-link :to="{ name: 'AdminMe' }">
+              <ProfilePicture
+                imgWeight="45px"
+                fontSize="20px"
+                :name="user_info.username[0]"
+                :srcText="user_info['profile_picture']"
+              />
+            </router-link>
+          </div>
+
         </div>
 
         <router-link v-show="!isAuthenticated" class="link_class" to="/login">

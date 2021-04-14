@@ -35,9 +35,19 @@ const routes = [
     component: () => import('../views/Me.vue')
   },
   {
+    path: '/portal/adminme',
+    name: 'AdminMe',
+    component: () => import('../views/AdminMe.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/adminlogin',
+    name: 'AdminLogin',
+    component: () => import('../views/AdminLogin.vue')
   },
   {
     path: '/portal/admin',
@@ -58,6 +68,11 @@ const routes = [
     path: '/portal/edit-profile',
     name: 'UpdateProfile',
     component: () => import('../views/UpdateProfile.vue')
+  },
+  {
+    path: '/portal/admin-edit-profile',
+    name: 'UpdateAdminProfile',
+    component: () => import('../views/UpdateAdminProfile.vue')
   },
   {
     path: '/portal/adminProjects',
@@ -82,7 +97,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home' && to.name !== 'Register') {
+  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home' && to.name !== 'Register' &&  to.name !== 'AdminLogin') {
     next({ name: 'Login' })
   }
   else next()

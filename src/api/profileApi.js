@@ -22,5 +22,20 @@ function updateProfile(data){
 
     return axios(config)
 }
-export default {fetchProfile,updateProfile}
+
+function updateAdminProfile(data){
+    data = JSON.stringify({"username":data.username,"password":data.password,"newpassword":data.newpassword,"user_id":data.user_id});
+
+    var config = {
+    method: 'put',
+    url: 'http://127.0.0.1:5000/api_v1/upadate_admin_profile',
+    headers: { 
+        'Content-Type': 'application/json'
+    },
+    data : data
+    };
+
+    return axios(config)
+}
+export default {fetchProfile,updateProfile,updateAdminProfile}
  
