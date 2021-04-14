@@ -1,28 +1,22 @@
 <template>
+  <Header />
+  <div class="container">
+    <Add
+      @toggle-add="toggleAdd"
+      :text="showAddProject ? 'X Close' : '+ Add New Project'"
+      :border="showAddProject ? '3px dashed red' : '3px dashed green'"
+      v-show="division == user_info.Division && user_info.Role === 2"
+    />
+    <div v-show="showAddProject">
+      <AddProject @projectAdded="toggleShowAddProject" />
+    </div>
 
-    <Header/>
-  <div>
-    <div></div>
-    <div class="container">
-      <Add
-        @toggle-add="toggleAdd"
-        :text="showAddProject ? 'X Close' : '+ Add New Project'"
-        :border="showAddProject ? '3px dashed red' : '3px dashed green'"
-        v-show="division==user_info.Division && user_info.Role === 2"
-      />
-      <div v-show="showAddProject">
-        <AddProject @projectAdded="toggleShowAddProject"/>
-      </div>
-
-      <div
-        :key="project.project_code"
-        v-for="project in projects"
-        class="Projects"
+    <div :key="project.project_code" v-for="project in projects">
+      <router-link
+        :to="{ name: 'Tasks', params: { projectCode: project.project_code } }"
       >
-          <router-link :to="{name:'Tasks', params:{'projectCode':project.project_code}}">
-            <Project :project="project" />
-          </router-link>
-      </div>
+        <Project :project="project" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -41,13 +35,13 @@ export default {
     Project,
     Add,
     AddProject,
-    Header
+    Header,
   },
-  props:{
-    division:{
-      type:String,
-      required:true
-    }
+  props: {
+    division: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -59,7 +53,7 @@ export default {
       this.showAddProject = !this.showAddProject;
     },
     toggleShowAddProject() {
-      console.log('got here')
+      console.log("got here");
       this.showAddProject = false;
     },
     ...mapActions({
@@ -68,15 +62,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user_info:'user/getUserInformation'
+      user_info: "user/getUserInformation",
     }),
 
-    projects(){
-      return this.$store.getters['projects/divisionProjectGetter'](this.division)
-    }
+    projects() {
+      return this.$store.getters["projects/divisionProjectGetter"](
+        this.division
+      );
+    },
   },
   created() {
-    console.log(this.$route.params.division)
+    console.log(this.$route.params.division);
   },
 };
 </script>

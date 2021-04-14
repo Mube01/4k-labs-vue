@@ -1,81 +1,69 @@
 <template>
-  <div>
-    <Header />
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 text-center my-4">
-          <ProfilePicture
-            :srcText="user_info['profile_picture']"
-            imgWeight="250px"
-            fontSize="100px"
-            :name=user_info.username[0]
-          />
-        </div>
-        <div class="col-lg-5 my-4 pt-2">
-          <p>
-            Username:
-            <span class="value">
-              <label>{{ user_info.username }}</label>
-            </span>
-          </p>
-          <p>
-            Full name:
-            <span class="value">
-              <label>{{ user_info.fullname}}</label>
-              
-            </span>
-          </p>
-          <p>
-            Division:
-            <span class="value">
-              <label>{{ user_info.Division }}</label>
-            </span>
-          </p>
-          <p>
-            Discription:
-            <span class="value">
-              <label>{{ user_info.Discription }}</label>
-            </span>
-          </p>
-
-         
-      
-          <router-link :to="{name:'UpdateProfile'}">
-            <Button
-              text="Edit Profile"
-              color="#333"
-              bgColor="white"
-              border="2px solid #333"
-            />
-          </router-link>
-        </div>
-        <div class="col-lg-3 my-4 pt-2">
-          <p>
-            <a :href="user_info.Linkden"> Linkden </a>
-           
-          </p>
-          <p>
-            <a :href="user_info.Github"> Github </a>
-           
-          </p>
-          <p>
-            <label v-show="editUserInfo" @dblclick="editUserInfo = true"
-              >Upload Profile</label
-            >
-            
-          </p>
-        </div>
+  <Header />
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center my-4">
+        <ProfilePicture
+          :srcText="user_info['profile_picture']"
+          imgWeight="250px"
+          fontSize="100px"
+          :name="user_info.username[0]"
+        />
       </div>
-      <br />
-      <br />
-      <div
-        :key="project.project_code"
-        v-for="project in projects"
-        class="Projects"
-      >
-        <router-link :to="{name:'Tasks', params:{'projectCode':project.project_code}}">
-            <Project :project="project" />
-          </router-link>
+      <div class="col-lg-5 my-4 pt-2">
+        <p>
+          Username:
+          <span class="value">
+            <label>{{ user_info.username }}</label>
+          </span>
+        </p>
+        <p>
+          Full name:
+          <span class="value">
+            <label>{{ user_info.fullname }}</label>
+          </span>
+        </p>
+        <p>
+          Division:
+          <span class="value">
+            <label>{{ user_info.Division }}</label>
+          </span>
+        </p>
+        <p>
+          Discription:
+          <span class="value">
+            <label>{{ user_info.Discription }}</label>
+          </span>
+        </p>
+
+        <router-link :to="{ name: 'UpdateProfile' }">
+          <Button
+            text="Edit Profile"
+            color="#333"
+            bgColor="white"
+            border="2px solid #333"
+          />
+        </router-link>
+      </div>
+      <div class="col-lg-3 my-4 pt-2">
+        <p>
+          <a :href="user_info.Linkden"> LinkedIn </a>
+        </p>
+        <p>
+          <a :href="user_info.Github"> Github </a>
+        </p>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div :key="project.project_code" v-for="project in projects">
+        <router-link
+          :to="{
+            name: 'Tasks',
+            params: { projectCode: project.project_code },
+          }"
+        >
+          <Project :project="project" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -127,9 +115,7 @@ export default {
       );
     },
   },
-  methods: {
-    
-  },
+  methods: {},
 };
 </script>
 

@@ -1,10 +1,12 @@
 <template>
   <div class="card col-md-12">
     <div class="card-body">
-        <div class="token">
-          <span style="float:left;">{{token.token}}</span>
-            <span style="float:right;padding-left:200px;">{{token.Division}}</span>
-        </div>
+      <div class="token">
+        <span style="float: left">{{ token.token }}</span>
+        <span style="float: right; padding-left: 200px">{{
+          token.Division
+        }}</span>
+      </div>
       <div class="more">
         <div class="dropdown">
           <i
@@ -16,8 +18,9 @@
             aria-hidden="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">Copy</a>
-            <a @click="DeleteToken(token.token)" class="dropdown-item">Delete</a>
+            <a @click="DeleteToken(token.token)" class="dropdown-item"
+              >Delete</a
+            >
           </div>
         </div>
       </div>
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions } from "vuex";
 export default {
   name: "TokenList",
   props: {
@@ -34,19 +37,18 @@ export default {
       type: Object,
     },
   },
-  methods:{
+  methods: {
     ...mapActions({
-      deleteToken:'tokens/deleteToken'
+      deleteToken: "tokens/deleteToken",
     }),
-    DeleteToken(token){
-      this.deleteToken(token).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        
-      });
-    }
-  }
-
+    DeleteToken(token) {
+      this.deleteToken(token)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {});
+    },
+  },
 };
 </script>
 
