@@ -1,3 +1,4 @@
+import userApi from '../../api/userApi'
 export default {
     namespaced: true,
 
@@ -12,6 +13,13 @@ export default {
     actions:{
         addUserInformation({commit},userData){
             commit('addUserInformation',userData)
+        },
+        userInformation({commit},user_id){
+            userApi.userInformation(user_id).then((result) => {
+                commit('addUserInformation',result.data)
+            }).catch((err) => {
+                
+            });
         }
     },
     mutations:{

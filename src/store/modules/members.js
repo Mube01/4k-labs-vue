@@ -1,5 +1,4 @@
 import membersApi from '../../api/membersApi'
-import user from './user';
 export default {
     namespaced: true,
 
@@ -20,11 +19,18 @@ export default {
 
     },
     actions:{
+        updateUser({commit,dispatch,rootGetters},members){
+            var user_id = rootGetters['user/getUserId']
+            var user = members.find((member)=>member.user_id === user_id)
+            console.log('updating user_inforamtion')
+            dispatch('user/addUserInformation',user,{root:true})
+        },
         getMembers({ commit, dispatch }) {
             return new Promise((resolve, reject) => {
                 membersApi.getMembers().then((result) => {
                     console.log(result.data.members)
                     commit('storeMembers', result.data.members)
+                    dispatch('updateUser',result.data.members)
                 }).catch((err) => {
                     if (err.response.status == 401) {
                         dispatch('auth/logoutUser', err.response.data, { root: true })

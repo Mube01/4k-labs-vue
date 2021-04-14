@@ -15,6 +15,8 @@ TODO<br/>
     [x] delete token for the admin\
     [x] update gourp members interactivley\
     [x] show response for the user for every fetch request
+    [ ] access and previlages for members and admin
+    
     
     
     
