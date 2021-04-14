@@ -11,9 +11,10 @@ TODO<br/>
     [ ] add proxy for the api\
     [ ] add busy loading while fetching data from the backend\
     [x] update profile from anoter page\
-    [.] update project name and description\
+    [x] update project name and description\
     [.] delete token for the admin\
-    [ ] update gourp members interactivley\
+    [x] update gourp members interactivley\
+    [ ] show response for the user for every fetch request
     
     
     
