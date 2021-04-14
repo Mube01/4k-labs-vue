@@ -5,7 +5,7 @@
       @toggle-add="toggleAdd"
       :text="showAddProject ? 'X Close' : '+ Add New Project'"
       :border="showAddProject ? '3px dashed red' : '3px dashed green'"
-      v-show="division == user_info.Division && user_info.Role === '2' || user_info.Role === '4'"
+      v-show="division == user_info.Division && (user_info.Role === '2' || user_info.Role === '4')"
     />
     <div v-show="showAddProject">
       <AddProject @projectAdded="toggleShowAddProject" />
