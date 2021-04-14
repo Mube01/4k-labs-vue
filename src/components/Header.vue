@@ -44,7 +44,7 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <router-link class="link_class" :to="{ name: 'Admin' }"
+        <router-link v-if="user_info.Role === '4'" class="link_class" :to="{ name: 'Admin' }"
           >Admin</router-link
         >
       </div>

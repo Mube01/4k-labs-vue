@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Divisions from '../views/Divisions.vue'
+import Home from '../views/Home.vue'
+
 import store from '../store';
 const routes = [
   {
     path:'/',
-    redirect: { name: 'Divisions' }
+    name:'Home',
+    component:Home
   },
   {
     path: '/portal/divisions',
@@ -97,7 +100,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'home' && to.name !== 'Register' &&  to.name !== 'AdminLogin') {
+  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'Home' && to.name !== 'Register' &&  to.name !== 'AdminLogin') {
     next({ name: 'Login' })
   }
   else next()
