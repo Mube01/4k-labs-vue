@@ -20,7 +20,6 @@ export default {
             dispatch('user/addUserInformation',userData,{root:true})
         },
         loginUser({dispatch,commit},{username,password}){
-            console.log(login())
             return new Promise((resolve,reject)=>{
                 login(username,password).then((result) => {
                     console.log(result.data.user)

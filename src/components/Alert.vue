@@ -1,12 +1,12 @@
 <template>
-  <div style="background: rgb(38, 238, 148);" class="alert alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <div v-if="alertData.status == true && alertData.success == true " style="background: rgb(38, 238, 148);" class="alert alert-dismissible fade show" role="alert">
+    <strong>Success</strong> {{alertData.message}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div style="background: rgba(243, 20, 20, 0.938);" class="alert alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <div v-if="alertData.status == true && alertData.success == false " style="background: rgba(243, 20, 20, 0.938);" class="alert alert-dismissible fade show" role="alert">
+    <strong>Error</strong> {{alertData.message}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -16,18 +16,12 @@
 <script>
 import {mapGetters} from 'vuex'
 export default {
-    data() {
-        return {
-            
-        }
-    },
+    name:'Alert',
     computed:{
         ...mapGetters({
-            'showAlert':'alert/status',
-            'alertData':'alert/data'
+            alertData:['getData']
         })
     }
-
 }
 </script>
 

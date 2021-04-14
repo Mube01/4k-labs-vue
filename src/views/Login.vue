@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="login text-center">
-      <form class="login" @submit.prevent="login">
+      <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Login</h2>
         <label for="username">Username</label><br />
@@ -15,7 +15,8 @@
         <br />
         <label for="password">Password</label><br />
         <input required v-model="password" type="password" id="password" />
-        <button type="submit">Login</button>
+        
+        <button @click="login()">Login</button>
       </form>
     </div>
     <div class="footer text-center">
@@ -38,19 +39,20 @@ export default {
   computed:{
     ...mapGetters({
       isAuthenticated:['auth/isAuthenticated'],
-    })
+    }),
   },
   methods: {
     ...mapActions({
-      successAlert:['alert/successAlert'],
-      errorAlert:['alert/errorAlert']
+      errorAlert:'errorAlert',
+      successAlert:'successAlert'
     }),
     // send user name and password by reading from the form
     login() {
       this.$store.dispatch("auth/loginUser", this).then((result) => {
+        this.successAlert('login successfull')
         this.$router.push({'name':'Divisions'});
       }).catch((err) => {
-        this.$store.dispatch("alert/errorAlert",err.message)
+        this.errorAlert(err.message)
       });
     },
   },
