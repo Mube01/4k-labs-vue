@@ -27,11 +27,11 @@ export default {
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
                     commit('authSuccesfull',result.data)
-                    resolve()
+                    resolve(result.data)
                 }).catch((err) => {
                     commit('authError')
                     localStorage.removeItem("access_token");
-                    reject(err)
+                    reject(err.response.data)
                 });
             })
         },

@@ -1,6 +1,17 @@
 <template>
+  <Alert/>
   <router-view :key="$route.path" />
 </template>
+
+
+<script>
+import Alert from '@/components/Alert.vue'
+export default {
+  components:{
+    Alert
+  }
+}
+</script>
 
 <style>
 * {
@@ -8,6 +19,7 @@
   margin: 0;
   padding: 0;
 }
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
