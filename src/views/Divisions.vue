@@ -31,15 +31,6 @@ export default {
       fetchProject: "projects/getAllProjects",
     }),
   },
-  created() {
-    this.fetchProject()
-      .then((result) => {
-        console.log("successully fetch projects ", result);
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   },
   data() {
     return {
