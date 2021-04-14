@@ -11,12 +11,14 @@
       <AddProject @projectAdded="toggleShowAddProject" />
     </div>
 
-    <div :key="project.project_code" v-for="project in projects">
-      <router-link
-        :to="{ name: 'Tasks', params: { projectCode: project.project_code } }"
-      >
-        <Project :project="project" />
-      </router-link>
+    <div class="row">
+      <div :key="project.project_code" v-for="project in projects">
+        <router-link
+          :to="{ name: 'Tasks', params: { projectCode: project.project_code } }"
+        >
+          <Project :project="project" />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
