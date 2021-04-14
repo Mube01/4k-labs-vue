@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="container text-center">
-      <form class="login" @submit.prevent="login">
+      <form class="login" @submit.prevent="UpdateProject">
         <h2>Edit Project</h2>
         <div class="full">
           <label for="title">Project Title</label><br />
@@ -17,19 +17,19 @@
 
         <div class="full">
           <label for="github">Github link</label><br />
-          <input v-model="github" type="text" id="github" autocomplete="off" />
+          <input v-model="project.github" type="text" id="github" autocomplete="off" />
         </div>
 
         <div class="full">
           <label for="linkedin">Docs link</label><br />
-          <input v-model="docs" type="text" id="docs" autocomplete="off" />
+          <input v-model="project.docs" type="text" id="docs" autocomplete="off" />
         </div>
 
         <div class="full">
           <label for="description">Description</label><br />
           <textarea
             rows="7"
-            v-model="description"
+            v-model="project.description"
             type="text"
             id="description"
             autocomplete="off"
@@ -51,13 +51,30 @@ export default {
   },
   data() {
     return {
-      project_code: this.$router.currentRoute._value.params.projectCode,
+      project_code: this.$route.params.projectCode
     };
   },
   methods: {
     ...mapActions({
       fetchProject: "projects/getProject",
+      updateProject:"projects/updateProject"
     }),
+    UpdateProject(){
+      var data = {
+        'project_title':this.project.project_title,
+        'github':this.project.github,
+        'docs':this.project.docs,
+        'description':this.project.description,
+        "project_code":this.project.project_code
+      }
+      console.log(data)
+      this.updateProject(data).then((result) => {
+        console.log(result)
+        this.$router.push({name:'Tasks',params:{projectCode:this.project.project_code}})
+      }).catch((err) => {
+        
+      });
+    }
   },
   created() {
     this.fetchProject(this.project_code).then((result) => {

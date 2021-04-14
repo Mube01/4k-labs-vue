@@ -68,4 +68,24 @@ function deleteProject(project_code){
 
 
 }
-export default { fetchProjects, fetchProject, createNewProject, deleteProject }
+
+function updateProject(data){
+    
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
+    
+    var config = {
+    method: 'post',
+    url: 'http://127.0.0.1:5000/api_v1/updateproject',
+    headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    },
+    
+    data : JSON.stringify(data)
+    };
+
+    return axios(config)
+}
+
+export default { fetchProjects, fetchProject, createNewProject, deleteProject,updateProject}

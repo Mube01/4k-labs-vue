@@ -5,12 +5,12 @@
       <div class="status">
         <h3>{{ project.project_title }}</h3>
         <div class="links">
-          <a href="#" class="card-link">Github</a>
-          <a href="#" class="card-link">Docs</a>
+          <a :href="project.github" class="card-link">Github</a>
+          <a :href="project.docs" class="card-link">Docs</a>
 
-          <router-link :to="{name:'UpdateProject',params:{projectCode:project_code}}">
-            <a href="#" class="card-link">Edit Project</a></router-link
-          >
+          <router-link class="card-link" :to="{name:'UpdateProject',params:{projectCode:project_code}}">
+            Edit Project
+            </router-link>
         </div>
         <div class="left">
           <p>Division:</p>

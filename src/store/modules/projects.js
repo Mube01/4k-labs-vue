@@ -137,7 +137,19 @@ export default {
         updateProjectMembers({commit,rootGetters},data){
             var allMembers = rootGetters['members/getMembers'];
             commit('updateProjectMembers',{'selectedMembers':data.team_members,'allMembers':allMembers})
-        }
+        },
+        updateProject({ commit, dispatch }, data) {
+            return new Promise((resolve, reject) => {
+                projectsApi.updateProject(data).then((result) => {
+                    resolve(result.data)
+                }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
+                    reject(err.response.data)
+                })
+            })
+        },
     },
     mutations: {
         storeAllProjects(state, projectData) {
@@ -194,7 +206,7 @@ export default {
             }
 
             console.log('the percentiole is ',percentile,' ', total)
-            state.project.progress = percentile
+            state.project.progress = percentile.toFixed(2)
 
             // change the percentile from the parent component
             var code = state.project.project_code
