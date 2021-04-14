@@ -18,8 +18,8 @@
           <p>Discription: <span class="value">{{user_info.Discription}}</span></p>
         </div>
         <div class="col-lg-3 my-4 pt-2">
-          <p><a href="#">LinkedIn</a></p>
-          <p><a href="#">Github</a></p>
+          <p><a :href="user_info.Github">LinkedIn</a></p>
+          <p><a :href="user_info.Linkden">Github</a></p>
         </div>
       </div>
       <div
@@ -27,7 +27,9 @@
         v-for="project in projects"
         class="Projects"
         >
-        <Project :project="project" />
+        <router-link :to="{name:'Tasks',params:{projectCode:project.project_code}}">
+          <Project :project="project" />
+        </router-link>
       </div>
     </div>
   </div>

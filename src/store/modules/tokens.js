@@ -36,6 +36,19 @@ export default {
                     reject(err.response.data)
                 });
             })
+        },
+        deleteToken({commit,dispatch},token){
+            return new Promise((resolve, reject) => {
+                tokenApi.deleteToken(token).then((result) => {
+                    commit('deleteToken',token)
+                    resolve(result.data)
+                }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
+                    reject(err.response.data)
+                });
+            })
         }
     },
     mutations:{
@@ -44,6 +57,11 @@ export default {
         },
         addToken(state,data){
             state.tokens.push(data)
+        },
+        deleteToken(state,deleted_token){
+            state.tokens = state.tokens.filter((token)=>{
+                    return deleted_token !== token.token
+            })
         }
         
     }

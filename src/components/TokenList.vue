@@ -17,7 +17,7 @@
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item">Copy</a>
-            <a class="dropdown-item">Delete</a>
+            <a @click="DeleteToken(token.token)" class="dropdown-item">Delete</a>
           </div>
         </div>
       </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   name: "TokenList",
   props: {
@@ -33,6 +34,19 @@ export default {
       type: Object,
     },
   },
+  methods:{
+    ...mapActions({
+      deleteToken:'tokens/deleteToken'
+    }),
+    DeleteToken(token){
+      this.deleteToken(token).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        
+      });
+    }
+  }
+
 };
 </script>
 

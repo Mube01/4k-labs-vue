@@ -36,4 +36,20 @@ function listTokens(){
     return axios(config)
 }
 
-export default {generateToken,listTokens}
+function deleteToken(token){
+
+    var access_token = localStorage.getItem('access_token') || ''
+    access_token = token.substring(1, token.length - 1)
+
+    var config = {
+        method: 'get',
+        url: `http://127.0.0.1:5000/api_v1/delete_token/${token}`,
+        headers: {
+            Authorization: `Bearer ${access_token}`,
+        }
+      };
+
+    return axios(config)
+}
+
+export default {generateToken,listTokens,deleteToken}
