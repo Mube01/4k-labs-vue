@@ -4,7 +4,7 @@ TODO<br/>
     [x]add and remove member for the project\
     [x]change role options for the admin\
     [x]assign teamleader for the project\
-    [ ]refresh token after request on the backend\
+    [x]refresh token after request on the backend\
     [ ]route access decorators on the backend\
     [x]remove the # sign from the routes\
     [x] update profile picture automatically\
@@ -12,9 +12,9 @@ TODO<br/>
     [ ] add busy loading while fetching data from the backend\
     [x] update profile from anoter page\
     [x] update project name and description\
-    [.] delete token for the admin\
+    [x] delete token for the admin\
     [x] update gourp members interactivley\
-    [ ] show response for the user for every fetch request
+    [x] show response for the user for every fetch request
     
     
     
