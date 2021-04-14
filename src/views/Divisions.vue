@@ -31,6 +31,12 @@ export default {
       fetchProject: "projects/getAllProjects",
     }),
   },
+  created(){
+    this.fetchProject().then((result) => {
+      this.loading = false
+    }).catch((err) => {
+      console.log(err)  
+    });
   },
   data() {
     return {
