@@ -31,9 +31,6 @@
           <input required v-model="password" type="password" id="password" />
         </div>
 
-        
-
-
         <div class="right col-md-6">
           <label for="pp">Profile Picture</label><br />
           <input
@@ -46,15 +43,15 @@
 
         <div class="left col-md-6">
           <label for="password">New Password</label><br />
-          <input  v-model="newpassword" type="password" id="password" />
+          <input v-model="newpassword" type="password" id="password" />
         </div>
 
         <div class="right col-md-6">
           <label for="password">Confirm Password</label><br />
-          <input  v-model="confirmpassword" type="password" id="password" />
+          <input v-model="confirmpassword" type="password" id="password" />
         </div>
 
-        <div class="full  col-md-12">
+        <div class="full col-md-12">
           <label for="github">Github link</label><br />
           <input v-model="Github" type="text" id="github" autocomplete="off" />
         </div>
@@ -86,41 +83,41 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 export default {
   name: "UpdateProfile",
   components: {
     Header,
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      user_info:'user/getUserInformation'
-    })
+      user_info: "user/getUserInformation",
+    }),
   },
   data() {
     return {
-      fullname:"",
-      username:"",
-      Github:"",
-      Linkden:"",
-      Discription:"",
+      fullname: "",
+      username: "",
+      Github: "",
+      Linkden: "",
+      Discription: "",
       password: "",
       newpassword: "",
       confirmpassword: "",
       image: "",
-      user_id:""
-    }
+      user_id: "",
+    };
   },
-  created(){
-    this.fullname = this.user_info.fullname
-    this.username = this.user_info.username
-    this.Github  = this.user_info.Github
-    this.Linkden = this.user_info.Linkden
-    this.Discription = this.user_info.Discription
-    this.user_id = this.user_info.user_id
+  created() {
+    this.fullname = this.user_info.fullname;
+    this.username = this.user_info.username;
+    this.Github = this.user_info.Github;
+    this.Linkden = this.user_info.Linkden;
+    this.Discription = this.user_info.Discription;
+    this.user_id = this.user_info.user_id;
   },
-  methods:{
+  methods: {
     updateInformation() {
       console.log("the length is", this.newpassword.length);
       if (this.password.length === 0) {
@@ -149,12 +146,13 @@ export default {
         }
         // this.password = ""
         // this.newpassword = ""
-        this.$store.dispatch("profile/editProfile", data).then((result) => {
-          console.log('profile updated succesfully')
-          this.$router.push({name:'Me'})
-        }).catch((err) => {
-          
-        });
+        this.$store
+          .dispatch("profile/editProfile", data)
+          .then((result) => {
+            console.log("profile updated succesfully");
+            this.$router.push({ name: "Me" });
+          })
+          .catch((err) => {});
       }
     },
     uploadProfile(e) {
@@ -169,7 +167,7 @@ export default {
         this.image = base64result.split(",")[1];
       };
     },
-  }
+  },
 };
 </script>
 

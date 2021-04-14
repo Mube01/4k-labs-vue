@@ -1,11 +1,11 @@
 <template>
-    <div class="card" :style="inlineStyle">
-      <div class="card-body">
-        <h3 class="card-title">
-          {{ name }}
-        </h3>
-      </div>
+  <div class="card" :style="inlineStyle">
+    <div class="card-body">
+      <h3 class="card-title">
+        {{ name }}
+      </h3>
     </div>
+  </div>
 </template>
 
 <script>
@@ -31,8 +31,8 @@ export default {
 <style scoped>
 .card {
   border-radius: 10px;
-  margin: 20px 0 25px 0;
-  padding: 65px;
+  margin: 20px 5px;
+  padding: 120px 110px;
   text-align: center;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);

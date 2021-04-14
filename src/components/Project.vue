@@ -1,45 +1,47 @@
 <template>
-    <div class="card col-md-6">
-      <div class="card-body">
-        <h3 class="card-title">
-          {{ project.project_title }}
-          <p>Division {{ project.Division }}</p>
-        </h3>
-        <div class="links">
-          <a :href="project.github" class="card-link">Github</a>
-          <a :href="project.docs" class="card-link">Docs</a>
-        </div>
-        <p style="clear: both">
-          <span style="float: left">Progress:</span>
-          <span style="float: right">{{ project.progress }}%</span>
-        </p>
-        <div class="progress">
-          <div
-            class="progress-bar bg-success"
-            role="progressbar"
-            :style="{ width: new String(project.progress + '%') }"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
-        </div>
-        <hr />
-        <div class="members">
-          <p class="member_class">Members</p>
-          <ul>
-            <li :key="member.user_id" v-for="member in project.team_members">
-              <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
-                <ProfilePicture
-                  imgWeight="45px"
-                  fontSize="20px"
-                  :name="member.username[0]"
-                  :srcText="member['profile_picture']"
-                />
-              </router-link>
-            </li>
-          </ul>
-        </div>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        {{ project.project_title }}
+        <p>Division {{ project.Division }}</p>
+      </h3>
+      <div class="links">
+        <a :href="project.github" class="card-link">Github</a>
+        <a :href="project.docs" class="card-link">Docs</a>
+      </div>
+      <p style="clear: both">
+        <span style="float: left">Progress:</span>
+        <span style="float: right">{{ project.progress }}%</span>
+      </p>
+      <div class="progress">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          :style="{ width: new String(project.progress + '%') }"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+      <hr />
+      <div class="members">
+        <p class="member_class">Members</p>
+        <ul>
+          <li :key="member.user_id" v-for="member in project.team_members">
+            <router-link
+              :to="{ name: 'Profile', params: { user_code: member.user_id } }"
+            >
+              <ProfilePicture
+                imgWeight="45px"
+                fontSize="20px"
+                :name="member.username[0]"
+                :srcText="member['profile_picture']"
+              />
+            </router-link>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -53,7 +55,7 @@ export default {
     };
   },
   components: {
-    ProfilePicture
+    ProfilePicture,
   },
   props: {
     project: {
@@ -64,19 +66,21 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  width: 520px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 20px;
+  box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  transition: 0.3s;
+}
 .member_class {
   font-size: 17px;
   padding-top: 5px;
   display: inline;
   float: left;
-}
-.card {
-  border-radius: 10px;
-  margin: 20px 0 25px 0;
-  box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
-  -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
-  -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
-  transition: 0.3s;
 }
 .card-title {
   float: left;
