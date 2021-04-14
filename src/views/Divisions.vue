@@ -2,7 +2,7 @@
   <div>
     <Loading v-show="loading" />
     <Header v-show="!loading" />
-    <div class="text-center mt-5">
+    <div class="text-center mt-3">
       <span>Welcome to 4K Labs</span>
     </div>
     <div v-show="!loading" class="container text-center">
@@ -76,5 +76,10 @@ span {
 }
 .row {
   transform: translate(0%, 50%);
+}
+@media screen and (max-width: 480px) {
+  .row {
+    transform: translate(0%, 0%);
+  }
 }
 </style>
