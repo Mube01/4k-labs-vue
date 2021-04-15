@@ -12,24 +12,35 @@
           />
         </div>
         <div class="col-lg-5 my-4 pt-2">
-          <p>Username: <span class="value">{{user_info.username}}</span></p>
-          <p>Full name: <span class="value">{{user_info.fullname}}</span></p>
-          <p>Division: <span class="value">{{user_info.Division}}</span></p>
-          <p>Discription: <span class="value">{{user_info.Discription}}</span></p>
+          <p>
+            Username: <span class="value">{{ user_info.username }}</span>
+          </p>
+          <p>
+            Full name: <span class="value">{{ user_info.fullname }}</span>
+          </p>
+          <p>
+            Division: <span class="value">{{ user_info.Division }}</span>
+          </p>
+          <p>
+            Discription: <span class="value">{{ user_info.Discription }}</span>
+          </p>
         </div>
         <div class="col-lg-3 my-4 pt-2">
           <p><a :href="user_info.Github">LinkedIn</a></p>
           <p><a :href="user_info.Linkden">Github</a></p>
         </div>
       </div>
-      <div
-        :key="project.project_code"
-        v-for="project in projects"
-        class="Projects"
-        >
-        <router-link :to="{name:'Tasks',params:{projectCode:project.project_code}}">
-          <Project :project="project" />
-        </router-link>
+      <div class="row">
+        <div :key="project.project_code" v-for="project in projects">
+          <router-link
+            :to="{
+              name: 'Tasks',
+              params: { projectCode: project.project_code },
+            }"
+          >
+            <Project :project="project" />
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -45,27 +56,30 @@ export default {
   components: {
     Header,
     ProfilePicture,
-    Project
+    Project,
   },
-  data(){
-      return{
-          user_info:"",
-          user_code:"",
-      }
+  data() {
+    return {
+      user_info: "",
+      user_code: "",
+    };
   },
-  computed:{
-      projects(user_id){
-            return this.$store.getters['projects/listOfProjectsByUserId'](this.user_code)
-        }
+  computed: {
+    projects(user_id) {
+      return this.$store.getters["projects/listOfProjectsByUserId"](
+        this.user_code
+      );
+    },
   },
-  created(){
-      console.log('reloading state')
-      this.user_code = this.$router.currentRoute._value.params.user_code
-      this.$store.dispatch('profile/getUserInformation',this.user_code).then((result) => {
-          this.user_info = result
-      }).catch((err) => {
-          
-      });
+  created() {
+    console.log("reloading state");
+    this.user_code = this.$router.currentRoute._value.params.user_code;
+    this.$store
+      .dispatch("profile/getUserInformation", this.user_code)
+      .then((result) => {
+        this.user_info = result;
+      })
+      .catch((err) => {});
   },
 };
 </script>
