@@ -14,8 +14,12 @@ TODO<br/>
     [x] update project name and description\
     [x] delete token for the admin\
     [x] update gourp members interactivley\
-    [x] show response for the user for every fetch request
-    [ ] access and previlages for members and admin
+    [x] show response for the user for every fetch request\
+    [ ] access and previlages for members and admin\
+    [ ] change the task bar to brown\
+    [ ] change all the links to brown and other texts in black\
+    [ ] change the wave to brown\
+    [ ] add on static page to TEAMS(all or catogrized by division) and Projects aboutus and Apply\
     
     
     
