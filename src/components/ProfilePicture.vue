@@ -43,7 +43,7 @@ img {
   border-radius: 50%;
 }
 .profile {
-  background-color: #b3a580;
+  background-color: #177f75;
   border-radius: 50%;
 }
 span {

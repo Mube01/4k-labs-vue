@@ -5,9 +5,9 @@ import Home from '../views/Home.vue'
 import store from '../store';
 const routes = [
   {
-    path:'/',
-    name:'Home',
-    component:Home
+    path: '/',
+    name: 'Home',
+    component: Home
   },
   {
     path: '/portal/divisions',
@@ -18,19 +18,19 @@ const routes = [
     path: '/portal/divisions/:division',
     name: 'Projects',
     component: () => import('../views/Projects.vue'),
-    props:true
+    props: true
   },
   {
     path: '/portal/profile/:user_code',
     name: 'Profile',
     component: () => import('../views/Profile.vue'),
-    props:true
+    props: true
   },
   {
     path: '/portal/projects/:projectCode',
     name: 'Tasks',
     component: () => import('../views/Tasks.vue'),
-    props:true
+    props: true
   },
   {
     path: '/portal/me',
@@ -88,6 +88,16 @@ const routes = [
     component: () => import('../views/GenerateToken.vue')
   },
   {
+    path: '/projects',
+    name: 'StaticProjects',
+    component: () => import('../views/Teams.vue')
+  },
+  {
+    path: '/details',
+    name: 'ProjectDetails',
+    component: () => import('../views/ProjectDetails.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/404.vue')
@@ -96,11 +106,11 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes:routes 
+  routes: routes
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'Home' && to.name !== 'Register' &&  to.name !== 'AdminLogin') {
+  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'Home' && to.name !== 'Register' && to.name !== 'AdminLogin') {
     next({ name: 'Login' })
   }
   else next()

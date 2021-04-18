@@ -20,7 +20,7 @@
               params: { projectCode: project_code },
             }"
           >
-            <i title="Edit Project" class="fas fa-edit"></i>
+            <i title="Edit Project" class="far fa-edit"></i>
           </router-link>
         </div>
         <div class="left">
@@ -69,7 +69,7 @@
         style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
-        :bgColor="showAddMember ? '#8B5E3B' : '#A97C50'"
+        :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
         color="white"
         border="none"
       />
@@ -93,7 +93,7 @@
       <Add
         @toggle-add="toggleAdd"
         :text="showAddTask ? 'X Close' : '+ Add New Task'"
-        :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #B7C68B'"
+        :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
       />
       <div v-show="showAddTask">
         <AddTask
@@ -257,7 +257,7 @@ button {
   border: none;
   color: white;
   margin: 5px 0 7px 0;
-  background-color: #8b5e3b;
+  background-color: #177f75;
   opacity: 0.8;
   font-weight: 600;
   transition: 0.5s;
@@ -266,7 +266,6 @@ button:hover {
   opacity: 1;
 }
 .far,
-.fas,
 .fab {
   float: none;
   font-size: 30px;

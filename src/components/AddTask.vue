@@ -3,7 +3,7 @@
     <form @submit="onSubmit">
       <input type="text" v-model="text" name="text" placeholder="Task Name" />
 
-      <Button type="submit" text="Add" color="white" bgColor="#8B5E3B" />
+      <Button type="submit" text="Add" color="white" bgColor="#177F75" />
     </form>
   </div>
 </template>

@@ -211,14 +211,14 @@ input[type="file"] {
 }
 input:focus {
   outline: none;
-  border: 2px solid #b7c68b;
+  border: 2px solid #177f75;
 }
 textarea {
   width: 100%;
   border: 2px solid #666;
 }
 textarea:focus {
-  outline-color: #b7c68b;
+  outline-color: #177f75;
 }
 button {
   padding: 10px 45px;

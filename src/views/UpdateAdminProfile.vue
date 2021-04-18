@@ -146,11 +146,14 @@ input[type="file"] {
 }
 input:focus {
   outline: none;
-  border: 2px solid green;
+  border: 2px solid #177f75;
 }
 textarea {
   width: 100%;
   border: 2px solid #666;
+}
+textarea:focus {
+  border: 2px solid #177f75;
 }
 button {
   padding: 10px 45px;

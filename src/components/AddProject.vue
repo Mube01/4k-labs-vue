@@ -34,7 +34,7 @@
         type="submit"
         text="Add Project"
         color="white"
-        bgColor="#8B5E3B"
+        bgColor="#177F75"
       />
     </form>
   </div>

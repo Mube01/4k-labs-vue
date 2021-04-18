@@ -5,7 +5,7 @@
     <Add
       @toggle-add="toggleAdd"
       :text="showAddProject ? 'X Close' : '+ Add New Project'"
-      :border="showAddProject ? '3px dashed #B6212D' : '3px dashed #B7C68B'"
+      :border="showAddProject ? '3px dashed #B6212D' : '3px dashed #177F75'"
       v-show="
         division == user_info.Division &&
         (user_info.Role === '2' || user_info.Role === '4')
@@ -73,7 +73,6 @@ export default {
       this.showAddProject = !this.showAddProject;
     },
     toggleShowAddProject() {
-      console.log("got here");
       this.showAddProject = false;
     },
     ...mapActions({

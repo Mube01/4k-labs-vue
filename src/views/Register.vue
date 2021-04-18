@@ -166,7 +166,7 @@ input {
 }
 input:focus {
   outline: none;
-  border: 2px solid #b7c68b;
+  border: 2px solid #177f75;
 }
 button {
   padding: 10px 45px;
