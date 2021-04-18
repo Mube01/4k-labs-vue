@@ -41,8 +41,10 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <!--v-if="user_info.Role === '4'"-->
-        <router-link class="link_class" :to="{ name: 'Admin' }"
+        <router-link
+          class="link_class"
+          v-show="user_info.Role === '4'"
+          :to="{ name: 'Admin' }"
           >Admin</router-link
         >
       </div>
@@ -52,7 +54,6 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
-import mapGetters from "vuex";
 import { reject } from "q";
 export default {
   name: "Header",
