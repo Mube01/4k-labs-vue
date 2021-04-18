@@ -20,7 +20,11 @@
       </div>
     </div>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <svg
+    v-show="!loading"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320"
+  >
     <path
       fill="#a97c50"
       fill-opacity="1"

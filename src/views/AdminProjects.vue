@@ -28,7 +28,7 @@
 <script>
 import Header from "@/components/Header.vue";
 import ProjectList from "@/components/ProjectList.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "AdminProjects",
   components: {

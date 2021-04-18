@@ -1,6 +1,7 @@
 <template>
-  <Header />
-  <div class="container">
+  <Loading v-show="loading" />
+  <Header v-show="!loading" />
+  <div class="container" v-show="!loading">
     <Add
       @toggle-add="toggleAdd"
       :text="showAddProject ? 'X Close' : '+ Add New Project'"
@@ -24,7 +25,11 @@
       </div>
     </div>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <svg
+    v-show="!loading"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320"
+  >
     <path
       fill="#a97c50"
       fill-opacity="1"
@@ -38,6 +43,7 @@ import Header from "@/components/Header.vue";
 import Project from "@/components/Project.vue";
 import Add from "@/components/Add.vue";
 import AddProject from "@/components/AddProject.vue";
+import Loading from "@/components/Loading.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -48,6 +54,7 @@ export default {
     Add,
     AddProject,
     Header,
+    Loading,
   },
   props: {
     division: {
@@ -58,6 +65,7 @@ export default {
   data() {
     return {
       showAddProject: false,
+      loading: true,
     };
   },
   methods: {
@@ -82,6 +90,15 @@ export default {
         this.division
       );
     },
+  },
+  created() {
+    this.fetchProjects()
+      .then((result) => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <Loading v-show="loading" />
+  <div v-show="!loading">
     <Header />
     <div class="container">
       <div class="status">
@@ -98,7 +99,11 @@
       <Task :key="task.task_code" v-for="task in project.tasks" :task="task" />
     </div>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <svg
+    v-show="!loading"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320"
+  >
     <path
       fill="#a97c50"
       fill-opacity="1"
@@ -115,6 +120,7 @@ import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
+import Loading from "@/components/Loading.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -128,12 +134,14 @@ export default {
     MultiSelect,
     ProfilePicture,
     AddMember,
+    Loading,
   },
   data() {
     return {
       showAddMember: false,
       showAddTask: false,
       project_code: this.$router.currentRoute._value.params.projectCode,
+      loading: true,
     };
   },
   methods: {
@@ -165,7 +173,13 @@ export default {
     },
   },
   created() {
-    this.fetchProject(this.project_code).then((result) => {});
+    this.fetchProject(this.project_code)
+      .then((result) => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   computed: {
     ...mapGetters({
