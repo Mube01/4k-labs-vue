@@ -8,9 +8,15 @@
           <a :href="project.github" class="card-link">Github</a>
           <a :href="project.docs" class="card-link">Docs</a>
 
-          <router-link class="card-link" :to="{name:'UpdateProject',params:{projectCode:project_code}}">
+          <router-link
+            class="card-link"
+            :to="{
+              name: 'UpdateProject',
+              params: { projectCode: project_code },
+            }"
+          >
             Edit Project
-            </router-link>
+          </router-link>
         </div>
         <div class="left">
           <p>Division:</p>
@@ -22,7 +28,7 @@
         </div>
         <div class="progress">
           <div
-            class="progress-bar bg-success"
+            class="progress-bar"
             role="progressbar"
             :style="{ width: new String(project.progress + '%') }"
             aria-valuemin="0"
@@ -40,7 +46,9 @@
             v-for="member in project.team_members"
             style="margin-left: 10px"
           >
-            <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
+            <router-link
+              :to="{ name: 'Profile', params: { user_code: member.user_id } }"
+            >
               <ProfilePicture
                 imgWeight="45px"
                 fontSize="20px"
@@ -56,7 +64,7 @@
         style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
-        :bgColor="showAddMember ? 'red' : 'green'"
+        :bgColor="showAddMember ? '#8B5E3B' : '#A97C50'"
         color="white"
         border="none"
       />
@@ -78,10 +86,13 @@
       <Add
         @toggle-add="toggleAdd"
         :text="showAddTask ? 'X Close' : '+ Add New Task'"
-        :border="showAddTask ? '3px dashed red' : '3px dashed green'"
+        :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #B7C68B'"
       />
       <div v-show="showAddTask">
-        <AddTask @taskAdded="showAddTask=false" :project_code="project_code" />
+        <AddTask
+          @taskAdded="showAddTask = false"
+          :project_code="project_code"
+        />
       </div>
 
       <Task :key="task.task_code" v-for="task in project.tasks" :task="task" />
@@ -124,24 +135,24 @@ export default {
     },
     toggleAddMember() {
       this.showAddMember = !this.showAddMember;
-      if(!this.showAddMember){
-        this.$refs.selected_members.value = this.project.members
+      if (!this.showAddMember) {
+        this.$refs.selected_members.value = this.project.members;
       }
     },
     ...mapActions({
       fetchProject: "projects/getProject",
       updatemembers: "members/updateProjectMembers",
-      updateProjectMembers: "projects/updateProjectMembers"
+      updateProjectMembers: "projects/updateProjectMembers",
     }),
     updateMembers() {
-      this.showAddMember = false
+      this.showAddMember = false;
       var data = {
         project_code: this.project_code,
         team_members: Object.values(this.$refs.selected_members.value),
       };
       this.updatemembers(data)
         .then((result) => {
-          this.updateProjectMembers(data)
+          this.updateProjectMembers(data);
         })
         .catch((err) => {});
     },
@@ -178,6 +189,10 @@ h5 {
 }
 .card-link {
   margin-left: 20px;
+  color: #a97c50;
+}
+.card-link:hover {
+  color: #8b5e3b;
 }
 p {
   font-size: 18px;
@@ -197,6 +212,9 @@ p {
   border: 1px solid #e6e6e6;
   clear: both;
 }
+.progress-bar {
+  background-color: #8b5e3b;
+}
 li {
   float: left;
   list-style-type: none;
@@ -208,8 +226,8 @@ button {
   border: none;
   color: white;
   margin: 5px 0 7px 0;
-  background-color: green;
-  opacity: 0.7;
+  background-color: #8b5e3b;
+  opacity: 0.8;
   font-weight: 600;
   transition: 0.5s;
 }

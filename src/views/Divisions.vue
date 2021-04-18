@@ -2,7 +2,7 @@
   <div>
     <Loading v-show="loading" />
     <Header v-show="!loading" />
-    <div class="text-center mt-3">
+    <div v-show="!loading" class="text-center mt-3">
       <span>Welcome to 4K Labs</span>
     </div>
     <div v-show="!loading" class="container text-center">
@@ -23,25 +23,27 @@
 import Header from "@/components/Header.vue";
 import Division from "@/components/Division.vue";
 import Loading from "@/components/Loading.vue";
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Divisions",
-  computed:{
+  computed: {
     ...mapGetters({
-      'user_info':'user/isSuperAdmin'
-    })
+      user_info: "user/isSuperAdmin",
+    }),
   },
   methods: {
     ...mapActions({
       fetchProject: "projects/getAllProjects",
     }),
   },
-  created(){
-    this.fetchProject().then((result) => {
-      this.loading = false
-    }).catch((err) => {
-      console.log(err)  
-    });
+  created() {
+    this.fetchProject()
+      .then((result) => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   data() {
     return {
@@ -79,7 +81,7 @@ span {
 .row {
   transform: translate(0%, 50%);
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1200px) {
   .row {
     transform: translate(0%, 0%);
   }

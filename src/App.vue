@@ -1,17 +1,17 @@
 <template>
-  <Alert/>
+  <Alert />
   <router-view :key="$route.path" />
 </template>
 
 
 <script>
-import Alert from '@/components/Alert.vue'
+import Alert from "@/components/Alert.vue";
 
 export default {
-  components:{
-    Alert
-  }
-}
+  components: {
+    Alert,
+  },
+};
 </script>
 
 <style>
@@ -20,7 +20,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -52,5 +51,15 @@ a {
 
 a.router-link-exact-active {
   color: #2c3e50;
+}
+
+.fab {
+  font-size: 40px;
+  margin: 0 15px;
+  float: right;
+  color: #a97c50;
+}
+.fab:hover {
+  color: #8b5e3b;
 }
 </style>

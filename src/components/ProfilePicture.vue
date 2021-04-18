@@ -1,8 +1,11 @@
 <template>
   <div>
     <img
-      v-if="srcText.length>0"
-      :src="`http://127.0.0.1:5000/api_v1/get_profile/${srcText}?` + new Date().getTime()"
+      v-if="srcText.length > 0"
+      :src="
+        `http://127.0.0.1:5000/api_v1/get_profile/${srcText}?` +
+        new Date().getTime()
+      "
       :style="{ width: imgWeight, height: imgWeight }"
     />
     <div
@@ -23,7 +26,7 @@ export default {
   props: {
     srcText: {
       type: String,
-      default:""
+      default: "",
     },
     imgWeight: String,
     fontSize: String,
@@ -40,7 +43,7 @@ img {
   border-radius: 50%;
 }
 .profile {
-  background-color: blue;
+  background-color: #b3a580;
   border-radius: 50%;
 }
 span {

@@ -23,7 +23,7 @@ button {
   font-size: 20px;
   border: none;
   margin: 2px 0 7px 0;
-  opacity: 0.7;
+  opacity: 0.8;
   font-weight: 600;
   transition: 0.5s;
 }

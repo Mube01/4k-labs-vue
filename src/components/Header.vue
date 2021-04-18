@@ -1,15 +1,13 @@
 <template>
   <div id="header">
- 
     <div class="container">
       <router-link :to="{ name: 'Divisions' }"
         ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
-
           <div v-if="!user_info.superadmin">
-              <router-link :to="{ name: 'Me' }">
+            <router-link :to="{ name: 'Me' }">
               <ProfilePicture
                 imgWeight="45px"
                 fontSize="20px"
@@ -19,8 +17,8 @@
             </router-link>
           </div>
 
-           <div v-if="user_info.superadmin">
-              <router-link :to="{ name: 'AdminMe' }">
+          <div v-if="user_info.superadmin">
+            <router-link :to="{ name: 'AdminMe' }">
               <ProfilePicture
                 imgWeight="45px"
                 fontSize="20px"
@@ -29,7 +27,6 @@
               />
             </router-link>
           </div>
-
         </div>
 
         <router-link v-show="!isAuthenticated" class="link_class" to="/login">
@@ -44,7 +41,8 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <router-link v-if="user_info.Role === '4'" class="link_class" :to="{ name: 'Admin' }"
+        <!--v-if="user_info.Role === '4'"-->
+        <router-link class="link_class" :to="{ name: 'Admin' }"
           >Admin</router-link
         >
       </div>
@@ -118,5 +116,9 @@ img.logo {
 .link_class {
   padding: 10px 0;
   margin-left: 15px;
+  color: #a97c50;
+}
+.link_class:hover {
+  color: #8b5e3b;
 }
 </style>

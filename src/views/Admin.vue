@@ -3,18 +3,23 @@
     <Header />
     <div class="container">
       <h4>Members</h4>
-      <router-link :to="{name:'AdminProjects'}"><h4>Projects</h4></router-link>
-      <router-link :to="{name:'GenerateToken'}"><h4>Generate Token</h4></router-link
+      <router-link :to="{ name: 'AdminProjects' }"
+        ><h4>Projects</h4></router-link
+      >
+      <router-link :to="{ name: 'GenerateToken' }"
+        ><h4>Generate Token</h4></router-link
       >
       <div id="member list">
-            <div :key="member.user_id" v-for="member in members"><MemberList :member="member" /> </div>
+        <div :key="member.user_id" v-for="member in members">
+          <MemberList :member="member" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import MemberList from "@/components/MemberList.vue";
 export default {
@@ -31,13 +36,13 @@ export default {
   methods: {
     toggleAdd() {
       this.showAddProject = !this.showAddProject;
-    }
+    },
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      'members':'members/getMembersAdmin'
-    })
-  }
+      members: "members/getMembersAdmin",
+    }),
+  },
 };
 </script>
 
@@ -49,11 +54,10 @@ h4 {
   letter-spacing: 0.5px;
 }
 a h4 {
-  color: green;
-  opacity: 0.7;
+  color: #a97c50;
 }
 a h4:hover {
-  opacity: 1;
+  color: #8b5e3b;
 }
 .link {
   float: right;

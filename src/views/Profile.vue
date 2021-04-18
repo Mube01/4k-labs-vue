@@ -26,11 +26,13 @@
           </p>
         </div>
         <div class="col-lg-3 my-4 pt-2">
-          <p><a :href="user_info.Github">LinkedIn</a></p>
-          <p><a :href="user_info.Linkden">Github</a></p>
+          <p>
+            <a :href="user_info.Github"><i class="fab fa-linkedin"></i></a>
+            <a :href="user_info.Linkden"><i class="fab fa-github"></i></a>
+          </p>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div :key="project.project_code" v-for="project in projects">
           <router-link
             :to="{

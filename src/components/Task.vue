@@ -13,10 +13,6 @@
           "
         />
         <label
-          @dblclick="
-            todoEdit = true;
-            task_name_changed = false;
-          "
           v-show="!todoEdit"
           class="form-check-label"
           for="flexCheckDefault"

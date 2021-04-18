@@ -30,7 +30,12 @@
         />
       </div>
 
-      <Button type="submit" text="Add Project" color="white" bgColor="green" />
+      <Button
+        type="submit"
+        text="Add Project"
+        color="white"
+        bgColor="#8B5E3B"
+      />
     </form>
   </div>
 </template>
@@ -65,8 +70,6 @@ export default {
     }),
 
     onSubmit(e) {
-      
-
       e.preventDefault();
 
       var value = Object.values(this.$refs.selected_members.value) || [];
@@ -93,7 +96,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      console.log('got heree finally')
+      console.log("got heree finally");
     },
   },
 };

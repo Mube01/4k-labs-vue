@@ -47,10 +47,8 @@
       </div>
       <div class="col-lg-3 my-4 pt-2">
         <p>
-          <a :href="user_info.Linkden"> LinkedIn </a>
-        </p>
-        <p>
-          <a :href="user_info.Github"> Github </a>
+          <a :href="user_info.Linkden"><i class="fab fa-linkedin"></i></a>
+          <a :href="user_info.Github"><i class="fab fa-github"></i></a>
         </p>
       </div>
     </div>

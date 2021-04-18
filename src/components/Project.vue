@@ -15,7 +15,7 @@
       </p>
       <div class="progress">
         <div
-          class="progress-bar bg-success"
+          class="progress-bar"
           role="progressbar"
           :style="{ width: new String(project.progress + '%') }"
           aria-valuemin="0"
@@ -96,10 +96,19 @@ export default {
   float: right;
   padding: 25px 0;
 }
+.card-link {
+  color: #a97c50;
+}
+.card-link:hover {
+  color: #8b5e3b;
+}
 .progress {
   height: 25px;
   clear: both;
   margin-top: 50px;
+}
+.progress-bar {
+  background-color: #8b5e3b;
 }
 p {
   font-size: 20px;

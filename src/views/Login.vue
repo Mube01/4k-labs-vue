@@ -25,39 +25,42 @@
 </template>
 
 <script>
-import { mapGetters,mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Login",
-   data() {
+  data() {
     return {
-      password:"",
-      username:""
-    }
+      password: "",
+      username: "",
+    };
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      isAuthenticated:['auth/isAuthenticated'],
+      isAuthenticated: ["auth/isAuthenticated"],
     }),
   },
   methods: {
     ...mapActions({
-      errorAlert:'errorAlert',
-      successAlert:'successAlert'
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
     }),
     // send user name and password by reading from the form
     login() {
-      this.$store.dispatch("auth/loginUser", this).then((result) => {
-        this.successAlert('login successfull')
-        this.$router.push({'name':'Divisions'});
-      }).catch((err) => {
-        this.errorAlert(err.message)
-      });
+      this.$store
+        .dispatch("auth/loginUser", this)
+        .then((result) => {
+          this.successAlert("login successfull");
+          this.$router.push({ name: "Divisions" });
+        })
+        .catch((err) => {
+          this.errorAlert(err.message);
+        });
     },
   },
   created() {
-    if(this.isAuthenticated){
-      this.$router.push({'name':'Divisions'});
+    if (this.isAuthenticated) {
+      this.$router.push({ name: "Divisions" });
     }
   },
 };
@@ -100,7 +103,7 @@ input {
 }
 input:focus {
   outline: none;
-  border: 2px solid green;
+  border: 2px solid #b7c68b;
 }
 button {
   padding: 10px 45px;
@@ -108,9 +111,9 @@ button {
   font-size: 20px;
   border: none;
   margin: 25px 0 7px 0;
-  opacity: 0.7;
+  opacity: 0.8;
   color: white;
-  background: green;
+  background: #8b5e3b;
   font-weight: 600;
   transition: 0.5s;
 }
