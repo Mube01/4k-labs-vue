@@ -6,8 +6,12 @@
       <div class="status">
         <h3>{{ project.project_title }}</h3>
         <div class="links">
-          <a :href="project.github" class="card-link">Github</a>
-          <a :href="project.docs" class="card-link">Docs</a>
+          <a :href="project.github" class="card-link"
+            ><i title="Github link" class="fab fa-github"></i
+          ></a>
+          <a :href="project.docs" class="card-link"
+            ><i title="Google Docs link" class="far fa-file-alt"></i
+          ></a>
 
           <router-link
             class="card-link"
@@ -16,7 +20,7 @@
               params: { projectCode: project_code },
             }"
           >
-            Edit Project
+            <i title="Edit Project" class="fas fa-edit"></i>
           </router-link>
         </div>
         <div class="left">
@@ -81,7 +85,9 @@
         </button>
       </div>
 
-      <br />
+      <br /><br /><br />
+      <h5>Description</h5>
+      <p class="desc">{{ project.description }}</p>
 
       <h5>Tasks</h5>
       <Add
@@ -218,6 +224,10 @@ h5 {
 p {
   font-size: 18px;
 }
+.desc {
+  margin: 55px 0 0 10px;
+  font-weight: 300;
+}
 .links {
   float: right;
 }
@@ -254,5 +264,12 @@ button {
 }
 button:hover {
   opacity: 1;
+}
+.far,
+.fas,
+.fab {
+  float: none;
+  font-size: 30px;
+  margin: 0;
 }
 </style>

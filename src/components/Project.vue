@@ -3,11 +3,15 @@
     <div class="card-body">
       <h3 class="card-title">
         {{ project.project_title }}
-        <p>Division {{ project.Division }}</p>
+        <p class="divs">Division {{ project.Division }}</p>
       </h3>
       <div class="links">
-        <a :href="project.github" class="card-link">Github</a>
-        <a :href="project.docs" class="card-link">Docs</a>
+        <a :href="project.github" class="card-link"
+          ><i title="Github link" class="fab fa-github"></i
+        ></a>
+        <a :href="project.docs" class="card-link"
+          ><i title="Google Docs link" class="far fa-file-alt"></i
+        ></a>
       </div>
       <p style="clear: both">
         <span style="float: left">Progress:</span>
@@ -76,6 +80,9 @@ export default {
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   transition: 0.3s;
 }
+.divs {
+  font-weight: 400;
+}
 .member_class {
   font-size: 17px;
   padding-top: 5px;
@@ -127,5 +134,12 @@ li {
   list-style: none;
   float: right;
   margin-left: 10px;
+}
+
+.far,
+.fab {
+  float: none;
+  font-size: 30px;
+  margin: 0;
 }
 </style>

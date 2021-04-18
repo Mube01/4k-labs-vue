@@ -39,7 +39,9 @@
 
         <i class="fa fa-bell" aria-hidden="true"></i>
 
-        <a class="link_class" @click="logout">Logout</a>
+        <a class="link_class" @click="logout"
+          ><i title="Logout" class="fas fa-sign-out-alt"></i
+        ></a>
 
         <router-link
           class="link_class"
@@ -121,5 +123,9 @@ img.logo {
 }
 .link_class:hover {
   color: #8b5e3b;
+}
+.fas {
+  font-size: 30px;
+  margin-left: 10px;
 }
 </style>
