@@ -1,9 +1,15 @@
 <template>
-  <div class="card" :style="inlineStyle">
+  <div class="card">
+    <img
+      class="card-img-top"
+      :src="require('@/assets/' + background)"
+      alt="Card image"
+    />
     <div class="card-body">
       <h3 class="card-title">
         {{ name }}
       </h3>
+      <p class="card-text">{{ details }}</p>
     </div>
   </div>
 </template>
@@ -14,25 +20,16 @@ export default {
   props: {
     name: String,
     background: String,
-  },
-  computed: {
-    bgImage() {
-      return require("@/assets/" + this.background);
-    },
-    inlineStyle() {
-      return {
-        backgroundImage: `url(${this.bgImage})`,
-      };
-    },
+    details: String,
   },
 };
 </script>
 
 <style scoped>
 .card {
+  width: 350px;
   border-radius: 10px;
   margin: 20px 5px;
-  padding: 120px 110px;
   text-align: center;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
@@ -41,16 +38,25 @@ export default {
   background-size: cover;
   background-position: center center;
 }
-
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
+.card-img-top {
+  height: 230px;
+}
 h3 {
   font-weight: 700;
-  font-size: 30px;
-  color: #f2f2f2;
-  text-shadow: 3px 0px 7px rgba(81, 67, 21, 0.8),
-    -3px 0px 7px rgba(81, 67, 21, 0.8), 0px 4px 7px rgba(81, 67, 21, 0.8);
+  font-size: 28px;
+  margin: 5px 0 15px 0;
+  float: left;
+  color: #a97c50;
+}
+p {
+  clear: both;
+  color: #333;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: justify;
 }
 </style>

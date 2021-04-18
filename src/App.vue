@@ -62,4 +62,10 @@ a.router-link-exact-active {
 .fab:hover {
   color: #8b5e3b;
 }
+
+@media screen and (max-width: 1200px) {
+  .fab {
+    float: left;
+  }
+}
 </style>
