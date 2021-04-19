@@ -1,7 +1,9 @@
 <template>
   <div class="card col-md-12">
     <div class="card-body">
-      <router-link :to="{name:'Tasks', params:{projectCode:project.project_code}}">
+      <router-link
+        :to="{ name: 'Tasks', params: { projectCode: project.project_code } }"
+      >
         <div class="project">
           <span>{{ project.project_title }}</span>
         </div>
@@ -9,6 +11,7 @@
       <div class="more">
         <div class="dropdown">
           <i
+            title="More options"
             class="fa fa-ellipsis-v"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -17,7 +20,9 @@
             aria-hidden="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" @click="deletepro(project.project_code)" >Delete</a>
+            <a class="dropdown-item" @click="deletepro(project.project_code)"
+              >Delete</a
+            >
           </div>
         </div>
       </div>
@@ -26,7 +31,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: "ProjectList",
@@ -35,18 +40,20 @@ export default {
       type: Object,
     },
   },
-  methods:{
+  methods: {
     ...mapActions({
-      deleteProject:'projects/deleteProject'
+      deleteProject: "projects/deleteProject",
     }),
-    deletepro(project_code){
-      this.deleteProject(project_code).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
-      });
-    }
-  }
+    deletepro(project_code) {
+      this.deleteProject(project_code)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

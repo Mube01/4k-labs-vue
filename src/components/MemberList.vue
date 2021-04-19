@@ -2,13 +2,15 @@
   <div class="card col-md-12">
     <div class="card-body">
       <div class="user">
-        <router-link :to="{name:'Profile',params:{user_code:member.user_id}}">
+        <router-link
+          :to="{ name: 'Profile', params: { user_code: member.user_id } }"
+        >
           <ProfilePicture
-          style="float: left"
-          imgWeight="45px"
-          fontSize="20px"
-          :name="member.username[0]"
-          :srcText="member['profile_picture']"
+            style="float: left"
+            imgWeight="45px"
+            fontSize="20px"
+            :name="member.username[0]"
+            :srcText="member['profile_picture']"
           />
         </router-link>
         <div class="flex-container">
@@ -63,7 +65,7 @@
 </template>
 
 <script>
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import ProfilePicture from "./ProfilePicture.vue";
 export default {
   name: "MemberList",
@@ -83,27 +85,27 @@ export default {
     ...mapActions({
       changeRole: "members/changeRole",
       changeDivsion: "members/changeDivsion",
-      errorAlert:'errorAlert',
-      successAlert:'successAlert'
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
     }),
     changerole(role, user_id) {
-      if(role === 'Admin'){
-        if (this.isSuperAdmin){
-              this.changeRole({ user_id, role }).then((result) => {
+      if (role === "Admin") {
+        if (this.isSuperAdmin) {
+          this.changeRole({ user_id, role })
+            .then((result) => {
               console.log(result);
             })
             .catch((err) => {});
+        } else {
+          this.errorAlert("only Super Admin Can change the admis Admin");
         }
-        else{
-          this.errorAlert('only Super Admin Can change the admis Admin')
-        }
+      } else {
+        this.changeRole({ user_id, role })
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {});
       }
-      else{
-         this.changeRole({ user_id, role }).then((result) => {
-              console.log(result);
-            })
-            .catch((err) => {});
-      } 
     },
     changedivision(division, user_id) {
       this.changeDivsion({ user_id, division })
@@ -113,13 +115,13 @@ export default {
         .catch((err) => {});
     },
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      roleGetter:'getRoleByKey',
-      user_info:'user/getUserInformation',
-      isSuperAdmin:'user/isSuperAdmin'
-    })
-  }
+      roleGetter: "getRoleByKey",
+      user_info: "user/getUserInformation",
+      isSuperAdmin: "user/isSuperAdmin",
+    }),
+  },
 };
 </script>
 
@@ -166,11 +168,14 @@ export default {
 .dropdown-submenu {
   position: relative;
 }
-
+.dropdown-submenu > .dropdown-item {
+  font-size: 17px;
+}
 .dropdown-submenu > .dropdown-menu {
   top: 0;
   left: 100%;
-  margin-top: -6px;
+  font-size: 15px;
+  margin-top: -8px;
   margin-left: -1px;
   -webkit-border-radius: 0 6px 6px 6px;
   -moz-border-radius: 0 6px 6px;
@@ -191,8 +196,8 @@ export default {
   border-style: solid;
   border-width: 5px 0 5px 5px;
   border-left-color: #333;
-  margin-top: 10px;
-  margin-right: -12px;
+  margin-top: 8px;
+  margin-right: -10px;
 }
 
 .dropdown-submenu:hover > a:after {

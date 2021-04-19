@@ -27,11 +27,6 @@
         </div>
 
         <div class="left col-md-6">
-          <label for="password">Password</label><br />
-          <input required v-model="password" type="password" id="password" />
-        </div>
-
-        <div class="right col-md-6">
           <label for="pp">Profile Picture</label><br />
           <input
             id="pp"
@@ -41,7 +36,12 @@
           />
         </div>
 
-        <div class="left col-md-6">
+        <div class="right col-md-6">
+          <label for="password">Password</label><br />
+          <input required v-model="password" type="password" id="password" />
+        </div>
+
+        <div style="clear: both" class="left col-md-6">
           <label for="password">New Password</label><br />
           <input v-model="newpassword" type="password" id="password" />
         </div>
@@ -177,11 +177,6 @@ export default {
   .right {
     clear: both;
   }
-  input,
-  select {
-    width: 100%;
-    clear: both;
-  }
 }
 h2 {
   font-weight: 700;
@@ -216,11 +211,14 @@ input[type="file"] {
 }
 input:focus {
   outline: none;
-  border: 2px solid green;
+  border: 2px solid #177f75;
 }
 textarea {
   width: 100%;
   border: 2px solid #666;
+}
+textarea:focus {
+  outline-color: #177f75;
 }
 button {
   padding: 10px 45px;
@@ -230,7 +228,7 @@ button {
   margin: 15px 0 7px 0;
   opacity: 0.7;
   color: white;
-  background: green;
+  background: #8b5e3b;
   font-weight: 600;
   transition: 0.5s;
 }
