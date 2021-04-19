@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="container">
     <div class="status">
       <h3>{{ project.project_title }}</h3>
@@ -48,13 +49,14 @@
 
 <script>
 import ProfilePicture from "@/components/ProfilePicture.vue";
-
+import Header from "@/components/Header.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "ProjectDetails",
   components: {
     ProfilePicture,
+    Header,
   },
   methods: {
     ...mapActions({

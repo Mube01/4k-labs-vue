@@ -29,7 +29,7 @@ export default {
 .card {
   width: 350px;
   border-radius: 10px;
-  margin: 20px 5px;
+  margin: 20px 5px 0 5px;
   text-align: center;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
