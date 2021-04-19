@@ -66,6 +66,7 @@
       </div>
 
       <AddMember
+        v-if="user_info.Division == project.Division"
         style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
@@ -91,6 +92,7 @@
 
       <h5>Tasks</h5>
       <Add
+        v-if="user_info.Division == project.Division"
         @toggle-add="toggleAdd"
         :text="showAddTask ? 'X Close' : '+ Add New Task'"
         :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
@@ -191,6 +193,7 @@ export default {
     ...mapGetters({
       project: "projects/getProject",
       allMembers: "members/getMembers",
+      user_info: "user/getUserInformation"
     }),
   },
 };
