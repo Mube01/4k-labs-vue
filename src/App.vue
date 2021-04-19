@@ -57,11 +57,6 @@ a {
 a.router-link-exact-active {
   color: #2c3e50;
 }
-<<<<<<< HEAD
-svg{
-margin-top: 35px;
-z-index: 0;}
-=======
 
 .fab {
   font-size: 40px;
@@ -78,5 +73,4 @@ z-index: 0;}
     float: left;
   }
 }
->>>>>>> 8adb804b358462d9f7140aba52fb1e80207e38cd
 </style>
