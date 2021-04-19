@@ -39,16 +39,18 @@
 
         <i class="fa fa-bell" aria-hidden="true"></i>
 
+        <router-link
+          class="link_class"
+          v-show="parseInt(user_info.Role) === 4"
+          :to="{ name: 'Admin' }"
+          >Admin</router-link
+        >
+
         <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i
         ></a>
 
-        <router-link
-          class="link_class"
-          v-show="parseInt(user_info.Role) === '4'"
-          :to="{ name: 'Admin' }"
-          >Admin</router-link
-        >
+        
       </div>
     </div>
   </div>
