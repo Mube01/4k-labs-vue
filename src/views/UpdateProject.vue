@@ -17,12 +17,22 @@
 
         <div class="full">
           <label for="github">Github link</label><br />
-          <input v-model="project.github" type="text" id="github" autocomplete="off" />
+          <input
+            v-model="project.github"
+            type="text"
+            id="github"
+            autocomplete="off"
+          />
         </div>
 
         <div class="full">
           <label for="linkedin">Docs link</label><br />
-          <input v-model="project.docs" type="text" id="docs" autocomplete="off" />
+          <input
+            v-model="project.docs"
+            type="text"
+            id="docs"
+            autocomplete="off"
+          />
         </div>
 
         <div class="full">
@@ -51,30 +61,33 @@ export default {
   },
   data() {
     return {
-      project_code: this.$route.params.projectCode
+      project_code: this.$route.params.projectCode,
     };
   },
   methods: {
     ...mapActions({
       fetchProject: "projects/getProject",
-      updateProject:"projects/updateProject"
+      updateProject: "projects/updateProject",
     }),
-    UpdateProject(){
+    UpdateProject() {
       var data = {
-        'project_title':this.project.project_title,
-        'github':this.project.github,
-        'docs':this.project.docs,
-        'description':this.project.description,
-        "project_code":this.project.project_code
-      }
-      console.log(data)
-      this.updateProject(data).then((result) => {
-        console.log(result)
-        this.$router.push({name:'Tasks',params:{projectCode:this.project.project_code}})
-      }).catch((err) => {
-        
-      });
-    }
+        project_title: this.project.project_title,
+        github: this.project.github,
+        docs: this.project.docs,
+        description: this.project.description,
+        project_code: this.project.project_code,
+      };
+      console.log(data);
+      this.updateProject(data)
+        .then((result) => {
+          console.log(result);
+          this.$router.push({
+            name: "Tasks",
+            params: { projectCode: this.project.project_code },
+          });
+        })
+        .catch((err) => {});
+    },
   },
   created() {
     this.fetchProject(this.project_code).then((result) => {
@@ -103,7 +116,6 @@ label {
   float: left;
 }
 input {
-  width: 450px;
   padding: 8px;
   border-radius: 5px;
   border: 2px solid #666;
@@ -121,14 +133,14 @@ select {
 }
 input:focus {
   outline: none;
-  border: 2px solid green;
+  border: 2px solid #177f75;
 }
 textarea {
   width: 100%;
   border: 2px solid #666;
 }
 textarea:focus {
-  outline-color: green;
+  outline-color: #177f75;
 }
 button {
   padding: 10px 45px;
@@ -138,7 +150,7 @@ button {
   margin: 15px 0 7px 0;
   opacity: 0.7;
   color: white;
-  background: green;
+  background: #8b5e3b;
   font-weight: 600;
   transition: 0.5s;
 }

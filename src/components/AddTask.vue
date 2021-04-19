@@ -3,7 +3,7 @@
     <form @submit="onSubmit">
       <input type="text" v-model="text" name="text" placeholder="Task Name" />
 
-      <Button type="submit" text="Add" color="white" bgColor="green" />
+      <Button type="submit" text="Add" color="white" bgColor="#177F75" />
     </form>
   </div>
 </template>
@@ -40,8 +40,8 @@ export default {
           })
           .then((result) => {
             console.log(result);
-            this.$emit('taskAdded')
-            this.text = ""
+            this.$emit("taskAdded");
+            this.text = "";
           })
           .catch((err) => {
             console.log(err);

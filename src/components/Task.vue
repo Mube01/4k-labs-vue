@@ -13,10 +13,6 @@
           "
         />
         <label
-          @dblclick="
-            todoEdit = true;
-            task_name_changed = false;
-          "
           v-show="!todoEdit"
           class="form-check-label"
           for="flexCheckDefault"
@@ -41,6 +37,7 @@
       <div class="more">
         <div class="dropdown">
           <i
+            title="More options"
             class="fa fa-ellipsis-v"
             id="dropdownMenuButton"
             data-toggle="dropdown"

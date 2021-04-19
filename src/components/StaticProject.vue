@@ -3,7 +3,7 @@
     <div class="card-body">
       <h3 class="card-title">
         {{ project.project_title }}
-        <p>Division: {{ project.Division }}</p>
+        <p>Division {{ project.Division }}</p>
       </h3>
       <div class="links">
         <a :href="project.github" class="card-link"
@@ -13,19 +13,7 @@
           ><i title="Google Docs link" class="far fa-file-alt"></i
         ></a>
       </div>
-      <p style="clear: both">
-        <span style="float: left">Progress:</span>
-        <span style="float: right">{{ project.progress }}%</span>
-      </p>
-      <div class="progress">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          :style="{ width: new String(project.progress + '%') }"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
+
       <hr />
       <div class="members">
         <p class="member_class">Members</p>
@@ -52,7 +40,7 @@
 import ProfilePicture from "./ProfilePicture.vue";
 
 export default {
-  name: "Project",
+  name: "StaticProject",
   components: {
     ProfilePicture,
   },
@@ -101,14 +89,6 @@ export default {
 }
 .card-link:hover {
   color: #8b5e3b;
-}
-.progress {
-  height: 25px;
-  clear: both;
-  margin-top: 50px;
-}
-.progress-bar {
-  background-color: #8b5e3b;
 }
 p {
   font-size: 20px;

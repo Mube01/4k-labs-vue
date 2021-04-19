@@ -26,7 +26,6 @@
           />
         </div>
 
-
         <div class="left col-md-6">
           <label for="password">New Password</label><br />
           <input v-model="newpassword" type="password" id="password" />
@@ -37,7 +36,6 @@
           <input v-model="confirmpassword" type="password" id="password" />
         </div>
 
-       
         <button type="submit">Update</button>
       </form>
     </div>
@@ -89,7 +87,7 @@ export default {
         if (this.newpassword.length >= 3) {
           data["newpassword"] = this.newpassword;
         }
-        console.log('update the data ') 
+        console.log("update the data ");
         this.$store
           .dispatch("profile/updateAdminProfile", data)
           .then((result) => {
@@ -148,11 +146,14 @@ input[type="file"] {
 }
 input:focus {
   outline: none;
-  border: 2px solid green;
+  border: 2px solid #177f75;
 }
 textarea {
   width: 100%;
   border: 2px solid #666;
+}
+textarea:focus {
+  border: 2px solid #177f75;
 }
 button {
   padding: 10px 45px;
@@ -160,9 +161,9 @@ button {
   font-size: 20px;
   border: none;
   margin: 15px 0 7px 0;
-  opacity: 0.7;
+  opacity: 0.8;
   color: white;
-  background: green;
+  background: #8b5e3b;
   font-weight: 600;
   transition: 0.5s;
 }

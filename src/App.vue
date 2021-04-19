@@ -1,5 +1,5 @@
 <template>
-  <Alert/>
+  <Alert />
   <router-view :key="$route.path" />
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -10,13 +10,13 @@
 
 
 <script>
-import Alert from '@/components/Alert.vue'
+import Alert from "@/components/Alert.vue";
 
 export default {
-  components:{
-    Alert
-  }
-}
+  components: {
+    Alert,
+  },
+};
 </script>
 
 <style>
@@ -25,7 +25,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -58,7 +57,26 @@ a {
 a.router-link-exact-active {
   color: #2c3e50;
 }
+<<<<<<< HEAD
 svg{
 margin-top: 35px;
 z-index: 0;}
+=======
+
+.fab {
+  font-size: 40px;
+  margin: 0 15px;
+  float: right;
+  color: #a97c50;
+}
+.fab:hover {
+  color: #8b5e3b;
+}
+
+@media screen and (max-width: 1200px) {
+  .fab {
+    float: left;
+  }
+}
+>>>>>>> 8adb804b358462d9f7140aba52fb1e80207e38cd
 </style>

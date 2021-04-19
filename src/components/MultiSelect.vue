@@ -53,8 +53,8 @@ export default {
 <style src="@vueform/multiselect/themes/default.css"></style>
 <style scoped>
 .multiselect-tag.is-user {
-  padding: 3px 8px;
-  border-radius: 22px;
+  padding: 6px 8px;
+  border-radius: 35px;
   background: #f2f2f2;
   color: #505050;
   font-size: 15px;
