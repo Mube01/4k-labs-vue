@@ -1,4 +1,5 @@
 <template>
+  <Alert/>
   <router-view :key="$route.path" />
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -13,6 +14,7 @@ import Alert from "@/components/Alert.vue";
 
 export default {
   components: {
+    Alert
   },
 };
 </script>
@@ -55,11 +57,6 @@ a {
 a.router-link-exact-active {
   color: #2c3e50;
 }
-<<<<<<< HEAD
-svg{
-margin-top: 35px;
-z-index: 0;}
-=======
 
 .fab {
   font-size: 40px;
@@ -76,5 +73,4 @@ z-index: 0;}
     float: left;
   }
 }
->>>>>>> 8adb804b358462d9f7140aba52fb1e80207e38cd
 </style>
