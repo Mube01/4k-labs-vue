@@ -1,5 +1,5 @@
 <template>
-  <Alert />
+  <Alert/>
   <router-view :key="$route.path" />
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -14,7 +14,7 @@ import Alert from "@/components/Alert.vue";
 
 export default {
   components: {
-    Alert,
+    Alert
   },
 };
 </script>
