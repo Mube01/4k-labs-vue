@@ -45,7 +45,7 @@
 
         <router-link
           class="link_class"
-          v-show="user_info.Role === '4'"
+          v-show="parseInt(user_info.Role) === '4'"
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
@@ -118,6 +118,7 @@ img.logo {
 }
 .link_class {
   padding: 10px 0;
+  cursor: pointer;
   margin-left: 15px;
   color: #a97c50;
 }
