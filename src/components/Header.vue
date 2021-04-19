@@ -44,7 +44,7 @@
 
         <a class="link_class" @click="logout">Logout</a>
 
-        <router-link v-if="user_info.Role === '4'" class="link_class" :to="{ name: 'Admin' }"
+        <router-link v-if="parseInt(user_info.Role )=== 4" class="link_class" :to="{ name: 'Admin' }"
           >Admin</router-link
         >
       </div>
@@ -117,6 +117,7 @@ img.logo {
 }
 .link_class {
   padding: 10px 0;
+  cursor: pointer;
   margin-left: 15px;
 }
 </style>

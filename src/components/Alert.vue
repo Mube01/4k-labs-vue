@@ -31,6 +31,5 @@ export default {
   width: 400px;
   margin: auto;
   padding: auto;
-  background: rgba(243, 20, 20, 0.938);
 }
 </style>
