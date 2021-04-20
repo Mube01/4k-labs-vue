@@ -45,8 +45,8 @@
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
-
-        <a v-show="isAuthenticated" class="link_class" @click="logout"
+        
+        <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i
         ></a>
       </div>
@@ -110,6 +110,7 @@ img.logo {
 }
 .link_class {
   padding: 10px 0;
+  cursor: pointer;
   margin-left: 15px;
   color: #a97c50;
 }

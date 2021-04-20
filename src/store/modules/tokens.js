@@ -56,7 +56,7 @@ export default {
             state.tokens = tokens
         },
         addToken(state,data){
-            state.tokens.push(data)
+            state.tokens.unshift(data)
         },
         deleteToken(state,deleted_token){
             state.tokens = state.tokens.filter((token)=>{
