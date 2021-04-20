@@ -1,6 +1,7 @@
 <template>
+  <Header />
   <div class="container">
-    <h2>Bots</h2>
+    <h2 class="mt-2">Bots</h2>
     <hr />
     <div class="row">
       <div :key="project.project_code" v-for="project in projects">
@@ -38,13 +39,14 @@
 
 <script>
 import StaticProject from "@/components/StaticProject.vue";
-
+import Header from "@/components/Header.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Teams",
   components: {
     StaticProject,
+    Header,
   },
   methods: {
     ...mapActions({

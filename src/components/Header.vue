@@ -45,12 +45,10 @@
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
-
+        
         <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i
         ></a>
-
-        
       </div>
     </div>
   </div>
@@ -109,14 +107,6 @@ img.logo {
   color: #333;
   font-size: 25px;
   margin: 10px 0 0 25px;
-}
-.dropdown-menu {
-  position: relative;
-  z-index: 100;
-}
-.dropdown-item {
-  position: relative;
-  z-index: 100;
 }
 .link_class {
   padding: 10px 0;

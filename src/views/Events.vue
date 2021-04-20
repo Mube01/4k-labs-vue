@@ -4,18 +4,19 @@
       <Header />
       <div class="container">
         <router-link :to="{ name: 'Admin' }"><h4>Members</h4></router-link>
-        <h4>Projects</h4>
-        <router-link :to="{ name: 'Events' }"><h4>Events</h4></router-link>
+        <router-link :to="{ name: 'AdminProjects' }"
+          ><h4>Projects</h4></router-link
+        >
+        <h4>Events</h4>
         <router-link :to="{ name: 'GenerateToken' }"
           ><h4>Generate Token</h4></router-link
         >
-        <div
-          :key="project.project_code"
-          v-for="project in projects"
-          class="Projects"
-        >
-          <ProjectList :project="project" />
-        </div>
+        <Add
+          @toggle-add="toggleAdd"
+          :text="showAddEvent ? 'X Close' : '+ Add New Event'"
+          :border="showAddEvent ? '3px dashed #B6212D' : '3px dashed #177F75'"
+        />
+        <Event />
       </div>
     </div>
     <Wave />
@@ -24,22 +25,27 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import ProjectList from "@/components/ProjectList.vue";
+import Event from "@/components/Event.vue";
 import Wave from "@/components/Wave.vue";
+import Add from "@/components/Add.vue";
 
-import { mapGetters } from "vuex";
 export default {
-  name: "AdminProjects",
+  name: "Events",
   components: {
     Header,
-    ProjectList,
+    Event,
     Wave,
+    Add,
   },
-  methods: {},
-  computed: {
-    ...mapGetters({
-      projects: "projects/listOfProjects",
-    }),
+  data() {
+    return {
+      showAddEvent: false,
+    };
+  },
+  methods: {
+    toggleAdd() {
+      this.showAddEvent = !this.showAddEvent;
+    },
   },
 };
 </script>
