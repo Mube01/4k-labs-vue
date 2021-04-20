@@ -1,36 +1,26 @@
 <template>
-  <div class="card">
-    <img
-      class="card-img-top"
-      :src="require('@/assets/' + background)"
-      alt="Card image"
-    />
+  <div class="card col-md-12">
+    <img class="card-img-top" src="@/assets/DEVS.jpg" alt="Card image" />
     <div class="card-body">
-      <h3 class="card-title">
-        {{ name }}
-      </h3>
-      <p class="card-text">{{ details }}</p>
+      <h3 class="card-title">Event Title</h3>
+      <h4>Event Date</h4>
+      <p class="card-text">Event Details</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Division",
-  props: {
-    name: String,
-    background: String,
-    details: String,
-  },
+  name: "Event",
 };
 </script>
 
 <style scoped>
 .card {
-  width: 350px;
   border-radius: 10px;
   margin: 20px 5px 0 5px;
   text-align: center;
+  padding: 0;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
@@ -43,7 +33,7 @@ export default {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 .card-img-top {
-  height: 230px;
+  height: 350px;
 }
 h3 {
   font-weight: 700;
@@ -51,6 +41,12 @@ h3 {
   margin: 5px 0 15px 0;
   float: left;
   color: #a97c50;
+}
+h4 {
+  float: right;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 6px 0 15px 0;
 }
 p {
   clear: both;

@@ -1,121 +1,122 @@
 <template>
-  <Loading v-show="loading" />
-  <div v-show="!loading">
-    <Header />
-    <div class="container">
-      <div class="status">
-        <h3>{{ project.project_title }}</h3>
-        <div class="links">
-          <a :href="project.github" class="card-link"
-            ><i title="Github link" class="fab fa-github"></i
-          ></a>
-          <a :href="project.docs" class="card-link"
-            ><i title="Google Docs link" class="far fa-file-alt"></i
-          ></a>
+  <div class="page-container">
+    <div class="content-wrap">
+      <Loading v-show="loading" />
+      <div v-show="!loading">
+        <Header />
+        <div class="container">
+          <div class="status">
+            <h3>{{ project.project_title }}</h3>
+            <div class="links">
+              <a :href="project.github" class="card-link"
+                ><i title="Github link" class="fab fa-github"></i
+              ></a>
+              <a :href="project.docs" class="card-link"
+                ><i title="Google Docs link" class="far fa-file-alt"></i
+              ></a>
 
-          <router-link
-            class="card-link"
-            :to="{
-              name: 'UpdateProject',
-              params: { projectCode: project_code },
-            }"
-          >
-            <i title="Edit Project" class="far fa-edit"></i>
-          </router-link>
-        </div>
-        <div class="left">
-          <p>Division:</p>
-          <p>Progress:</p>
-        </div>
-        <div class="right">
-          <p>{{ project.Division }}</p>
-          <p>{{ project.progress || "0" }}%</p>
-        </div>
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            :style="{ width: new String(project.progress + '%') }"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
+              <router-link
+                class="card-link"
+                :to="{
+                  name: 'UpdateProject',
+                  params: { projectCode: project_code },
+                }"
+              >
+                <i title="Edit Project" class="far fa-edit"></i>
+              </router-link>
+            </div>
+            <div class="left">
+              <p>Division:</p>
+              <p>Progress:</p>
+            </div>
+            <div class="right">
+              <p>{{ project.Division }}</p>
+              <p>{{ project.progress || "0" }}%</p>
+            </div>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                :style="{ width: new String(project.progress + '%') }"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+          <br />
+
+          <div class="members">
+            <h5 class="member_class">Members</h5>
+            <ul v-show="!showAddMember">
+              <li
+                :key="member.user_id"
+                v-for="member in project.team_members"
+                style="margin-left: 10px"
+              >
+                <router-link
+                  :to="{
+                    name: 'Profile',
+                    params: { user_code: member.user_id },
+                  }"
+                >
+                  <ProfilePicture
+                    imgWeight="45px"
+                    fontSize="20px"
+                    :name="member.username[0]"
+                    :srcText="member['profile_picture']"
+                  />
+                </router-link>
+              </li>
+            </ul>
+          </div>
+
+          <AddMember
+            style="float: right"
+            @toggle-add="toggleAddMember"
+            :text="showAddMember ? 'Close' : 'Add Members'"
+            :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
+            color="white"
+            border="none"
+          />
+          <div class="text-center" v-show="showAddMember">
+            <MultiSelect
+              ref="selected_members"
+              :memberIds="project.members"
+              :allMembers="allMembers"
+              style="margin-top: 70px"
+            />
+            <button @click="updateMembers()" style="margin-top: 10px">
+              Update Members
+            </button>
+          </div>
+
+          <br /><br /><br />
+          <h5>Description</h5>
+          <p class="desc">{{ project.description }}</p>
+
+          <h5>Tasks</h5>
+          <Add
+            @toggle-add="toggleAdd"
+            :text="showAddTask ? 'X Close' : '+ Add New Task'"
+            :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
+          />
+          <div v-show="showAddTask">
+            <AddTask
+              @taskAdded="showAddTask = false"
+              :project_code="project_code"
+            />
+          </div>
+
+          <Task
+            :key="task.task_code"
+            v-for="task in project.tasks"
+            :task="task"
+          />
         </div>
       </div>
-      <br />
-
-      <div class="members">
-        <h5 class="member_class">Members</h5>
-        <ul v-show="!showAddMember">
-          <li
-            :key="member.user_id"
-            v-for="member in project.team_members"
-            style="margin-left: 10px"
-          >
-            <router-link
-              :to="{ name: 'Profile', params: { user_code: member.user_id } }"
-            >
-              <ProfilePicture
-                imgWeight="45px"
-                fontSize="20px"
-                :name="member.username[0]"
-                :srcText="member['profile_picture']"
-              />
-            </router-link>
-          </li>
-        </ul>
-      </div>
-
-      <AddMember
-        style="float: right"
-        @toggle-add="toggleAddMember"
-        :text="showAddMember ? 'Close' : 'Add Members'"
-        :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
-        color="white"
-        border="none"
-      />
-      <div class="text-center" v-show="showAddMember">
-        <MultiSelect
-          ref="selected_members"
-          :memberIds="project.members"
-          :allMembers="allMembers"
-          style="margin-top: 70px"
-        />
-        <button @click="updateMembers()" style="margin-top: 10px">
-          Update Members
-        </button>
-      </div>
-
-      <br /><br /><br />
-      <h5>Description</h5>
-      <p class="desc">{{ project.description }}</p>
-
-      <h5>Tasks</h5>
-      <Add
-        @toggle-add="toggleAdd"
-        :text="showAddTask ? 'X Close' : '+ Add New Task'"
-        :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
-      />
-      <div v-show="showAddTask">
-        <AddTask
-          @taskAdded="showAddTask = false"
-          :project_code="project_code"
-        />
-      </div>
-
-      <Task :key="task.task_code" v-for="task in project.tasks" :task="task" />
     </div>
+    <Wave />
   </div>
-  <svg
-    v-show="!loading"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1440 320"
-  >
-    <path
-      fill="#a97c50"
-      fill-opacity="1"
-      d="M0,224L34.3,213.3C68.6,203,137,181,206,170.7C274.3,160,343,160,411,181.3C480,203,549,245,617,229.3C685.7,213,754,139,823,138.7C891.4,139,960,213,1029,229.3C1097.1,245,1166,203,1234,160C1302.9,117,1371,75,1406,53.3L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
-    ></path>
-  </svg>
 </template>
 
 <script>
@@ -127,6 +128,7 @@ import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
 import Loading from "@/components/Loading.vue";
+import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -141,6 +143,7 @@ export default {
     ProfilePicture,
     AddMember,
     Loading,
+    Wave,
   },
   data() {
     return {
@@ -197,6 +200,13 @@ export default {
 </script>
 
 <style scoped>
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+.content-wrap {
+  padding-bottom: 26.5rem;
+}
 .status {
   margin: 20px 0px 0px 0px;
   width: 100%;
