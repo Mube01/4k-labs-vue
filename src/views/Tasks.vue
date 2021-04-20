@@ -20,7 +20,11 @@
               params: { projectCode: project_code },
             }"
           >
-            <i title="Edit Project" class="far fa-edit"></i>
+            <i
+              v-if="project.members.includes(user_info.user_id)"
+              title="Edit Project"
+              class="far fa-edit"
+            ></i>
           </router-link>
         </div>
         <div class="left">
@@ -66,7 +70,7 @@
       </div>
 
       <AddMember
-        v-if="user_info.Division == project.Division"
+        v-if="project.members.includes(user_info.user_id)"
         style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
@@ -92,7 +96,7 @@
 
       <h5>Tasks</h5>
       <Add
-        v-if="user_info.Division == project.Division"
+        v-if="project.members.includes(user_info.user_id)"
         @toggle-add="toggleAdd"
         :text="showAddTask ? 'X Close' : '+ Add New Task'"
         :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
