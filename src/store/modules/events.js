@@ -6,7 +6,10 @@ export default {
         allEvents: []
     },
     getters:{
-        getAllEvents:(state)=>state.allEvents
+        getAllEvents:(state)=>state.allEvents,
+        getEventById:(state)=>(id)=>{
+            return state.allEvents.find((event)=>event.event_id===id)
+        }
     },
     actions:{
         addEvent({commit,dispatch},data){

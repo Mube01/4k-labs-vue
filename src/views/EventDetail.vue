@@ -9,7 +9,7 @@
           </div>
           <div class="status col-md-6">
             <div class="left">
-              <h3>Event Title</h3>
+              <h3>{{event.event_title}}</h3>
             </div>
             <div class="right">
               <router-link class="card-link" :to="{ name: 'UpdateEvent' }">
@@ -21,11 +21,11 @@
               <p>Ending Date:</p>
             </div>
             <div class="right">
-              <p>Now</p>
-              <p>Now</p>
+              <p>{{event.event_start}}</p>
+              <p>{{event.event_end}}</p>
             </div>
             <h5>Description</h5>
-            <p class="desc">this is a description</p>
+            <p class="desc">{{event.event_description}}</p>
           </div>
         </div>
         <div class="row">
@@ -48,18 +48,30 @@
   </div>
 </template>
 
+
 <script>
+import {mapGetters} from 'vuex'
 import Header from "@/components/Header.vue";
 import GalleryImage from "@/components/GalleryImage.vue";
 import Wave from "@/components/Wave.vue";
 
 export default {
   name: "EventDetail",
+  data() {
+    return {
+      event_id : this.$route.params.event_id
+    }
+  },
   components: {
     Header,
     GalleryImage,
     Wave,
   },
+  computed:{
+    event(){
+      return this.$store.getters['events/getEventById'](this.event_id)
+    }
+  }
 };
 </script>
 

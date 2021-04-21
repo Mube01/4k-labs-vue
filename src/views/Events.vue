@@ -22,7 +22,7 @@
         <div class="row">
 
           <div :key="event" v-for="event in events" class="col-md-6">
-            <router-link :to="{ name: 'EventDetail' }">
+            <router-link :to="{ name: 'EventDetail', params:{'event_id':event.event_id} }">
                 <Event :event="event" />
             </router-link>
         </div>

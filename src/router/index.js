@@ -103,9 +103,10 @@ const routes = [
     component: () => import('../views/Events.vue')
   },
   {
-    path: '/portal/eventDetail',
+    path: '/portal/events/:event_id',
     name: 'EventDetail',
-    component: () => import('../views/EventDetail.vue')
+    component: () => import('../views/EventDetail.vue'),
+    props: true
   },
   {
     path: '/portal/updateEvent',
