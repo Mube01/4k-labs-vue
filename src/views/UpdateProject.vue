@@ -126,7 +126,7 @@ input[type="file"] {
 }
 select {
   width: 450px;
-  padding: 10px 10px;
+  padding: 12px;
   border-radius: 5px;
   border: 2px solid #666;
   margin: 5px 0 15px 0;
@@ -137,6 +137,7 @@ input:focus {
 }
 textarea {
   width: 100%;
+  padding: 5px;
   border: 2px solid #666;
 }
 textarea:focus {

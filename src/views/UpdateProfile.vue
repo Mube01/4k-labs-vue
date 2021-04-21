@@ -201,13 +201,14 @@ label {
 }
 input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   border-radius: 5px;
   border: 2px solid #666;
   margin: 5px 0 15px 0;
 }
 input[type="file"] {
-  padding: 6px;
+  padding: 9px;
+  background-color: white;
 }
 input:focus {
   outline: none;

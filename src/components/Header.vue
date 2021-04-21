@@ -2,7 +2,7 @@
   <div id="header">
     <div class="container">
       <router-link :to="{ name: 'Divisions' }"
-        ><img class="logo" src="@/assets/logo.webp"
+        ><img class="logo" src="@/assets/logo.png"
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
@@ -45,7 +45,7 @@
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
-        
+
         <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i
         ></a>
@@ -89,22 +89,27 @@ export default {
 #header {
   width: 100%;
   height: 90px;
-  background: white;
+  background: url("../assets/rename.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: block;
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
+  box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
 }
 img.logo {
   float: left;
-  height: 70px;
-  margin: 10px 0;
+  height: 90px;
+  margin: 5px 0;
 }
 .nav {
   float: right;
   padding: 20px 0;
 }
 .fa {
-  color: #333;
+  color: white;
   font-size: 25px;
   margin: 10px 0 0 25px;
 }
@@ -112,10 +117,10 @@ img.logo {
   padding: 10px 0;
   cursor: pointer;
   margin-left: 15px;
-  color: #a97c50;
+  color: white;
 }
 .link_class:hover {
-  color: #8b5e3b;
+  color: #d1905e;
 }
 .fas {
   font-size: 30px;

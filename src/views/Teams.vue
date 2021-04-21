@@ -6,7 +6,10 @@
     <div class="row">
       <div :key="project.project_code" v-for="project in projects">
         <router-link
-          :to="{ name: 'Tasks', params: { projectCode: project.project_code } }"
+          :to="{
+            name: 'ProjectDetail',
+            params: { projectCode: project.project_code },
+          }"
         >
           <StaticProject :project="project" />
         </router-link>

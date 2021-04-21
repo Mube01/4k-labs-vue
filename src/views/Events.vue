@@ -21,7 +21,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <Event />
+            <router-link :to="{ name: 'EventDetail' }"> <Event /></router-link>
           </div>
           <div class="col-md-6"><Event /></div>
         </div>

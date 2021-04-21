@@ -1,10 +1,6 @@
 <template>
-
-  <Alert/>
+  <Alert />
   <router-view :key="$route.path" />
-  
-
-  
 </template>
 
 
@@ -13,7 +9,7 @@ import Alert from "@/components/Alert.vue";
 
 export default {
   components: {
-    Alert
+    Alert,
   },
 };
 </script>
