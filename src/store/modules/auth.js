@@ -21,7 +21,6 @@ export default {
         adminLogin({dispatch,commit},{username,password}){
             return new Promise((resolve,reject)=>{
                 adminLogin(username,password).then((result) => {
-                    console.log('the response is ',result.data.user)
                     localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
