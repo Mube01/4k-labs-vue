@@ -1,10 +1,16 @@
 <template>
   <div class="card">
-    <img class="card-img-top" src="@/assets/DEVS.jpg" alt="Card image" />
+    <img class="card-img-top" 
+      :src="
+        `http://127.0.0.1:5000/api_v1/get_event/${event.event_image}?` +
+        new Date().getTime()
+      "
+     alt="Card image" />
     <div class="card-body">
-      <h3 class="card-title">Event Title</h3>
-      <h4>Event Date</h4>
-      <p class="card-text">Event Details</p>
+      <h3 class="card-title">{{event.event_title}}</h3>
+      <h4>{{event.event_start}}</h4>
+      <h4>{{event.event_end}}</h4>
+      <p class="card-text">{{event.event_description}}</p>
     </div>
   </div>
 </template>
@@ -12,6 +18,11 @@
 <script>
 export default {
   name: "Event",
+  props:{
+    event:{
+      type:Object,
+    }
+  }
 };
 </script>
 

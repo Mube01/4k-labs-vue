@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <form @submit="onSubmit">
+    <form  @submit.prevent="AddEvent()">
       <div class="left col-md-6">
         <label for="pp">Title</label><br />
         <input
@@ -19,27 +19,29 @@
           v-on:change="uploadProfile"
           type="file"
           accept="image/*"
-          required
+          
         />
       </div>
 
-      <div class="left col-md-6">
+      <div style="clear:both" class="left col-md-6">
         <label for="pp">Starting Date</label><br />
         <input
           type="date"
-          v-model="event_date"
+          v-model="event_start"
           name="text"
           placeholder="Event Date"
+          
         />
       </div>
 
-      <div class="left col-md-6">
+      <div class="right col-md-6">
         <label for="pp">Ending Date</label><br />
         <input
           type="date"
-          v-model="event_date"
+          v-model="event_end"
           name="text"
           placeholder="Event Date"
+          
         />
       </div>
 
@@ -47,7 +49,7 @@
         <label for="description">Description</label><br />
         <textarea
           rows="7"
-          v-model="description"
+          v-model="event_description"
           type="text"
           id="description"
           autocomplete="off"
@@ -60,18 +62,58 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 import Button from "./Button.vue";
 export default {
   name: "Add",
   data() {
     return {
-      project_title: "",
-      description: "",
+      event_image:"",
+      event_description: "",
+      event_title:"",
+      event_start:"",
+      event_end:"",
     };
   },
   components: {
     Button,
   },
+  methods:{
+    ...mapActions({
+      addEvent:'events/addEvent',
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
+    AddEvent(){
+      var data = {
+                    "event_title":this.event_title,
+                    "event_description":this.event_description,
+                    "event_start":this.event_start,
+                    "event_end":this.event_end,
+                    "event_image":this.event_image,
+                    "event_gallery":[]
+                }
+      this.addEvent(data).then((result) => {
+        this.successAlert('Event has been created successfully')
+        this.$emit("eventAdded");
+      }).catch((err) => {
+        this.errorAlert(err)
+      });
+    },
+    uploadProfile(e) {
+      const selecterImage = e.target.files[0];
+      this.createBase64Image(selecterImage);
+    },
+    createBase64Image(fileObject) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileObject);
+      reader.onload = (e) => {
+        var base64result = e.target.result;
+        var image = base64result.split(",")[1];
+        this.event_image = image
+      };
+    },
+  }
 };
 </script>
 
