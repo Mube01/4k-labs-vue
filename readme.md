@@ -15,11 +15,13 @@ TODO<br/>
     [x] delete token for the admin\
     [x] update gourp members interactivley\
     [x] show response for the user for every fetch request\
-    [ ] access and previlages for members and admin\
-    [ ] change the task bar to brown\
-    [ ] change all the links to brown and other texts in black\
-    [ ] change the wave to brown\
-    [ ] add on static page to TEAMS(all or catogrized by division) and Projects aboutus and Apply\
+    [x] access and previlages for members and admin\
+    [x] change the task bar to brown\
+    [x] change all the links to brown and other texts in black\
+    [x] change the wave to brown\
+    [ ] add on static page to Members(all or catogrized by division) and Projects, aboutus and Apply\
+    [x] add,delete,events
+    [ ] add multiple images for events
     
     
     
