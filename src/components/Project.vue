@@ -125,7 +125,7 @@ li {
   display: inline;
   list-style: none;
   float: right;
-  margin-left: 10px;
+  margin: 0 0 2px 10px;
 }
 .far,
 .fab {

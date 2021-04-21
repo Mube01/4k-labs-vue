@@ -8,8 +8,7 @@
      alt="Card image" />
     <div class="card-body">
       <h3 class="card-title">{{event.event_title}}</h3>
-      <h4>{{event.event_start}}</h4>
-      <h4>{{event.event_end}}</h4>
+      <h4>{{event.event_start}} to {{event.event_end}}</h4>
       <p class="card-text">{{event.event_description}}</p>
     </div>
   </div>

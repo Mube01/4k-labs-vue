@@ -37,6 +37,20 @@ export default {
                 });
             })
         },
+        deleteEvent({commit,dispatch},event_id){
+            return new Promise((resolve, reject) => {
+                EventApi.deleteEvent(event_id).then((result) => {
+                    console.log(result.data)
+                    commit('deleteEvent',event_id)
+                    resolve(result.data)
+                }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
+                    reject(err.response.data)
+                });
+            })
+        },
     },
     mutations:{
         addEvent(state,event){
@@ -44,6 +58,10 @@ export default {
         },
         storeEvents(state,events){
             state.allEvents = events
+        },
+        deleteEvent(state,event_id){
+            state.allEvents = state.allEvents.filter((event)=>event.event_id!==event_id)
+            
         }
     }
   };
