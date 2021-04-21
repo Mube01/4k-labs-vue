@@ -67,6 +67,8 @@ export default {
   methods: {
     ...mapActions({
       createProject: "projects/createNewProject",
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
     }),
 
     onSubmit(e) {
@@ -90,11 +92,12 @@ export default {
       };
       this.createProject(data)
         .then((result) => {
-          console.log(result);
+          this.successAlert('Project have been created succesdully')
           this.$emit("projectAdded");
         })
         .catch((err) => {
-          console.log(err);
+          console.log('the error is ',err)
+          this.errorAlert(err.message)
         });
       console.log("got heree finally");
     },
