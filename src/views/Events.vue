@@ -17,7 +17,7 @@
           :border="showAddEvent ? '3px dashed #B6212D' : '3px dashed #177F75'"
         />
         <div v-show="showAddEvent">
-          <AddEvent />
+          <AddEvent @eventAdded="toggleAdd" />
         </div>
         <div class="row">
           <div :key="event" v-for="event in events" class="col-md-6">

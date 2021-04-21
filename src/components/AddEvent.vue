@@ -95,6 +95,7 @@ export default {
                 }
       this.addEvent(data).then((result) => {
         this.successAlert('Event has been created successfully')
+        this.$emit("eventAdded");
       }).catch((err) => {
         this.errorAlert(err)
       });
