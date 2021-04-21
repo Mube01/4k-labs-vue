@@ -20,6 +20,7 @@
               <router-link class="card-link" :to="{ name: 'UpdateEvent' }">
                 <i title="Edit Project" class="far fa-edit"></i
               ></router-link>
+              <i @click="eventDelete()" class="fas fa-trash card-link"></i>
             </div>
             <div class="left">
               <p>Starting Date:</p>
@@ -55,13 +56,28 @@
 
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 import Header from "@/components/Header.vue";
 import GalleryImage from "@/components/GalleryImage.vue";
 import Wave from "@/components/Wave.vue";
 
 export default {
   name: "EventDetail",
+  methods:{
+    ...mapActions({
+      deleteEvent:'events/deleteEvent',
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
+    eventDelete(){
+      this.deleteEvent(this.event_id).then((result) => {
+        this.successAlert(result.message)
+        this.$router.push({ name: "Events" });
+      }).catch((err) => {
+        this.errorAlert(err)
+      });
+    }
+  },
   data() {
     return {
       event_id : this.$route.params.event_id
@@ -94,7 +110,7 @@ export default {
 .card-link:hover {
   color: #8b5e3b;
 }
-.far {
+.far,.fas {
   float: none;
   font-size: 28px;
 }
