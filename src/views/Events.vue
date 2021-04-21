@@ -21,14 +21,13 @@
         </div>
         <div class="row">
 
-          <div class="col-md-6">
+          <div :key="event" v-for="event in events" class="col-md-6">
             <router-link :to="{ name: 'EventDetail' }">
-              <div :key="event" v-for="event in events" class="col-md-6">
                 <Event :event="event" />
-              </div>
-          </router-link>
+            </router-link>
         </div>
       </div>
+    </div>
     </div>
     <Wave />
   </div>

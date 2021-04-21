@@ -26,7 +26,7 @@
           />
         </div>
 
-        <div class="left col-md-6">
+        <div style="clear:both" class="left col-md-6">
           <label for="pp">Starting Date</label><br />
           <input
             type="date"
@@ -36,7 +36,7 @@
           />
         </div>
 
-        <div class="left col-md-6">
+        <div class="right col-md-6">
           <label for="pp">Ending Date</label><br />
           <input
             type="date"
