@@ -59,7 +59,11 @@
           </div>
         </div>
         <div class="row mt-4">
-          <div :key="project.project_code" v-for="project in projects">
+          <div
+            class="col-md-6"
+            :key="project.project_code"
+            v-for="project in projects"
+          >
             <router-link
               :to="{
                 name: 'Tasks',

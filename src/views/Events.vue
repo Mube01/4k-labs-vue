@@ -16,7 +16,15 @@
           :text="showAddEvent ? 'X Close' : '+ Add New Event'"
           :border="showAddEvent ? '3px dashed #B6212D' : '3px dashed #177F75'"
         />
-        <Event />
+        <div v-show="showAddEvent">
+          <AddEvent />
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <Event />
+          </div>
+          <div class="col-md-6"><Event /></div>
+        </div>
       </div>
     </div>
     <Wave />
@@ -28,6 +36,7 @@ import Header from "@/components/Header.vue";
 import Event from "@/components/Event.vue";
 import Wave from "@/components/Wave.vue";
 import Add from "@/components/Add.vue";
+import AddEvent from "@/components/AddEvent.vue";
 
 export default {
   name: "Events",
@@ -36,6 +45,7 @@ export default {
     Event,
     Wave,
     Add,
+    AddEvent,
   },
   data() {
     return {

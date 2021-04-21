@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .card {
-  padding: 3px;
+  padding: 0px;
   margin: 20px 0 20px 0;
   text-align: left;
   font-size: 18px;

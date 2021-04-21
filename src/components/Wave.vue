@@ -23,6 +23,5 @@ svg {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 26.5rem;
 }
 </style>
