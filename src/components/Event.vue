@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-md-12">
+  <div class="card">
     <img class="card-img-top" src="@/assets/DEVS.jpg" alt="Card image" />
     <div class="card-body">
       <h3 class="card-title">Event Title</h3>

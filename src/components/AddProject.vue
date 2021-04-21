@@ -111,15 +111,6 @@ input {
   border-radius: 5px;
   border: 1px solid #333;
 }
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-.full {
-  clear: both;
-}
 label {
   float: left;
   font-size: 18px;
@@ -141,40 +132,6 @@ textarea {
   border: 2px solid #666;
   margin-bottom: 10px;
 }
-body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  background: #f1f1f1;
-}
-
-h3 {
-  margin-top: 0;
-}
-
-.example {
-  background: #ffffff;
-  margin: 20px;
-  border-color: #e7e7e7;
-  padding: 40px;
-}
-
-.example pre {
-  background: #f9f9f9;
-  padding: 18px 6px;
-  overflow-x: scroll;
-}
-
-.output {
-  font-family: Courier, Courier New, Lucida Console, Monaco, Consolas;
-  background: #000000;
-  color: #ffffff;
-  padding: 20px;
-  margin-bottom: 20px;
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 13px;
-}
-
 .multiselect-tag.is-user {
   padding: 5px 8px;
   border-radius: 22px;
@@ -199,15 +156,5 @@ h3 {
   margin: 0 6px 0 0;
   border-radius: 50%;
   height: 22px;
-}
-
-.character-option-icon {
-  margin: 0 6px 0 0;
-  height: 22px;
-}
-
-.character-label-icon {
-  margin: 0 6px 0 0;
-  height: 26px;
 }
 </style>

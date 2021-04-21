@@ -66,10 +66,9 @@ export default {
 
 <style scoped>
 .card {
-  width: 520px;
   border-radius: 10px;
   padding: 10px 20px;
-  margin: 15px 20px;
+  margin: 15px 0;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
