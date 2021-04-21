@@ -143,6 +143,7 @@ input {
 }
 input[type="file"] {
   padding: 6px;
+  background-color: white;
 }
 input:focus {
   outline: none;

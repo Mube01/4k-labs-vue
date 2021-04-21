@@ -20,9 +20,13 @@
           <AddEvent @eventAdded="toggleAdd" />
         </div>
         <div class="row">
-          <div :key="event" v-for="event in events" class="col-md-6">
-            <Event :event="event" />
-          </div>
+
+          <div class="col-md-6">
+            <router-link :to="{ name: 'EventDetail' }">
+              <div :key="event" v-for="event in events" class="col-md-6">
+                <Event :event="event" />
+              </div>
+          </router-link>
         </div>
       </div>
     </div>

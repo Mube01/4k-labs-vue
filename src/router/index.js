@@ -93,14 +93,24 @@ const routes = [
     component: () => import('../views/Teams.vue')
   },
   {
-    path: '/details',
-    name: 'ProjectDetails',
-    component: () => import('../views/ProjectDetails.vue')
+    path: '/detail',
+    name: 'ProjectDetail',
+    component: () => import('../views/ProjectDetail.vue')
   },
   {
-    path: '/events',
+    path: '/portal/events',
     name: 'Events',
     component: () => import('../views/Events.vue')
+  },
+  {
+    path: '/portal/eventDetail',
+    name: 'EventDetail',
+    component: () => import('../views/EventDetail.vue')
+  },
+  {
+    path: '/portal/updateEvent',
+    name: 'UpdateEvent',
+    component: () => import('../views/UpdateEvent.vue')
   },
   {
     path: '/404',

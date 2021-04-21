@@ -57,6 +57,7 @@ h4 {
   float: right;
   font-size: 18px;
   font-weight: 400;
+  color: #333;
   margin: 6px 0 15px 0;
 }
 p {

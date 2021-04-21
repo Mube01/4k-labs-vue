@@ -15,41 +15,39 @@
                 ><i title="Google Docs link" class="far fa-file-alt"></i
               ></a>
 
-
-          <router-link
-            class="card-link"
-            :to="{
-              name: 'UpdateProject',
-              params: { projectCode: project_code },
-            }"
-          >
-            <i
-              v-if="project.members.includes(user_info.user_id)"
-              title="Edit Project"
-              class="far fa-edit"
-            ></i>
-          </router-link>
-        </div>
-        <div class="left">
-          <p>Division:</p>
-          <p>Progress:</p>
-        </div>
-        <div class="right">
-          <p>{{ project.Division }}</p>
-          <p>{{ project.progress || "0" }}%</p>
-        </div>
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            :style="{ width: new String(project.progress + '%') }"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
-        </div>
-      </div>
-      <br />
-
+              <router-link
+                class="card-link"
+                :to="{
+                  name: 'UpdateProject',
+                  params: { projectCode: project_code },
+                }"
+              >
+                <i
+                  v-if="project.members.includes(user_info.user_id)"
+                  title="Edit Project"
+                  class="far fa-edit"
+                ></i>
+              </router-link>
+            </div>
+            <div class="left">
+              <p>Division:</p>
+              <p>Progress:</p>
+            </div>
+            <div class="right">
+              <p>{{ project.Division }}</p>
+              <p>{{ project.progress || "0" }}%</p>
+            </div>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                :style="{ width: new String(project.progress + '%') }"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+          <br />
 
           <div class="members">
             <h5 class="member_class">Members</h5>
@@ -76,46 +74,43 @@
             </ul>
           </div>
 
-      <AddMember
-        v-if="project.members.includes(user_info.user_id)"
-        style="float: right"
-        @toggle-add="toggleAddMember"
-        :text="showAddMember ? 'Close' : 'Add Members'"
-        :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
-        color="white"
-        border="none"
-      />
-      <div class="text-center" v-show="showAddMember">
-        <MultiSelect
-          ref="selected_members"
-          :memberIds="project.members"
-          :allMembers="allMembers"
-          style="margin-top: 70px"
-        />
-        <button @click="updateMembers()" style="margin-top: 10px">
-          Update Members
-        </button>
-      </div>
+          <AddMember
+            v-if="project.members.includes(user_info.user_id)"
+            style="float: right"
+            @toggle-add="toggleAddMember"
+            :text="showAddMember ? 'Close' : 'Add Members'"
+            :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
+            color="white"
+            border="none"
+          />
+          <div class="text-center" v-show="showAddMember">
+            <MultiSelect
+              ref="selected_members"
+              :memberIds="project.members"
+              :allMembers="allMembers"
+              style="margin-top: 70px"
+            />
+            <button @click="updateMembers()" style="margin-top: 10px">
+              Update Members
+            </button>
+          </div>
 
-
-          <br /><br /><br />
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
 
-      <h5>Tasks</h5>
-      <Add
-        v-if="project.members.includes(user_info.user_id)"
-        @toggle-add="toggleAdd"
-        :text="showAddTask ? 'X Close' : '+ Add New Task'"
-        :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
-      />
-      <div v-show="showAddTask">
-        <AddTask
-          @taskAdded="showAddTask = false"
-          :project_code="project_code"
-        />
-      </div>
-
+          <h5>Tasks</h5>
+          <Add
+            v-if="project.members.includes(user_info.user_id)"
+            @toggle-add="toggleAdd"
+            :text="showAddTask ? 'X Close' : '+ Add New Task'"
+            :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
+          />
+          <div v-show="showAddTask">
+            <AddTask
+              @taskAdded="showAddTask = false"
+              :project_code="project_code"
+            />
+          </div>
 
           <Task
             :key="task.task_code"
@@ -204,7 +199,7 @@ export default {
     ...mapGetters({
       project: "projects/getProject",
       allMembers: "members/getMembers",
-      user_info: "user/getUserInformation"
+      user_info: "user/getUserInformation",
     }),
   },
 };
@@ -246,8 +241,9 @@ p {
   font-size: 18px;
 }
 .desc {
-  margin: 55px 0 0 10px;
+  clear: both;
   font-weight: 300;
+  margin: 15px 0 0 10px;
 }
 .links {
   float: right;
@@ -289,7 +285,7 @@ button:hover {
 .far,
 .fab {
   float: none;
-  font-size: 30px;
+  font-size: 29px;
   margin: 0;
 }
 </style>
