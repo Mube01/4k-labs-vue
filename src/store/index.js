@@ -7,6 +7,7 @@ import projects from './modules/projects';
 import profile from './modules/profile'
 import tokens from './modules/tokens'
 import members from './modules/members'
+import events from './modules/events'
 
 export default createStore({
   state: {
@@ -75,6 +76,7 @@ export default createStore({
     profile,
     tokens,
     members,
+    events,
   },
   plugins: [createPersistedState({
   })],

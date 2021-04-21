@@ -20,10 +20,9 @@
           <AddEvent />
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <Event />
+          <div :key="event" v-for="event in events" class="col-md-6">
+            <Event :event="event" />
           </div>
-          <div class="col-md-6"><Event /></div>
         </div>
       </div>
     </div>
@@ -32,6 +31,7 @@
 </template>
 
 <script>
+import {mapGetters,mapActions} from 'vuex'
 import Header from "@/components/Header.vue";
 import Event from "@/components/Event.vue";
 import Wave from "@/components/Wave.vue";
@@ -40,6 +40,11 @@ import AddEvent from "@/components/AddEvent.vue";
 
 export default {
   name: "Events",
+  computed:{
+    ...mapGetters({
+      'events':'events/getAllEvents'
+    })
+  },
   components: {
     Header,
     Event,
@@ -53,10 +58,23 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      getEvents:'events/getEvents',
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
     toggleAdd() {
       this.showAddEvent = !this.showAddEvent;
     },
   },
+  created(){
+    console.log('loadinf Events')
+    this.getEvents().then((result) => {
+      this.successAlert('events loaded sucessfully')
+    }).catch((err) => {
+      this.errorAlert('error loading events')
+    });
+  }
 };
 </script>
 
