@@ -78,6 +78,5 @@ export default createStore({
     members,
     events,
   },
-  plugins: [createPersistedState({
-  })],
+  plugins: [createPersistedState({})],
 })
