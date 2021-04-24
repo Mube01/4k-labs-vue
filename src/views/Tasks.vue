@@ -97,7 +97,7 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
-
+          <Activities/>
           <h5>Tasks</h5>
           <Add
             v-if="project.members.includes(user_info.user_id)"
@@ -125,6 +125,7 @@
 </template>
 
 <script>
+import Activities from "@/components/Activities.vue";
 import Header from "@/components/Header.vue";
 import Task from "@/components/Task.vue";
 import Add from "@/components/Add.vue";
@@ -134,6 +135,7 @@ import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
 import Loading from "@/components/Loading.vue";
 import Wave from "@/components/Wave.vue";
+
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -149,6 +151,7 @@ export default {
     AddMember,
     Loading,
     Wave,
+    Activities
   },
   data() {
     return {

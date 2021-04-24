@@ -3,12 +3,14 @@ var axios = require('axios');
 
 function changeMemberRole(user_id,role){
     var data = JSON.stringify({"user_id":user_id,"Role":role});
-
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
     var config = {
     method: 'put',
     url: 'http://127.0.0.1:5000/api_v1/changeRole',
     headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
     },
     data : data
     };
@@ -33,11 +35,15 @@ function getMembers() {
 
 function updateProjectMembers(data) {
 
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
+
     var config = {
         method: 'post',
         url: 'http://127.0.0.1:5000//api_v1/project/updatemembers',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         data: JSON.stringify(data)
     };
@@ -46,14 +52,16 @@ function updateProjectMembers(data) {
 }
 
 function changeMemberDivision(user_id,division){
-    var axios = require('axios');
     var data = JSON.stringify({"user_id":user_id,"division":division});
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
 
     var config = {
     method: 'post',
     url: 'http://127.0.0.1:5000/api_v1/changeDivision',
     headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
     },
     data : data
     };

@@ -1,5 +1,6 @@
 <template>
   <div class="card col-md-12">
+ 
     <div class="card-body">
       <div class="form-check">
         <input
@@ -59,8 +60,13 @@
 </template>
 
 <script>
+
+import draggable from 'vuedraggable'
+
 export default {
-  components: {},
+  components: {
+    // draggable
+  },
   name: "Task",
   props: {
     task: {
