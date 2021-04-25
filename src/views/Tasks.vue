@@ -97,7 +97,7 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
-          <Activities/>
+          <Activities :project_code ="project.project_code"/>
           <h5>Tasks</h5>
           <Add
             v-if="project.members.includes(user_info.user_id)"
@@ -116,6 +116,7 @@
             :key="task.task_code"
             v-for="task in project.tasks"
             :task="task"
+            :project_code= "project.project_code"
           />
         </div>
       </div>
