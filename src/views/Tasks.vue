@@ -97,27 +97,11 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
+           <h5>Tasks</h5>
+           <br>
+           <br>
           <Activities :project_code ="project.project_code"/>
-          <h5>Tasks</h5>
-          <Add
-            v-if="project.members.includes(user_info.user_id)"
-            @toggle-add="toggleAdd"
-            :text="showAddTask ? 'X Close' : '+ Add New Task'"
-            :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
-          />
-          <div v-show="showAddTask">
-            <AddTask
-              @taskAdded="showAddTask = false"
-              :project_code="project_code"
-            />
-          </div>
-
-          <Task
-            :key="task.task_code"
-            v-for="task in project.tasks"
-            :task="task"
-            :project_code= "project.project_code"
-          />
+         
         </div>
       </div>
     </div>
@@ -128,9 +112,6 @@
 <script>
 import Activities from "@/components/Activities.vue";
 import Header from "@/components/Header.vue";
-import Task from "@/components/Task.vue";
-import Add from "@/components/Add.vue";
-import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
@@ -144,9 +125,6 @@ export default {
   name: "Tasks",
   components: {
     Header,
-    Task,
-    Add,
-    AddTask,
     MultiSelect,
     ProfilePicture,
     AddMember,
@@ -159,7 +137,7 @@ export default {
       showAddMember: false,
       showAddTask: false,
       project_code: this.$router.currentRoute._value.params.projectCode,
-      loading: true,
+      loading: false,
     };
   },
   methods: {
@@ -189,15 +167,6 @@ export default {
         })
         .catch((err) => {});
     },
-  },
-  created() {
-    this.fetchProject(this.project_code)
-      .then((result) => {
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   },
   computed: {
     project(){
