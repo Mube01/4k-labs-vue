@@ -61,8 +61,6 @@
 
 <script>
 
-import draggable from 'vuedraggable'
-
 export default {
   components: {
     // draggable
@@ -72,6 +70,7 @@ export default {
     task: {
       type: Object,
     },
+    project_code:String
   },
   data() {
     return {
@@ -111,7 +110,7 @@ export default {
     },
     delteTask(task_code) {
       this.$store
-        .dispatch("projects/deleteTask", task_code)
+        .dispatch("projects/deleteTask", {task_code:task_code,project_code:this.project_code})
         .then((result) => {
           console.log(result);
         })

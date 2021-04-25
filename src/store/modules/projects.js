@@ -26,9 +26,17 @@ export default {
         },
         projectMemberGetter:(state)=>{
             return state.project.members
+        },
+        /**
+         * get project task by project_code and status
+         */
+        getProjectTasks: (state)=>(data)=>{
+            var pro = state.projects.find((project)=>project.project_code === data.project_code)
+            return pro.tasks.filter((task)=>task.status === data.status);
         }
     },
     actions: {
+        
         getAllProjects({ commit, dispatch }) {
             return new Promise((resolve, reject) => {
                 projectsApi.fetchProjects().then((result) => {
@@ -68,24 +76,26 @@ export default {
                 })
             })
         },
-        completeTask({ commit, dispatch }, data) {
-            return new Promise((resolve, reject) => {
-                var ans = tasksApi.completeTask(data.task_code).then((result) => {
-                    commit('completeTask', data)
-                    commit('updateProgress')
-                    resolve(result.data)
-                }).catch((err) => {
-                    if (err.response.status == 401) {
-                        dispatch('auth/logoutUser', err.response.data, { root: true })
-                    }
-                    reject(err.response.data)
+        // TODO remve the tasks data from the back end 
+        updateTask({commit,dispatch},data){
+            console.log('the data is ',data.destination)              
+            if(data.destination.value[0]){
+                return new Promise((resolve,reject)=>{
+                    tasksApi.updateTask(data.destination.value[0].task_code,data.destination.status).then((result) => {
+                        commit('updateTask',data)
+                    }).catch((err) => {
+                        if (err.response.status == 401) {
+                            dispatch('auth/logoutUser', err.response.data, { root: true })
+                        }
+                        reject(err.response.data)
+                    });
                 })
-            })
+            }
         },
-        deleteTask({ commit, dispatch }, task_code) {
+        deleteTask({ commit, dispatch }, data) {
             return new Promise((resolve, reject) => {
-                var ans = tasksApi.deleteTask(task_code).then((result) => {
-                    commit('deleteTask', task_code)
+                var ans = tasksApi.deleteTask(data.task_code).then((result) => {
+                    commit('deleteTask', data)
                     commit('updateProgress')
                     resolve(result.data)
                 }).catch((err) => {
@@ -99,7 +109,7 @@ export default {
         addTask({ commit, dispatch }, data) {
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.addTask(data.project_code, data.task).then((result) => {
-                    commit('addTask', result.data.task)
+                    commit('addTask', {'task':result.data.task,'project_code':data.project_code})
                     commit('updateProgress')
                     resolve(result.data)
                 }).catch((err) => {
@@ -168,20 +178,22 @@ export default {
          * 
          * the data.completed is change to reverse of previos in terms of string 
          */
-        completeTask(state, data) {
+         updateTask(state, data) {
+            console.log('the data is  and updated',data.destination.value)
+            var i = state.projects.findIndex((project)=>project.project_code === data.destination.value[0].project_code)
+            var index = state.projects[i].tasks.findIndex((task)=>task.task_code === data.destination.value[0].task_code)
+            state.projects[i].tasks[index].status = data.destination.status
+            // var copyTasks = state.project.tasks
+            // data.completed = (data.completed == '1') ? '0' : '1'
+            // console.log('the reversed is ',data.completed)
+            // for (var i = 0; i < copyTasks.length; i++) {
+            //     if(copyTasks[i].task_code == data.task_code){
 
-            console.log('the original  is ',data.completed)
-            var copyTasks = state.project.tasks
-            data.completed = (data.completed == '1') ? '0' : '1'
-            console.log('the reversed is ',data.completed)
-            for (var i = 0; i < copyTasks.length; i++) {
-                if(copyTasks[i].task_code == data.task_code){
-
-                    console.log('the copy is ',copyTasks[i].task_code,' ',data.task_code)
-                    copyTasks[i].completed = data.completed
-                }
-            }
-            console.log(copyTasks)
+            //         console.log('the copy is ',copyTasks[i].task_code,' ',data.task_code)
+            //         copyTasks[i].completed = data.completed
+            //     }
+            // }
+            // console.log(copyTasks)
             // state.project.tasks = ['abel','abebe'];
         },
         /**
@@ -219,17 +231,32 @@ export default {
             }
 
         },
-        deleteTask(state, task_code) {
+        deleteTask(state, data) {
             var filteredTasks = []
             state.project.tasks.forEach(element => {
-                if (element.task_code !== task_code) {
+                if (element.task_code !== data.task_code) {
                     filteredTasks.push(element)
                 }
             });
+            console.log('the filted task is ',filteredTasks)
             state.project.tasks = filteredTasks
+
+
+            for(let i=0; i<state.projects.length; i++ ){
+                if(state.projects[i].project_code === data.project_code){
+                    state.projects[i].tasks = state.projects[i].tasks.filter((task)=>task.task_code !== data.task_code)
+                }
+            }
+
         },
-        addTask(state, task) {
-            state.project.tasks.push(task)
+        addTask(state, data) {
+            for(let i=0; i<state.projects.length; i++ ){
+                if(state.projects[i].project_code === data.project_code){
+                    state.projects[i].tasks.push(data.task)
+                    break;
+                }
+            }
+            state.project.tasks.push(data.task)
         },
         addProject(state, project) {
             state.projects.push(project)
@@ -248,7 +275,7 @@ export default {
                 }
             });
             state.project.team_members = finalSelect
-        }
+        },
     }
 };
 

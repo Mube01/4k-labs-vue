@@ -1,85 +1,257 @@
 <template>
   <div class="row">
-    <div class="col-3">
-      <h3>Draggable 1</h3>
+
+    
+
+    <div class="col-4">
+      <h3>Todos</h3>
       <draggable
         class="list-group"
-        v-model="list1"
-        @start="drag=true" 
-        @end="drag=false" 
+        v-model="todos"
         group="people"
-        item-key="id"
+        itemKey="id"
       >
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
+        <template #item="{ element }">
+          <div class="list-group-item">
+          {{ element.task }} 
+
+          <div class="more">
+        <div class="dropdown">
+          <i
+            title="More options"
+            class="fa fa-ellipsis-v"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="false"
+            aria-expanded="false"
+            aria-hidden="false"
+          ></i>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" @click="todoEdit = true">Rename</a>
+            <a class="dropdown-item" @click="delteTask(element.task_code)"
+              >Delete</a
+            >
+          </div>
+        </div>
+          </div>
+    </div>
+        </template>
+        <template #footer>
+          <div class="btn-group list-group-item" role="group">
+            <AddTask
+              @taskAdded="showAddTask = false"
+              :project_code="project_code"
+            />
+          </div>
         </template>
       </draggable>
     </div>
 
-    <div class="col-3">
-      <h3>Draggable 2</h3>
+    <div class="col-4">
+      <h3>In Progress</h3>
       <draggable
         class="list-group"
-        :list="list2"
+        v-model="inProgress"
         group="people"
-        @change="log"
-        itemKey="name"
+        itemKey="id"
       >
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
+        <template #item="{ element }">
+          <div class="list-group-item">
+          {{ element.task }} 
+
+          <div class="more">
+        <div class="dropdown">
+          <i
+            title="More options"
+            class="fa fa-ellipsis-v"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="false"
+            aria-expanded="false"
+            aria-hidden="false"
+          ></i>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" @click="todoEdit = true">Rename</a>
+            <a class="dropdown-item" @click="delteTask(element.task_code)"
+              >Delete</a
+            >
+          </div>
+        </div>
+          </div>
+          </div>
         </template>
+
       </draggable>
     </div>
 
-    <div class="col-3">
-      <h3>Draggable 3</h3>
+  <div class="col-4">
+      <h3>Completed</h3>
       <draggable
         class="list-group"
-        :list="list3"
+        v-model="completed"
         group="people"
-        @change="log"
-        itemKey="name"
+        itemKey="id"
       >
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
+        <template #item="{ element }">
+          <div class="list-group-item">
+          {{ element.task }} 
+
+<div class="more">
+        <div class="dropdown">
+          <i
+            title="More options"
+            class="fa fa-ellipsis-v"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="false"
+            aria-expanded="false"
+            aria-hidden="false"
+          ></i>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" @click="todoEdit = true">Rename</a>
+            <a class="dropdown-item" @click="delteTask(element.task_code)"
+              >Delete</a
+            >
+          </div>
+        </div>
+          </div>          </div>
         </template>
+
       </draggable>
     </div>
 
-
-    <rawDisplayer class="col-3" :value="list1" title="List 1" />
-
-    <rawDisplayer class="col-3" :value="list2" title="List 2" />
   </div>
 </template>
 <script>
-  import draggable from 'vuedraggable'
+import AddTask from "@/components/AddTask.vue";
+import draggable from 'vuedraggable'
+import {mapActions} from 'vuex';
 export default {
   name: "Activities",
-  display: "Two Lists",
-  order: 1,
+  props:{
+    project_code:{
+      type:String,
+    }
+  },
   components: {
-    draggable
+    draggable,
+    AddTask
   },
   data() {
     return {
-      list1: [
-        { name: "John", id: 1 },
-        { name: "Joao", id: 2 },
-        { name: "Jean", id: 3 },
-        { name: "Gerard", id: 4 }
-      ],
-      list2: [
-        { name: "Juan", id: 5 },
-        { name: "Edgard", id: 6 },
-        { name: "Johnson", id: 7 }
-      ],
-      list3:[
+      newtask:"",
+      destination:{
+        'known':false,
+        'value':'',
+        'status':''
+      },
 
-      ]
     };
   },
   methods: {
+    ...mapActions({
+      'updateTask':'projects/updateTask'
+    }),
+    rename(data) {
+      if (this.task_name_changed) {
+        var reqest_payload = {
+          task_code: data.task_code,
+          task: data.task,
+        };
+
+        this.$store
+          .dispatch("projects/renameTask", reqest_payload)
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    completeTask(task_code, completed) {
+      this.$store
+        .dispatch("projects/completeTask", { task_code, completed })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    delteTask(task_code) {
+      this.$store
+        .dispatch("projects/deleteTask", {task_code:task_code,project_code:this.project_code})
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  computed:{
+     
+    todos:{
+      get(){
+        return this.$store.getters['projects/getProjectTasks']({'project_code':this.project_code,'status':0})
+        // return this.list1
+      },
+      set(value){
+
+        if (this.destination.known === false){
+          let result = value.filter(o1 => !this.todos.some(o2 => o1.task_code === o2.task_code));
+          this.destination.known = true
+          this.destination.value = result
+          this.destination.status = 0
+        }else{
+          this.updateTask({destination:this.destination,project_code:this.project_code})
+          this.destination.known = false
+        }
+      }
+    },
+    inProgress:{
+
+      get(){
+        return this.$store.getters['projects/getProjectTasks']({'project_code':this.project_code,'status':1})
+
+      },
+      set(value){
+        if (this.destination.known === false){
+
+          let result = value.filter(o1 => !this.inProgress.some(o2 => o1.task_code === o2.task_code));
+          this.destination.known = true
+          this.destination.value = result
+          this.destination.status = 1
+
+        }else{
+          this.updateTask({destination:this.destination,project_code:this.project_code})
+          this.destination.known = false
+        }
+      }
+    },
+    completed:{
+      get(){
+        return this.$store.getters['projects/getProjectTasks']({'project_code':this.project_code,'status':2})
+
+      },
+      set(value){
+        if (this.destination.known === false){
+          let result = value.filter(o1 => !this.completed.some(o2 => o1.task_code === o2.task_code));
+          this.destination.known = true
+          this.destination.value = result
+          this.destination.status = 2        
+        }else{
+          this.updateTask({destination:this.destination,project_code:this.project_code})
+          this.destination.known = false
+        }
+      }
+    }
+
   }
 };
 </script>

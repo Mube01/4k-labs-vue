@@ -20,13 +20,13 @@ function renameTask(task_code,task_name){
 
 }
 
-function completeTask(task_code){
-    var data = JSON.stringify({"task_code":task_code});
+function updateTask(task_code,status){
+    var data = JSON.stringify({"task_code":task_code,"status":status});
     var token = localStorage.getItem('access_token') || ''
     token = token.substring(1,token.length-1)
     var config = {
     method: 'put',
-    url: 'http://127.0.0.1:5000/api_v1/completeTask',
+    url: 'http://127.0.0.1:5000/api_v1/updateTask',
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -77,4 +77,4 @@ function addTask(project_code,task){
 
 
 
-export default {renameTask,completeTask,deleteTask,addTask}
+export default {renameTask,updateTask,deleteTask,addTask}
