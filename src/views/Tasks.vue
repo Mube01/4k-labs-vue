@@ -200,8 +200,10 @@ export default {
       });
   },
   computed: {
+    project(){
+      return this.$store.getters["projects/getProjectByProjectCode"](this.project_code)
+    },
     ...mapGetters({
-      project: "projects/getProject",
       allMembers: "members/getMembers",
       user_info: "user/getUserInformation",
     }),

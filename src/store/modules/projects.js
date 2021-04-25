@@ -33,6 +33,9 @@ export default {
         getProjectTasks: (state)=>(data)=>{
             var pro = state.projects.find((project)=>project.project_code === data.project_code)
             return pro.tasks.filter((task)=>task.status === data.status);
+        },
+        getProjectByProjectCode:(state)=>(project_code)=>{
+            return state.projects.find((project)=>project.project_code === project_code)
         }
     },
     actions: {
@@ -83,6 +86,7 @@ export default {
                 return new Promise((resolve,reject)=>{
                     tasksApi.updateTask(data.destination.value[0].task_code,data.destination.status).then((result) => {
                         commit('updateTask',data)
+                        commit('updateProgress',data.project_code)
                     }).catch((err) => {
                         if (err.response.status == 401) {
                             dispatch('auth/logoutUser', err.response.data, { root: true })
@@ -96,7 +100,7 @@ export default {
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.deleteTask(data.task_code).then((result) => {
                     commit('deleteTask', data)
-                    commit('updateProgress')
+                    commit('updateProgress',data.project_code)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -110,7 +114,7 @@ export default {
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.addTask(data.project_code, data.task).then((result) => {
                     commit('addTask', {'task':result.data.task,'project_code':data.project_code})
-                    commit('updateProgress')
+                    commit('updateProgress',data.project_code)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -199,19 +203,17 @@ export default {
         /**
          * this update progress doesn't take any parameter
          */
-        updateProgress(state) {
-
-            var total = 0
-            let len = state.project.tasks.length
-
+        updateProgress(state,project_code) {
+            console.log('got here with project code ',project_code)
+            var total = 0;
+            let index = state.projects.findIndex((project)=>project.project_code === project_code)
+            let len = state.projects[index].tasks.length    
             for (let i = 0; i < len; i++) {
-                if (state.project.tasks[i].completed == '1') {
+                if (state.projects[index].tasks[i].status === 2) {
                     total++;
                 }
             }
             var percentile = 0
-
-            console.log('the total is ',total);
 
             if(total==0){
                 percentile = 0;
@@ -220,16 +222,7 @@ export default {
             }
 
             console.log('the percentiole is ',percentile,' ', total)
-            state.project.progress = percentile.toFixed(2)
-
-            // change the percentile from the parent component
-            var code = state.project.project_code
-            for (let i = 0; i < state.projects.length; i++) {
-                if (state.projects[i].project_code == code) {
-                    state.projects[i].progress = percentile
-                }
-            }
-
+            state.projects[index].progress = percentile.toFixed(2)
         },
         deleteTask(state, data) {
             var filteredTasks = []
