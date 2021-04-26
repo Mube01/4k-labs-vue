@@ -2,10 +2,7 @@
   <div class="card">
     <img
       class="card-img-top"
-      :src="
-        `/api_v1/get_event/${event.event_image}?` +
-        new Date().getTime()
-      "
+      :src="`/api_v1/get_event/${event.event_image}?` + new Date().getTime()"
       alt="Card image"
     />
     <div class="card-body">
@@ -47,6 +44,7 @@ export default {
 }
 .card-img-top {
   height: 350px;
+  object-fit: initial;
 }
 .left {
   float: left;
