@@ -6,15 +6,14 @@
         <div class="row">
           <div class="image col-md-6">
             <img
-               :src="
-                  `/api_v1/get_event/${event.event_image}?` +
-                  new Date().getTime()
-                "
-             />
+              :src="
+                `/api_v1/get_event/${event.event_image}?` + new Date().getTime()
+              "
+            />
           </div>
           <div class="status col-md-6">
             <div class="left">
-              <h3>{{event.event_title}}</h3>
+              <h3>{{ event.event_title }}</h3>
             </div>
             <div class="right">
               <router-link class="card-link" :to="{ name: 'UpdateEvent' }">
@@ -27,11 +26,11 @@
               <p>Ending Date:</p>
             </div>
             <div class="right">
-              <p>{{event.event_start}}</p>
-              <p>{{event.event_end}}</p>
+              <p>{{ event.event_start }}</p>
+              <p>{{ event.event_end }}</p>
             </div>
             <h5>Description</h5>
-            <p class="desc">{{event.event_description}}</p>
+            <p class="desc">{{ event.event_description }}</p>
           </div>
         </div>
         <div class="row">
@@ -56,43 +55,45 @@
 
 
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 import Header from "@/components/Header.vue";
 import GalleryImage from "@/components/GalleryImage.vue";
 import Wave from "@/components/Wave.vue";
 
 export default {
   name: "EventDetail",
-  methods:{
+  methods: {
     ...mapActions({
-      deleteEvent:'events/deleteEvent',
+      deleteEvent: "events/deleteEvent",
       errorAlert: "errorAlert",
       successAlert: "successAlert",
     }),
-    eventDelete(){
-      this.deleteEvent(this.event_id).then((result) => {
-        this.successAlert(result.message)
-        this.$router.push({ name: "Events" });
-      }).catch((err) => {
-        this.errorAlert(err)
-      });
-    }
+    eventDelete() {
+      this.deleteEvent(this.event_id)
+        .then((result) => {
+          this.successAlert(result.message);
+          this.$router.push({ name: "Events" });
+        })
+        .catch((err) => {
+          this.errorAlert(err);
+        });
+    },
   },
   data() {
     return {
-      event_id : this.$route.params.event_id
-    }
+      event_id: this.$route.params.event_id,
+    };
   },
   components: {
     Header,
     GalleryImage,
     Wave,
   },
-  computed:{
-    event(){
-      return this.$store.getters['events/getEventById'](this.event_id)
-    }
-  }
+  computed: {
+    event() {
+      return this.$store.getters["events/getEventById"](this.event_id);
+    },
+  },
 };
 </script>
 
@@ -110,7 +111,8 @@ export default {
 .card-link:hover {
   color: #8b5e3b;
 }
-.far,.fas {
+.far,
+.fas {
   float: none;
   font-size: 28px;
 }
@@ -120,16 +122,18 @@ export default {
 .status {
   padding: 60px 20px;
 }
-img {
+.image img {
   width: 100%;
+  height: 40vh;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  object-fit: initial;
 }
 h3 {
   font-weight: 700;
   font-size: 25px;
-  margin: -10px 0 30px 15px;
+  margin: -10px 0 30px 0;
 }
 .left {
   clear: both;
