@@ -8,7 +8,7 @@ function generateToken(division){
 
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/generate_token',
+    url: '/api_v1/generate_token',
     headers: { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
@@ -27,7 +27,7 @@ function listTokens(){
 
     var config = {
     method: 'get',
-    url: 'http://127.0.0.1:5000/api_v1/list_tokens',
+    url: '/api_v1/list_tokens',
     headers: {
         Authorization: `Bearer ${token}`,
     }
@@ -43,7 +43,7 @@ function deleteToken(token){
 
     var config = {
         method: 'get',
-        url: `http://127.0.0.1:5000/api_v1/delete_token/${token}`,
+        url: `/api_v1/delete_token/${token}`,
         headers: {
             Authorization: `Bearer ${access_token}`,
         }

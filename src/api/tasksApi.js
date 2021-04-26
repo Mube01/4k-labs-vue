@@ -7,7 +7,7 @@ function renameTask(task_code,task_name){
     token = token.substring(1,token.length-1)
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/renameTask',
+    url: '/api_v1/renameTask',
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ function updateTask(task_code,status){
     token = token.substring(1,token.length-1)
     var config = {
     method: 'put',
-    url: 'http://127.0.0.1:5000/api_v1/updateTask',
+    url: '/api_v1/updateTask',
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ function deleteTask(task_code){
     token = token.substring(1,token.length-1)
     var config = {
     method: 'post',
-    url: `http://127.0.0.1:5000/api_v1/deleteTask/${task_code}`,
+    url: `/api_v1/deleteTask/${task_code}`,
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

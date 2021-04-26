@@ -6,7 +6,7 @@ function login (username,password){
     var data = JSON.stringify({"username":username,"password":password});
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/login',
+    url: '/api_v1/login',
     headers: { 
         'Content-Type': 'application/json',
     },
@@ -19,7 +19,7 @@ function register(fullname,username,password,token){
 
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/register_member',
+    url: '/api_v1/register_member',
     headers: { 
         'Content-Type': 'application/json'
     },
@@ -35,7 +35,7 @@ function adminLogin(username,password){
 
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/adminlogin',
+    url: '/api_v1/adminlogin',
     headers: { 
         'Content-Type': 'application/json'
     },

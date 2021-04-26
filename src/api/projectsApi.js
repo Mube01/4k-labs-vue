@@ -6,7 +6,7 @@ function fetchProjects() {
     token = token.substring(1, token.length - 1)
     var config = {
         method: 'get',
-        url: 'http://127.0.0.1:5000/api_v1/get_projects',
+        url: '/api_v1/get_projects',
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -24,7 +24,7 @@ function fetchProject(project_code) {
     token = token.substring(1, token.length - 1)
     var config = {
         method: 'get',
-        url: `http://127.0.0.1:5000/api_v1/get_projects/${project_code}`,
+        url: `/api_v1/get_projects/${project_code}`,
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -36,7 +36,7 @@ function fetchProject(project_code) {
 function createNewProject(data) {
     var config = {
         method: 'post',
-        url: 'http://127.0.0.1:5000/api_v1/create_new_project',
+        url: '/api_v1/create_new_project',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -58,7 +58,7 @@ function deleteProject(project_code){
 
     var config = {
     method: 'get',
-    url: `http://127.0.0.1:5000/api_v1/delete_project/${project_code}`,
+    url: `/api_v1/delete_project/${project_code}`,
     headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -76,7 +76,7 @@ function updateProject(data){
     
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/updateproject',
+    url: '/api_v1/updateproject',
     headers: { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,

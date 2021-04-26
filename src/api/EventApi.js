@@ -7,7 +7,7 @@ function getEvents(){
 
     var config = {
     method: 'get',
-    url: 'http://127.0.0.1:5000/api_v1/get_events',
+    url: '/api_v1/get_events',
     headers: {
         'Authorization': `Bearer ${token}`,
      }
@@ -23,7 +23,7 @@ function addEvent(data){
 
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/add_event',
+    url: '/api_v1/add_event',
     headers: { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
@@ -41,7 +41,7 @@ function deleteEvent(event_id){
 
     var config = {
     method: 'get',
-    url: `http://127.0.0.1:5000/api_v1/delete_event/${event_id}`,
+    url: `/api_v1/delete_event/${event_id}`,
     headers: {
         'Authorization': `Bearer ${token}`,
      }

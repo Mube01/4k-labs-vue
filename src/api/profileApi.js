@@ -45,7 +45,6 @@ function updateAdminProfile(data){
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
-
     },
     data : data
     };
