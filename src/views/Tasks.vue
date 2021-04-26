@@ -8,10 +8,10 @@
           <div class="status">
             <h3>{{ project.project_title }}</h3>
             <div class="links">
-              <a :href="project.github" class="card-link"
+              <a target="_blank" :href="project.github" class="card-link"
                 ><i title="Github link" class="fab fa-github"></i
               ></a>
-              <a :href="project.docs" class="card-link"
+              <a target="_blank" :href="project.docs" class="card-link"
                 ><i title="Google Docs link" class="far fa-file-alt"></i
               ></a>
 
@@ -97,26 +97,11 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
-
-          <h5>Tasks</h5>
-          <Add
-            v-if="project.members.includes(user_info.user_id)"
-            @toggle-add="toggleAdd"
-            :text="showAddTask ? 'X Close' : '+ Add New Task'"
-            :border="showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'"
-          />
-          <div v-show="showAddTask">
-            <AddTask
-              @taskAdded="showAddTask = false"
-              :project_code="project_code"
-            />
-          </div>
-
-          <Task
-            :key="task.task_code"
-            v-for="task in project.tasks"
-            :task="task"
-          />
+           <h5>Tasks</h5>
+           <br>
+           <br>
+          <Activities :project_code ="project.project_code"/>
+         
         </div>
       </div>
     </div>
@@ -125,15 +110,14 @@
 </template>
 
 <script>
+import Activities from "@/components/Activities.vue";
 import Header from "@/components/Header.vue";
-import Task from "@/components/Task.vue";
-import Add from "@/components/Add.vue";
-import AddTask from "@/components/AddTask.vue";
 import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
 import Loading from "@/components/Loading.vue";
 import Wave from "@/components/Wave.vue";
+
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -141,21 +125,19 @@ export default {
   name: "Tasks",
   components: {
     Header,
-    Task,
-    Add,
-    AddTask,
     MultiSelect,
     ProfilePicture,
     AddMember,
     Loading,
     Wave,
+    Activities
   },
   data() {
     return {
       showAddMember: false,
       showAddTask: false,
       project_code: this.$router.currentRoute._value.params.projectCode,
-      loading: true,
+      loading: false,
     };
   },
   methods: {
@@ -186,18 +168,11 @@ export default {
         .catch((err) => {});
     },
   },
-  created() {
-    this.fetchProject(this.project_code)
-      .then((result) => {
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
   computed: {
+    project(){
+      return this.$store.getters["projects/getProjectByProjectCode"](this.project_code)
+    },
     ...mapGetters({
-      project: "projects/getProject",
       allMembers: "members/getMembers",
       user_info: "user/getUserInformation",
     }),

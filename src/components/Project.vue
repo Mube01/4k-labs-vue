@@ -6,12 +6,13 @@
         <p>Division: {{ project.Division }}</p>
       </h3>
       <div class="links">
-        <a :href="project.github" class="card-link"
+        <router-link :to="{name:'External-Link' ,  params: { url: project.github || '#' } }"  class="card-link"
           ><i title="Github link" class="fab fa-github"></i
-        ></a>
-        <a :href="project.docs" class="card-link"
+        ></router-link>
+
+        <router-link :to="{name:'External-Link',  params: { url : project.docs || '#' } }"  class="card-link"
           ><i title="Google Docs link" class="far fa-file-alt"></i
-        ></a>
+        ></router-link>
       </div>
       <p style="clear: both">
         <span style="float: left">Progress:</span>

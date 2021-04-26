@@ -118,6 +118,14 @@ const routes = [
     name: '404',
     component: () => import('../views/404.vue')
   },
+  {
+    path: '/redirect/:url',
+    name: 'External-Link',
+    beforeEnter(to) {
+      // Put the full page URL including the protocol http(s) below
+      window.location.replace(to.params.url)
+  }
+  },
 ]
 
 const router = createRouter({

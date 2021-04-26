@@ -21,7 +21,6 @@ export default {
         adminLogin({dispatch,commit},{username,password}){
             return new Promise((resolve,reject)=>{
                 adminLogin(username,password).then((result) => {
-                    console.log(result.data)
                     localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
@@ -54,6 +53,7 @@ export default {
                 commit('authLogout')
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("refresh_token");
+                localStorage.removeItem("vuex");
                 router.push('/login')    
                 resolve();
             })

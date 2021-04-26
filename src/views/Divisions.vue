@@ -36,7 +36,7 @@ export default {
   name: "Divisions",
   computed: {
     ...mapGetters({
-      user_info: "user/isSuperAdmin",
+      user_info: "user/getUserInformation",
     }),
   },
   methods: {

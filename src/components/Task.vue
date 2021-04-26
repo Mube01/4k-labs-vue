@@ -1,5 +1,6 @@
 <template>
   <div class="card col-md-12">
+ 
     <div class="card-body">
       <div class="form-check">
         <input
@@ -59,13 +60,17 @@
 </template>
 
 <script>
+
 export default {
-  components: {},
+  components: {
+    // draggable
+  },
   name: "Task",
   props: {
     task: {
       type: Object,
     },
+    project_code:String
   },
   data() {
     return {
@@ -105,7 +110,7 @@ export default {
     },
     delteTask(task_code) {
       this.$store
-        .dispatch("projects/deleteTask", task_code)
+        .dispatch("projects/deleteTask", {task_code:task_code,project_code:this.project_code})
         .then((result) => {
           console.log(result);
         })
