@@ -5,11 +5,11 @@ TODO<br/>
     [x]change role options for the admin\
     [x]assign teamleader for the project\
     [x]refresh token after request on the backend\
-    [ ]route access decorators on the backend\
+    [x]route access decorators on the backend\
     [x]remove the # sign from the routes\
     [x] update profile picture automatically\
-    [ ] add proxy for the api\
-    [ ] add busy loading while fetching data from the backend\
+    [x] add proxy for the api\
+    [x] add busy loading while fetching data from the backend\
     [x] update profile from anoter page\
     [x] update project name and description\
     [x] delete token for the admin\

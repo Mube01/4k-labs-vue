@@ -1,21 +1,31 @@
 const axios = require('axios');
 
 function fetchProfile(user_id){
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
     var config = {
     method: 'get',
-    url: `http://127.0.0.1:5000/api_v1/members/${user_id}`,
+    url: `/api_v1/members/${user_id}`,
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }
     };
+
+    
 
     return axios(config)
 }
 
 function updateProfile(data){
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
 
     var config = {
     method: 'put',
-    url: `http://127.0.0.1:5000/api_v1/${data.user_id}/upadate_infromation`,
+    url: `/api_v1/${data.user_id}/upadate_infromation`,
     headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
     },
     data : JSON.stringify(data)
     };
@@ -26,11 +36,16 @@ function updateProfile(data){
 function updateAdminProfile(data){
     data = JSON.stringify({"username":data.username,"password":data.password,"newpassword":data.newpassword,"user_id":data.user_id});
 
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
+
     var config = {
     method: 'put',
-    url: 'http://127.0.0.1:5000/api_v1/upadate_admin_profile',
+    url: '/api_v1/upadate_admin_profile',
     headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+
     },
     data : data
     };
