@@ -7,7 +7,7 @@
           <div class="image col-md-6">
             <img
                :src="
-                  `http://127.0.0.1:5000/api_v1/get_event/${event.event_image}?` +
+                  `/api_v1/get_event/${event.event_image}?` +
                   new Date().getTime()
                 "
              />
