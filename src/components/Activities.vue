@@ -35,14 +35,38 @@
                       @click="delteTask(element.task_code)"
                       >Delete</a
                     >
-                    <a class="dropdown-item">Assign Member</a>
+                    <a
+                      class="dropdown-item"
+                      >Assign Task</a>                    
                   </div>
                 </div>
               </div>
               <p>Assigned to</p>
+              <ul>
+              <li
+                :key="member"
+                v-for="member in element.assigned_to"
+                style="margin-left: 10px"
+              >
+                {{getMemberInfo[member].username}}
+                <router-link
+                  :to="{
+                    name: 'Profile',
+                    params: { user_code: member },
+                  }"
+                >
+                  <ProfilePicture
+                    imgWeight="45px"
+                    fontSize="20px"
+                    :name="getMemberInfo[member].username[0]"
+                    :srcText="getMemberInfo[member]['profile_picture']"
+                  />
+                </router-link>
+              </li>
+            </ul>
             </div>
           </template>
-          <template #footer>
+          <template #header>
             <Add
               style="background-color: white; margin-left: 0px"
               @toggle-add="toggleAdd"
@@ -136,6 +160,7 @@
                       >Delete</a
                     >
                     <a class="dropdown-item">Assign Member</a>
+                    
                   </div>
                 </div>
               </div>
@@ -151,6 +176,7 @@
 import AddTask from "@/components/AddTask.vue";
 import Add from "@/components/Add.vue";
 import draggable from "vuedraggable";
+import ProfilePicture from "@/components/ProfilePicture.vue";
 import { mapActions } from "vuex";
 export default {
   name: "Activities",
@@ -163,6 +189,7 @@ export default {
     draggable,
     AddTask,
     Add,
+    ProfilePicture
   },
   data() {
     return {
@@ -225,6 +252,18 @@ export default {
   },
 
   computed: {
+    getMemberInfo(){
+      var data = {}
+      this.project.team_members.forEach(member => {
+        data[member.user_id] = member
+      });
+      return data
+    },
+    project() {
+      return this.$store.getters["projects/getProjectByProjectCode"](
+        this.project_code
+      );
+    },
     todos: {
       get() {
         return this.$store.getters["projects/getProjectTasks"]({
