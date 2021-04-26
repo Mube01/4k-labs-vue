@@ -63,7 +63,7 @@ function addTask(project_code,task){
     token = token.substring(1,token.length-1)
     var config = {
     method: 'post',
-    url: 'http://127.0.0.1:5000/api_v1/addTask',
+    url: '/api_v1/addTask',
     headers: { 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
