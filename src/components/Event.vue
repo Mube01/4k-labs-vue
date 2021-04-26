@@ -2,7 +2,7 @@
   <div class="card">
     <img class="card-img-top" 
       :src="
-        `http://127.0.0.1:5000/api_v1/get_event/${event.event_image}?` +
+        `/api_v1/get_event/${event.event_image}?` +
         new Date().getTime()
       "
      alt="Card image" />
