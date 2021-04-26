@@ -1,15 +1,18 @@
 <template>
   <div class="card">
-    <img class="card-img-top" 
+    <img
+      class="card-img-top"
       :src="
         `/api_v1/get_event/${event.event_image}?` +
         new Date().getTime()
       "
-     alt="Card image" />
+      alt="Card image"
+    />
     <div class="card-body">
-      <h3 class="card-title">{{event.event_title}}</h3>
-      <h4>{{event.event_start}} to {{event.event_end}}</h4>
-      <p class="card-text">{{event.event_description}}</p>
+      <h3 class="card-title">{{ event.event_title }}</h3>
+      <h4 class="left"><b>Start Date:</b> {{ event.event_start }}</h4>
+      <h4 class="right"><b>End Date:</b> {{ event.event_end }}</h4>
+      <p class="card-text">{{ event.event_description }}</p>
     </div>
   </div>
 </template>
@@ -17,11 +20,11 @@
 <script>
 export default {
   name: "Event",
-  props:{
-    event:{
-      type:Object,
-    }
-  }
+  props: {
+    event: {
+      type: Object,
+    },
+  },
 };
 </script>
 
@@ -45,15 +48,21 @@ export default {
 .card-img-top {
   height: 350px;
 }
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 h3 {
   font-weight: 700;
   font-size: 28px;
   margin: 5px 0 15px 0;
-  float: left;
   color: #a97c50;
+  text-align: left;
 }
 h4 {
-  float: right;
+  float: left;
   font-size: 18px;
   font-weight: 400;
   color: #333;
