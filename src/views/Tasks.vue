@@ -97,11 +97,10 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
-           <h5>Tasks</h5>
-           <br>
-           <br>
-          <Activities :project_code ="project.project_code"/>
-         
+          <h5>Tasks</h5>
+          <br />
+          <br />
+          <Activities :project_code="project.project_code" />
         </div>
       </div>
     </div>
@@ -118,7 +117,6 @@ import AddMember from "@/components/AddMember.vue";
 import Loading from "@/components/Loading.vue";
 import Wave from "@/components/Wave.vue";
 
-
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -130,7 +128,7 @@ export default {
     AddMember,
     Loading,
     Wave,
-    Activities
+    Activities,
   },
   data() {
     return {
@@ -169,8 +167,10 @@ export default {
     },
   },
   computed: {
-    project(){
-      return this.$store.getters["projects/getProjectByProjectCode"](this.project_code)
+    project() {
+      return this.$store.getters["projects/getProjectByProjectCode"](
+        this.project_code
+      );
     },
     ...mapGetters({
       allMembers: "members/getMembers",
@@ -262,5 +262,15 @@ button:hover {
   float: none;
   font-size: 29px;
   margin: 0;
+}
+@media screen and (max-width: 720px) {
+  .links,
+  h3 {
+    clear: both;
+  }
+  .links {
+    float: left;
+    margin: 5px 0 15px -14px;
+  }
 }
 </style>

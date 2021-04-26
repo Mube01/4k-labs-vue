@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="card-group">
       <div class="col-md-4 card">
         <h3>To Do</h3>
         <draggable
@@ -10,8 +10,8 @@
           itemKey="id"
         >
           <template #item="{ element }">
-            <div class="list-group-item">
-              {{ element.task }}
+            <div class="list-group-item1">
+              <span>{{ element.task }}</span>
 
               <div class="more">
                 <div class="dropdown">
@@ -39,23 +39,21 @@
                   </div>
                 </div>
               </div>
+              <p>Assigned to</p>
             </div>
           </template>
           <template #footer>
-            <div class="btn-group list-group-item" role="group">
-              <Add
-                @toggle-add="toggleAdd"
-                :text="showAddTask ? 'X Close' : '+ Add New Project'"
-                :border="
-                  showAddTask ? '3px dashed #B6212D' : '3px dashed #177F75'
-                "
-              />
-              <AddTask
-                v-show="showAddTask"
-                @taskAdded="showAddTask = false"
-                :project_code="project_code"
-              />
-            </div>
+            <Add
+              style="background-color: white; margin-left: 0px"
+              @toggle-add="toggleAdd"
+              :text="showAddTask ? 'X Close' : '+ Add New Task'"
+              :border="showAddTask ? '2px solid #B6212D' : '2px solid #177F75'"
+            />
+            <AddTask
+              v-show="showAddTask"
+              @taskAdded="showAddTask = false"
+              :project_code="project_code"
+            />
           </template>
         </draggable>
       </div>
@@ -69,8 +67,8 @@
           itemKey="id"
         >
           <template #item="{ element }">
-            <div class="list-group-item">
-              {{ element.task }}
+            <div class="list-group-item2">
+              <span>{{ element.task }}</span>
 
               <div class="more">
                 <div class="dropdown">
@@ -98,6 +96,7 @@
                   </div>
                 </div>
               </div>
+              <p>Assigned to</p>
             </div>
           </template>
         </draggable>
@@ -112,8 +111,8 @@
           itemKey="id"
         >
           <template #item="{ element }">
-            <div class="list-group-item">
-              {{ element.task }}
+            <div class="list-group-item3">
+              <span> {{ element.task }}</span>
               <div class="more">
                 <div class="dropdown">
                   <i
@@ -140,6 +139,7 @@
                   </div>
                 </div>
               </div>
+              <p>Assigned to</p>
             </div>
           </template>
         </draggable>
@@ -307,9 +307,19 @@ export default {
   padding: -10px;
 }
 .card {
-  background-color: #e8e8e8;
-  border-radius: 5px;
-  margin: 10px 5px;
+  background: #c9ccd3;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  background-blend-mode: lighten;
+  border-radius: 15px;
+  border: 2px solid #e6e6e6;
+  margin: 15px 10px;
+  box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
+  -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
 }
 h3 {
   font-size: 19px;
@@ -325,16 +335,39 @@ h3 {
   border: 0;
   margin-bottom: 10px;
 }
-.list-group-item {
+.list-group-item1 {
   padding: 20px;
-  font-size: 18px;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  border-radius: 10px;
+  margin: 8px 0;
+}
+.list-group-item2 {
+  padding: 20px;
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
-  border-radius: 5px;
+  border-radius: 10px;
+  margin: 8px 0;
+}
+.list-group-item3 {
+  padding: 20px;
+  background-image: linear-gradient(
+    106.1deg,
+    rgba(69, 242, 143, 0.52) 10.2%,
+    rgba(14, 228, 175, 0.61) 83.6%
+  );
+  border-radius: 10px;
   margin: 8px 0;
 }
 .dropdown-item {
   font-size: 17px;
   font-weight: 500;
+}
+span {
+  font-size: 19px;
+}
+p {
+  font-size: 15px;
+  margin: 3px 0 -3px 0;
 }
 </style>
