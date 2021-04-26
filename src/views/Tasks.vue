@@ -163,6 +163,7 @@ export default {
       };
       this.updatemembers(data)
         .then((result) => {
+          console.log(result)
           this.updateProjectMembers(data);
         })
         .catch((err) => {});

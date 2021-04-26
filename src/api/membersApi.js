@@ -43,7 +43,7 @@ function updateProjectMembers(data) {
 
     var config = {
         method: 'post',
-        url: '//api_v1/project/updatemembers',
+        url: '/api_v1/project/updatemembers',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,

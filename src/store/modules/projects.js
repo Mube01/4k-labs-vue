@@ -152,7 +152,7 @@ export default {
         },
         updateProjectMembers({commit,rootGetters},data){
             var allMembers = rootGetters['members/getMembers'];
-            commit('updateProjectMembers',{'selectedMembers':data.team_members,'allMembers':allMembers})
+            commit('updateProjectMembers',{'selectedMembers':data.team_members,'allMembers':allMembers,'project_code':data.project_code})
         },
         updateProject({ commit, dispatch }, data) {
             return new Promise((resolve, reject) => {
@@ -258,16 +258,23 @@ export default {
             state.projects = state.projects.filter((project)=>project.project_code!==project_code)
         },
         updateProjectMembers(state,members){
-            var selected = members.selectedMembers;
-            var all = members.allMembers
-            state.project.members = members.selectedMembers;
+            let selected = members.selectedMembers;
+            let all = members.allMembers
+            let project_code = members.project_code
+            let index = state.projects.findIndex((project)=>project.project_code === project_code)
+
+
+
+
+
+            state.projects[index].members = members.selectedMembers;
             var finalSelect = []
             all.forEach(element => {
                 if(selected.includes(element.user_id)){
                     finalSelect.push(element)
                 }
             });
-            state.project.team_members = finalSelect
+            state.projects[index].team_members = finalSelect
         },
     }
 };
