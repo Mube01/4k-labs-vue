@@ -20,23 +20,33 @@
                     class="fa fa-ellipsis-v"
                     id="dropdownMenuButton"
                     data-toggle="dropdown"
-                    aria-haspopup="false"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     aria-hidden="false"
                   ></i>
 
-                  <div
-                    class="dropdown-menu"
+                  <ul
+                    class="dropdown-menu multi-level"
+                    role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <a class="dropdown-item" @click="todoEdit = true">Rename</a>
-                    <a
+                    <li class="dropdown-item" @click="todoEdit = true">
+                      Rename
+                    </li>
+                    <li
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
-                      >Delete</a
                     >
-                    <a class="dropdown-item">Assign Member</a>
-                  </div>
+                      Delete
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item" tabindex="-1">Assign Member</a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item">Bella</li>
+                        <li class="dropdown-item">Mube</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <p>Assigned to</p>
@@ -82,18 +92,28 @@
                     aria-hidden="false"
                   ></i>
 
-                  <div
-                    class="dropdown-menu"
+                  <ul
+                    class="dropdown-menu multi-level"
+                    role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <a class="dropdown-item" @click="todoEdit = true">Rename</a>
-                    <a
+                    <li class="dropdown-item" @click="todoEdit = true">
+                      Rename
+                    </li>
+                    <li
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
-                      >Delete</a
                     >
-                    <a class="dropdown-item">Assign Member</a>
-                  </div>
+                      Delete
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item" tabindex="-1">Assign Member</a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item">Bella</li>
+                        <li class="dropdown-item">Mube</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <p>Assigned to</p>
@@ -125,18 +145,28 @@
                     aria-hidden="false"
                   ></i>
 
-                  <div
-                    class="dropdown-menu"
+                  <ul
+                    class="dropdown-menu multi-level"
+                    role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <a class="dropdown-item" @click="todoEdit = true">Rename</a>
-                    <a
+                    <li class="dropdown-item" @click="todoEdit = true">
+                      Rename
+                    </li>
+                    <li
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
-                      >Delete</a
                     >
-                    <a class="dropdown-item">Assign Member</a>
-                  </div>
+                      Delete
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item" tabindex="-1">Assign Member</a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item">Bella</li>
+                        <li class="dropdown-item">Mube</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <p>Assigned to</p>
@@ -369,5 +399,61 @@ span {
 p {
   font-size: 15px;
   margin: 3px 0 -3px 0;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-item {
+  font-size: 17px;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  font-size: 15px;
+  margin-top: -8px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #333;
+  margin-top: 8px;
+  margin-right: -12px;
+}
+
+.dropdown-submenu:hover > a:after {
+  border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+}
+.dropdown-item a,
+a.dropdown-item {
+  color: #333;
+  font-size: 20px;
+  font-weight: 400;
 }
 </style>
