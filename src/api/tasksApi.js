@@ -74,7 +74,25 @@ function addTask(project_code,task){
     return axios(config)
 }
 
+function assignTaskToMembers(task_code,members){
+    var data = JSON.stringify({"task_code":task_code,"members":members});
+
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1,token.length-1)
+
+    var config = {
+    method: 'put',
+    url: 'http://127.0.0.1:5000/api_v1/task/assign_member',
+    headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+
+    },
+    data : data
+    };
+
+    return axios(config)
+}
 
 
-
-export default {renameTask,updateTask,deleteTask,addTask}
+export default {renameTask,updateTask,deleteTask,addTask,assignTaskToMembers}

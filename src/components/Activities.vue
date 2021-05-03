@@ -44,26 +44,25 @@
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
-                          <li class="dropdown-item">
+                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
                             <div class="form-check">
                               <input
-                                class="form-check-input"
                                 type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
+                                :value="member.user_id"
+                                :class="element.task_code"
+                                :checked="element.assigned_to.includes(member.user_id)"
                               />
                               <label
                                 class="form-check-label"
-                                for="flexCheckDefault"
                               >
-                                Bella
+                              {{member.username}}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <button type="submit" class="btn btn-primary">
+                            <a @click="assignTask(element.task_code)" class="btn btn-primary">
                               Assign
-                            </button>
+                            </a>
                           </li>
                         </form>
                       </ul>
@@ -154,7 +153,7 @@
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
-                          <li class="dropdown-item">
+                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
@@ -166,12 +165,12 @@
                                 class="form-check-label"
                                 for="flexCheckDefault"
                               >
-                                Bella
+                              {{member.username}}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" @click="assignTask" class="btn btn-primary">
                               Assign
                             </button>
                           </li>
@@ -228,7 +227,7 @@
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
-                          <li class="dropdown-item">
+                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
@@ -240,12 +239,12 @@
                                 class="form-check-label"
                                 for="flexCheckDefault"
                               >
-                                Bella
+                              {{member.username}}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" @click="assignTask" class="btn btn-primary">
                               Assign
                             </button>
                           </li>
@@ -291,14 +290,26 @@ export default {
         value: "",
         status: "",
       },
+      
     };
   },
   methods: {
+    assignTask(task_code){
+      var elements = document.getElementsByClassName(task_code);
+      var members = [];
+      for(var i=0; i<elements.length; i++) {
+          if(elements[i].checked){
+            members.push(elements[i].value);
+          }
+      }
+      this.AssignTask({task_code:task_code,members:members,project_code:this.project_code})
+    },
     toggleAdd() {
       this.showAddTask = !this.showAddTask;
     },
     ...mapActions({
       updateTask: "projects/updateTask",
+      AssignTask: "projects/assignTask"
     }),
     rename(data) {
       if (this.task_name_changed) {

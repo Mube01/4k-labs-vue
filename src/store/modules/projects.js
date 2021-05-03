@@ -124,6 +124,22 @@ export default {
                 })
             })
         },
+
+        assignTask({ commit, dispatch }, {task_code,members,project_code}) {
+            return new Promise((resolve, reject) => {
+                var ans = tasksApi.assignTaskToMembers(task_code, members).then((result) => {
+                    console.log("the result is ",result.data);
+                    commit('assignTask',{task_code,members,project_code})
+                    resolve(result.data)
+                }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
+                    reject(err.response.data)
+                })
+            })
+        },
+
         createNewProject({ commit, dispatch }, data) {
             return new Promise((resolve, reject) => {
                 projectsApi.createNewProject(data).then((result) => {
@@ -225,21 +241,12 @@ export default {
             state.projects[index].progress = percentile.toFixed(2)
         },
         deleteTask(state, data) {
-            var filteredTasks = []
-            state.project.tasks.forEach(element => {
-                if (element.task_code !== data.task_code) {
-                    filteredTasks.push(element)
-                }
-            });
-            console.log('the filted task is ',filteredTasks)
-            state.project.tasks = filteredTasks
+            console.log("the data to be deleted is",data)
 
+            var project_index = state.projects.findIndex((project)=>project.project_code === data.project_code);
 
-            for(let i=0; i<state.projects.length; i++ ){
-                if(state.projects[i].project_code === data.project_code){
-                    state.projects[i].tasks = state.projects[i].tasks.filter((task)=>task.task_code !== data.task_code)
-                }
-            }
+            console.log("the data to be deleted is ",project_index)
+            state.projects[project_index].tasks = state.projects[project_index].tasks.filter((task)=>task.task_code !== data.task_code)
 
         },
         addTask(state, data) {
@@ -262,11 +269,6 @@ export default {
             let all = members.allMembers
             let project_code = members.project_code
             let index = state.projects.findIndex((project)=>project.project_code === project_code)
-
-
-
-
-
             state.projects[index].members = members.selectedMembers;
             var finalSelect = []
             all.forEach(element => {
@@ -276,7 +278,13 @@ export default {
             });
             state.projects[index].team_members = finalSelect
         },
-    }
+        assignTask(state,{task_code,members,project_code}){
+            var project_index = state.projects.findIndex((project)=>project.project_code === project_code);
+            var task_index = state.projects[project_index].tasks.findIndex((task)=>task.task_code === task_code);
+            console.log(project_index,task_index);
+            state.projects[project_index].tasks[task_index].assigned_to = members;
+        }
+    },
 };
 
 /**
