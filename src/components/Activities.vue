@@ -39,11 +39,33 @@
                     >
                       Delete
                     </li>
+
                     <li class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-item">Bella</li>
-                        <li class="dropdown-item">Mube</li>
+                        <form>
+                          <li class="dropdown-item">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="flexCheckDefault"
+                              >
+                                Bella
+                              </label>
+                            </div>
+                          </li>
+                          <li class="dropdown-item">
+                            <button type="submit" class="btn btn-primary">
+                              Assign
+                            </button>
+                          </li>
+                        </form>
                       </ul>
                     </li>
                   </ul>
@@ -109,8 +131,29 @@
                     <li class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-item">Bella</li>
-                        <li class="dropdown-item">Mube</li>
+                        <form>
+                          <li class="dropdown-item">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="flexCheckDefault"
+                              >
+                                Bella
+                              </label>
+                            </div>
+                          </li>
+                          <li class="dropdown-item">
+                            <button type="submit" class="btn btn-primary">
+                              Assign
+                            </button>
+                          </li>
+                        </form>
                       </ul>
                     </li>
                   </ul>
@@ -162,8 +205,29 @@
                     <li class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-item">Bella</li>
-                        <li class="dropdown-item">Mube</li>
+                        <form>
+                          <li class="dropdown-item">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="flexCheckDefault"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="flexCheckDefault"
+                              >
+                                Bella
+                              </label>
+                            </div>
+                          </li>
+                          <li class="dropdown-item">
+                            <button type="submit" class="btn btn-primary">
+                              Assign
+                            </button>
+                          </li>
+                        </form>
                       </ul>
                     </li>
                   </ul>
@@ -455,5 +519,8 @@ a.dropdown-item {
   color: #333;
   font-size: 20px;
   font-weight: 400;
+}
+.btn {
+  width: 100%;
 }
 </style>
