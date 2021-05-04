@@ -246,34 +246,6 @@
                     >
                       Delete
                     </li>
-                    <li class="dropdown-submenu">
-                      <a class="dropdown-item" tabindex="-1">Assign Member</a>
-                      <ul class="dropdown-menu">
-                        <form>
-                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="flexCheckDefault"
-                              >
-                              {{member.username}}
-                              </label>
-                            </div>
-                          </li>
-                          <li class="dropdown-item">
-                            <button type="submit" @click="assignTask" class="btn btn-primary">
-                              Assign
-                            </button>
-                          </li>
-                        </form>
-                      </ul>
-                    </li>
                   </ul>
                 </div>
               </div>
