@@ -92,10 +92,12 @@
                   />
                 </router-link>
               </li>
-            </ul>
+              </ul>
             </div>
           </template>
-          <template #header>
+           v-model="todos"
+          group="people"
+          itemKey="id"<template #header>
             <Add
               style="background-color: white; margin-left: 0px"
               @toggle-add="toggleAdd"
@@ -156,23 +158,22 @@
                           <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
                             <div class="form-check">
                               <input
-                                class="form-check-input"
                                 type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
+                                :value="member.user_id"
+                                :class="element.task_code"
+                                :checked="element.assigned_to.includes(member.user_id)"
                               />
                               <label
                                 class="form-check-label"
-                                for="flexCheckDefault"
                               >
                               {{member.username}}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <button type="submit" @click="assignTask" class="btn btn-primary">
+                            <a @click="assignTask(element.task_code)" class="btn btn-primary">
                               Assign
-                            </button>
+                            </a>
                           </li>
                         </form>
                       </ul>
@@ -181,6 +182,28 @@
                 </div>
               </div>
               <p>Assigned to</p>
+              <ul>
+              <li
+                :key="member"
+                v-for="member in element.assigned_to"
+                style="margin-left: 10px"
+              >
+                {{getMemberInfo[member].username}}
+                <router-link
+                  :to="{
+                    name: 'Profile',
+                    params: { user_code: member },
+                  }"
+                >
+                  <ProfilePicture
+                    imgWeight="45px"
+                    fontSize="20px"
+                    :name="getMemberInfo[member].username[0]"
+                    :srcText="getMemberInfo[member]['profile_picture']"
+                  />
+                </router-link>
+              </li>
+              </ul>
             </div>
           </template>
         </draggable>
@@ -255,6 +278,28 @@
                 </div>
               </div>
               <p>Assigned to</p>
+              <ul>
+              <li
+                :key="member"
+                v-for="member in element.assigned_to"
+                style="margin-left: 10px"
+              >
+                {{getMemberInfo[member].username}}
+                <router-link
+                  :to="{
+                    name: 'Profile',
+                    params: { user_code: member },
+                  }"
+                >
+                  <ProfilePicture
+                    imgWeight="45px"
+                    fontSize="20px"
+                    :name="getMemberInfo[member].username[0]"
+                    :srcText="getMemberInfo[member]['profile_picture']"
+                  />
+                </router-link>
+              </li>
+              </ul>
             </div>
           </template>
         </draggable>
