@@ -152,6 +152,8 @@ export default {
       fetchProject: "projects/getProject",
       updatemembers: "members/updateProjectMembers",
       updateProjectMembers: "projects/updateProjectMembers",
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
     }),
     updateMembers() {
       this.showAddMember = false;
@@ -161,10 +163,12 @@ export default {
       };
       this.updatemembers(data)
         .then((result) => {
-          console.log(result)
           this.updateProjectMembers(data);
+          this.successAlert(result.msg)
         })
-        .catch((err) => {});
+        .catch((err) => {
+          this.errorAlert(err.message)
+        });
     },
   },
   computed: {
