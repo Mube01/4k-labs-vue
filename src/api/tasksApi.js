@@ -82,7 +82,7 @@ function assignTaskToMembers(task_code,members){
 
     var config = {
     method: 'put',
-    url: 'http://127.0.0.1:5000/api_v1/task/assign_member',
+    url: '/api_v1/task/assign_member',
     headers: { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,

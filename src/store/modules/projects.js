@@ -70,7 +70,8 @@ export default {
         renameTask({ commit, dispatch }, payload) {
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.renameTask(payload.task_code, payload.task).then((result) => {
-                    resolve(result.data)
+                    commit('renameTask',payload);
+                    resolve(result.data);
                 }).catch((err) => {
                     if (err.response.status == 401) {
                         dispatch('auth/logoutUser', err.response.data, { root: true })
@@ -281,8 +282,13 @@ export default {
         assignTask(state,{task_code,members,project_code}){
             var project_index = state.projects.findIndex((project)=>project.project_code === project_code);
             var task_index = state.projects[project_index].tasks.findIndex((task)=>task.task_code === task_code);
-            console.log(project_index,task_index);
             state.projects[project_index].tasks[task_index].assigned_to = members;
+        },
+        renameTask(state,{task,task_code,project_code}){
+            var project_index = state.projects.findIndex((project)=>project.project_code === project_code);
+            var task_index = state.projects[project_index].tasks.findIndex((task)=>task.task_code === task_code); 
+            state.projects[project_index].tasks[task_index].task = task;
+
         }
     },
 };

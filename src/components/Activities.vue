@@ -11,8 +11,17 @@
         >
           <template #item="{ element }">
             <div class="list-group-item1">
-              <span>{{ element.task }}</span>
-
+              <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <input
+                @change="task_name_changed = true"
+                type="text"
+                v-show="toogleRename[element.task_code]"
+                v-model="element.task"
+                @keyup.enter="
+                  rename(element.task,element.task_code);
+                "
+              />
+              
               <div class="more">
                 <div class="dropdown">
                   <i
@@ -30,7 +39,7 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="todoEdit = true">
+                    <li class="dropdown-item" @click="showRename(element.task_code)">
                       Rename
                     </li>
                     <li
@@ -123,8 +132,16 @@
         >
           <template #item="{ element }">
             <div class="list-group-item2">
-              <span>{{ element.task }}</span>
-
+            <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <input
+                @change="task_name_changed = true"
+                type="text"
+                v-show="toogleRename[element.task_code]"
+                v-model="element.task"
+                @keyup.enter="
+                  rename(element.task,element.task_code);
+                "
+              />
               <div class="more">
                 <div class="dropdown">
                   <i
@@ -142,7 +159,7 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="todoEdit = true">
+                    <li class="dropdown-item" @click="showRename(element.task_code)">
                       Rename
                     </li>
                     <li
@@ -219,7 +236,16 @@
         >
           <template #item="{ element }">
             <div class="list-group-item3">
-              <span> {{ element.task }}</span>
+            <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <input
+                @change="task_name_changed = true"
+                type="text"
+                v-show="toogleRename[element.task_code]"
+                v-model="element.task"
+                @keyup.enter="
+                  rename(element.task,element.task_code);
+                "
+              />
               <div class="more">
                 <div class="dropdown">
                   <i
@@ -237,7 +263,7 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="todoEdit = true">
+                    <li class="dropdown-item" @click="showRename(element.task_code)">
                       Rename
                     </li>
                     <li
@@ -307,10 +333,26 @@ export default {
         value: "",
         status: "",
       },
-      
+      toogleRename:{}
     };
   },
+  created(){
+
+      var result = {}
+      var tasks = this.project.tasks;
+      for(let i=0;i<tasks.length;i++){
+        result[tasks[i].task_code] = false
+      }
+      this.toogleRename = result;
+      
+  },
   methods: {
+    showRename (task_code) {
+      this.toogleRename[task_code] = true;
+    },
+    hideRename (task_code) {
+      this.toogleRename[task_code] = false;
+    },
     assignTask(task_code){
       var elements = document.getElementsByClassName(task_code);
       var members = [];
@@ -328,13 +370,15 @@ export default {
       updateTask: "projects/updateTask",
       AssignTask: "projects/assignTask"
     }),
-    rename(data) {
-      if (this.task_name_changed) {
-        var reqest_payload = {
-          task_code: data.task_code,
-          task: data.task,
-        };
+    rename(task,task_code) {
 
+      if(task.length>0){
+        var reqest_payload = {
+          task_code: task_code,
+          task: task,
+          project_code:this.project_code
+      };
+      this.hideRename(task_code);
         this.$store
           .dispatch("projects/renameTask", reqest_payload)
           .then((result) => {
@@ -344,6 +388,7 @@ export default {
             console.log(err);
           });
       }
+      
     },
     completeTask(task_code, completed) {
       this.$store
