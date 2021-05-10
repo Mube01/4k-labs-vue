@@ -428,6 +428,9 @@ export default {
         this.project_code
       );
     },
+    user_id(){
+      return this.$store.getters["user/getUserId"]
+    },
     todos: {
       get() {
         return this.$store.getters["projects/getProjectTasks"]({
@@ -448,6 +451,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
+            user_id:this.user_id,
           });
           this.destination.known = false;
         }
@@ -472,6 +476,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
+            user_id:this.user_id,
           });
           this.destination.known = false;
         }
@@ -496,6 +501,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
+            user_id:this.user_id,
           });
           this.destination.known = false;
         }
