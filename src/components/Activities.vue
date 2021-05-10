@@ -22,7 +22,7 @@
                 "
               />
               
-              <div class="more">
+              <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -39,17 +39,22 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="showRename(element.task_code)">
+                    <li
+                     v-if="isProjectMember"
+                     class="dropdown-item" 
+                     @click="showRename(element.task_code)"
+                    >
                       Rename
                     </li>
                     <li
+                      v-if="isProjectMember"
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
                     >
                       Delete
                     </li>
 
-                    <li class="dropdown-submenu">
+                    <li v-if="user_role == 2" class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
@@ -108,6 +113,7 @@
           group="people"
           itemKey="id"<template #header>
             <Add
+              v-if="isProjectMember"
               style="background-color: white; margin-left: 0px"
               @toggle-add="toggleAdd"
               :text="showAddTask ? 'X Close' : '+ Add New Task'"
@@ -142,7 +148,7 @@
                   rename(element.task,element.task_code);
                 "
               />
-              <div class="more">
+              <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -159,16 +165,20 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="showRename(element.task_code)">
+                    <li
+                     v-if="isProjectMember"
+                     class="dropdown-item" 
+                     @click="showRename(element.task_code)">
                       Rename
                     </li>
                     <li
+                      v-if="isProjectMember"
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
                     >
                       Delete
                     </li>
-                    <li class="dropdown-submenu">
+                    <li v-if="user_role == 2" class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
@@ -246,7 +256,7 @@
                   rename(element.task,element.task_code);
                 "
               />
-              <div class="more">
+              <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -263,10 +273,14 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li class="dropdown-item" @click="showRename(element.task_code)">
+                    <li 
+                    v-if="isProjectMember"
+                    class="dropdown-item" 
+                    @click="showRename(element.task_code)">
                       Rename
                     </li>
                     <li
+                      v-if="isProjectMember"
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
                     >
@@ -310,7 +324,7 @@ import AddTask from "@/components/AddTask.vue";
 import Add from "@/components/Add.vue";
 import draggable from "vuedraggable";
 import ProfilePicture from "@/components/ProfilePicture.vue";
-import { mapActions } from "vuex";
+import { mapActions,mapGetters } from "vuex";
 export default {
   name: "Activities",
   props: {
@@ -416,6 +430,9 @@ export default {
   },
 
   computed: {
+    ...mapGetters({
+      user_role : 'user/getUserRole'
+    }),
     getMemberInfo(){
       var data = {}
       this.project.team_members.forEach(member => {
@@ -430,6 +447,9 @@ export default {
     },
     user_id(){
       return this.$store.getters["user/getUserId"]
+    },
+    isProjectMember(){
+      return this.project.members.includes(this.user_id);
     },
     todos: {
       get() {
