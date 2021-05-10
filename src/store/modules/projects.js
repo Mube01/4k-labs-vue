@@ -82,8 +82,11 @@ export default {
         },
         // TODO remve the tasks data from the back end 
         updateTask({commit,dispatch},data){
-            console.log('the data is ',data.destination)              
-            if(data.destination.value[0]){
+            console.log('the data is ')   
+            if(!data.destination.value[0].assigned_to.includes(data.user_id)){
+                dispatch('errorAlert', ("only assigned member can move task"), { root: true })
+            }  
+            else if(data.destination.value[0]){
                 return new Promise((resolve,reject)=>{
                     tasksApi.updateTask(data.destination.value[0].task_code,data.destination.status).then((result) => {
                         commit('updateTask',data)
