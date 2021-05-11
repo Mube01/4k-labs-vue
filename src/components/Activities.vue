@@ -74,7 +74,7 @@
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <a @click="assignTask(element.task_code)" class="btn btn-primary">
+                            <a @click="assignTask(element.task_code)" class="btn">
                               Assign
                             </a>
                           </li>
@@ -85,22 +85,22 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul>
+              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
               <li
                 :key="member"
                 v-for="member in element.assigned_to"
                 style="margin-left: 10px"
               >
-                {{getMemberInfo[member].username}}
                 <router-link
                   :to="{
                     name: 'Profile',
                     params: { user_code: member },
                   }"
                 >
-                  <ProfilePicture
-                    imgWeight="45px"
-                    fontSize="20px"
+                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
+                    imgWeight="30px"
+                    fontSize="15px"
+                    top="0%"
                     :name="getMemberInfo[member].username[0]"
                     :srcText="getMemberInfo[member]['profile_picture']"
                   />
@@ -198,7 +198,7 @@
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <a @click="assignTask(element.task_code)" class="btn btn-primary">
+                            <a @click="assignTask(element.task_code)" class="btn">
                               Assign
                             </a>
                           </li>
@@ -209,22 +209,22 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul>
+              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
               <li
                 :key="member"
                 v-for="member in element.assigned_to"
                 style="margin-left: 10px"
               >
-                {{getMemberInfo[member].username}}
                 <router-link
                   :to="{
                     name: 'Profile',
                     params: { user_code: member },
                   }"
                 >
-                  <ProfilePicture
-                    imgWeight="45px"
-                    fontSize="20px"
+                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
+                    imgWeight="30px"
+                    fontSize="15px"
+                    top="0%"
                     :name="getMemberInfo[member].username[0]"
                     :srcText="getMemberInfo[member]['profile_picture']"
                   />
@@ -290,22 +290,22 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul>
+              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
               <li
                 :key="member"
                 v-for="member in element.assigned_to"
                 style="margin-left: 10px"
               >
-                {{getMemberInfo[member].username}}
                 <router-link
                   :to="{
                     name: 'Profile',
                     params: { user_code: member },
                   }"
                 >
-                  <ProfilePicture
-                    imgWeight="45px"
-                    fontSize="20px"
+                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
+                    imgWeight="30px"
+                    fontSize="15px"
+                    top="0%"
                     :name="getMemberInfo[member].username[0]"
                     :srcText="getMemberInfo[member]['profile_picture']"
                   />
@@ -565,7 +565,7 @@ h3 {
   margin-bottom: 10px;
 }
 .list-group-item1 {
-  padding: 20px;
+  padding: 10px 10px 10px 10px;
   background-color: #8bc6ec;
   background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
   border-radius: 10px;
@@ -657,5 +657,13 @@ a.dropdown-item {
 }
 .btn {
   width: 100%;
+  background-color: #177f75;
+  border: 0;
+  color:white;
+  font-size:18px;
+  margin-top: 4px;
+}
+input[type="checkbox"]{
+  margin: 0 10px 0 -20px;
 }
 </style>
