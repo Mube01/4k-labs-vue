@@ -10,7 +10,7 @@
       class="profile text-center"
       :style="{ width: imgWeight, height: imgWeight }"
     >
-      <span v-bind:style="{ fontSize: fontSize }">{{
+      <span v-bind:style="{ fontSize: fontSize, top: top }">{{
         name[0].toUpperCase()
       }}</span>
     </div>
@@ -31,6 +31,10 @@ export default {
       type: String,
       default: "u",
     },
+    top:{
+      type: String,
+      default: "20%",
+    }
   },
 };
 </script>
@@ -47,6 +51,5 @@ img {
 span {
   color: white;
   position: relative;
-  top: 20%;
 }
 </style>
