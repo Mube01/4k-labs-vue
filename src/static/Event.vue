@@ -3,7 +3,7 @@
     <img src="`/api_v1/get_event/${event.event_image}?` + new Date().getTime()" alt="">
     <div class="event-wrapper" :style="{backgroundImage:`url(/api_v1/get_event/${event['event_image']})`}">
       <div class="event">
-        <h2>#ADWAHACKATON</h2>
+        <h2>#{{event['event_title']}}</h2>
       </div>
     </div>
     <div class="second-wrapper">
