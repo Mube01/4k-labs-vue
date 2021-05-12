@@ -4,7 +4,7 @@
       <video autoplay muted loop id="myVideo" class="vid"></video>
       <div class="header">
         <router-link :to="{ name: 'Home' }">
-          <img src="../assets/images/logo.webp" alt="" class="logo"/>
+          <img src="../assets/logo.webp" alt="" class="logo"/>
         </router-link>
         <div class="links">
           <div class="menu-icon" id="click" @click="toggleMenu()">
@@ -13,8 +13,8 @@
           <ul class="link" id="menu-elements">
             <router-link :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
             <router-link :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
-            <router-link :to="{ name: 'AllProjects' }"><li>Members</li> </router-link>
-
+            <router-link :to="{ name: 'Members' }"><li>Members</li> </router-link>
+            <router-link class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
           </ul>
         </div>
       </div>
@@ -154,7 +154,7 @@ export default {
 @media screen and (max-width: 700px) {
   .parent {
     height: 325px;
-    background: url(../assets/images/rename.png);
+    background: url(../assets/rename.png);
   }
   .message h2 {
     margin-top: 0;

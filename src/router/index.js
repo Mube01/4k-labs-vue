@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Divisions from '../views/Divisions.vue'
-import Home from '../views/Home.vue'
+import Home from '../static/StaticHome'
 
 import store from '../store';
 const routes = [
@@ -8,11 +8,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/detail',
-    name: 'ProjectDetail',
-    component: () => import('../views/ProjectDetail.vue')
   },
   {
     path: '/projects',
@@ -156,7 +151,7 @@ const router = createRouter({
   routes: routes
 })
 
-var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile']
+var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile','Members']
 router.beforeEach((to, from, next) => {
   if(!store.getters['auth/isAuthenticated'] && !staticPages.includes(to.name)){
     next({ name: 'Login' })

@@ -10,10 +10,10 @@
 
 <script>
 import {mapActions,mapGetters} from 'vuex';
-import MainHeader from '../static/MainHeader';
-import Event from '../static/Event';
+import MainHeader from './MainHeader';
+import Event from './Event';
 export default {
-  name:"Home",
+  name:"StaticHome",
   components:{
     MainHeader,
     Event,
@@ -27,6 +27,13 @@ export default {
     ...mapGetters({
       'events':'home/getEvents'
     })
+  },
+  created(){
+    this.getAllInfo().then((result) => {
+      
+    }).catch((err) => {
+      
+    });
   }
 };
 </script>
