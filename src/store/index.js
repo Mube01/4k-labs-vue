@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 
+import home from './modules/home'
 import auth from './modules/auth'
 import user from './modules/user';
 import projects from './modules/projects';
@@ -77,6 +78,7 @@ export default createStore({
     tokens,
     members,
     events,
+    home
   },
   plugins: [createPersistedState({})],
 })

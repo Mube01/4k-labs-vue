@@ -1,12 +1,34 @@
 <template>
   <div>
-    <h1>this is home page</h1>
-    <router-link :to="{ name: 'StaticProjects' }">Projects</router-link>
+    <MainHeader/>
+    <div :key=event.event_id v-for="event in events">
+    <Event :event=event />
+    </div>
+    <router-link :to="{ name: 'AllProjects' }">Projects</router-link>
   </div>
 </template>
 
 <script>
-export default {};
+import {mapActions,mapGetters} from 'vuex';
+import MainHeader from '../static/MainHeader';
+import Event from '../static/Event';
+export default {
+  name:"Home",
+  components:{
+    MainHeader,
+    Event,
+  },
+  methods:{
+    ...mapActions({
+      getAllInfo:'home/getAllInfo'
+    })
+  },
+  computed:{
+    ...mapGetters({
+      'events':'home/getEvents'
+    })
+  }
+};
 </script>
 
 <style scoped>

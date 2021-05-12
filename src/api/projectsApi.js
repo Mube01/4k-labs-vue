@@ -1,22 +1,30 @@
 const axios = require('axios');
 
-function fetchProjects() {
+
+
+function fetchProjectsStatic() {
     var axios = require('axios');
-    var token = localStorage.getItem('access_token') || ''
-    token = token.substring(1, token.length - 1)
+
     var config = {
         method: 'get',
-        url: '/api_v1/get_projects',
-        headers: {
-            Authorization: `Bearer ${token}`,
-        }
+        url: '/api_v1/_get_all_info',
     };
 
     return axios(config)
 
 }
 
+function fetchProjects() {
+    var config = {
+        method: 'get',
+        url: '/api_v1/get_projects',
+        headers: {
+        }
+    };
 
+    return axios(config)
+
+}
 
 function fetchProject(project_code) {
     var axios = require('axios');
@@ -88,4 +96,4 @@ function updateProject(data){
     return axios(config)
 }
 
-export default { fetchProjects, fetchProject, createNewProject, deleteProject,updateProject}
+export default { fetchProjects, fetchProject, createNewProject, deleteProject,updateProject,fetchProjectsStatic}
