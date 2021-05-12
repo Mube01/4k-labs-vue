@@ -110,17 +110,6 @@ h4 {
 	text-align: justify;
 }
 
-#stats {
-	display: flex;
-	flex-direction: row;
-	height: auto;
-	width: 280px;
-	justify-content: space-between;
-	align-items: center;
-	margin: 0 auto;
-	font-weight: 500;
-  color: white;
-}
 
 .col {
 	display: flex;
@@ -140,7 +129,7 @@ h4 {
 }
 
 #links {
-	width: auto;
+	display: flex;
 }
 
 a {

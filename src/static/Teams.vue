@@ -55,7 +55,7 @@ export default {
   }
 };
 </script>
-<style lang="css">
+<style scoped>
 @media screen and (max-width: 700px) {
   .team-container {
     display: block;

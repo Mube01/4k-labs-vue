@@ -37,6 +37,9 @@
           >| Register
         </router-link>
 
+        
+        
+
         <i class="fa fa-bell" aria-hidden="true"></i>
 
         <router-link
@@ -45,6 +48,12 @@
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
+        <router-link
+          class="link_class"
+          :to="{ name: 'Divisions' }"
+          >
+            Divisions
+          </router-link>
 
         <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i

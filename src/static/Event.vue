@@ -30,7 +30,7 @@ export default {
   },
 };
 </script>
-<style lang="css">
+<style scoped>
 * {
   overflow-x: hidden;
 }

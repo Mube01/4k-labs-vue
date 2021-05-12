@@ -1,24 +1,29 @@
 <template>
   <div>
     <div class="parent">
-      <video autoplay muted loop id="myVideo" class="vid"></video>
-      <div class="header">
-        <router-link :to="{ name: 'Home' }">
-          <img src="../assets/logo.webp" alt="" class="logo"/>
-        </router-link>
-        <div class="links">
-          <div class="menu-icon" id="click" @click="toggleMenu()">
-            <i class="fa fa-bars"></i>
+    <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <source src="../assets/video/background.mp4" type="video/mp4">
+        </video>
+        <div class="container h-10  ">
+          <div class="d-flex h-100 text-center align-items-center">
+            <div class="text-white">
+              <router-link :to="{ name: 'Home' }">
+                <img src="../assets/logo.webp" alt="" class="logo"/>
+              </router-link>
+            </div>
           </div>
-          <ul class="link" id="menu-elements">
-            <router-link :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
-            <router-link :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
-            <router-link :to="{ name: 'Members' }"><li>Members</li> </router-link>
-            <router-link class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
-          </ul>
-        </div>
-      </div>
-      <div class="middle">
+        <div class="text-center">
+            <ul style="float:right" class="link" id="menu-elements">
+                <router-link style="color:white" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
+                <router-link style="color:white" :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
+                <router-link style="color:white" :to="{ name: 'Members' }"><li>Members</li> </router-link>
+                <router-link style="color:white" class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
+              </ul>
+          </div>
+
+          <div class="middle">
         <div class="message">
           <h2 id="messageName">4K Labs</h2>
         </div>
@@ -27,15 +32,11 @@
           <button class="btn-find" id="btnFind">Recent &darr;</button></a
         >
       </div>
+        </div>
+      </header>
+      
     </div>
-    <div class="desc">
-      <div class="head">
-        <p>
-          4K Labs is a Research & Development laboratory at Addis Ababa
-          University under the department of computer science.
-        </p>
-      </div>
-    </div>
+    
   </div>
 </template>
 <script>
@@ -56,7 +57,48 @@ export default {
   },
 };
 </script>
-<style lang="css">
+<style scoped>
+
+header {
+  position: relative;
+  background-color: black;
+  height: 55vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
 .desc {
   background: white;
   height: 250px;
