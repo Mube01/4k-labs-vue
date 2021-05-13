@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="login text-center">
+    <div class=" text-center">
       <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Login</h2>

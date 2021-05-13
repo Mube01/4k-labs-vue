@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Divisions from '../views/Divisions.vue'
-import Home from '../views/Home.vue'
+import Home from '../static/StaticHome'
 
 import store from '../store';
 const routes = [
@@ -8,6 +8,34 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/projects',
+    name: 'AllProjects',
+    component: () => import('../static/AllProjects.vue')
+  },
+  {
+    path: '/profile/:user_code',
+    name: 'StaticProfile',
+    component: () => import('../static/StaticProfile'),
+    props: true
+  },
+  {
+    path: '/teams',
+    name: 'Teams',
+    component: () => import('../static/Teams.vue')
+  },
+  {
+    path: '/teams/:division',
+    name: 'StaticDivision',
+    component: () => import('../static/StaticDivision'),
+    props: true
+  },
+  {
+    path: '/members',
+    name: 'Members',
+    component: () => import('../static/Members'),
+    props: true
   },
   {
     path: '/portal/divisions',
@@ -88,16 +116,6 @@ const routes = [
     component: () => import('../views/GenerateToken.vue')
   },
   {
-    path: '/projects',
-    name: 'StaticProjects',
-    component: () => import('../views/Teams.vue')
-  },
-  {
-    path: '/detail',
-    name: 'ProjectDetail',
-    component: () => import('../views/ProjectDetail.vue')
-  },
-  {
     path: '/portal/events',
     name: 'Events',
     component: () => import('../views/Events.vue')
@@ -133,11 +151,13 @@ const router = createRouter({
   routes: routes
 })
 
+var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile','Members']
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters['auth/isAuthenticated'] && to.name !== 'Home' && to.name !== 'Register' && to.name !== 'AdminLogin') {
+  if(!store.getters['auth/isAuthenticated'] && !staticPages.includes(to.name)){
     next({ name: 'Login' })
+  }else{
+    next()
   }
-  else next()
 })
 
 export default router
