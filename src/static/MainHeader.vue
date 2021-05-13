@@ -15,9 +15,11 @@
             </div>
           </div>
         <div class="text-center">
+        <i class="fas fa-bars menu-icon" v-on:click="toggleMenu()"></i>
+
             <ul style="float:right" class="link" id="menu-elements">
                 <router-link style="color:white" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
-                <router-link style="color:white" :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
+                <router-link style="coloi r:white" :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
                 <router-link style="color:white" :to="{ name: 'Members' }"><li>Members</li> </router-link>
                 <router-link style="color:white" class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
               </ul>
@@ -26,11 +28,12 @@
           <div class="middle">
         <div class="message">
           <h2 id="messageName">4K Labs</h2>
-        </div>
-
-        <a href="#details">
+             <a href="#details">
           <button class="btn-find" id="btnFind">Recent &darr;</button></a
         >
+        </div>
+
+     
       </div>
         </div>
       </header>
@@ -40,11 +43,15 @@
   </div>
 </template>
 <script>
+ 
+ 
 export default {
+  
   name: "MainHeader",
   components: {},
-  methods: {
-    toggleMenu() {
+   methods: {
+     toggleMenu() {
+     
       const menuItem = document.getElementById("menu-elements");
       const messageName = document.getElementById("messageName");
       const btnFind = document.getElementById("btnFind");
@@ -53,11 +60,17 @@ export default {
       if (btnFind) {
         btnFind.classList.toggle("button-move");
       }
-    },
-  },
-};
+   }
+  }}
+
 </script>
 <style scoped>
+.menu {
+  position: absolute;
+  top:20px;
+  right:20px;
+  color:rgb(148, 73, 38);
+}
 
 header {
   position: relative;
@@ -66,6 +79,7 @@ header {
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
+ 
 }
 
 header video {
@@ -88,17 +102,16 @@ header .container {
   z-index: 2;
 }
 
-header .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  opacity: 0.5;
-  z-index: 1;
-}
 
+header ul{
+  margin-top:-50px;
+  margin-right: -200px;
+}
+header ul li{
+display: inline-block;
+padding:10px;
+
+}
 .desc {
   background: white;
   height: 250px;
@@ -119,8 +132,8 @@ header .overlay {
 .parent {
   margin: 0;
   padding: 0;
-  height: 550px;
-  background: rgba(39, 38, 38, 0.438);
+  height: auto;
+
 }
 .vid {
   position: absolute;
@@ -154,9 +167,11 @@ header .overlay {
   font-size: 17px;
 }
 .logo {
-  width: 100px;
-  margin-left: 50px;
+  margin-top:10px;
+
+  
   cursor: pointer;
+  width:100px;
 }
 .btn-find {
   padding: 15px;
@@ -175,10 +190,11 @@ header .overlay {
 .message {
   color: white;
   text-align: center;
+ 
 }
 .message h2 {
   font-size: 40px;
-  margin-top: 100px;
+  margin-top: 150px;
   padding: 20px;
 }
 .menu-items {
@@ -194,6 +210,10 @@ header .overlay {
   color: rgb(175, 81, 38);
 }
 @media screen and (max-width: 700px) {
+  header video {
+  display:none;
+  }
+
   .parent {
     height: 325px;
     background: url(../assets/rename.png);
@@ -205,6 +225,9 @@ header .overlay {
     display: block;
     color: rgb(175, 81, 38);
     cursor: pointer;
+    position:absolute;
+    top:20px;
+    right:20px;
   }
   .link {
     display: none;
@@ -212,8 +235,8 @@ header .overlay {
   .hello {
     display: block;
     position: absolute;
-    top: 70px;
-    right: 30px;
+    top: 100px;
+    right: 220px;
     overflow-x: visible;
   }
   .hello li {

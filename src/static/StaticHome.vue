@@ -1,6 +1,9 @@
 <template>
   <div>
     <MainHeader/>
+    <div class="prompt">
+     <p>4k labs is a research lab based i addis ababa university </p>
+    </div>
     <div :key=event.event_id v-for="event in events">
     <Event :event=event />
     </div>
@@ -39,4 +42,14 @@ export default {
 </script>
 
 <style scoped>
+.prompt{
+  padding:50px;
+  text-align:center;
+  font-size:30px;
+  background: rgb(148, 73, 38);
+  color:white;
+}
+@media screen and (max-width:700px){
+  .prompt{margin-top:45px;}
+}
 </style>

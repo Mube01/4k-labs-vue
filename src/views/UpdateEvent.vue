@@ -22,7 +22,6 @@
             v-on:change="uploadProfile"
             type="file"
             accept="image/*"
-            required
           />
         </div>
 
