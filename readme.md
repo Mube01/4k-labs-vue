@@ -23,7 +23,8 @@ TODOS<br/>
     [x] add,delete,events\
     [x] drag and drop tasks\
     [ ] add multiple images upload for the gallarey inside  events\
-    [ ] add content for the static pages
+    [ ] add content for the static pages\
+    [ ] make the super admin use google oauth to login
         
     
     
