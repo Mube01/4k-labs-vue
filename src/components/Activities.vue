@@ -129,7 +129,7 @@
       </div>
 
       <div class="col-md-4 card">
-        <h3>Doing</h3>
+        <h3>In Progress</h3>
         <draggable
           class="list-group"
           v-model="inProgress"

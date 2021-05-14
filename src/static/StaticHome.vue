@@ -2,7 +2,7 @@
   <div>
     <MainHeader/>
     <div class="prompt">
-     <p>4k labs is a research lab based i addis ababa university </p>
+     <p>4k labs is a research lab based in addis ababa university </p>
     </div>
     
     <div id="Teams">
@@ -11,7 +11,7 @@
     </div>
 
     <div id="Events">
-      <h1 style="text-align:center;background-color:white;">Events</h1>
+      <h1 style="text-align:center;">Events</h1>
       <div :key=event.event_id v-for="event in events">
         <Event :event=event />
       </div>
@@ -59,10 +59,19 @@ export default {
   padding:50px;
   text-align:center;
   font-size:30px;
-  background: rgb(148, 73, 38);
+  background: #a97c50;
   color:white;
 }
 @media screen and (max-width:700px){
   .prompt{margin-top:45px;}
+}
+#Teams{
+  margin: 40px 0;
+}
+#Teams h1{
+margin-bottom: 20px;
+}
+#Events h1{
+  margin-bottom: 40px;
 }
 </style>
