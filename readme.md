@@ -19,10 +19,12 @@ TODOS<br/>
     [x] change the task bar to brown\
     [x] change all the links to brown and other texts in black\
     [x] change the wave to brown\
-    [ ] add on static page to Members(all or catogrized by division) and Projects, aboutus and Apply\
+    [x] add on static page to Members(all or catogrized by division) and Projects, aboutus and Apply\
     [x] add,delete,events\
-    [ ] add multiple images for events\
-    [x] drag and drop tasks 
+    [x] drag and drop tasks\
+    [ ] add multiple images upload for the gallarey inside  events\
+    [ ] add content for the static pages\
+    [ ] make the super admin use google oauth to login
         
     
     
