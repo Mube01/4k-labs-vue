@@ -6,9 +6,9 @@
       /></router-link>
       <div class="nav">
         <router-link class="link_class" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
-        <router-link class="link_class" :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
         <router-link class="link_class" :to="{ name: 'Members' }"><li>Members</li> </router-link>
         <router-link class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
+        <router-link class="link_class" :to="{ name: 'Register' }"><li>Register</li> </router-link>
 
       </div>
     </div>

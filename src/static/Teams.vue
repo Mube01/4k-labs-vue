@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SubHeader :Title="`@4k Teams`" />
     <div>
       <div v-show="!loading" class="container text-center">
           <div class="row">
@@ -25,7 +24,6 @@ import Team from "./Team";
 export default {
   name: "Teams",
   components: {
-    SubHeader,
     Team
   },
   data() {

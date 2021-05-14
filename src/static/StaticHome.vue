@@ -4,10 +4,19 @@
     <div class="prompt">
      <p>4k labs is a research lab based i addis ababa university </p>
     </div>
-    <div :key=event.event_id v-for="event in events">
-    <Event :event=event />
+    
+    <div id="Teams">
+      <h1 style="text-align:center;">Teams</h1>
+      <Teams/>
     </div>
-    <router-link :to="{ name: 'AllProjects' }">Projects</router-link>
+
+    <div id="Events">
+      <h1 style="text-align:center;background-color:white;">Events</h1>
+      <div :key=event.event_id v-for="event in events">
+        <Event :event=event />
+      </div>
+    </div>
+    <Footer/>
   </div>
 </template>
 
@@ -15,11 +24,15 @@
 import {mapActions,mapGetters} from 'vuex';
 import MainHeader from './MainHeader';
 import Event from './Event';
+import Teams from './Teams'
+import Footer from './Footer'
 export default {
   name:"StaticHome",
   components:{
     MainHeader,
     Event,
+    Teams,
+    Footer
   },
   methods:{
     ...mapActions({

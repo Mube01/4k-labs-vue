@@ -15,7 +15,7 @@
       </p>
       <hr />
       <div class="members">
-        <p class="member_class">Project Members</p>
+        <p class="member_class">Members</p>
         <ul>
           <li :key="member.user_id" v-for="member in project.team_members">
             <router-link

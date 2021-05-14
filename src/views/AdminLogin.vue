@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <div class=" text-center">
+<Header />
+    <div class="container text-center">
+    <div class="login">
       <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Admin Login</h2>
@@ -18,17 +19,19 @@
         <button @click="login()">Login</button>
       </form>
     </div>
+  </div>
     <div class="footer text-center">
       <p>4K Labs - 2021</p>
     </div>
-  </div>
 </template>
 
 <script>
+import Header from "@/static/SubHeader.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Login",
+  components:{Header},
   data() {
     return {
       password: "",

@@ -1,11 +1,13 @@
 <template>
   <SubHeader/>
  
-    <div  class="col-md-2" :key="member.user_id" v-for="member in getMembers">
+ <div class="row">
+ 
+    <div  class="col-md-3" :key="member.user_id" v-for="member in getMembers">
       <router-link :to="{ name: 'StaticProfile', params: { user_code: member.user_id } }">
         <Member :member=member />
       </router-link>
-    </div>
+    </div></div>
 </template>
 
 <script>

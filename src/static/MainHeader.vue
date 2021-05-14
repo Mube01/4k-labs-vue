@@ -18,10 +18,13 @@
         <i class="fas fa-bars menu-icon" v-on:click="toggleMenu()"></i>
 
             <ul style="float:right" class="link" id="menu-elements">
-                <router-link style="color:white" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
-                <router-link style="coloi r:white" :to="{ name: 'Teams' }"> <li>Teams</li> </router-link>
-                <router-link style="color:white" :to="{ name: 'Members' }"><li>Members</li> </router-link>
-                <router-link style="color:white" class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
+                <a class="link_class" href="#Teams"> <li>Teams</li> </a>
+                <a class="link_class" href="#Events"><li>Events</li></a>
+                <router-link class="link_class" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
+               
+                <router-link class="link_class" :to="{ name: 'Members' }"><li>Members</li> </router-link>
+                <router-link class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
+                <router-link class="link_class" :to="{ name: 'Register' }"><li>Register</li> </router-link>
               </ul>
           </div>
 
@@ -159,12 +162,19 @@ padding:10px;
   display: inline-block;
   list-style: none;
   height: 40px;
+  color: white !important;
   width: 80px;
+}
+.links li:hover{
+  color: #a97c50 !important;
 }
 .links a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255) !important;
   font-size: 17px;
+}
+.links a:hover{
+  color: #a97c50;
 }
 .logo {
   margin-top:10px;
@@ -172,6 +182,16 @@ padding:10px;
   
   cursor: pointer;
   width:100px;
+}
+
+.link_class {
+  padding: 10px 0;
+  cursor: pointer;
+  margin-left: 15px;
+  color: white;
+}
+.link_class:hover {
+  color: #d1905e;
 }
 .btn-find {
   padding: 15px;

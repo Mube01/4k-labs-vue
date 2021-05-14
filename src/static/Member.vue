@@ -57,23 +57,21 @@ html,body {
 #card {
 	background-color: #453f39;
 	height: auto;
-	width: 350px;
-	margin: 10vh auto;
+	width: 320px;
+	margin: 5vh auto;
 	border-radius: 25px;
 	padding-bottom: 1px;
-	box-shadow: 2px 2px 5px #be5107;
+	box-shadow: 2px 2px 5px #a97c50;
 }
 
 h4 {
-	color: white;
 	text-align: center;
 	width: 100%;
 	background-color: #0c0e0f;
 	border-radius: 25px 25px 0 0;
-	color: #b9590a;
+	color: #a97c50;
 	padding: 30px 0;
 	font-weight: 800;
-	margin: 0;
 }
 
 .image-crop {
@@ -86,19 +84,19 @@ h4 {
 	margin-top: 30px;
 	overflow: hidden;
 	border-radius: 50%;
-	box-shadow: 1px 1px 5px #be5107;
 }
 
 #avatar {
 	display: inline;
-	height: 230px;
-	width: auto;
-	margin-left: -34px;
+	height: 150px;
+	width: 150px;
+	margin-bottom: 15px;
+
 }
 
 #bio {
 	display: block;
-	margin: 30px auto;
+	margin: 15px auto;
 	width: 280px;
 	height: auto;
 }
@@ -137,7 +135,7 @@ a {
 	position: relative;
 	padding: 10px 0;
 	width: 130px;
-	margin: 30px 0;
+	margin: 10px 0 20px 0;
 	border-radius: 25px;
 	border: none;
 	font-size: 20px;

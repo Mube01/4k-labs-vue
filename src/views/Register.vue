@@ -1,4 +1,5 @@
 <template>
+<Header />
   <div class="container text-center">
     <div class="login">
       <form class="login" @submit.prevent="register">
@@ -56,10 +57,14 @@
 </template>
 
 <script>
+import Header from "@/static/SubHeader.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Register",
+  components:{
+    Header,
+  },
   data() {
     return {
       fullname: "",
@@ -120,7 +125,7 @@ export default {
   }
 }
 .login {
-  padding: 60px 50px;
+  padding: 50px 40px;
   width: max-content;
   background-color: white;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
