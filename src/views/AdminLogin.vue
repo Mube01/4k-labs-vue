@@ -5,18 +5,7 @@
       <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Admin Login</h2>
-        <label for="username">Admin Username</label><br />
-        <input
-          required
-          v-model="username"
-          type="text"
-          id="username"
-          autocomplete="off"
-        />
-        <br />
-        <label for="password">Admin Password</label><br />
-        <input required v-model="password" type="password" id="password" />
-        <button @click="login()">Login</button>
+          <div id="google-signin-button"></div>
       </form>
     </div>
   </div>
@@ -45,21 +34,26 @@ export default {
   },
   methods: {
     ...mapActions({
-      errorAlert: "errorAlert",
+      errorAlert:   "errorAlert",
       successAlert: "successAlert",
+      login_admin:  "auth/adminLogin"
     }),
-    // send user name and password by reading from the form
-    login() {
-      this.$store
-        .dispatch("auth/adminLogin", this)
-        .then((result) => {
+    onSignIn (user) {
+      var id_token = user.getAuthResponse().id_token;
+      this.login_admin(id_token).then((result) => {
           this.successAlert("login successfull");
           this.$router.push({ name: "Divisions" });
         })
         .catch((err) => {
           this.errorAlert(err.message);
         });
-    },
+    }
+  },
+  mounted() {
+    const gapi = window.gapi
+    gapi.signin2.render('google-signin-button', {
+      onsuccess: this.onSignIn
+    })
   },
   created() {
     if (this.isAuthenticated) {

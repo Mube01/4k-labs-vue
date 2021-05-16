@@ -30,9 +30,9 @@ function register(fullname,username,password,token){
 
 }
 
-function adminLogin(username,password){
-    var data = JSON.stringify({"username":username,"password":password});
-
+function adminLogin(id_token){
+    var data = JSON.stringify({"id_token":id_token});
+    console.log(data);
     var config = {
     method: 'post',
     url: '/api_v1/adminlogin',
