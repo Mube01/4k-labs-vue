@@ -36,21 +36,6 @@
           />
         </div>
 
-        <div class="right col-md-6">
-          <label for="password">Password</label><br />
-          <input required v-model="password" type="password" id="password" />
-        </div>
-
-        <div style="clear: both" class="left col-md-6">
-          <label for="password">New Password</label><br />
-          <input v-model="newpassword" type="password" id="password" />
-        </div>
-
-        <div class="right col-md-6">
-          <label for="password">Confirm Password</label><br />
-          <input v-model="confirmpassword" type="password" id="password" />
-        </div>
-
         <div class="full col-md-12">
           <label for="github">Github link</label><br />
           <input v-model="Github" type="text" id="github" autocomplete="off" />
@@ -102,9 +87,6 @@ export default {
       Github: "",
       Linkden: "",
       Discription: "",
-      password: "",
-      newpassword: "",
-      confirmpassword: "",
       image: "",
       user_id: "",
     };
@@ -119,28 +101,13 @@ export default {
   },
   methods: {
     updateInformation() {
-      console.log("the length is", this.newpassword.length);
-      if (this.password.length === 0) {
-        alert("password is requiered");
-      } else if (this.newpassword !== this.confirmpassword) {
-        alert("please confirm the new passwod");
-      } else if (this.newpassword.length < 3 && this.newpassword.length !== 0) {
-        alert("the length of the password must be greater than 3");
-      } else {
-        this.editUserInfo = false;
-
         var data = {
-          password: this.password,
-          username: this.username,
           Linkden: this.Linkden,
           Github: this.Github,
           fullname: this.fullname,
           Discription: this.Discription,
           user_id: this.user_info.user_id,
         };
-        if (this.newpassword.length >= 3) {
-          data["newpassword"] = this.newpassword;
-        }
         if (this.image.length != 0) {
           data["image"] = this.image;
         }
@@ -153,7 +120,7 @@ export default {
             this.$router.push({ name: "Me" });
           })
           .catch((err) => {});
-      }
+
     },
     uploadProfile(e) {
       const selecterImage = e.target.files[0];

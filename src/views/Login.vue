@@ -53,21 +53,21 @@ export default {
       this.errorAlert(err)
     }
   },
-  created() {
+  mounted() {
     if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     }
-  },
-  mounted() {
-    const gapi = window.gapi
-    gapi.signin2.render('google-signin-button', {
-      'onsuccess': this.onSignIn,
-      'onfailure': this.onFailure,
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'white',
-    })
+    else{
+      const gapi = window.gapi
+      gapi.signin2.render('google-signin-button', {
+        'onsuccess': this.onSignIn,
+        'onfailure': this.onFailure,
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'white',
+      })
+    }
   },
 };
 </script>

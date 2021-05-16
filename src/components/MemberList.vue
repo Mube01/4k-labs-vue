@@ -14,7 +14,7 @@
           />
         </router-link>
         <div class="flex-container">
-          <div>{{ member.username }}</div>
+          <div>{{ member.fullname }}</div>
           <div>{{ roleGetter(member.Role) }}</div>
           <div>{{ member.Division }}</div>
         </div>

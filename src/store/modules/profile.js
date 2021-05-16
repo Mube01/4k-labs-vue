@@ -24,7 +24,7 @@ export default {
         editProfile({dispatch},data){
             return new Promise((resolve,reject)=>{
                 profileApi.updateProfile(data).then((result) => {
-                    dispatch('user/fetchuserInformation',result.data.data,{root:true})
+                    dispatch('user/storeUserInformation',result.data.data,{root:true})
                     resolve(result.data)
                 }).catch((err) => {
                     
@@ -35,7 +35,7 @@ export default {
             return new Promise((resolve,reject)=>{
                 profileApi.updateAdminProfile(data).then((result) => {
                     console.log(result.data)
-                    dispatch('user/fetchuserInformation',result.data.data,{root:true})
+                    dispatch('user/storeUserInformation',result.data.data,{root:true})
                     resolve(result.data)
                 }).catch((err) => {
                     
