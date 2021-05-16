@@ -19,20 +19,20 @@ export default {
             dispatch('user/addUserInformation',userData,{root:true})
         },
         adminLogin({dispatch,commit},id_token){
-            console.log(id_token);
-            // return new Promise((resolve,reject)=>{
-            //     adminLogin(id_token).then((result) => {
-            //         localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
-            //         localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
-            //         dispatch('storeUserInfo',result.data.user)
-            //         commit('authSuccesfull',result.data)
-            //         resolve(result.data)
-            //     }).catch((err) => {
-            //         commit('authError')
-            //         localStorage.removeItem("access_token");
-            //         reject(err.response.data)
-            //     });
-            // })
+            return new Promise((resolve,reject)=>{
+                adminLogin(id_token).then((result) => {
+                    console.log(result.data)
+                    localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
+                    localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
+                    dispatch('storeUserInfo',result.data.user)
+                    commit('authSuccesfull',result.data)
+                    resolve(result.data)
+                }).catch((err) => {
+                    commit('authError')
+                    localStorage.removeItem("access_token");
+                    reject(err.response.data)
+                });
+            })
         },
         loginUser({dispatch,commit},{username,password}){
             return new Promise((resolve,reject)=>{
