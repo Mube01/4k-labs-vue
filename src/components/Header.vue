@@ -16,14 +16,7 @@
               />
             </router-link>
           </div>
-          <div v-show="isSuperAdmin">
-              <ProfilePicture
-                imgWeight="45px"
-                fontSize="20px"
-                :name="user_info.username[0]"
-                :srcText="user_info['profile_picture']"
-              />
-          </div>
+          
         </div>
 
         <router-link v-show="!isAuthenticated" class="link_class" to="/login">
