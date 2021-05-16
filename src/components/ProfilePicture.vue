@@ -1,10 +1,19 @@
 <template>
   <div>
-    <img
-      v-if="srcText.length > 0"
-      :src="`/api_v1/get_profile/${srcText}?` + new Date().getTime()"
-      :style="{ width: imgWeight, height: imgWeight }"
-    />
+    <div v-if="isSuperAdmin">
+        <img
+          v-if="srcText.length > 0"
+          :src="srcText"
+          :style="{ width: imgWeight, height: imgWeight }"
+        />
+      </div>
+    <div v-if="!isSuperAdmin">
+      <img
+        v-if="srcText.length > 0"
+        :src="`/api_v1/get_profile/${srcText}?` + new Date().getTime()"
+        :style="{ width: imgWeight, height: imgWeight }"
+      />
+    </div>
     <div
       v-if="srcText == false"
       class="profile text-center"
@@ -18,6 +27,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
   name: "ProfilePicture",
   props: {
@@ -36,6 +46,11 @@ export default {
       default: "20%",
     }
   },
+  computed:{
+    ...mapGetters({
+      isSuperAdmin:'user/isSuperAdmin'
+    })
+  }
 };
 </script>
 

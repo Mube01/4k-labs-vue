@@ -5,42 +5,31 @@
       <form class="login" @submit.prevent="register">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Register</h2>
-        <div class="left col-md-6">
-          <label for="fullname">Full Name</label><br />
-          <input
-            required
-            v-model="fullname"
-            type="text"
-            id="fullname"
-            autocomplete="off"
-          />
-        </div>
 
-        <div class="right col-md-6">
-          <label for="username">Username</label><br />
-          <input
-            required
-            v-model="username"
-            type="text"
-            id="username"
-            autocomplete="off"
-          />
-        </div>
-        <div class="left col-md-6">
-          <label for="password">Password</label><br />
-          <input required v-model="password" type="password" id="password" />
-        </div>
-
-        <div class="right col-md-6">
-          <label for="confirm_password">Confirm Password</label><br />
-          <input
-            required
-            v-model="confirm_password"
-            type="password"
-            id="confirm_password"
-          />
-        </div>
         <div class="full col-md-12">
+              <div id="customBtn">
+                <span class="buttonText">Register With Gmail</span>
+              </div>
+        </div>
+
+        <div v-if="togleForm" class="full col-md-12">
+
+          <label for="gmail">Gmail Address</label><br />
+          <input
+            required
+            v-model="gmail_address"
+            type="text"
+            id="gmail"
+            autocomplete="off"
+          />
+          <label for="fullname">Full Name</label><br />
+                <input
+                  required
+                  v-model="fullname"
+                  type="text"
+                  id="fullname"
+                  autocomplete="off"
+                />
           <label for="token">Token</label><br />
           <input
             required
@@ -67,33 +56,51 @@ export default {
   },
   data() {
     return {
-      fullname: "",
-      password: "",
+      fullname:"",
+      gmail_address: "",
       token: "",
-      username: "",
-      confirm_password: "",
+      togleForm:false
     };
   },
-  methods: {
+  methods: {    
     ...mapActions({
       logoutUser: "auth/deleteAccessTokens",
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
     }),
+
+    getGmail() {
+    var gapi = window.gapi;
+    var auth2 = ""
+    gapi.load('auth2', ()=>{
+        auth2 = gapi.auth2.init({
+          client_id: '475271500037-5gg9viio8pftqjs1ra3aq9f3ss8f0nru.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+        })
+        var elemnt = document.getElementById('customBtn');
+        auth2.attachClickHandler(elemnt,{},(user)=>{
+          console.log(user);
+          this.togleForm = true
+          this.gmail_address = user.getBasicProfile().getEmail()
+          this.fullname = user.getBasicProfile().getName()
+        },
+        (err)=>{
+          this.errorAlert(JSON.stringify(err, undefined, 2));
+        }
+      )
+    });
+  },
+
     // send user name and password by reading from the form
     register() {
       //check if ther is space on the user name
-      if (this.username.indexOf(" ") > 0) {
-        alert("username cant have space");
+      if (this.gmail_address.indexOf(" ") > 0) {
+        this.errorAlert("username cant have space");
       }
       // check if confirm passwod and password are the same
-      else if (this.password !== this.confirm_password) {
-        alert(
-          "password and confirm password are not same please check your input again"
-        );
-      } else {
+      else {
         var data = {
-          fullname: this.fullname,
-          username: this.username,
-          password: this.password,
+          gmail: this.gmail_address,
           token: this.token,
         };
         this.$store
@@ -107,13 +114,9 @@ export default {
       }
     },
   },
-  created() {
-    this.logoutUser()
-      .then((result) => {
-        console.log("logged out");
-      })
-      .catch((err) => {});
-  },
+  created(){
+    this.getGmail();
+  }
 };
 </script>
 
@@ -199,4 +202,41 @@ button:hover {
   font-size: 17px;
   color: #333;
 }
+
+
+ #customBtn {
+      display: inline-block;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.icon {
+      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+    }
+
 </style>

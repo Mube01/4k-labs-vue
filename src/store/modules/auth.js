@@ -68,10 +68,10 @@ export default {
             })
         },
 
-        register({commit},{fullname,username,password,token}){
-            console.log(fullname,username,password,token)
+        register({commit},{fullname,gmail,token}){
+            console.log(fullname,gmail,token)
             return new Promise((resolve,reject)=>{
-                register(fullname,username,password,token).then((result) => {
+                register(fullname,gmail,token).then((result) => {
                     console.log(result.data)
                     router.push('/login')
                     resolve(result.data)

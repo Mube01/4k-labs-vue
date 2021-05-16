@@ -14,8 +14,8 @@ function login (username,password){
     };
     return  axios(config)
 }
-function register(fullname,username,password,token){
-    var data = JSON.stringify({"username":username,"password":password,"fullname":fullname,"token":token});
+function register(fullname,gmail,token){
+    var data = JSON.stringify({"gmail":gmail,"fullname":fullname,"token":token});
 
     var config = {
     method: 'post',
