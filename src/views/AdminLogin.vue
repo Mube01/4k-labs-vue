@@ -47,12 +47,20 @@ export default {
         .catch((err) => {
           this.errorAlert(err.message);
         });
+    },
+    onFailure(err){
+      this.errorAlert(err)
     }
   },
   mounted() {
     const gapi = window.gapi
     gapi.signin2.render('google-signin-button', {
-      onsuccess: this.onSignIn
+      'onsuccess': this.onSignIn,
+      'onfailure': this.onFailure,
+      'width': 240,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'white',
     })
   },
   created() {

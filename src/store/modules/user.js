@@ -13,12 +13,12 @@ export default {
 
     },
     actions:{
-        addUserInformation({commit},userData){
-            commit('addUserInformation',userData)
+        storeUserInformation({commit},userData){
+            commit('storeUserInformation',userData)
         },
-        userInformation({commit},user_id){
+        fetchuserInformation({commit},user_id){
             userApi.userInformation(user_id).then((result) => {
-                commit('addUserInformation',result.data)
+                commit('storeUserInformation',result.data)
             }).catch((err) => {
                 
             });
@@ -28,12 +28,14 @@ export default {
         }
     },
     mutations:{
-        addUserInformation(state,userData){
-            console.log('the user data is ',userData)
+        storeUserInformation(state,userData){
             state.user = userData
         },
         clearUserInformation(state){
             state.user = ""
-        }
+        },
+        RemoveUserInfo(state){
+            state.user = ""
+        },
     }
   };

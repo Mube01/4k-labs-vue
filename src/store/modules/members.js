@@ -22,17 +22,13 @@ export default {
         updateUser({commit,dispatch,rootGetters},members){
             var user_id = rootGetters['user/getUserId']
             var user = members.find((member)=>member.user_id === user_id)
-            console.log('updating user_inforamtion')
-            dispatch('user/addUserInformation',user,{root:true})
+            dispatch('user/storeUserInformation',user,{root:true})
         },
         getMembers({ commit, dispatch,rootGetters }) {
             return new Promise((resolve, reject) => {
                 membersApi.getMembers().then((result) => {
-                    console.log(result.data.members)
                     commit('storeMembers', result.data.members)
-                    console.log('is the man admin ', rootGetters['user/isSuperAdmin'])
-                    if(! rootGetters['user/isSuperAdmin']){
-                        console.log('the user is not a  admin')
+                    if(!rootGetters['user/isSuperAdmin']){
                         dispatch('updateUser',result.data.members)
                     }
                 }).catch((err) => {
@@ -87,7 +83,6 @@ export default {
         changeRole(state,{user_id,role}){
             for (let index = 0; index < state.members.length; index++) {
                 if(state.members[index].user_id === user_id){
-                    console.log('found one copy',state.members[index].Role)
                     state.members[index].Role = role
                 }
             }

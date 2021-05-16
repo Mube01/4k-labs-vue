@@ -15,13 +15,15 @@ export default {
 
     },
     actions:{
-        storeUserInfo({dispatch},userData){
-            dispatch('user/addUserInformation',userData,{root:true})
+        storeUserInfo({commit},userData){
+            commit('user/storeUserInformation',userData,{root:true})
+        },
+        RemoveUserInfo({commit}){
+            commit('user/RemoveUserInfo',{},{root:true})
         },
         adminLogin({dispatch,commit},id_token){
             return new Promise((resolve,reject)=>{
                 adminLogin(id_token).then((result) => {
-                    console.log(result.data)
                     localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
@@ -34,9 +36,9 @@ export default {
                 });
             })
         },
-        loginUser({dispatch,commit},{username,password}){
+        loginUser({dispatch,commit},id_token){
             return new Promise((resolve,reject)=>{
-                login(username,password).then((result) => {
+                login(id_token).then((result) => {
                     localStorage.setItem("refresh_token", JSON.stringify(result.data.refresh_token));
                     localStorage.setItem("access_token", JSON.stringify(result.data.access_token));
                     dispatch('storeUserInfo',result.data.user)
@@ -50,14 +52,11 @@ export default {
             })
         },
         logoutUser({commit,dispatch}){
-            return new Promise((resolve,reject)=>{
-                commit('authLogout')
-                localStorage.removeItem("access_token");
-                localStorage.removeItem("refresh_token");
-                localStorage.removeItem("vuex");
-                router.push('/login')    
-                resolve();
-            })
+            commit('authLogout')
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            router.push({ name: "Home" });
+            
         },
         deleteAccessTokens({commit}){
             return new Promise((resolve,reject)=>{
@@ -68,15 +67,12 @@ export default {
             })
         },
 
-        register({commit},{fullname,gmail,token}){
-            console.log(fullname,gmail,token)
+        register({commit},{fullname,email,token}){
             return new Promise((resolve,reject)=>{
-                register(fullname,gmail,token).then((result) => {
-                    console.log(result.data)
-                    router.push('/login')
+                register(fullname,email,token).then((result) => {
                     resolve(result.data)
                 }).catch((err) => {
-                    console.log(err.response.data)
+                    reject(err.response.data);
                 });
             })
         }
@@ -93,7 +89,6 @@ export default {
         authLogout(state){
             state.status = false
             state.token = null
-            sessionStorage.clear();
         }
     },
   };

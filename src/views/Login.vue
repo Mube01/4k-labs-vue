@@ -5,18 +5,7 @@
       <form class="login" onsubmit="return false">
         <img class="logo" src="@/assets/logo.webp" />
         <h2>Login</h2>
-        <label for="username">Username</label><br />
-        <input
-          required
-          v-model="username"
-          type="text"
-          id="username"
-          autocomplete="off"
-        />
-        <br />
-        <label for="password">Password</label><br />
-        <input required v-model="password" type="password" id="password" />
-        <button @click="login()">Login</button>
+        <div id="google-signin-button"></div>
       </form>
     </div>
     </div>
@@ -47,12 +36,12 @@ export default {
     ...mapActions({
       errorAlert: "errorAlert",
       successAlert: "successAlert",
+      loginUser:"auth/loginUser"
     }),
     // send user name and password by reading from the form
-    login() {
-      this.$store
-        .dispatch("auth/loginUser", this)
-        .then((result) => {
+    onSignIn (user) {
+      var id_token = user.getAuthResponse().id_token;
+      this.loginUser(id_token).then((result) => {
           this.successAlert("login successfull");
           this.$router.push({ name: "Divisions" });
         })
@@ -60,11 +49,25 @@ export default {
           this.errorAlert(err.message);
         });
     },
+    onFailure(err){
+      this.errorAlert(err)
+    }
   },
   created() {
     if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     }
+  },
+  mounted() {
+    const gapi = window.gapi
+    gapi.signin2.render('google-signin-button', {
+      'onsuccess': this.onSignIn,
+      'onfailure': this.onFailure,
+      'width': 240,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'white',
+    })
   },
 };
 </script>

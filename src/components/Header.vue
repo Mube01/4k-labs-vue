@@ -6,7 +6,7 @@
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
-          <div v-if="!user_info.superadmin">
+          <div v-show="!isSuperAdmin">
             <router-link :to="{ name: 'Me' }">
               <ProfilePicture
                 imgWeight="45px"
@@ -16,8 +16,7 @@
               />
             </router-link>
           </div>
-
-          <div v-if="user_info.superadmin">
+          <div v-show="isSuperAdmin">
             <router-link :to="{ name: 'AdminMe' }">
               <ProfilePicture
                 imgWeight="45px"
@@ -65,6 +64,7 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
+import {mapGetters} from "vuex";
 import { reject } from "q";
 export default {
   name: "Header",
@@ -73,10 +73,9 @@ export default {
   },
   methods: {
     logout() {
-      var res = this.$store.dispatch("auth/logoutUser");
-      res
+     this.$store.dispatch("auth/logoutUser")
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: "Home" });
         })
         .catch((err) => {
           reject(err);
@@ -84,6 +83,11 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({
+      isAuthenticated:'auth/isAuthenticated',
+      user_info:'user/getUserInformation',
+      isSuperAdmin:'user/isSuperAdmin'
+    }),
     isAuthenticated() {
       return this.$store.getters["auth/isAuthenticated"];
     },

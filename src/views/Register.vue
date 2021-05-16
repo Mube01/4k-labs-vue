@@ -14,12 +14,12 @@
 
         <div v-if="togleForm" class="full col-md-12">
 
-          <label for="gmail">Gmail Address</label><br />
+          <label for="email">Gmail Address</label><br />
           <input
             required
             v-model="gmail_address"
             type="text"
-            id="gmail"
+            id="email"
             autocomplete="off"
           />
           <label for="fullname">Full Name</label><br />
@@ -79,7 +79,6 @@ export default {
         })
         var elemnt = document.getElementById('customBtn');
         auth2.attachClickHandler(elemnt,{},(user)=>{
-          console.log(user);
           this.togleForm = true
           this.gmail_address = user.getBasicProfile().getEmail()
           this.fullname = user.getBasicProfile().getName()
@@ -100,23 +99,32 @@ export default {
       // check if confirm passwod and password are the same
       else {
         var data = {
-          gmail: this.gmail_address,
+          email: this.gmail_address,
           token: this.token,
+          fullname:this.fullname,
         };
         this.$store
           .dispatch("auth/register", data)
           .then((result) => {
+            this.successAlert(result.message)
             this.$router.push({ name: "Login" });
           })
           .catch((err) => {
-            console.log(err);
+            this.errorAlert(err.message);
           });
       }
     },
   },
-  created(){
+  mounted(){
     this.getGmail();
-  }
+  },
+  created() {
+    this.logoutUser()
+      .then((result) => {
+
+      })
+      .catch((err) => {});
+  },
 };
 </script>
 
