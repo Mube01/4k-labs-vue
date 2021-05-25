@@ -10,7 +10,7 @@
           :border="showAddProject ? '3px dashed #B6212D' : '3px dashed #177F75'"
           v-show="
             division == user_info.Division &&
-            (user_info.Role === '2' || user_info.Role === '4')
+            (user_info.Role === 2)
           "
         />
         <div v-show="showAddProject">
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       showAddProject: false,
-      loading: true,
+      loading: false,
     };
   },
   methods: {
@@ -93,15 +93,7 @@ export default {
       );
     },
   },
-  created() {
-    this.fetchProjects()
-      .then((result) => {
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+
 };
 </script>
 

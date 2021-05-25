@@ -19,14 +19,6 @@
                 <label>{{ user_info.username }}</label>
               </span>
             </p>
-            <router-link :to="{ name: 'UpdateAdminProfile' }">
-              <Button
-                text="Edit Profile"
-                color="#333"
-                bgColor="white"
-                border="2px solid #333"
-              />
-            </router-link>
           </div>
         </div>
       </div>
@@ -38,7 +30,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
-import Button from "@/components/Button.vue";
 import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
@@ -54,9 +45,8 @@ const toBase64 = (file) =>
 export default {
   name: "Me",
   components: {
-    Header,
+    // Header,
     ProfilePicture,
-    Button,
     Wave,
   },
   data() {

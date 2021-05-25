@@ -1,6 +1,22 @@
 const axios = require('axios');
 
 
+function allPortalInfo(){
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
+    
+    var config = {
+        method: 'get',
+        url: '/api_v1/get_all_info_portal',
+        headers: { 
+            Authorization: `Bearer ${token}`,
+        }
+    };
+
+    return axios(config)
+}
+
+
 
 function fetchProjectsStatic() {
     var axios = require('axios');
@@ -27,7 +43,6 @@ function fetchProjects() {
 }
 
 function fetchProject(project_code) {
-    var axios = require('axios');
     var token = localStorage.getItem('access_token') || ''
     token = token.substring(1, token.length - 1)
     var config = {
@@ -96,4 +111,4 @@ function updateProject(data){
     return axios(config)
 }
 
-export default { fetchProjects, fetchProject, createNewProject, deleteProject,updateProject,fetchProjectsStatic}
+export default { fetchProjects, fetchProject, createNewProject, deleteProject,updateProject,fetchProjectsStatic,allPortalInfo}

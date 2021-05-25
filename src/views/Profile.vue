@@ -65,7 +65,7 @@ import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import Project from "@/components/Project.vue";
 import Wave from "@/components/Wave.vue";
-
+import {mapGetters} from 'vuex';
 export default {
   name: "Profile",
   components: {
@@ -81,6 +81,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      'getMemberInfo':'members/getMemberById'
+    }),
     projects(user_id) {
       return this.$store.getters["projects/listOfProjectsByUserId"](
         this.user_code
@@ -88,14 +91,20 @@ export default {
     },
   },
   created() {
-    console.log("reloading state");
-    this.user_code = this.$router.currentRoute._value.params.user_code;
-    this.$store
-      .dispatch("profile/getUserInformation", this.user_code)
-      .then((result) => {
-        this.user_info = result;
-      })
-      .catch((err) => {});
+    
+    // console.log("reloading state");
+    this.user_code = this.$route.params.user_code,
+    this.user_info = this.getMemberInfo(this.user_code)[0]
+    
+
+    // this.user_info = 
+
+    // this.$store
+    //   .dispatch("profile/getUserInformation", this.user_code)
+    //   .then((result) => {
+    //     this.user_info = result;
+    //   })
+    //   .catch((err) => {});
   },
 };
 </script>

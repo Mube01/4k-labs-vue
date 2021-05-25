@@ -1,16 +1,9 @@
 <template>
   <div>
-    <div v-if="isSuperAdmin">
-        <img
-          v-if="srcText.length > 0"
-          :src="srcText"
-          :style="{ width: imgWeight, height: imgWeight }"
-        />
-      </div>
-    <div v-if="!isSuperAdmin">
+    <div>
       <img
         v-if="srcText.length > 0"
-        :src="`/api_v1/get_profile/${srcText}?` + new Date().getTime()"
+        :src="`/api_v1/get_profile/${srcText}`"
         :style="{ width: imgWeight, height: imgWeight }"
       />
     </div>

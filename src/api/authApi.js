@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 
-function login (username,password){
+function login (id_token){
     
-    var data = JSON.stringify({"username":username,"password":password});
+    var data = JSON.stringify({"id_token":id_token});
     var config = {
     method: 'post',
     url: '/api_v1/login',
@@ -14,8 +14,8 @@ function login (username,password){
     };
     return  axios(config)
 }
-function register(fullname,gmail,token){
-    var data = JSON.stringify({"gmail":gmail,"fullname":fullname,"token":token});
+function register(fullname,email,token){
+    var data = JSON.stringify({"email":email,"fullname":fullname,"token":token});
 
     var config = {
     method: 'post',

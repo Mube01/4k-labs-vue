@@ -42,16 +42,18 @@ export default {
   methods: {
     ...mapActions({
       fetchProject: "projects/getAllProjects",
+      getAllPortalInfo:'getAllPortalInfo'
     }),
   },
   created() {
-    this.fetchProject()
-      .then((result) => {
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+
+    this.loading = true
+    this.getAllPortalInfo().then((result) => {
+      this.loading = false
+    }).catch((err) => {
+      
+    });
   },
   data() {
     return {
@@ -75,7 +77,7 @@ export default {
             "4K-Things is a department in 4K-Labs that works on IOT(Internet of Things).",
         },
       ],
-      loading: true,
+      loading: false,
     };
   },
   components: {

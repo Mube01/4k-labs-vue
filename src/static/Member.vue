@@ -1,9 +1,9 @@
 <template>
   <div id="card">
-	<h4>{{member['username']}}</h4>
+	<h4>{{member['fullname']}}</h4>
 	<div class="image-crop">
 		<img id="avatar"
-      :src="`/api_v1/get_profile/${member['profile_picture']||'avatar.png'}?` + new Date().getTime()"
+      :src="`/api_v1/get_profile/${member['profile_picture']||'avatar.png'}`"
      >
 	</div>
 	<div id="bio">

@@ -1,6 +1,5 @@
 import profileApi from '../../api/profileApi'
 import router from '../../router'
-import user from './user';
 export default {
     namespaced: true,
 
@@ -25,7 +24,7 @@ export default {
         editProfile({dispatch},data){
             return new Promise((resolve,reject)=>{
                 profileApi.updateProfile(data).then((result) => {
-                    dispatch('user/addUserInformation',result.data.data,{root:true})
+                    dispatch('user/storeUserInformation',result.data.data,{root:true})
                     resolve(result.data)
                 }).catch((err) => {
                     
@@ -36,7 +35,7 @@ export default {
             return new Promise((resolve,reject)=>{
                 profileApi.updateAdminProfile(data).then((result) => {
                     console.log(result.data)
-                    dispatch('user/addUserInformation',result.data.data,{root:true})
+                    dispatch('user/storeUserInformation',result.data.data,{root:true})
                     resolve(result.data)
                 }).catch((err) => {
                     
@@ -45,8 +44,5 @@ export default {
         }
     },
     mutations:{
-        addUserInformation(state,userData){
-            state.user = userData
-        }
     }
   };

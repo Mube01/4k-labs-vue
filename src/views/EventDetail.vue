@@ -6,9 +6,7 @@
         <div class="row">
           <div class="image col-md-6">
             <img
-              :src="
-                `/api_v1/get_event/${event.event_image}?` + new Date().getTime()
-              "
+              :src="`/api_v1/get_event/${event.event_image}`"
             />
           </div>
           <div class="status col-md-6">
