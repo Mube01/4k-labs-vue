@@ -13,9 +13,9 @@
 	</div>
 	
 	<div id="links">
-    <a :href="member['Linkden']">
+    <a :href="member['Linkden'] || '#'">
       <i title="LinkedIn link" class="fab fa-linkedin"></i></a>
-    <a :href="member['Github']">
+    <a :href="member['Github'] || '#'">
       <i title="Github link" class="fab fa-github"></i>
     </a>
 	</div>

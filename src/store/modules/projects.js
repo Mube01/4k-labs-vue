@@ -68,9 +68,9 @@ export default {
             })
         },
         renameTask({ commit, dispatch }, payload) {
+            commit('renameTask',payload);
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.renameTask(payload.task_code, payload.task).then((result) => {
-                    commit('renameTask',payload);
                     resolve(result.data);
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -81,16 +81,21 @@ export default {
             })
         },
         // TODO remve the tasks data from the back end 
-        updateTask({commit,dispatch},data){
-            console.log('the data is ')   
+        updateTask({commit,dispatch,state},data){
+            var original = state.projects;
+            console.log('the original is ', original);   
             if(!data.destination.value[0].assigned_to.includes(data.user_id)){
                 dispatch('errorAlert', ("only assigned member can move task"), { root: true })
             }  
             else if(data.destination.value[0]){
+
+                // first update the front end then do the task
+                commit('updateTask',data)
+                commit('updateProgress',data.project_code)
+
                 return new Promise((resolve,reject)=>{
                     tasksApi.updateTask(data.destination.value[0].task_code,data.destination.status).then((result) => {
-                        commit('updateTask',data)
-                        commit('updateProgress',data.project_code)
+                       
                     }).catch((err) => {
                         if (err.response.status == 401) {
                             dispatch('auth/logoutUser', err.response.data, { root: true })
@@ -101,10 +106,10 @@ export default {
             }
         },
         deleteTask({ commit, dispatch }, data) {
+            commit('deleteTask', data)
+            commit('updateProgress',data.project_code)
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.deleteTask(data.task_code).then((result) => {
-                    commit('deleteTask', data)
-                    commit('updateProgress',data.project_code)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -115,6 +120,7 @@ export default {
             })
         },
         addTask({ commit, dispatch }, data) {
+            
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.addTask(data.project_code, data.task).then((result) => {
                     commit('addTask', {'task':result.data.task,'project_code':data.project_code})
@@ -130,10 +136,10 @@ export default {
         },
 
         assignTask({ commit, dispatch }, {task_code,members,project_code}) {
+
+            commit('assignTask',{task_code,members,project_code})
             return new Promise((resolve, reject) => {
                 var ans = tasksApi.assignTaskToMembers(task_code, members).then((result) => {
-                    console.log("the result is ",result.data);
-                    commit('assignTask',{task_code,members,project_code})
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -188,6 +194,9 @@ export default {
         },
     },
     mutations: {
+        resetToPrevios(state, projectData) {
+            state.projects = projectData
+        },
         storeAllProjects(state, projectData) {
             state.projects = projectData
         },
@@ -207,18 +216,7 @@ export default {
             var i = state.projects.findIndex((project)=>project.project_code === data.destination.value[0].project_code)
             var index = state.projects[i].tasks.findIndex((task)=>task.task_code === data.destination.value[0].task_code)
             state.projects[i].tasks[index].status = data.destination.status
-            // var copyTasks = state.project.tasks
-            // data.completed = (data.completed == '1') ? '0' : '1'
-            // console.log('the reversed is ',data.completed)
-            // for (var i = 0; i < copyTasks.length; i++) {
-            //     if(copyTasks[i].task_code == data.task_code){
 
-            //         console.log('the copy is ',copyTasks[i].task_code,' ',data.task_code)
-            //         copyTasks[i].completed = data.completed
-            //     }
-            // }
-            // console.log(copyTasks)
-            // state.project.tasks = ['abel','abebe'];
         },
         /**
          * this update progress doesn't take any parameter

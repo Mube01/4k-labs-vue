@@ -37,6 +37,7 @@ export default {
   computed: {
     ...mapGetters({
       user_info: "user/getUserInformation",
+      projects : "projects/listOfProjects"
     }),
   },
   methods: {
@@ -47,13 +48,20 @@ export default {
   },
   created() {
 
+    if(this.projects===""){
+      this.loading = true
+      this.getAllPortalInfo().then((result) => {
+        this.loading = false
+      }).catch((err) => {
+        
+      });
+    }else{
+       this.getAllPortalInfo().then((result) => {
+        this.loading = false
+      }).catch((err) => {
+      });
 
-    this.loading = true
-    this.getAllPortalInfo().then((result) => {
-      this.loading = false
-    }).catch((err) => {
-      
-    });
+    }
   },
   data() {
     return {
