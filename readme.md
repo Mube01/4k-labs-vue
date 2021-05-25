@@ -24,8 +24,13 @@ TODOS<br/>
     [x] drag and drop tasks\
     [ ] add multiple images upload for the gallarey inside  events\
     [ ] add content for the static pages\
-    [ ] make the super admin use google oauth to login
-        
+    [x] use google oauth\
+    ------------------------------------------------------\
+    [ ] remove image reloading in every request
+    [ ] less api requres
+    [ ] les validation from the backend
+    [ ] update task first and validate at the backend second
+    [ ] page resonsiveness
     
     
     

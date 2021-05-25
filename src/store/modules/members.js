@@ -15,6 +15,9 @@ export default {
         },
         getMembersAdmin(state){
             return state.members
+        },
+        getMemberById:(state)=>(id)=>{
+            return state.members.filter((member)=>member.user_id==id)
         }
 
     },

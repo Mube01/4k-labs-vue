@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       showAddProject: false,
-      loading: true,
+      loading: false,
     };
   },
   methods: {
@@ -93,15 +93,7 @@ export default {
       );
     },
   },
-  created() {
-    this.fetchProjects()
-      .then((result) => {
-        this.loading = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+
 };
 </script>
 
