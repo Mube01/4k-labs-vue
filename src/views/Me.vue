@@ -49,10 +49,10 @@
           </div>
           <div class="col-lg-3 col-sm-12 my-4 pt-2">
             <p>
-              <a :href="user_info.Linkden"
-                ><i title="LinkedIn link" class="fab fa-linkedin"></i
+              <a :href="user_info.Linkden || '#'">
+              <i title="LinkedIn link" class="fab fa-linkedin"></i
               ></a>
-              <a :href="user_info.Github"
+              <a :href="user_info.Github || '#'"
                 ><i title="Github link" class="fab fa-github"></i
               ></a>
             </p>
@@ -117,7 +117,6 @@ export default {
     };
   },
   created() {
-    console.log("this is abel km");
     this.user_info = this.$store.getters["user/getUserInformation"];
   },
   computed: {

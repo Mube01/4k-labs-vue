@@ -53,9 +53,9 @@ export default {
         },
         async changeRole({dispatch,commit},{user_id,role}){
             role = await dispatch('getKeyByValueRole',role,{root:true})
+            commit('changeRole',{user_id,role})
             return new Promise((resolve,reject)=>{
                 membersApi.changeMemberRole(user_id,role).then((result) => {
-                    commit('changeRole',{user_id,role})
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {
@@ -66,9 +66,9 @@ export default {
             })
         },
         changeDivsion({commit,dispatch},{user_id,division}){
+            commit('changeDivsion',{user_id,division})
             return new Promise((resolve,reject)=>{
                 membersApi.changeMemberDivision(user_id,division).then((result) => {
-                    commit('changeDivsion',{user_id,division})
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {

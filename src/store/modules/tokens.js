@@ -38,9 +38,9 @@ export default {
             })
         },
         deleteToken({commit,dispatch},token){
+            commit('deleteToken',token)
             return new Promise((resolve, reject) => {
                 tokenApi.deleteToken(token).then((result) => {
-                    commit('deleteToken',token)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {

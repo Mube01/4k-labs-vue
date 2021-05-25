@@ -38,10 +38,9 @@ export default {
             })
         },
         deleteEvent({commit,dispatch},event_id){
+            commit('deleteEvent',event_id)
             return new Promise((resolve, reject) => {
                 EventApi.deleteEvent(event_id).then((result) => {
-                    console.log(result.data)
-                    commit('deleteEvent',event_id)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {

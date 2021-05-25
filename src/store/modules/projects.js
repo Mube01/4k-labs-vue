@@ -164,9 +164,9 @@ export default {
             })
         },
         deleteProject({ commit, dispatch }, project_code) {
+            commit('deleteProject', project_code)
             return new Promise((resolve, reject) => {
                 projectsApi.deleteProject(project_code).then((result) => {
-                    commit('deleteProject', project_code)
                     resolve(result.data)
                 }).catch((err) => {
                     if (err.response.status == 401) {

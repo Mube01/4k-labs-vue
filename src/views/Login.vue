@@ -30,13 +30,15 @@ export default {
   computed: {
     ...mapGetters({
       isAuthenticated: ["auth/isAuthenticated"],
+      isSuperAdmin:['user/isSuperAdmin']
     }),
   },
   methods: {
     ...mapActions({
       errorAlert: "errorAlert",
       successAlert: "successAlert",
-      loginUser:"auth/loginUser"
+      loginUser:"auth/loginUser",
+      logoutUser:"auth/logoutUser2"
     }),
     // send user name and password by reading from the form
     onSignIn (user) {
@@ -54,7 +56,10 @@ export default {
     }
   },
   mounted() {
-    if (this.isAuthenticated) {
+    if(this.isSuperAdmin){
+      this.logoutUser()
+    }
+    else if(this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     }
     else{
