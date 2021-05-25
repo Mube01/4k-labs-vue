@@ -9,7 +9,7 @@ export default {
         getUserInformation: state => state.user,
         getUserId: state => state.user.user_id,
         getUserRole: state => state.user.Role,
-        isSuperAdmin: state => state.user.superadmin
+        isSuperAdmin: state => state.user.superadmin || false
 
     },
     actions:{
