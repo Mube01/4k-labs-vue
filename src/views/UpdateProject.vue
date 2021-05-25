@@ -89,11 +89,6 @@ export default {
         .catch((err) => {});
     },
   },
-  created() {
-    this.fetchProject(this.project_code).then((result) => {
-      console.log(result);
-    });
-  },
   computed: {
     ...mapGetters({
       project: "projects/getProject",

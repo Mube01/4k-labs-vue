@@ -3,11 +3,11 @@
   <footer id="footer" class="dark">
  <div class="quick-links">
  <ul>
-<a href="">
+<a href="https://www.facebook.com/4K4KLABS/">
     <li><i class="fab fa-facebook-square"></i></li>
-</a><a href="">
+</a><a href="https://twitter.com/4kbots">
     <li><i class="fab fa-twitter-square"></i></li>
-</a><a href="">
+</a><a href="#">
     <li><i class="fab fa-linkedin"></i></li>
 </a> 
  </ul>

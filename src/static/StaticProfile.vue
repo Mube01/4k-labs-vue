@@ -29,10 +29,10 @@
           </div>
           <div class="col-lg-3 col-sm-12 my-4 pt-2">
             <p>
-              <a :href="user_info.Github"
+              <a :href="user_info.Linkden || '#'"
                 ><i title="LinkedIn link" class="fab fa-linkedin"></i
               ></a>
-              <a :href="user_info.Linkden"
+              <a :href="user_info.Github || '#'"
                 ><i title="Github link" class="fab fa-github"></i
               ></a>
             </p>
@@ -59,7 +59,7 @@ import ProfilePicture from "@/components/ProfilePicture.vue";
 import StaticProject from "./StaticProject";
 import Wave from "@/components/Wave.vue";
 export default {
-  name: "Profile",
+  name: "StaticProfile",
   components: {
     SubHeader,
     ProfilePicture,
@@ -80,7 +80,7 @@ export default {
     },
   },
   created() {
-    this.user_code = this.$router.currentRoute._value.params.user_code;
+    this.user_code = this.$route.params.user_code;
   },
 };
 </script>

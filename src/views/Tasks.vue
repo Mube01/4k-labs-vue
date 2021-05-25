@@ -8,10 +8,10 @@
           <div class="status">
             <h3>{{ project.project_title }}</h3>
             <div class="links">
-              <a target="_blank" :href="project.github" class="card-link"
+              <a target="_blank" :href="project.github || '#'" class="card-link"
                 ><i title="Github link" class="fab fa-github"></i
               ></a>
-              <a target="_blank" :href="project.docs" class="card-link"
+              <a target="_blank" :href="project.docs || '#'" class="card-link"
                 ><i title="Google Docs link" class="far fa-file-alt"></i
               ></a>
 

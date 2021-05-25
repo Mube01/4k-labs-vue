@@ -19,7 +19,7 @@ import Header from "@/static/SubHeader.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Login",
+  name: "AdminLogin",
   components:{Header},
   data() {
     return {
@@ -30,13 +30,17 @@ export default {
   computed: {
     ...mapGetters({
       isAuthenticated: ["auth/isAuthenticated"],
+      isSuperAdmin:['user/isSuperAdmin']
+
     }),
   },
   methods: {
     ...mapActions({
       errorAlert:   "errorAlert",
       successAlert: "successAlert",
-      login_admin:  "auth/adminLogin"
+      login_admin:  "auth/adminLogin",
+      logoutUser:"auth/logoutUser2"
+
     }),
     onSignIn (user) {
       var id_token = user.getAuthResponse().id_token;
@@ -53,6 +57,10 @@ export default {
     }
   },
   mounted() {
+
+    if(this.isSuperAdmin!=true){
+      this.logoutUser()
+    }
     if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     }

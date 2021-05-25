@@ -29,10 +29,10 @@
           </div>
           <div class="col-lg-3 col-sm-12 my-4 pt-2">
             <p>
-              <a :href="user_info.Github"
+              <a :href="user_info.Github||'#'"
                 ><i title="LinkedIn link" class="fab fa-linkedin"></i
               ></a>
-              <a :href="user_info.Linkden"
+              <a :href="user_info.Linkden||'#'"
                 ><i title="Github link" class="fab fa-github"></i
               ></a>
             </p>

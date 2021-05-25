@@ -53,10 +53,18 @@ export default {
         },
         logoutUser({commit,dispatch}){
             commit('authLogout')
+            commit('user/clearUserInformation',{}, { root: true })
             localStorage.removeItem("access_token");
             localStorage.removeItem("refresh_token");
             router.push({ name: "Home" });
             
+        },
+        // this is another logout but it donesn't push back to the home directory
+        logoutUser2({commit,dispatch}){
+            commit('authLogout')
+            commit('user/clearUserInformation',{}, { root: true })
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token"); 
         },
         deleteAccessTokens({commit}){
             return new Promise((resolve,reject)=>{
