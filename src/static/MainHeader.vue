@@ -1,60 +1,61 @@
 <template>
   <div>
     <div class="parent">
-    <header>
+      <header>
         <div class="overlay"></div>
-        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-          <source src="../assets/video/background.mp4" type="video/mp4">
+        <video
+          playsinline="playsinline"
+          autoplay="autoplay"
+          muted="muted"
+          loop="loop"
+        >
+          <source src="../assets/video/background.mp4" type="video/mp4" />
         </video>
-        <div class="container h-10  ">
-          <div class="d-flex h-100 text-center align-items-center">
-            <div class="text-white">
-              <router-link :to="{ name: 'Home' }">
-                <img src="../assets/logo.webp" alt="" class="logo"/>
-              </router-link>
-            </div>
-          </div>
-        <div class="text-center">
-        <i class="fas fa-bars menu-icon" v-on:click="toggleMenu()"></i>
+        <div class="container">
+          <router-link :to="{ name: 'Home' }">
+            <img src="../assets/logo.webp" alt="" class="logo" />
+          </router-link>
+          <div class="text-center">
+            <i class="fas fa-bars menu-icon" v-on:click="toggleMenu()"></i>
 
-            <ul style="float:right" class="link" id="menu-elements">
-                <a class="link_class" href="#Teams"> <li>Teams</li> </a>
-                <a class="link_class" href="#Events"><li>Events</li></a>
-                <router-link class="link_class" :to="{ name: 'AllProjects' }"> <li>Projects</li> </router-link>
-               
-                <router-link class="link_class" :to="{ name: 'Members' }"><li>Members</li> </router-link>
-                <router-link class="link_class" :to="{ name: 'Login' }"><li>Login</li> </router-link>
-                <router-link class="link_class" :to="{ name: 'Register' }"><li>Register</li> </router-link>
-              </ul>
+            <ul style="float: right" class="link" id="menu-elements">
+              <a class="link_class" href="#Teams"> <li>Teams</li> </a>
+              <a class="link_class" href="#Events"><li>Events</li></a>
+              <router-link class="link_class" :to="{ name: 'AllProjects' }">
+                <li>Projects</li>
+              </router-link>
+
+              <router-link class="link_class" :to="{ name: 'Members' }"
+                ><li>Members</li>
+              </router-link>
+              <router-link class="link_class" :to="{ name: 'Login' }"
+                ><li>Login</li>
+              </router-link>
+              <router-link class="link_class" :to="{ name: 'Register' }"
+                ><li>Register</li>
+              </router-link>
+            </ul>
           </div>
 
           <div class="middle">
-        <div class="message">
-          <h2 id="messageName">4K Labs</h2>
-             <a href="#details">
-          <button class="btn-find" id="btnFind">Recent &darr;</button></a
-        >
-        </div>
-
-     
-      </div>
+            <div class="message">
+              <h2 id="messageName">4K Labs</h2>
+              <a href="#Events">
+                <button class="btn-find" id="btnFind">Recent &darr;</button></a
+              >
+            </div>
+          </div>
         </div>
       </header>
-      
     </div>
-    
   </div>
 </template>
 <script>
- 
- 
 export default {
-  
   name: "MainHeader",
   components: {},
-   methods: {
-     toggleMenu() {
-     
+  methods: {
+    toggleMenu() {
       const menuItem = document.getElementById("menu-elements");
       const messageName = document.getElementById("messageName");
       const btnFind = document.getElementById("btnFind");
@@ -63,16 +64,16 @@ export default {
       if (btnFind) {
         btnFind.classList.toggle("button-move");
       }
-   }
-  }}
-
+    },
+  },
+};
 </script>
 <style scoped>
 .menu {
   position: absolute;
-  top:20px;
-  right:20px;
-  color:rgb(148, 73, 38);
+  top: 20px;
+  right: 20px;
+  color: rgb(148, 73, 38);
 }
 
 header {
@@ -82,7 +83,6 @@ header {
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
- 
 }
 
 header video {
@@ -105,15 +105,13 @@ header .container {
   z-index: 2;
 }
 
-
-header ul{
-  margin-top:-50px;
+header ul {
+  margin-top: -50px;
   margin-right: -200px;
 }
-header ul li{
-display: inline-block;
-padding:10px;
-
+header ul li {
+  display: inline-block;
+  padding: 10px;
 }
 .desc {
   background: white;
@@ -136,7 +134,6 @@ padding:10px;
   margin: 0;
   padding: 0;
   height: auto;
-
 }
 .vid {
   position: absolute;
@@ -165,7 +162,7 @@ padding:10px;
   color: white !important;
   width: 80px;
 }
-.links li:hover{
+.links li:hover {
   color: #a97c50 !important;
 }
 .links a {
@@ -173,15 +170,14 @@ padding:10px;
   color: rgb(255, 255, 255) !important;
   font-size: 17px;
 }
-.links a:hover{
+.links a:hover {
   color: #a97c50;
 }
 .logo {
-  margin-top:10px;
+  margin-top: 10px;
 
-  
   cursor: pointer;
-  width:100px;
+  width: 100px;
 }
 
 .link_class {
@@ -210,7 +206,6 @@ padding:10px;
 .message {
   color: white;
   text-align: center;
- 
 }
 .message h2 {
   font-size: 40px;
@@ -231,7 +226,7 @@ padding:10px;
 }
 @media screen and (max-width: 700px) {
   header video {
-  display:none;
+    display: none;
   }
 
   .parent {
@@ -245,9 +240,9 @@ padding:10px;
     display: block;
     color: rgb(175, 81, 38);
     cursor: pointer;
-    position:absolute;
-    top:20px;
-    right:20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
   .link {
     display: none;
@@ -255,15 +250,14 @@ padding:10px;
   .hello {
     display: block;
     position: absolute;
-    top: 100px;
+    top: 80px;
     right: 220px;
     overflow-x: visible;
   }
   .hello li {
     display: block;
     text-align: left;
-    border-bottom: 1px solid white;
-    padding: 5px;
+    margin: -15px 0;
   }
   .move {
     width: 65%;

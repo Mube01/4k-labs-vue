@@ -44,7 +44,7 @@ export default {
 }
 .card-img-top {
   height: 350px;
-  object-fit: initial;
+  object-fit: cover;
 }
 .left {
   float: left;
