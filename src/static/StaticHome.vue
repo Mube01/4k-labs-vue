@@ -1,77 +1,97 @@
 <template>
   <div>
-    <MainHeader/>
+    <MainHeader />
     <div class="prompt">
-     <p>4k labs is a research lab based in addis ababa university </p>
+      <p>
+        4K Labs is a Research & Development laboratory at Addis Ababa University
+        under the department of computer science.
+      </p>
     </div>
-    
+
+    <div class="text container">
+      <h1 style="text-align: center; margin: 40px 0">4K-Labs</h1>
+      <p>
+        4K Labs is a place where an idea comes to life and starts to breathe. We
+        focus on developing reconfigurable, Adaptable, environmentally friendly,
+        power efficient hardware & Software systems under the consideration of
+        AI. With our exceptional design team we introduce aesthetics in our
+        projects.
+      </p>
+    </div>
+
     <div id="Teams">
-      <h1 style="text-align:center;">Teams</h1>
-      <Teams/>
+      <h1 style="text-align: center">Teams</h1>
+      <Teams />
     </div>
 
     <div id="Events">
-      <h1 style="text-align:center;">Events</h1>
-      <div :key=event.event_id v-for="event in events">
-        <Event :event=event />
+      <h1 style="text-align: center">Events</h1>
+      <div :key="event.event_id" v-for="event in events">
+        <Event :event="event" />
       </div>
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
 <script>
-import {mapActions,mapGetters} from 'vuex';
-import MainHeader from './MainHeader';
-import Event from './Event';
-import Teams from './Teams'
-import Footer from './Footer'
+import { mapActions, mapGetters } from "vuex";
+import MainHeader from "./MainHeader";
+import Event from "./Event";
+import Teams from "./Teams";
+import Footer from "./Footer";
 export default {
-  name:"StaticHome",
-  components:{
+  name: "StaticHome",
+  components: {
     MainHeader,
     Event,
     Teams,
-    Footer
+    Footer,
   },
-  methods:{
+  methods: {
     ...mapActions({
-      getAllInfo:'home/getAllInfo'
-    })
+      getAllInfo: "home/getAllInfo",
+    }),
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      'events':'home/getEvents'
-    })
+      events: "home/getEvents",
+    }),
   },
-  created(){
-    this.getAllInfo().then((result) => {
-      
-    }).catch((err) => {
-      
-    });
-  }
+  created() {
+    this.getAllInfo()
+      .then((result) => {})
+      .catch((err) => {});
+  },
 };
 </script>
 
 <style scoped>
-.prompt{
-  padding:50px;
-  text-align:center;
-  font-size:30px;
+.prompt {
+  padding: 50px;
+  text-align: center;
+  font-size: 30px;
   background: #a97c50;
-  color:white;
+  color: white;
 }
-@media screen and (max-width:700px){
-  .prompt{margin-top:45px;}
+@media screen and (max-width: 700px) {
+  .prompt {
+    margin-top: 45px;
+  }
 }
-#Teams{
+#Teams {
   margin: 40px 0;
 }
-#Teams h1{
-margin-bottom: 20px;
+#Teams h1 {
+  margin-bottom: 20px;
 }
-#Events h1{
+#Events h1 {
   margin-bottom: 40px;
+}
+p {
+  font-size: 20px;
+}
+.text p {
+  text-align: justify;
 }
 </style>

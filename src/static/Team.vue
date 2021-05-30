@@ -43,6 +43,7 @@ export default {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 .card-img-top {
+  width: 100%;
   height: 230px;
 }
 h3 {

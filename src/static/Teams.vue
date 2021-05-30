@@ -2,19 +2,27 @@
   <div>
     <div>
       <div v-show="!loading" class="container text-center">
-          <div class="row">
-            <div :key="division" v-for="division in divisions" id="divisions">
-              <router-link
-                :to="{ name: 'StaticDivision', params: { division: division.name } }"
-              >
-                <Team
-                  :name="division.name"
-                  :background="division.image"
-                  :details="division.details"
-              /></router-link>
-            </div>
+        <div class="row">
+          <div
+            class="col-md-4"
+            :key="division"
+            v-for="division in divisions"
+            id="divisions"
+          >
+            <router-link
+              :to="{
+                name: 'StaticDivision',
+                params: { division: division.name },
+              }"
+            >
+              <Team
+                :name="division.name"
+                :background="division.image"
+                :details="division.details"
+            /></router-link>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +32,7 @@ import Team from "./Team";
 export default {
   name: "Teams",
   components: {
-    Team
+    Team,
   },
   data() {
     return {
@@ -50,7 +58,7 @@ export default {
       ],
       loading: false,
     };
-  }
+  },
 };
 </script>
 <style scoped>

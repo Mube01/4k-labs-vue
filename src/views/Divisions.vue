@@ -8,7 +8,12 @@
       </div>
       <div v-show="!loading" class="container text-center">
         <div class="row">
-          <div :key="division" v-for="division in divisions" id="divisions">
+          <div
+            class="col-md-4"
+            :key="division"
+            v-for="division in divisions"
+            id="divisions"
+          >
             <router-link
               :to="{ name: 'Projects', params: { division: division.name } }"
             >
@@ -37,30 +42,29 @@ export default {
   computed: {
     ...mapGetters({
       user_info: "user/getUserInformation",
-      projects : "projects/listOfProjects"
+      projects: "projects/listOfProjects",
     }),
   },
   methods: {
     ...mapActions({
       fetchProject: "projects/getAllProjects",
-      getAllPortalInfo:'getAllPortalInfo'
+      getAllPortalInfo: "getAllPortalInfo",
     }),
   },
   created() {
-
-    if(this.projects===""){
-      this.loading = true
-      this.getAllPortalInfo().then((result) => {
-        this.loading = false
-      }).catch((err) => {
-        
-      });
-    }else{
-       this.getAllPortalInfo().then((result) => {
-        this.loading = false
-      }).catch((err) => {
-      });
-
+    if (this.projects === "") {
+      this.loading = true;
+      this.getAllPortalInfo()
+        .then((result) => {
+          this.loading = false;
+        })
+        .catch((err) => {});
+    } else {
+      this.getAllPortalInfo()
+        .then((result) => {
+          this.loading = false;
+        })
+        .catch((err) => {});
     }
   },
   data() {

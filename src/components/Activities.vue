@@ -11,17 +11,17 @@
         >
           <template #item="{ element }">
             <div class="list-group-item1">
-              <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <span v-if="!toogleRename[element.task_code]">{{
+                element.task
+              }}</span>
               <input
                 @change="task_name_changed = true"
                 type="text"
                 v-show="toogleRename[element.task_code]"
                 v-model="element.task"
-                @keyup.enter="
-                  rename(element.task,element.task_code);
-                "
+                @keyup.enter="rename(element.task, element.task_code)"
               />
-              
+
               <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
                   <i
@@ -40,9 +40,9 @@
                     aria-labelledby="dropdownMenuButton"
                   >
                     <li
-                     v-if="isProjectMember"
-                     class="dropdown-item" 
-                     @click="showRename(element.task_code)"
+                      v-if="isProjectMember"
+                      class="dropdown-item"
+                      @click="showRename(element.task_code)"
                     >
                       Rename
                     </li>
@@ -58,23 +58,30 @@
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
-                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
+                          <li
+                            :key="member.user_id"
+                            v-for="member in getMemberInfo"
+                            class="dropdown-item"
+                          >
                             <div class="form-check">
                               <input
                                 type="checkbox"
                                 :value="member.user_id"
                                 :class="element.task_code"
-                                :checked="element.assigned_to.includes(member.user_id)"
+                                :checked="
+                                  element.assigned_to.includes(member.user_id)
+                                "
                               />
-                              <label
-                                class="form-check-label"
-                              >
-                              {{member.username}}
+                              <label class="form-check-label">
+                                {{ member.username }}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <a @click="assignTask(element.task_code)" class="btn">
+                            <a
+                              @click="assignTask(element.task_code)"
+                              class="btn"
+                            >
                               Assign
                             </a>
                           </li>
@@ -85,33 +92,39 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
-              <li
-                :key="member"
-                v-for="member in element.assigned_to"
-                style="margin-left: 10px"
+              <ul
+                style="
+                  width: 100%;
+                  float: left;
+                  margin-top: 10px;
+                  margin-bottom: -5px;
+                "
               >
-                <router-link
-                  :to="{
-                    name: 'Profile',
-                    params: { user_code: member },
-                  }"
+                <li
+                  :key="member"
+                  v-for="member in element.assigned_to"
+                  style="margin-left: 10px; list-style-type: none; float: left"
                 >
-                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
-                    imgWeight="30px"
-                    fontSize="15px"
-                    top="0%"
-                    :name="getMemberInfo[member].username[0]"
-                    :srcText="getMemberInfo[member]['profile_picture']"
-                  />
-                </router-link>
-              </li>
+                  <router-link
+                    :to="{
+                      name: 'Profile',
+                      params: { user_code: member },
+                    }"
+                  >
+                    <ProfilePicture
+                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      imgWeight="30px"
+                      fontSize="15px"
+                      top="0%"
+                      :name="getMemberInfo[member].username[0]"
+                      :srcText="getMemberInfo[member]['profile_picture']"
+                    />
+                  </router-link>
+                </li>
               </ul>
             </div>
           </template>
-           v-model="todos"
-          group="people"
-          itemKey="id"<template #header>
+          v-model="todos" group="people" itemKey="id"<template #header>
             <Add
               v-if="isProjectMember"
               style="background-color: white; margin-left: 0px"
@@ -138,15 +151,15 @@
         >
           <template #item="{ element }">
             <div class="list-group-item2">
-            <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <span v-if="!toogleRename[element.task_code]">{{
+                element.task
+              }}</span>
               <input
                 @change="task_name_changed = true"
                 type="text"
                 v-show="toogleRename[element.task_code]"
                 v-model="element.task"
-                @keyup.enter="
-                  rename(element.task,element.task_code);
-                "
+                @keyup.enter="rename(element.task, element.task_code)"
               />
               <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
@@ -166,9 +179,10 @@
                     aria-labelledby="dropdownMenuButton"
                   >
                     <li
-                     v-if="isProjectMember"
-                     class="dropdown-item" 
-                     @click="showRename(element.task_code)">
+                      v-if="isProjectMember"
+                      class="dropdown-item"
+                      @click="showRename(element.task_code)"
+                    >
                       Rename
                     </li>
                     <li
@@ -182,23 +196,30 @@
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>
-                          <li :key="member.user_id" v-for="member in getMemberInfo" class="dropdown-item">
+                          <li
+                            :key="member.user_id"
+                            v-for="member in getMemberInfo"
+                            class="dropdown-item"
+                          >
                             <div class="form-check">
                               <input
                                 type="checkbox"
                                 :value="member.user_id"
                                 :class="element.task_code"
-                                :checked="element.assigned_to.includes(member.user_id)"
+                                :checked="
+                                  element.assigned_to.includes(member.user_id)
+                                "
                               />
-                              <label
-                                class="form-check-label"
-                              >
-                              {{member.username}}
+                              <label class="form-check-label">
+                                {{ member.username }}
                               </label>
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <a @click="assignTask(element.task_code)" class="btn">
+                            <a
+                              @click="assignTask(element.task_code)"
+                              class="btn"
+                            >
                               Assign
                             </a>
                           </li>
@@ -209,27 +230,35 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
-              <li
-                :key="member"
-                v-for="member in element.assigned_to"
-                style="margin-left: 10px"
+              <ul
+                style="
+                  width: 100%;
+                  float: left;
+                  margin-top: 10px;
+                  margin-bottom: -5px;
+                "
               >
-                <router-link
-                  :to="{
-                    name: 'Profile',
-                    params: { user_code: member },
-                  }"
+                <li
+                  :key="member"
+                  v-for="member in element.assigned_to"
+                  style="margin-left: 10px; list-style-type: none; float: left"
                 >
-                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
-                    imgWeight="30px"
-                    fontSize="15px"
-                    top="0%"
-                    :name="getMemberInfo[member].username[0]"
-                    :srcText="getMemberInfo[member]['profile_picture']"
-                  />
-                </router-link>
-              </li>
+                  <router-link
+                    :to="{
+                      name: 'Profile',
+                      params: { user_code: member },
+                    }"
+                  >
+                    <ProfilePicture
+                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      imgWeight="30px"
+                      fontSize="15px"
+                      top="0%"
+                      :name="getMemberInfo[member].username[0]"
+                      :srcText="getMemberInfo[member]['profile_picture']"
+                    />
+                  </router-link>
+                </li>
               </ul>
             </div>
           </template>
@@ -246,15 +275,15 @@
         >
           <template #item="{ element }">
             <div class="list-group-item3">
-            <span v-if="!toogleRename[element.task_code]">{{ element.task }}</span>
+              <span v-if="!toogleRename[element.task_code]">{{
+                element.task
+              }}</span>
               <input
                 @change="task_name_changed = true"
                 type="text"
                 v-show="toogleRename[element.task_code]"
                 v-model="element.task"
-                @keyup.enter="
-                  rename(element.task,element.task_code);
-                "
+                @keyup.enter="rename(element.task, element.task_code)"
               />
               <div v-if="isProjectMember" class="more">
                 <div class="dropdown">
@@ -273,10 +302,11 @@
                     role="menu"
                     aria-labelledby="dropdownMenuButton"
                   >
-                    <li 
-                    v-if="isProjectMember"
-                    class="dropdown-item" 
-                    @click="showRename(element.task_code)">
+                    <li
+                      v-if="isProjectMember"
+                      class="dropdown-item"
+                      @click="showRename(element.task_code)"
+                    >
                       Rename
                     </li>
                     <li
@@ -290,27 +320,35 @@
                 </div>
               </div>
               <p>Assigned to</p>
-              <ul style="width:100%;float:left;margin-top:10px;margin-bottom:-5px">
-              <li
-                :key="member"
-                v-for="member in element.assigned_to"
-                style="margin-left: 10px"
+              <ul
+                style="
+                  width: 100%;
+                  float: left;
+                  margin-top: 10px;
+                  margin-bottom: -5px;
+                "
               >
-                <router-link
-                  :to="{
-                    name: 'Profile',
-                    params: { user_code: member },
-                  }"
+                <li
+                  :key="member"
+                  v-for="member in element.assigned_to"
+                  style="margin-left: 10px; list-style-type: none; float: left"
                 >
-                  <ProfilePicture style="float:left;margin-left:10px;margin-bottom:5px"
-                    imgWeight="30px"
-                    fontSize="15px"
-                    top="0%"
-                    :name="getMemberInfo[member].username[0]"
-                    :srcText="getMemberInfo[member]['profile_picture']"
-                  />
-                </router-link>
-              </li>
+                  <router-link
+                    :to="{
+                      name: 'Profile',
+                      params: { user_code: member },
+                    }"
+                  >
+                    <ProfilePicture
+                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      imgWeight="30px"
+                      fontSize="15px"
+                      top="0%"
+                      :name="getMemberInfo[member].username[0]"
+                      :srcText="getMemberInfo[member]['profile_picture']"
+                    />
+                  </router-link>
+                </li>
               </ul>
             </div>
           </template>
@@ -324,7 +362,7 @@ import AddTask from "@/components/AddTask.vue";
 import Add from "@/components/Add.vue";
 import draggable from "vuedraggable";
 import ProfilePicture from "@/components/ProfilePicture.vue";
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Activities",
   props: {
@@ -336,7 +374,7 @@ export default {
     draggable,
     AddTask,
     Add,
-    ProfilePicture
+    ProfilePicture,
   },
   data() {
     return {
@@ -347,52 +385,53 @@ export default {
         value: "",
         status: "",
       },
-      toogleRename:{}
+      toogleRename: {},
     };
   },
-  created(){
-
-      var result = {}
-      var tasks = this.project.tasks;
-      for(let i=0;i<tasks.length;i++){
-        result[tasks[i].task_code] = false
-      }
-      this.toogleRename = result;
-      
+  created() {
+    var result = {};
+    var tasks = this.project.tasks;
+    for (let i = 0; i < tasks.length; i++) {
+      result[tasks[i].task_code] = false;
+    }
+    this.toogleRename = result;
   },
   methods: {
-    showRename (task_code) {
+    showRename(task_code) {
       this.toogleRename[task_code] = true;
     },
-    hideRename (task_code) {
+    hideRename(task_code) {
       this.toogleRename[task_code] = false;
     },
-    assignTask(task_code){
+    assignTask(task_code) {
       var elements = document.getElementsByClassName(task_code);
       var members = [];
-      for(var i=0; i<elements.length; i++) {
-          if(elements[i].checked){
-            members.push(elements[i].value);
-          }
+      for (var i = 0; i < elements.length; i++) {
+        if (elements[i].checked) {
+          members.push(elements[i].value);
+        }
       }
-      this.AssignTask({task_code:task_code,members:members,project_code:this.project_code})
+      this.AssignTask({
+        task_code: task_code,
+        members: members,
+        project_code: this.project_code,
+      });
     },
     toggleAdd() {
       this.showAddTask = !this.showAddTask;
     },
     ...mapActions({
       updateTask: "projects/updateTask",
-      AssignTask: "projects/assignTask"
+      AssignTask: "projects/assignTask",
     }),
-    rename(task,task_code) {
-
-      if(task.length>0){
+    rename(task, task_code) {
+      if (task.length > 0) {
         var reqest_payload = {
           task_code: task_code,
           task: task,
-          project_code:this.project_code
-      };
-      this.hideRename(task_code);
+          project_code: this.project_code,
+        };
+        this.hideRename(task_code);
         this.$store
           .dispatch("projects/renameTask", reqest_payload)
           .then((result) => {
@@ -402,7 +441,6 @@ export default {
             console.log(err);
           });
       }
-      
     },
     completeTask(task_code, completed) {
       this.$store
@@ -431,24 +469,24 @@ export default {
 
   computed: {
     ...mapGetters({
-      user_role : 'user/getUserRole'
+      user_role: "user/getUserRole",
     }),
-    getMemberInfo(){
-      var data = {}
-      this.project.team_members.forEach(member => {
-        data[member.user_id] = member
+    getMemberInfo() {
+      var data = {};
+      this.project.team_members.forEach((member) => {
+        data[member.user_id] = member;
       });
-      return data
+      return data;
     },
     project() {
       return this.$store.getters["projects/getProjectByProjectCode"](
         this.project_code
       );
     },
-    user_id(){
-      return this.$store.getters["user/getUserId"]
+    user_id() {
+      return this.$store.getters["user/getUserId"];
     },
-    isProjectMember(){
+    isProjectMember() {
       return this.project.members.includes(this.user_id);
     },
     todos: {
@@ -471,7 +509,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
-            user_id:this.user_id,
+            user_id: this.user_id,
           });
           this.destination.known = false;
         }
@@ -496,7 +534,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
-            user_id:this.user_id,
+            user_id: this.user_id,
           });
           this.destination.known = false;
         }
@@ -521,7 +559,7 @@ export default {
           this.updateTask({
             destination: this.destination,
             project_code: this.project_code,
-            user_id:this.user_id,
+            user_id: this.user_id,
           });
           this.destination.known = false;
         }
@@ -659,11 +697,11 @@ a.dropdown-item {
   width: 100%;
   background-color: #177f75;
   border: 0;
-  color:white;
-  font-size:18px;
+  color: white;
+  font-size: 18px;
   margin-top: 4px;
 }
-input[type="checkbox"]{
+input[type="checkbox"] {
   margin: 0 10px 0 -20px;
 }
 </style>
