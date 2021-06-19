@@ -26,11 +26,13 @@ TODOS<br/>
     [ ] add content for the static pages\
     [x] use google oauth\
     ------------------------------------------------------\
-    [ ] remove image reloading in every request
-    [ ] less api requres
-    [ ] les validation from the backend
-    [ ] update task first and validate at the backend second
-    [ ] page resonsiveness
+    [x] remove image reloading in every request\
+    [ ] less api requests\
+    [ ] less validation from the backend\
+    [ ] page resonsiveness\
+    [ ] event image scale\
+    [ ] login with gmail is not working for MAC and Kali Os.\
+    [ ] remove the video on the front page\
     
     
     
