@@ -19,8 +19,13 @@
       </p>
     </div>
 
-    <div id="Teams">
+    <div id="Teams" class="text">
+      
       <h1 style="text-align: center">Teams</h1>
+      <p>
+      The team of 4K Labs are from a wide variety of disciplines and talent so as to create an Interdisciplinary environment. These have helped us to complete projects in a defined manner. 
+      Our team is a combination of Electrical engineers, software engineers, Mechanical engineers & designers. 4K Labs- team is really humble and smooth to communicate with.
+      </p>
       <Teams />
     </div>
 
