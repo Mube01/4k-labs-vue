@@ -26,11 +26,10 @@ TODOS<br/>
     [ ] add content for the static pages\
     [x] use google oauth\
     ------------------------------------------------------\
-    [ ] remove image reloading in every request
-    [ ] less api requres
-    [ ] les validation from the backend
-    [ ] update task first and validate at the backend second
-    [ ] page resonsiveness
-    
+    [x] remove image reloading in every request
+    [ ] less api requests
+    [ ] for updating task progress first update the ui and validate at the backend later 
+    [ ] page responsivness
+    [ ] remove the video from the front page
     
     
