@@ -26,10 +26,11 @@ TODOS<br/>
     [ ] add content for the static pages\
     [x] use google oauth\
     ------------------------------------------------------\
-    [x] remove image reloading in every request
-    [ ] less api requests
-    [ ] for updating task progress first update the ui and validate at the backend later 
-    [ ] page responsivness
-    [ ] remove the video from the front page
+    [x] remove image reloading in every request\
+    [ ] less api requests\
+    [ ] for updating task progress first update the ui and validate at the backend later\ 
+    [ ] page responsivness\
+    [ ] remove the video from the front page\
+    [ ] google signing doesn't work on mac os\
     
     
