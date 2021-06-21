@@ -33,6 +33,9 @@ TODOS<br/>
     [ ] event image scale\
     [ ] login with gmail is not working for MAC and Kali Os.\
     [ ] remove the video on the front page\
-    
+    [ ] for updating task progress first update the ui and validate at the backend later\ 
+    [ ] page responsivness\
+    [ ] remove the video from the front page\
+    [ ] google signing doesn't work on mac os\
     
     
