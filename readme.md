@@ -23,15 +23,15 @@ TODOS<br/>
     [x] add,delete,events\
     [x] drag and drop tasks\
     [ ] add multiple images upload for the gallarey inside  events\
-    [ ] add content for the static pages\
+    [x] add content for the static pages\
     [x] use google oauth\
     ------------------------------------------------------\
     [x] remove image reloading in every request\
     [x] less api requests\
-    [ ] page resonsiveness\
+    [x] page resonsiveness\
     [ ] event image scale\
     [ ] login with gmail is not working for MAC and Kali linux Os.\
     [ ] remove the video on the front page\
-    [ ] for updating task progress first update the ui and validate at the backend later\ 
+    [x] for updating task progress first update the ui and validate at the backend later\ 
     
     

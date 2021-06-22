@@ -52,6 +52,7 @@ export default {
     }),
   },
   created() {
+    // if it is its frist
     if (this.projects === "") {
       this.loading = true;
       this.getAllPortalInfo()

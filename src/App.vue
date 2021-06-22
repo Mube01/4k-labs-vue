@@ -6,10 +6,33 @@
 
 <script>
 import Alert from "@/components/Alert.vue";
-
+import {mapActions,mapGetters} from 'vuex';
 export default {
   components: {
     Alert,
+  },
+  computed:{
+    isAuthenticated() {
+      return this.$store.getters["auth/isAuthenticated"];
+    },
+  },
+  methods:{
+     ...mapActions({
+      fetchProject: "projects/getAllProjects",
+      getAllPortalInfo: "getAllPortalInfo",
+    }),
+  },
+  mounted() {
+    setInterval(()=>{
+      if(this.isAuthenticated){
+        this.getAllPortalInfo()
+        .then((result) => {
+          console.log("hi");
+          console.log(result.data)
+        })
+        .catch((err) => {});
+      }
+    },2000)
   },
 };
 </script>
