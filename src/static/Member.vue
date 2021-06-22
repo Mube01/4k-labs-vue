@@ -137,8 +137,20 @@ h4 {
 
 #links {
   position: relative;
-  left: 50%;
-  
+  left: 30%;
+  bottom: 10px;
+}
+#links ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#links li{
+  list-style: none;
+}
+#links li a{
+  padding: 1rem;
+  display: block;
 }
 
 a {
