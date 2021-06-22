@@ -119,8 +119,8 @@ export default {
                 })
             })
         },
+        // the add task has to wait until data is returned from the database since we need the taskcode to assign members letter
         addTask({ commit, dispatch }, data) {
-            
             return new Promise((resolve, reject) => {
                     tasksApi.addTask(data.project_code, data.task).then((result) => {
                     commit('addTask', {'task':result.data.task,'project_code':data.project_code})

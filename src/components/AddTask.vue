@@ -3,11 +3,10 @@
     <form @submit="onSubmit">
       <input type="text" v-model="text" name="text" placeholder="Task Name" />
 
-      <Button type="submit" text="Add" color="white" bgColor="#177F75" />
+      <Button type="submit" :disabled="isDisabled" :text="!isDisabled ? 'Add' : 'Adding Task' " color="white" :bgColor="!isDisabled ? '#177F75' : '#333' " />
     </form>
   </div>
 </template>
-
 <script>
 import Button from "./Button.vue";
 
@@ -21,6 +20,7 @@ export default {
   data() {
     return {
       text: "",
+      isDisabled:false
     };
   },
   components: {
@@ -33,7 +33,7 @@ export default {
         alert("can't add empty task");
         return;
       } else {
-        console.log("sending task")
+        this.isDisabled = true;
         this.$store
           .dispatch("projects/addTask", {
             project_code: this.project_code,
@@ -43,6 +43,7 @@ export default {
             console.log(result);
             this.$emit("taskAdded");
             this.text = "";
+            this.isDisabled = false;
           })
           .catch((err) => {
             console.log(err);
