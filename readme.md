@@ -27,10 +27,11 @@ TODOS<br/>
     [x] use google oauth\
     ------------------------------------------------------\
     [x] remove image reloading in every request\
-    [ ] less api requests\
+    [x] less api requests\
+    [ ] page resonsiveness\
+    [ ] event image scale\
+    [ ] login with gmail is not working for MAC and Kali linux Os.\
+    [ ] remove the video on the front page\
     [ ] for updating task progress first update the ui and validate at the backend later\ 
-    [ ] page responsivness\
-    [ ] remove the video from the front page\
-    [ ] google signing doesn't work on mac os\
     
     

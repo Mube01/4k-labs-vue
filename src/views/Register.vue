@@ -12,7 +12,7 @@
               </div>
         </div>
 
-        <div v-if="togleForm" class="full col-md-12">
+        <div v-if="toggleForm" class="full col-md-12">
 
           <label for="email">Gmail Address</label><br />
           <input
@@ -59,7 +59,7 @@ export default {
       fullname:"",
       gmail_address: "",
       token: "",
-      togleForm:false
+      toggleForm:false
     };
   },
   methods: {    
@@ -79,7 +79,7 @@ export default {
         })
         var elemnt = document.getElementById('customBtn');
         auth2.attachClickHandler(elemnt,{},(user)=>{
-          this.togleForm = true
+          this.toggleForm = true
           this.gmail_address = user.getBasicProfile().getEmail()
           this.fullname = user.getBasicProfile().getName()
         },
