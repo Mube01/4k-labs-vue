@@ -108,7 +108,6 @@ export default {
       }
       else if(this.username.indexOf(" ") > 0){
         this.errorAlert("username can't have space");
-
       }
       // check if confirm passwod and password are the same
       else {
