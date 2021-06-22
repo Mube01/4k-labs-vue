@@ -14,9 +14,8 @@ function login (id_token){
     };
     return  axios(config)
 }
-function register(fullname,email,token){
-    var data = JSON.stringify({"email":email,"fullname":fullname,"token":token});
-
+function register(fullname,email,token,username){
+    var data = JSON.stringify({"email":email,"fullname":fullname,"username":username,"token":token});
     var config = {
     method: 'post',
     url: '/api_v1/register_member',

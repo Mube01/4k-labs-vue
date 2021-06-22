@@ -5,7 +5,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api_v1': {
-        target: 'https://4kbots.com',
+        target: 'http://127.0.0.1:5000',
         changeOrigin: true
       },
     }

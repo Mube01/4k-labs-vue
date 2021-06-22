@@ -22,6 +22,14 @@
             id="email"
             autocomplete="off"
           />
+          <label for="email">username</label><br />
+          <input
+            required
+            v-model="username"
+            type="text"
+            id="email"
+            autocomplete="off"
+          />
           <label for="fullname">Full Name</label><br />
                 <input
                   required
@@ -58,6 +66,7 @@ export default {
     return {
       fullname:"",
       gmail_address: "",
+      username:"",
       token: "",
       toggleForm:false
     };
@@ -82,6 +91,7 @@ export default {
           this.toggleForm = true
           this.gmail_address = user.getBasicProfile().getEmail()
           this.fullname = user.getBasicProfile().getName()
+          this.username = user.getBasicProfile().getGivenName()
         },
         (err)=>{
           this.errorAlert(JSON.stringify(err, undefined, 2));
@@ -94,7 +104,11 @@ export default {
     register() {
       //check if ther is space on the user name
       if (this.gmail_address.indexOf(" ") > 0) {
-        this.errorAlert("username cant have space");
+        this.errorAlert("email address can't have space");
+      }
+      else if(this.username.indexOf(" ") > 0){
+        this.errorAlert("username can't have space");
+
       }
       // check if confirm passwod and password are the same
       else {
@@ -102,6 +116,7 @@ export default {
           email: this.gmail_address,
           token: this.token,
           fullname:this.fullname,
+          username:this.username,
         };
         this.$store
           .dispatch("auth/register", data)

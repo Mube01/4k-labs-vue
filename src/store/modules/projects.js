@@ -122,7 +122,7 @@ export default {
         addTask({ commit, dispatch }, data) {
             
             return new Promise((resolve, reject) => {
-                var ans = tasksApi.addTask(data.project_code, data.task).then((result) => {
+                    tasksApi.addTask(data.project_code, data.task).then((result) => {
                     commit('addTask', {'task':result.data.task,'project_code':data.project_code})
                     commit('updateProgress',data.project_code)
                     resolve(result.data)
@@ -258,7 +258,6 @@ export default {
                     break;
                 }
             }
-            state.project.tasks.push(data.task)
         },
         addProject(state, project) {
             state.projects.push(project)

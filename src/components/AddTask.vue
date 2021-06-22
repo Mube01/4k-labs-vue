@@ -30,9 +30,10 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       if (!this.text) {
-        alert("Please add a task");
+        alert("can't add empty task");
         return;
       } else {
+        console.log("sending task")
         this.$store
           .dispatch("projects/addTask", {
             project_code: this.project_code,

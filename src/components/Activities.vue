@@ -54,7 +54,7 @@
                       Delete
                     </li>
 
-                    <li v-if="user_role == 2" class="dropdown-submenu">
+                    <li v-if="isProjectMember" class="dropdown-submenu">
                       <a class="dropdown-item" tabindex="-1">Assign Member</a>
                       <ul class="dropdown-menu">
                         <form>

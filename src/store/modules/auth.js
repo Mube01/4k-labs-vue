@@ -1,5 +1,6 @@
 import {login,register,adminLogin} from '../../api/authApi'
 import router from '../../router'
+import user from './user';
 
 const axios = require('axios');
 
@@ -75,9 +76,9 @@ export default {
             })
         },
 
-        register({commit},{fullname,email,token}){
+        register({commit},{fullname,email,token,username}){
             return new Promise((resolve,reject)=>{
-                register(fullname,email,token).then((result) => {
+                register(fullname,email,token,username).then((result) => {
                     resolve(result.data)
                 }).catch((err) => {
                     reject(err.response.data);
