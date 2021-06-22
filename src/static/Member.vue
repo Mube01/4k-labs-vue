@@ -16,12 +16,18 @@
     </div>
 
     <div id="links">
-      <a :href="member['Linkden'] || '#'">
-        <i title="LinkedIn link" class="fab fa-linkedin"></i
-      ></a>
-      <a :href="member['Github'] || '#'">
-        <i title="Github link" class="fab fa-github"></i>
-      </a>
+      <ul>
+        <li>
+          <a :href="member['Linkden'] || '#'">
+            <i title="LinkedIn link" class="fab fa-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a :href="member['Github'] || '#'">
+            <i title="Github link" class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -66,6 +72,7 @@ body {
   border-radius: 25px;
   padding-bottom: 1px;
   box-shadow: 2px 2px 5px #a97c50;
+  position: relative;
 }
 
 h4 {
@@ -129,9 +136,21 @@ h4 {
 }
 
 #links {
-  width: 100%;
-  text-align: center;
-  margin: 0 20px;
+  position: relative;
+  left: 30%;
+  bottom: 10px;
+}
+#links ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#links li{
+  list-style: none;
+}
+#links li a{
+  padding: 1rem;
+  display: block;
 }
 
 a {
