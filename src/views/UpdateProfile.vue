@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 import Header from "@/components/Header.vue";
 export default {
   name: "UpdateProfile",
@@ -100,26 +100,34 @@ export default {
     this.user_id = this.user_info.user_id;
   },
   methods: {
+    ...mapActions({
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
     updateInformation() {
-        var data = {
+      if (this.username.indexOf(" ") > 0) {
+        this.errorAlert("username can't have space");
+      }
+      else{
+         var data = {
           Linkden: this.Linkden,
           Github: this.Github,
           fullname: this.fullname,
           Discription: this.Discription,
           user_id: this.user_info.user_id,
+          username:this.username
         };
         if (this.image.length != 0) {
           data["image"] = this.image;
         }
-        // this.password = ""
-        // this.newpassword = ""
         this.$store
           .dispatch("profile/editProfile", data)
           .then((result) => {
-            console.log("profile updated succesfully");
+            this.successAlert("profile has been updated succesully")
             this.$router.push({ name: "Me" });
           })
           .catch((err) => {});
+      }       
 
     },
     uploadProfile(e) {
