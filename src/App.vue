@@ -32,7 +32,7 @@ export default {
         })
         .catch((err) => {});
       }
-    },2000)
+    },1000*45)
   },
 };
 </script>
