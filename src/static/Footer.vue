@@ -16,10 +16,10 @@
     </div>
    <div class="socials">
    <ul>
-       <a href="">
+       <a href="https://www.facebook.com/4K4KLABS/">
            <li>Facebook <i class="fab fa-facebook-square"></i> </li>
        </a>
-       <a href="">
+       <a href="https://twitter.com/4kbots">
            <li>Twitter <i class="fab fa-twitter-square"></i></li>
        </a>
        <a href="">
