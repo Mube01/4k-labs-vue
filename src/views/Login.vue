@@ -1,26 +1,28 @@
 <template>
-<Header />
+  <div>
+  <Header />
     <div class="container text-center">
     <div class="login">
       <form class="login" onsubmit="return false">
-        <img class="logo" src="@/assets/logo.webp" />
+        <!-- <img class="logo" src="@/assets/logo.webp" /> -->
         <h2>Login</h2>
         <div id="google-signin-button"></div>
       </form>
     </div>
     </div>
-    <div class="footer text-center">
-      <p>4K Labs - 2021</p>
+    <Footer id="footer" />
     </div>
 </template>
 
 <script>
 import Header from "@/static/SubHeader.vue";
+import Footer from "@/static/Footer.vue"
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Login",
-  components:{Header},
+  components:{Header,
+  Footer},
   data() {
     return {
       password: "",
@@ -78,8 +80,12 @@ export default {
 </script>
 
 <style scoped>
+ #footer{
+   /* margin-top:40px; */
+ }
 .login {
   margin: 0 auto;
+  margin-top:50px;
   padding: 60px 50px;
   width: fit-content;
   background-color: white;
@@ -133,14 +139,5 @@ button {
 button:hover {
   opacity: 1;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 10;
-}
-.footer p {
-  font-size: 17px;
-  color: #333;
-}
+ 
 </style>

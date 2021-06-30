@@ -1,5 +1,5 @@
 <template>
-  <SubHeader/>
+  <SubHeader id="sub"/>
  
  <div class="row">
  
@@ -29,5 +29,10 @@ export default {
 </script>
 
 <style scoped>
-
+.row{
+  margin-top:100px;
+}
+#sub{
+  height:150px;
+}
 </style>

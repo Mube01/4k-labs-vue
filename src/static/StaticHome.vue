@@ -6,10 +6,8 @@
      4k labs is a research lab based in addis ababa university
       </p>
 
-    <div id="Teams" class="text">
-      
+    <div id="Teams">
       <h1 style="text-align: center">Teams</h1>
-
       <Teams />
     </div>
       <h1 style="text-align: center">Events</h1>
@@ -57,6 +55,11 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
 div{
   font-family: 'Poppins', sans-serif;
 }
@@ -68,17 +71,29 @@ div{
   color: white;
 }
 #Events{
-  display: grid;
-  grid-template-columns:50% 50%;
-  padding:5px;
+    padding:10px;
+    width:100%;
+    display: grid;
+    grid-template-columns:49% 49%;
+    grid-gap: 15px;
+    margin:auto;
+    margin-top:70px;
+
 }
 @media screen and (max-width: 700px) {
+  #Events{
+    display: block;
+  }
   .prompt {
     margin-top: 45px;
   }
-}
-#Teams {
+  #Teams {
+  height:1250px;
   margin: 40px 0;
+}
+}
+#Teams{
+  margin-top:50px;
 }
 #Teams h1 {
   margin-bottom: 20px;
