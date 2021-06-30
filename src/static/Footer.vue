@@ -1,50 +1,88 @@
 <template>
-  <div>
-    <footer id="footer" class="dark">
-      <div class="quick-links">
-        <ul>
-          <a href="https://www.facebook.com/4K4KLABS/">
-            <li><i class="fab fa-facebook-square"></i></li> </a
-          ><a href="https://twitter.com/4kbots">
-            <li><i class="fab fa-twitter-square"></i></li> </a
-          ><a href="#">
-            <li><i class="fab fa-linkedin"></i></li>
-          </a>
-        </ul>
-      </div>
-      <h3>4K-Labs, Department of Computer Science, Addis Ababa University.</h3>
-      <div class="copy">
-        <h3>Copyright &copy; 2021 4K-Labs.</h3>
-      </div>
-    </footer>
-  </div>
+ 
+  <div class="footer">
+    <div class="quick-links">
+       <ul>
+           <a href="">
+               <li>Home</li>
+           </a>
+           <a href="">
+               <li>Members</li>
+           </a>
+           <a href="">
+               <li>Login</li>
+           </a>
+       </ul>
+    </div>
+   <div class="socials">
+   <ul>
+       <a href="">
+           <li>Facebook <i class="fab fa-facebook-square"></i> </li>
+       </a>
+       <a href="">
+           <li>Twitter <i class="fab fa-twitter-square"></i></li>
+       </a>
+       <a href="">
+           <li>Instagram <i class="fab fa-instagram"></i></li>
+       </a>
+       <a href="">
+           <li></li>
+       </a>
+   </ul>
+   </div>
+   <div class="copy">
+       <h3> &copy; 2021 4k labs </h3>
+   </div>
+   </div>
+ 
 </template>
 
 <script>
 export default {
-  name: "Footer",
-};
+    name:"Footer"
+}
 </script>
-
 <style scoped>
-#footer {
-  padding: 50px;
-  color: white;
-  background: black;
-  display: grid;
-  place-items: center;
+.fa-facebook-square{
+
 }
-#footer a {
-  color: white !important;
+.fa-twitter-square{
+    margin-left:19px;
 }
-.copy {
-  text-align: right;
+.fa-instagram{
+    margin-left:-3px;
 }
-.quick-links ul li {
-  display: inline-block;
-  padding: 5px;
+.fab{
+    font-size:20px;
 }
-h3 {
-  font-size: 20px;
+.footer{
+    width:100%;
+    display: grid;
+    grid-template-columns:500px 500px;
+    padding:25px;
+    background:rgb(24, 22, 22);
+    bottom:0;
 }
+.footer li{
+    list-style: none;
+    padding:5px;
+    width:150px;
+    
+}
+.footer a{
+    color:white;
+    font-size:20px;
+    text-decoration:none;
+}
+.copy{
+    text-align:center;
+    color:white;
+    grid-column:1/span all;
+}
+@media (max-width:750px){
+  .footer{
+      display: block;
+  }
+}
+    
 </style>

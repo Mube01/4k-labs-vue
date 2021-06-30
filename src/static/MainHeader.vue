@@ -1,278 +1,555 @@
 <template>
-  <div>
-    <div class="parent">
-      <header>
-        <div class="overlay"></div>
-        <video
-          playsinline="playsinline"
-          autoplay="autoplay"
-          muted="muted"
-          loop="loop"
-        >
-          <source src="../assets/video/background.mp4" type="video/mp4" />
-        </video>
-        <div class="container">
-          <router-link :to="{ name: 'Home' }">
-            <img src="../assets/logo.webp" alt="" class="logo" />
-          </router-link>
-          <div class="text-center">
-            <i class="fas fa-bars menu-icon" v-on:click="toggleMenu()"></i>
-
-            <ul style="float: right" class="link" id="menu-elements">
-              <a class="link_class" href="#Teams"> <li>Teams</li> </a>
-              <a class="link_class" href="#Events"><li>Events</li></a>
-              <router-link class="link_class" :to="{ name: 'AllProjects' }">
-                <li>Projects</li>
-              </router-link>
-
-              <router-link class="link_class" :to="{ name: 'Members' }"
-                ><li>Members</li>
-              </router-link>
-              <router-link class="link_class" :to="{ name: 'Login' }"
-                ><li>Login</li>
-              </router-link>
-              <router-link class="link_class" :to="{ name: 'Register' }"
-                ><li>Register</li>
-              </router-link>
-            </ul>
-          </div>
-
-          <div class="middle">
-            <div class="message">
-              <h2 id="messageName">4K Labs</h2>
-              <a href="#Events">
-                <button class="btn-find" id="btnFind">Recent &darr;</button></a
-              >
-            </div>
-          </div>
-        </div>
-      </header>
+    <div>
+    <img src="../assets/logo.webp" class="logo"  alt="">
+    <div class="click" id="button">
+        <i class="fas fa-bars"></i>
     </div>
-  </div>
+    <div class="menu-container" id="menu">
+        <ul>
+          
+           
+              <router-link to="/teams">
+               <li>Teams</li>
+              </router-link>
+              
+        
+           <router-link to="/members">
+                <li>Members</li>
+           
+           </router-link>
+            
+            <router-link to="/login">
+                <li>Login</li>
+            </router-link>
+            <router-link to="/projects">
+                <li class="focus">Projects</li>
+            </router-link>
+      
+      
+        </ul>
+    </div>
+<div class="container">
+    <div class="main-display">
+        
+    </div>
+<div class="main-holder active" :style="{'background-image': ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' + require('../assets/slide-1.jpg') + ')'}">
+  
+        <div class="img-display">
+           <h3>
+               Knowledge
+           </h3>
+            <p>
+ @4K Labs We focus on developing reconfigurable, Adaptable, environmentally friendly, 
+  power efficient hardware & Software systems under the consideration of AI. With our
+   exceptional design team we introduce aesthetics in our projects.
+
+
+
+
+            </p>
+        </div>
+    </div>
+    <div class="main-holder" :style="{'background-image': ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' + require('../assets/slide-2.jpg') + ')'}"> 
+  
+        <div class="img-display">
+           <h3>
+               Innovation
+           </h3>
+            <p>
+ The team of 4K Labs are from a wide variety of disciplines and talent so as to create an Interdisciplinary environment.
+  These have helped us to complete projects in a defined manner. 
+
+ 
+            </p>
+        </div>
+    </div>  <div class="main-holder" :style="{'background-image': ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' + require('../assets/slide-3.jpg') + ')'}"> 
+  
+        <div class="img-display">
+           <h3>
+               Change
+           </h3>
+            <p>
+   @4k we foster Knowledge to impact our society through technology. 
+   All our Members are encouraged to experiment and impact with the help of
+    our collaberative divisions we bring ideas to life by providing funding and 
+    expertise.
+            </p>
+        </div>
+    </div>
+    <div class="navigation active">
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+    </div> 
+</div>
+    </div>
 </template>
 <script>
 export default {
-  name: "MainHeader",
-  components: {},
-  methods: {
-    toggleMenu() {
-      const menuItem = document.getElementById("menu-elements");
-      const messageName = document.getElementById("messageName");
-      const btnFind = document.getElementById("btnFind");
-      menuItem.classList.toggle("hello");
-      messageName.classList.toggle("move");
-      if (btnFind) {
-        btnFind.classList.toggle("button-move");
-      }
-    },
-  },
-};
+name:"MainHeader",
+
+mounted(){
+ var slides =  document.querySelectorAll('.main-holder');
+ var btns =  document.querySelectorAll('.btn');
+var button = document.getElementById("button");
+var  menu =  document.getElementById("menu");
+let current =  1;
+button.addEventListener("click",()=>{
+    menu.classList.toggle("links")
+})
+//javascript 
+ var manualNav  = function(manual){
+slides.forEach((slide)=>{
+    slide.classList.remove('active');
+    btns.forEach((btn)=>{
+        btn.classList.remove('active');
+    })
+})
+    slides[manual].classList.add('active');
+     btns[manual].classList.add('active');
+
+
+ }
+ btns.forEach((btn,i)=>{
+     btn.addEventListener("click",()=>{
+    manualNav(i);
+    current = i;
+     });
+ })
+ var repeat =  function(activeClass){
+     let active =  document.getElementsByClassName('active');
+     let i=1;
+    var repeater = ()=>{
+        setTimeout(()=>{
+            slides[i].classList.add('active');
+            btns[i].classList.add('active');
+            i++;
+            if(slides.length == i){
+                i=0;
+                console.log(i);
+            }
+          
+        repeater();
+        },10000)
+    }
+    repeater();
+ }
+ repeat();
+}    
+}
 </script>
-<style scoped>
-.menu {
+<style >
+ 
+body{
+
+    background:white    ;
+    
+
+}
+.container{
+
+    width:100%;
+    height:600px;
+    border-radius: 15px;
+   
+}
+.logo{
+    position: absolute;
+    width:100px;
+    top:25px;
+    left:80px;
+    background:white;
+    border-radius:200px;
+    z-index:100;
+
+  
+}
+.container .main-holder{
+    z-index:1;
+    position: absolute;
+    margin:auto;
+    padding:30px;
+    display: grid;
+    background-position:center;
+    /* background-attachment:fixed; */
+    width:100%;
+    grid-template-columns:600px 150px 400px;
+    grid-template-rows:50px 450px;
+    /* border-radius: 15px; */
+    left:50%;
+    clip-path: circle(0% at 0 50%);
+    transform: translateX(-50%);
+
+
+}
+.container .main-holder.active{
+    z-index:10;
+    clip-path:circle(150% at 0 50%);
+    transition:clip-path 1s ease-in-out;
+   
+    /* transition-property: clip-path; */
+    }
+
+.menu-container{
+    position: absolute;
+    height:60px;
+    width:500px;
+    padding:10px;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius:15px ;
+    top:30px;
+    right:70px;
+     background-color: rgba(0, 0, 0, 0.61);
+     
+    display: grid;
+    place-items: center;
+    z-index:100;
+
+    
+}
+.menu-container a{
+    text-decoration: none;
+    color:white;
+    
+}
+.menu-container li{
+    display: inline-block;
+    margin:5px;
+    padding:5px;
+}
+.focus{
+    border-left:2px solid rgb(233, 112, 14);
+    border-right:2px solid rgb(233, 112, 14);
+    /* color:rgb(233, 112, 14); */
+ background-color: rgb(233, 112, 14);
+    /* padding:50px; */
+    /* line-height:30px; */
+    /* border-radius: 5px; */
+}
+.main-holder h3{
+    font-size:40px;
+    padding:5px;
+    color:white;
+    background: rgb(233, 112, 14);
+    text-align: center;
+    text-transform: uppercase;
+
+    
+}
+.img-display{
+    width:350px;
+    height:450px;
+    background-size: contain;
+    background-position:center;
+    grid-column: 1;
+    grid-row: 2;
+    padding:25px;
+    /* margin-top:50px; */
+ 
+}
+.img-display p{
+    padding:25px;
+    background:rgba(10, 10, 10, 0.678);
+    color:white;
+    font-size:25px; 
+    font-weight:bolder;
+    width:450px;
+    margin-top:5px;
+    text-align: distribute;
+
+}
+.container .navigation{
   position: absolute;
-  top: 20px;
-  right: 20px;
-  color: rgb(148, 73, 38);
-}
-
-header {
-  position: relative;
-  background-color: black;
-  height: 55vh;
-  min-height: 25rem;
-  width: 100%;
-  overflow: hidden;
-}
-
-header video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: 0;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
-header .container {
-  position: relative;
-  z-index: 2;
-}
-
-header ul {
-  margin-top: -50px;
-  margin-right: -200px;
-}
-header ul li {
-  display: inline-block;
-  padding: 10px;
-}
-.desc {
-  background: white;
-  height: 250px;
-  color: white;
-}
-.head {
-  text-align: center;
-  background: rgb(148, 73, 38);
-  color: white;
-  padding: 70px;
-  font-size: 20px;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-.parent {
-  margin: 0;
-  padding: 0;
-  height: auto;
-}
-.vid {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  overflow-y: hidden;
-
-  z-index: -10000;
-}
-.header {
-  width: 100%;
+  z-index: 10; 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border: none;
+  top: 500px;
+  left:50%;
+  transform: translateX(-50%);
+ 
 }
-.links {
-  margin-right: 0px;
-  padding: 15px;
+.container .navigation .btn{
+    background: white;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    margin:10px;
+    cursor:pointer;
 }
-.links li {
-  display: inline-block;
-  list-style: none;
-  height: 40px;
-  color: white !important;
-  width: 80px;
+.conainer .navigation .btn.active{
+    background: yellowgreen;
 }
-.links li:hover {
-  color: #a97c50 !important;
+.content-devider{
+    position: absolute;
+    width:100%;
+    height:auto;
+    background: white;
+    z-index:-1000;
+    /* margin-top:-100px; */
 }
-.links a {
-  text-decoration: none;
-  color: rgb(255, 255, 255) !important;
-  font-size: 17px;
+.intro-info{
+    text-align: center;
+    padding:20px;
+    /* margin-top:200px; */
+    font-size:25px;
+    font-weight:bolder;  
+    color:black;
 }
-.links a:hover {
-  color: #a97c50;
+.main-display{
+    z-index:0;
+    position: absolute;
+    margin:auto;
+    padding:30px;
+    display: grid;
+    width:100%;
+    grid-template-columns:600px 150px 400px;
+    grid-template-rows:50px 450px;
+    border-radius: 15px;
+    left:50%;
+    transform: translateX(-50%);
+    background:url(../assets/logo.png) no-repeat;
+    background-size: contain;
+    background-position:center;
+    background-color: rgb(29, 31, 30);
 }
-.logo {
-  margin-top: 10px;
+.evnt-header{
+    margin-top:40px;
+    text-align:center;
+    padding:50px;
+    font-size: 45px;
+}
+.events{
 
-  cursor: pointer;
-  width: 100px;
+    padding:10px;
+    width:100%;
+    display: grid;
+    grid-template-columns:49% 49%;
+    grid-gap: 15px;
+    margin:auto;
+
+  
+
+}
+.event{
+    margin:auto;
+    height:auto;
+    width:100%;
+    padding:20px;
+    position:relative;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns:150px 400px;
+    grid-template-rows: 200px 200px;
+    background-image:linear-gradient(to right,rgba(51, 44, 42, 0.575), rgba(0, 0, 0, 0.239)),url(../assets/training.png);
+    background-position: center;
+    background-size: cover;
+    place-items: center;    
+    cursor:pointer;
+    /* border-left:5px solid rgb(255, 94, 0); */
+
+}
+ 
+.date{
+    grid-column: 1;
+    grid-row:1;
+    width: 150px;
+    height: 200px;
 }
 
-.link_class {
-  padding: 10px 0;
-  cursor: pointer;
-  margin-left: 15px;
-  color: white;
+.num{
+    grid-row:1;
+    font-size:50px;
+    background-color: rgb(233, 112, 14);
+    color:white;
+    padding:20px;
+    width:150px;
+    border-radius:15px;
+    text-align: center;
 }
-.link_class:hover {
-  color: #d1905e;
-}
-.btn-find {
-  padding: 15px;
-  border-radius: 15px;
-  cursor: pointer;
-  border: 2px solid rgb(175, 81, 38);
-  background: none;
-  color: rgb(201, 92, 41);
-  font-size: 15px;
-}
-.middle {
-  width: 100%;
-  margin-top: -70px;
-  text-align: center;
-}
-.message {
-  color: white;
-  text-align: center;
-}
-.message h2 {
-  font-size: 40px;
-  margin-top: 150px;
-  padding: 20px;
-}
-.menu-items {
-  border-bottom: 3px solid transparent;
-  text-align: center;
-}
-.menu-items:hover {
-  border-bottom: 3px solid rgb(255, 255, 255);
-  transition: all 0.2s ease-in;
-}
-.menu-icon {
-  display: none;
-  color: rgb(175, 81, 38);
-}
-@media screen and (max-width: 700px) {
-  header video {
-    display: none;
-  }
+.month{
+    font-size:50px;
+    margin-left:10px;
+    color:white;
+    grid-row:1;
 
-  .parent {
-    height: 325px;
-    background: url(../assets/rename.png);
-  }
-  .message h2 {
-    margin-top: 0;
-  }
-  .menu-icon {
-    display: block;
-    color: rgb(175, 81, 38);
+}
+.year{
+    grid-row:1;
+
+    color:white;
+}
+.description{
+
+    grid-column: 2;
+    grid-row:1;
+    font-size:20px;
+    color:white;
+}
+.event-image{
+    grid-column:3;
+    background-position: center;
+    background-size: cover;
+    
+}
+.img-shower{
+    grid-column:1;
+    grid-row:1/span all;
+    width:100%;
+    background:url(../assets/training.png);
+    background-position: center;
+    background-size:cover;
+    border-radius:15px;
+    margin-left:10px;
+}
+
+.footer{
+    position:relative;
+    width:100%;
+    display: grid;
+    grid-template-columns:500px 500px;
+    padding:25px;
+    background:rgb(24, 22, 22);
+}
+.footer li{
+    list-style: none;
+    padding:5px;
+}
+.footer a{
+    color:white;
+    font-size:20px;
+    text-decoration:none;
+}
+.copy{
+    text-align:center;
+    color:white;
+    grid-column:1/span all;
+}
+.profiles{
+    padding:50px;
+}
+.profile{
+    width:300px;
+    display: grid;
+    grid-template-rows:250px 100px;
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .link {
+}
+.profile-img{
+background-image:linear-gradient(to right,rgba(231, 108, 26, 0.349) , rgba(231, 108, 26, 0.349)),url(../assets/2P.png);
+background-position: left;
+background-size: cover;
+border-radius:15px;
+}
+.name{
+    text-align: center;
+    margin-top:200px;
+    padding:15px;
+    background:rgb(233, 112, 14);
+    color:white;}
+.profile-details{
+    text-align: center;
+    font-size:20px;
+    font-weight:bolder;
+    color:white;
+    background:  rgb(199, 97, 14);
+}
+.profile-division{
+    padding:10px;
+}
+.profile-socials{
+    padding:30px;
+    background-color:rgb(219, 114, 28);
+    color:white;
+
+}
+.linked-in{
+    float:left;
+    margin-left:50px;
+    
+}
+.github{
+    float:right;
+    margin-right:50px;
+}
+.click{
     display: none;
+}
+@media (max-width:750px){
+   .menu-container{
+      display: none;
+
+  } 
+  .menu-container li{
+      display: block;
   }
-  .hello {
-    display: block;
-    position: absolute;
-    top: 80px;
-    right: 220px;
-    overflow-x: visible;
+    .click{
+        display: block;
+        position:absolute;
+        top:20px;
+        right:15px;
+        color:rgb(219, 114, 28);
+        z-index:1000;
+        font-size:25px;
+    }
+    .links{
+        display: block;
+        position:absolute;
+        top:45px;
+        right:5px;
+        height:auto;
+        width:250px;
+        z-index:50000;
+    }
+
+    .focus{
+        padding:50px;
+        border-radius: 15px;
+    }
+  .logo{
+    top:5px;
+    left:5px;
   }
-  .hello li {
-    display: block;
-    text-align: left;
-    margin: -15px 0;
-  }
-  .move {
-    width: 65%;
-  }
-  .button-move {
-    margin-right: 35%;
-  }
-  .vid {
-    display: none;
-  }
-  .links {
-    margin-right: 50px;
-  }
-  .middle {
-    margin-top: 0;
-  }
+    .main-holder{
+       display: block;
+    padding:0;
+    }
+    .img-display{
+        padding:0;
+        margin-left: -20px;
+    }
+    .img-display p{
+        width:auto;
+        height:auto;
+        margin-left:0;
+        text-align: justify;
+
+    }
+
+ .events{
+     display: block;
+ }
+ .event{
+     grid-template-columns:100px 250px;
+    grid-template-rows: 300px 100px;
+    grid-gap:5px;
+    padding:5px;
+    margin-top:10px;
+
+ }
+ .date{
+    width:auto;
+ }
+ .description{
+     width:auto;
+ }
+ .num{
+     font-size:20px;
+     width:70px;
+ }
+.month{
+    font-size:15px;
+}
+ .footer{
+     display:block;
+ }
 }
 </style>

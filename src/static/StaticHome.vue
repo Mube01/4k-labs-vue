@@ -1,36 +1,20 @@
 <template>
   <div>
     <MainHeader />
-    <div class="prompt">
-      <p>
-        4K Labs is a Research & Development laboratory at Addis Ababa University
-        under the department of computer science.
+  
+      <p style="text-align:center">
+     4k labs is a research lab based in addis ababa university
       </p>
-    </div>
-
-    <div class="text container">
-      <h1 style="text-align: center; margin: 40px 0">4K-Labs</h1>
-      <p>
-        4K Labs is a place where an idea comes to life and starts to breathe. We
-        focus on developing reconfigurable, Adaptable, environmentally friendly,
-        power efficient hardware & Software systems under the consideration of
-        AI. With our exceptional design team we introduce aesthetics in our
-        projects.
-      </p>
-    </div>
 
     <div id="Teams" class="text">
       
       <h1 style="text-align: center">Teams</h1>
-      <p>
-      The team of 4K Labs are from a wide variety of disciplines and talent so as to create an Interdisciplinary environment. These have helped us to complete projects in a defined manner. 
-      Our team is a combination of Electrical engineers, software engineers, Mechanical engineers & designers. 4K Labs- team is really humble and smooth to communicate with.
-      </p>
+
       <Teams />
     </div>
+      <h1 style="text-align: center">Events</h1>
 
     <div id="Events">
-      <h1 style="text-align: center">Events</h1>
       <div :key="event.event_id" v-for="event in events">
         <Event :event="event" />
       </div>
@@ -78,6 +62,11 @@ export default {
   font-size: 30px;
   background: #a97c50;
   color: white;
+}
+#Events{
+  display: grid;
+  grid-template-columns:50% 50%;
+  padding:5px;
 }
 @media screen and (max-width: 700px) {
   .prompt {
