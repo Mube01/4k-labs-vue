@@ -47,13 +47,14 @@ export default {
 
 }
 .fa-twitter-square{
-    margin-left:19px;
+    /* margin-left:19px; */
 }
 .fa-instagram{
-    margin-left:-3px;
+    /* margin-left:-3px; */
 }
 .fab{
-    font-size:20px;
+    font-size:18px;
+    padding:0px;
 }
 .footer{
     width:100%;
@@ -66,7 +67,7 @@ export default {
 .footer li{
     list-style: none;
     padding:5px;
-    width:150px;
+    width:170px;
     
 }
 .footer a{

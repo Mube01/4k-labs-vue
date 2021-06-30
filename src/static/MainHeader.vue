@@ -40,9 +40,7 @@
            </h3>
             <p>
  @4K Labs We focus on developing reconfigurable, Adaptable, environmentally friendly, 
-  power efficient hardware & Software systems under the consideration of AI. With our
-   exceptional design team we introduce aesthetics in our projects.
-
+  power efficient hardware & Software systems under the consideration of AI. 
 
 
 
@@ -71,15 +69,14 @@
             <p>
    @4k we foster Knowledge to impact our society through technology. 
    All our Members are encouraged to experiment and impact with the help of
-    our collaberative divisions we bring ideas to life by providing funding and 
-    expertise.
+    our collaberative divisions we bring ideas to life.
             </p>
         </div>
     </div>
     <div class="navigation active">
-        <div class="btn"></div>
-        <div class="btn"></div>
-        <div class="btn"></div>
+        <div class="betn"></div>
+        <div class="betn"></div>
+        <div class="betn"></div>
     </div> 
 </div>
     </div>
@@ -90,7 +87,7 @@ name:"MainHeader",
 
 mounted(){
  var slides =  document.querySelectorAll('.main-holder');
- var btns =  document.querySelectorAll('.btn');
+ var btns =  document.querySelectorAll('.betn');
 var button = document.getElementById("button");
 var  menu =  document.getElementById("menu");
 let current =  1;
@@ -268,15 +265,15 @@ body{
   transform: translateX(-50%);
  
 }
-.container .navigation .btn{
+.container .navigation .betn{
     background: white;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    margin:10px;
-    cursor:pointer;
+    width:12px !important;
+    height:12px !important;
+    border-radius:50% !important;
+    margin:10px !important;
+    cursor:pointer !important;
 }
-.conainer .navigation .btn.active{
+.conainer .navigation .betn.active{
     background: yellowgreen;
 }
 .content-devider{

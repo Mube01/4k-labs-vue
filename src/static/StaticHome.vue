@@ -56,6 +56,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+div{
+  font-family: 'Poppins', sans-serif;
+}
 .prompt {
   padding: 50px;
   text-align: center;
