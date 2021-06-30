@@ -3,7 +3,7 @@
     <div class="content-wrap">
       <Loading v-show="loading" />
       <SubHeader v-show="!loading" />
-      <div class="container" v-show="!loading">
+      <div class="container" v-show="!loading" id="prjct">
         <div class="row">
           <div
             class="col-md-6"
@@ -67,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+#prjct{
+  margin-top:100px;
+}
 .page-container {
   position: relative;
   min-height: 100vh;
