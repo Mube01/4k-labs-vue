@@ -3,13 +3,13 @@
   <div class="footer">
     <div class="quick-links">
        <ul>
-           <a href="">
+           <a href="/">
                <li>Home</li>
            </a>
-           <a href="">
+           <a href="/members">
                <li>Members</li>
            </a>
-           <a href="">
+           <a href="/login">
                <li>Login</li>
            </a>
        </ul>
