@@ -30,7 +30,7 @@ TODOS<br/>
     [x] less api requests\
     [x] page resonsiveness\
     [ ] event image scale\
-    [ ] login with gmail is not working for MAC and Kali linux Os.\
+    [x] login with gmail is not working for MAC and Kali linux Os.\
     [ ] remove the video on the front page\
     [x] for updating task progress first update the ui and validate at the backend later\ 
     

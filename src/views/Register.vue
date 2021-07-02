@@ -83,7 +83,7 @@ export default {
     var auth2 = ""
     gapi.load('auth2', ()=>{
         auth2 = gapi.auth2.init({
-          client_id: '475271500037-5gg9viio8pftqjs1ra3aq9f3ss8f0nru.apps.googleusercontent.com',
+          client_id: '843154350382-qvjkg63v1m17g3tp722e5va4v77o011h.apps.googleusercontent.com',
           cookiepolicy: 'single_host_origin',
         })
         var elemnt = document.getElementById('customBtn');
