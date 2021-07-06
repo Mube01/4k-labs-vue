@@ -1,6 +1,8 @@
 <template>
+<div>
   <Alert />
   <router-view :key="$route.path" />
+</div>
 </template>
 
 

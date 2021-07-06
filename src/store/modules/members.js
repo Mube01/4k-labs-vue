@@ -3,7 +3,7 @@ export default {
     namespaced: true,
 
     state:{
-        members: ""
+        members:[]
     },
     getters:{
         getMembers(state) {

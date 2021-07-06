@@ -6,8 +6,8 @@ export default {
     namespaced: true,
 
     state: {
-        projects: "",
-        project: ""
+        projects: [],
+        project: []
     },
     getters: {
         listOfProjects(state) {
@@ -22,6 +22,7 @@ export default {
             })
         },
         divisionProjectGetter:(state)=>(division)=>{
+           
             return state.projects.filter((project)=>project.Division===division)
         },
         projectMemberGetter:(state)=>{
@@ -47,6 +48,7 @@ export default {
                     dispatch('members/getMembers',{},{root:true})
                     resolve(result.data.projects)
                 }).catch((err) => {
+                   
                     if (err.response.status == 401) {
                         dispatch('auth/logoutUser', err.response.data, { root: true })
                     }
@@ -198,7 +200,9 @@ export default {
             state.projects = projectData
         },
         storeAllProjects(state, projectData) {
+           
             state.projects = projectData
+           
         },
         saveProject(state, project) {
             state.project = project
@@ -206,16 +210,7 @@ export default {
         /**
          * 
          * 
-         * @param { the state is the input} state 
-         * @param {data from the complete task parameter which contain data.task_code and data.completed} data 
-         * 
-         * the data.completed is change to reverse of previos in terms of string 
-         */
-         updateTask(state, data) {
-            console.log('the data is  and updated',data.destination.value)
-            var i = state.projects.findIndex((project)=>project.project_code === data.destination.value[0].project_code)
-            var index = state.projects[i].tasks.findIndex((task)=>task.task_code === data.destination.value[0].task_code)
-            state.projects[i].tasks[index].status = data.destination.status
+         * @param { the state is the input} stateprojectData
 
         },
         /**
