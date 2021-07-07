@@ -81,7 +81,7 @@ export default {
           name: "DEVS",
           image: "DEVS.jpg",
           details:
-            "4K-Devs is a department that works on mobile, desktop and web development.",
+            "4K-Devs is a department that works on mobile, desktop & web development.",
         },
         {
           name: "THINGS",

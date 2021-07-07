@@ -2,7 +2,7 @@
   <SubHeader id="sub"/>
  
  <div class="row container-fluid">
-    <div  class="col-md-3" :key="member.user_id" v-for="member in getMembers">
+    <div  class="col-md-3" v-show="!(parseInt(member.Role) === 0)" :key="member.user_id" v-for="member in getMembers">
       <router-link :to="{ name: 'StaticProfile', params: { user_code: member.user_id } }">
         <Member :member=member />
       </router-link>

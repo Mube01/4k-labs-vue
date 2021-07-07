@@ -1,6 +1,5 @@
 <template>
   <div id="card">
-    <h4>{{ member["fullname"] }}</h4>
     <div class="image-crop">
       <img
         id="avatar"
@@ -10,8 +9,9 @@
       />
     </div>
     <div id="bio">
-      <h3 style="color: white">Division: {{ member["Division"] }}</h3>
-      <span style="color: white">Role: {{ getRole(member["Role"]) }}</span>
+      <h4>{{ member["fullname"] }}</h4>
+      <h3 >Division: {{ member["Division"] }}</h3>
+      <span>Role: {{ getRole(member["Role"]) }}</span>
       <p>{{ member["Discription"] }}</p>
     </div>
 
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { computed } from "@vue/runtime-core";
 import { mapGetters } from "vuex";
 export default {
   name: "Member",
@@ -65,24 +64,23 @@ body {
 }
 
 #card {
-  background-color: #453f39;
+  background-color: #fff;
+  border-radius: 15px !important;
   height: auto;
-  width: 320px;
   margin: 5vh auto;
-  border-radius: 25px;
-  padding-bottom: 1px;
-  box-shadow: 2px 2px 5px #a97c50;
-  position: relative;
+  border: 1px solid #d9d9d9;
+  transition: 0.5s;
+}
+#card:hover{
+  box-shadow: 0 0 10px 3.5px rgba(0, 0, 0, 0.2);
 }
 
 h4 {
   text-align: center;
-  width: 100%;
-  background-color: #0c0e0f;
-  border-radius: 25px 25px 0 0;
   color: #a97c50;
-  padding: 30px 0;
+  padding: 20px 0 30px 0;
   font-weight: 800;
+  font-size: 20px;
 }
 
 .image-crop {
@@ -92,53 +90,48 @@ h4 {
   width: 150px;
   height: 150px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 50px;
   overflow: hidden;
   border-radius: 50%;
+  border: 5px double #a97c50;
 }
 
 #avatar {
   display: inline;
-  height: 150px;
-  width: 150px;
-  margin-bottom: 15px;
+  padding: 5px;
+  object-fit: cover;
+  height: 170px;
+  width: 160px;
+  position: relative;
+  top: -10px;
+  left: -10px;
 }
 
 #bio {
   display: block;
   margin: 15px auto;
-  width: 280px;
+  width: 100%;
+  color: #333;
+  text-transform: capitalize;
   height: auto;
+  padding: 0 50px 20px 50px;
+  border-bottom: 1px solid #d9d9d9;
 }
-
-#bio p {
-  color: #e6ebee;
-  font-weight: lighter;
-  font-size: 15px;
-  text-align: justify;
+#bio h3{
+  font-size: 22px;
+  margin-bottom: 5px;
 }
-
-.col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-}
-
-.stat {
-  font-size: 25px;
-  margin: 0;
-}
-
-.label {
-  margin: 0;
+#bio span{
+  font-weight: 500;
+  font-size: 17px;
+  color: #6e7889;
 }
 
 #links {
   position: relative;
   left: 30%;
   bottom: 10px;
+  margin-bottom: 20px;
 }
 #links ul{
   margin: 0;
