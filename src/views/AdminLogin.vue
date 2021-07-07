@@ -3,7 +3,6 @@
     <div class="container text-center">
     <div class="login">
       <form class="login" onsubmit="return false">
-        <img class="logo" src="@/assets/logo.webp" />
         <h2>Admin Login</h2>
           <div id="google-signin-button"></div>
       </form>

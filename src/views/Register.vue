@@ -3,7 +3,6 @@
   <div class="container text-center">
     <div class="login">
       <form class="login" @submit.prevent="register">
-        <img class="logo" src="@/assets/logo.webp" />
         <h2>Register</h2>
 
         <div class="full col-md-12">
@@ -158,14 +157,11 @@ export default {
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   border-radius: 15px;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.logo {
-  height: 100px;
-  margin-bottom: 50px;
-}
+
 h2 {
   font-weight: 700;
   margin-bottom: 20px;
