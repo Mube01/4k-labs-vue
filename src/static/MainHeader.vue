@@ -431,7 +431,7 @@ body{
     cursor: pointer;
 }
 .profile-img{
-background-image:linear-gradient(to right,rgba(231, 108, 26, 0.349) , rgba(231, 108, 26, 0.349)),url(../assets/2P.png);
+background-image:linear-gradient(to right,rgba(231, 108, 26, 0.349) , rgba(231, 108, 26, 0.349));
 background-position: left;
 background-size: cover;
 border-radius:15px;

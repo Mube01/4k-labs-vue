@@ -9,6 +9,7 @@
               :srcText="user_info['profile_picture']"
               imgWeight="250px"
               fontSize="100px"
+              top="6px"
               :name="user_info.username"
             />
           </div>

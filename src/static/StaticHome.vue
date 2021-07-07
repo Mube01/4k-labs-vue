@@ -3,7 +3,7 @@
     <MainHeader />
   
       <p style="text-align:center">
-     4k labs is a research lab based in addis ababa university
+     4k labs is a research lab based in Addis Ababa University
       </p>
 
     <div id="Teams">

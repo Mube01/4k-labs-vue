@@ -12,6 +12,7 @@
                 imgWeight="45px"
                 fontSize="20px"
                 :name="user_info.username[0]"
+                top="6px"
                 :srcText="user_info['profile_picture']"
               />
             </router-link>

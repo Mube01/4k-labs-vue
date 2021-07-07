@@ -47,15 +47,6 @@ export default {
 }
 </script>
 <style scoped>
-.fa-facebook-square{
-
-}
-.fa-twitter-square{
-    /* margin-left:19px; */
-}
-.fa-instagram{
-    /* margin-left:-3px; */
-}
 .fab{
     font-size:18px;
     padding:0px;
@@ -63,7 +54,7 @@ export default {
 .footer{
     width:100%;
     display: grid;
-    grid-template-columns:500px 500px;
+    grid-template-columns:1500px 100px;
     padding:25px;
     background:rgb(24, 22, 22);
     bottom:0;

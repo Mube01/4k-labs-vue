@@ -12,7 +12,6 @@
       <h4>{{ member["fullname"] }}</h4>
       <h3 >Division: {{ member["Division"] }}</h3>
       <span>Role: {{ getRole(member["Role"]) }}</span>
-      <p>{{ member["Discription"] }}</p>
     </div>
 
     <div id="links">
@@ -78,9 +77,12 @@ body {
 h4 {
   text-align: center;
   color: #a97c50;
+  white-space: nowrap;
+  max-height: 50px;
+  margin-bottom: 15px;
   padding: 20px 0 30px 0;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 21px;
 }
 
 .image-crop {
@@ -118,18 +120,19 @@ h4 {
   border-bottom: 1px solid #d9d9d9;
 }
 #bio h3{
-  font-size: 22px;
+  font-size: 18px;
   margin-bottom: 5px;
 }
 #bio span{
   font-weight: 500;
   font-size: 17px;
   color: #6e7889;
+  white-space: nowrap;
 }
 
 #links {
   position: relative;
-  left: 30%;
+  left: 35%;
   bottom: 10px;
   margin-bottom: 20px;
 }
