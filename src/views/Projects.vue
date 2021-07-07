@@ -35,7 +35,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -45,7 +44,6 @@ import Project from "@/components/Project.vue";
 import Add from "@/components/Add.vue";
 import AddProject from "@/components/AddProject.vue";
 import Loading from "@/components/Loading.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -57,7 +55,6 @@ export default {
     AddProject,
     Header,
     Loading,
-    Wave,
   },
   props: {
     division: {
