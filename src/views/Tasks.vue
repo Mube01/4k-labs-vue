@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Loading v-show="loading" />
       <div v-show="!loading">
         <Header />
@@ -104,8 +102,6 @@
           <Activities :project_code="project.project_code" />
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -184,13 +180,6 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 .status {
   margin: 20px 0px 0px 0px;
   width: 100%;

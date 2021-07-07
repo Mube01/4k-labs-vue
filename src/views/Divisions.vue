@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Loading v-show="loading" />
       <Header v-show="!loading" />
       <div v-show="!loading" class="text-center">
@@ -25,8 +23,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -100,13 +96,6 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 
 p {
   font-size: 25px;
