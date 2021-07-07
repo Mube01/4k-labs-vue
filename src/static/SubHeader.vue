@@ -7,10 +7,10 @@
     <div class="menu-container" id="menu">
         <ul>
             
-              <router-link to="/teams">
+              <a href="/#divisions">
                 <li>Divisions</li>
               
-              </router-link>
+              </a>
       
         <router-link to="/members">
                 <li>Members</li>

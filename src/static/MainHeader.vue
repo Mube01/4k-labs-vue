@@ -8,9 +8,9 @@
         <ul>
           
            
-              <router-link to="/teams">
-               <li>Teams</li>
-              </router-link>
+              <a href="#divisions">
+               <li>Divisions</li>
+              </a>
               
         
            <router-link to="/members">
