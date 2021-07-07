@@ -1,42 +1,41 @@
 <template>
-  <SubHeader id="sub"/>
- 
- <div class="row container-fluid">
-    <div  class="col-md-3" :key="member.user_id" v-for="member in getMembers">
-      <router-link :to="{ name: 'StaticProfile', params: { user_code: member.user_id } }">
-        <Member :member=member />
-      </router-link>
-    </div></div>
+  <SubHeader id="sub" />
+
+  <div class="row container-fluid">
+    <div class="col-md-3" :key="member.user_id" v-for="member in getMembers">
+      <Member :member="member" />
+    </div>
+  </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
-import SubHeader from './SubHeader'
-import Member from './Member'
+import { mapGetters } from "vuex";
+import SubHeader from "./SubHeader";
+import Member from "./Member";
 export default {
-  name:'Members',
-  components:{
+  name: "Members",
+  components: {
     SubHeader,
-    Member
+    Member,
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      getMembers:'home/getMembers'
-    })
-  }
-}
+      getMembers: "home/getMembers",
+    }),
+  },
+};
 </script>
 
 <style scoped>
-*{
-  overflow-x:hidden ;
+* {
+  overflow-x: hidden;
 }
-.row{
-  margin-top:100px;
-  padding:20px;
-  width:100%;
+.row {
+  margin-top: 100px;
+  padding: 20px;
+  width: 100%;
 }
-#sub{
-  height:150px;
+#sub {
+  height: 150px;
 }
 </style>

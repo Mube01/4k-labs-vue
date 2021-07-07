@@ -72,7 +72,7 @@ const routes = [
   },
   {
     path: '/adminlogin',
-    name: 'AdminLogin',
+    name: 'AdminLogin', 
     component: () => import('../views/AdminLogin.vue')
   },
   {
