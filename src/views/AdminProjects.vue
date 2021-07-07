@@ -18,14 +18,12 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import ProjectList from "@/components/ProjectList.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapGetters } from "vuex";
 export default {
@@ -33,7 +31,6 @@ export default {
   components: {
     Header,
     ProjectList,
-    Wave,
   },
   methods: {},
   computed: {

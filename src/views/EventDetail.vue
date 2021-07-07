@@ -47,7 +47,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -56,7 +55,6 @@
 import { mapGetters, mapActions } from "vuex";
 import Header from "@/components/Header.vue";
 import GalleryImage from "@/components/GalleryImage.vue";
-import Wave from "@/components/Wave.vue";
 
 export default {
   name: "EventDetail",
@@ -85,7 +83,6 @@ export default {
   components: {
     Header,
     GalleryImage,
-    Wave,
   },
   computed: {
     event() {

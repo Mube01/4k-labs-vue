@@ -76,7 +76,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -85,7 +84,6 @@ import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import Project from "@/components/Project.vue";
 import Button from "@/components/Button.vue";
-import Wave from "@/components/Wave.vue";
 import { mapGetters } from "vuex";
 
 const toBase64 = (file) =>
@@ -103,7 +101,6 @@ export default {
     ProfilePicture,
     Button,
     Project,
-    Wave,
   },
   data() {
     return {

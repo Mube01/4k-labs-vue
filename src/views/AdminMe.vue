@@ -23,14 +23,12 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -47,7 +45,6 @@ export default {
   components: {
     // Header,
     ProfilePicture,
-    Wave,
   },
   data() {
     return {

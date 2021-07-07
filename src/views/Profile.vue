@@ -56,7 +56,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -64,7 +63,6 @@
 import Header from "@/components/Header.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import Project from "@/components/Project.vue";
-import Wave from "@/components/Wave.vue";
 import {mapGetters} from 'vuex';
 export default {
   name: "Profile",
@@ -72,7 +70,6 @@ export default {
     Header,
     ProfilePicture,
     Project,
-    Wave,
   },
   data() {
     return {

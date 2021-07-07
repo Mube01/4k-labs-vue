@@ -49,7 +49,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -57,14 +56,12 @@
 import SubHeader from "./SubHeader";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import StaticProject from "./StaticProject";
-import Wave from "@/components/Wave.vue";
 export default {
   name: "StaticProfile",
   components: {
     SubHeader,
     ProfilePicture,
     StaticProject,
-    Wave,
   },
   data() {
     return {

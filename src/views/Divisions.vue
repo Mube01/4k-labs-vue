@@ -26,7 +26,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -34,7 +33,6 @@
 import Header from "@/components/Header.vue";
 import Division from "@/components/Division.vue";
 import Loading from "@/components/Loading.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapActions, mapGetters } from "vuex";
 export default {
@@ -97,7 +95,6 @@ export default {
     Header,
     Division,
     Loading,
-    Wave,
   },
 };
 </script>

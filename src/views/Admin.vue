@@ -18,7 +18,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -26,14 +25,12 @@
 import { mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import MemberList from "@/components/MemberList.vue";
-import Wave from "@/components/Wave.vue";
 
 export default {
   name: "Admin",
   components: {
     Header,
     MemberList,
-    Wave,
   },
   data() {
     return {

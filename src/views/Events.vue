@@ -29,7 +29,6 @@
       </div>
     </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -37,7 +36,6 @@
 import {mapGetters,mapActions} from 'vuex'
 import Header from "@/components/Header.vue";
 import Event from "@/components/Event.vue";
-import Wave from "@/components/Wave.vue";
 import Add from "@/components/Add.vue";
 import AddEvent from "@/components/AddEvent.vue";
 
@@ -51,7 +49,6 @@ export default {
   components: {
     Header,
     Event,
-    Wave,
     Add,
     AddEvent,
   },

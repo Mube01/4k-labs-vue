@@ -15,7 +15,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -23,7 +22,6 @@
 import SubHeader from "./SubHeader";
 import StaticProject from "./StaticProject";
 import Loading from "@/components/Loading.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -31,7 +29,6 @@ export default {
   name: "AllProjects",
   components: {
     Loading,
-    Wave,
     SubHeader,
     StaticProject
   },

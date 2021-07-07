@@ -39,7 +39,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -48,7 +47,6 @@ import { mapActions, mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
 import TokenList from "@/components/TokenList.vue";
-import Wave from "@/components/Wave.vue";
 
 export default {
   name: "GenerateToken",
@@ -61,7 +59,6 @@ export default {
     Header,
     Button,
     TokenList,
-    Wave,
   },
   methods: {
     ...mapActions({
