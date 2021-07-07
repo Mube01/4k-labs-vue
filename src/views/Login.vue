@@ -58,6 +58,7 @@ export default {
     }
   },
   mounted() {
+    console.log("see here")
     if(this.isSuperAdmin){
       this.logoutUser()
     }

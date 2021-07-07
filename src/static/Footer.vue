@@ -3,15 +3,19 @@
   <div class="footer">
     <div class="quick-links">
        <ul>
-           <a href="/">
-               <li>Home</li>
-           </a>
-           <a href="/members">
+       <router-link :to="{ name: 'Home' }">
+        <li>Home</li>
+       </router-link>
+       <router-link :to="{name:'Members'}">
                <li>Members</li>
-           </a>
-           <a href="/login">
+       </router-link>
+       <router-link :to="{name : 'Login'}">
                <li>Login</li>
-           </a>
+        </router-link>
+        <router-link :to="{name : 'Register'}">
+               <li>Register</li>
+        </router-link>
+
        </ul>
     </div>
    <div class="socials">
