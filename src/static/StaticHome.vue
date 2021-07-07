@@ -6,9 +6,11 @@
      4k labs is a research lab based in Addis Ababa University
       </p>
 
+<div  id="divisions" >
     <div id="Teams">
-      <h1 style="text-align: center">Teams</h1>
+      <h1 style="text-align: center">Divisions</h1>
       <Teams />
+    </div>
     </div>
       <h1 style="text-align: center">Events</h1>
 
@@ -92,6 +94,8 @@ div{
   margin: 40px 0;
 }
 }
+#divisions{
+padding: 20px;}
 #Teams{
   margin-top:50px;
 }

@@ -3,8 +3,11 @@
     <div class="container text-center">
     <div class="login">
       <form class="login" onsubmit="return false">
-        <h2>Admin Login</h2>
-          <div id="google-signin-button"></div>
+       <div class="full col-md-12">
+          <div id="LoginButton">
+            <button class="buttonText"><i class="fab fa-google"></i> Login With Gmail</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -41,6 +44,28 @@ export default {
       logoutUser:"auth/logoutUser2"
 
     }),
+    getGmail() {
+      var gapi = window.gapi;
+      var auth2 = "";
+      gapi.load("auth2", () => {
+        auth2 = gapi.auth2.init({
+          client_id:
+            "843154350382-qvjkg63v1m17g3tp722e5va4v77o011h.apps.googleusercontent.com",
+          cookiepolicy: "single_host_origin",
+        });
+        var elemnt = document.getElementById("LoginButton");
+        auth2.attachClickHandler(
+          elemnt,
+          {},
+          (user) => {
+            this.onSignIn(user);
+          },
+          (err) => {
+            this.errorAlert(JSON.stringify(err, undefined, 2));
+          }
+        );
+      });
+    },
     onSignIn (user) {
       var id_token = user.getAuthResponse().id_token;
       this.login_admin(id_token).then((result) => {
@@ -63,26 +88,24 @@ export default {
     if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     }
-    else{ 
-      const gapi = window.gapi
-      gapi.signin2.render('google-signin-button', {
-        'onsuccess': this.onSignIn,
-        'onfailure': this.onFailure,
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'white',
-      })
+    else{
+      this.getGmail(); 
     }
   },
 };
 </script>
 
 <style scoped>
+.fab{
+color:white;
+font-size: 25px;
+float: left;
+margin-top: 2px;
+}
 .login {
   margin: 0 auto;
   padding: 60px 50px;
-  width: fit-content;
+  width: 450px;
   background-color: white;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
