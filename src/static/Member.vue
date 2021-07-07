@@ -65,11 +65,10 @@ body {
 
 #card {
   background-color: #fff;
+  border-radius: 15px !important;
   height: auto;
-  width: 350px;
   margin: 5vh auto;
   border: 1px solid #d9d9d9;
-  border-radius: 15px;
   transition: 0.5s;
 }
 #card:hover{
@@ -81,6 +80,7 @@ h4 {
   color: #a97c50;
   padding: 20px 0 30px 0;
   font-weight: 800;
+  font-size: 20px;
 }
 
 .image-crop {
@@ -90,7 +90,7 @@ h4 {
   width: 150px;
   height: 150px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 50px;
   overflow: hidden;
   border-radius: 50%;
   border: 5px double #a97c50;
@@ -99,8 +99,12 @@ h4 {
 #avatar {
   display: inline;
   padding: 5px;
-  height: 150px;
-  width: 150px;
+  object-fit: cover;
+  height: 170px;
+  width: 160px;
+  position: relative;
+  top: -10px;
+  left: -10px;
 }
 
 #bio {
@@ -119,6 +123,7 @@ h4 {
 }
 #bio span{
   font-weight: 500;
+  font-size: 17px;
   color: #6e7889;
 }
 

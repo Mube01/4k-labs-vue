@@ -27,7 +27,6 @@
   </div>
 </template>
 <script>
-import SubHeader from "./SubHeader";
 import Team from "./Team";
 export default {
   name: "Teams",
@@ -68,5 +67,11 @@ export default {
     margin-top: 20px;
     margin-left: 20px;
   }
+}
+#sub{
+  height: 150px;
+}
+.row{
+  margin-top: 100px;
 }
 </style>
