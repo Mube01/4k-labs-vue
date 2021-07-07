@@ -8,7 +8,7 @@
         <ul>
             
               <router-link to="/teams">
-                <li>Teams</li>
+                <li>Divisions</li>
               
               </router-link>
       
