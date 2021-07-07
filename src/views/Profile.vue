@@ -86,7 +86,6 @@ export default {
   },
   created() {
     
-    // console.log("reloading state");
     this.user_code = this.$route.params.user_code,
     this.user_info = this.getMemberInfo(this.user_code)[0]
   },

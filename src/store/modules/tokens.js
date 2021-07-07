@@ -11,7 +11,6 @@ export default {
     },
     actions:{
         generateTokens({commit,dispatch},division){
-            console.log('the division is ',division)
             return new Promise((resolve,reject)=>{
                 tokenApi.generateToken(division).then((result) => {
                     commit('addToken',result.data)

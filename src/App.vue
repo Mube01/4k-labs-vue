@@ -29,8 +29,6 @@ export default {
       if(this.isAuthenticated){
         this.getAllPortalInfo()
         .then((result) => {
-          console.log("hi");
-          console.log(result.data)
         })
         .catch((err) => {});
       }

@@ -83,7 +83,6 @@ export default {
         // TODO remve the tasks data from the back end 
         updateTask({commit,dispatch,state},data){
             var original = state.projects;
-            console.log('the original is ', original);   
             if(!data.destination.value[0].assigned_to.includes(data.user_id)){
                 dispatch('errorAlert', ("only assigned member can move task"), { root: true })
             }  
@@ -212,7 +211,6 @@ export default {
          * the data.completed is change to reverse of previos in terms of string 
          */
          updateTask(state, data) {
-            console.log('the data is  and updated',data.destination.value)
             var i = state.projects.findIndex((project)=>project.project_code === data.destination.value[0].project_code)
             var index = state.projects[i].tasks.findIndex((task)=>task.task_code === data.destination.value[0].task_code)
             state.projects[i].tasks[index].status = data.destination.status
@@ -222,7 +220,6 @@ export default {
          * this update progress doesn't take any parameter
          */
         updateProgress(state,project_code) {
-            console.log('got here with project code ',project_code)
             var total = 0;
             let index = state.projects.findIndex((project)=>project.project_code === project_code)
             let len = state.projects[index].tasks.length    
@@ -239,15 +236,12 @@ export default {
                 percentile = total*100/len
             }
 
-            console.log('the percentiole is ',percentile,' ', total)
             state.projects[index].progress = percentile.toFixed(2)
         },
         deleteTask(state, data) {
-            console.log("the data to be deleted is",data)
 
             var project_index = state.projects.findIndex((project)=>project.project_code === data.project_code);
 
-            console.log("the data to be deleted is ",project_index)
             state.projects[project_index].tasks = state.projects[project_index].tasks.filter((task)=>task.task_code !== data.task_code)
 
         },

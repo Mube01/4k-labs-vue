@@ -1,13 +1,27 @@
 <template>
   <div class="text-center">
     <form @submit="onSubmit">
-      <input
-        type="text"
-        v-model="project_title"
-        name="text"
-        placeholder="Project Title"
-      />
-
+      <div class="row">
+        <div class="col-md-6">
+        <label>Title</label>
+          <input
+            type="text"
+            v-model="project_title"
+            name="text"
+            placeholder="Project Title"
+          />
+        </div>
+        <div class="col-md-6">
+        <label>Deadline</label>
+          <input
+            type="date"
+            v-model="dead_line"
+            name="text"
+            placeholder="Project Deadline"
+            required
+          />
+        </div>
+      </div>
       <div class="full">
         <label for="addMembers">Add Members</label><br />
         <div style="margin-top: -100px; clear: both; background-color: white">
@@ -58,6 +72,7 @@ export default {
       project_title: "",
       description: "",
       text: "",
+      dead_line:""
     };
   },
   components: {
@@ -88,18 +103,17 @@ export default {
         user_id: this.user_id,
         github_link: "",
         docs_link: "",
+        deadline : this.dead_line,
         description: this.description,
       };
       this.createProject(data)
         .then((result) => {
-          this.successAlert('Project have been created succesdully')
+          this.successAlert("Project have been created succesdully");
           this.$emit("projectAdded");
         })
         .catch((err) => {
-          console.log('the error is ',err)
-          this.errorAlert(err.message)
+          this.errorAlert(err.message);
         });
-      console.log("got heree finally");
     },
   },
 };
@@ -118,6 +132,7 @@ label {
   float: left;
   font-size: 18px;
   font-weight: 700;
+  margin: 10px 0;
 }
 select {
   width: 450px;

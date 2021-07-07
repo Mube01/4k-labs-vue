@@ -40,13 +40,11 @@ export default {
             task: this.text,
           })
           .then((result) => {
-            console.log(result);
             this.$emit("taskAdded");
             this.text = "";
             this.isDisabled = false;
           })
           .catch((err) => {
-            console.log(err);
           });
       }
     },

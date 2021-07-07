@@ -94,7 +94,6 @@ export default {
         if (this.isSuperAdmin) {
           this.changeRole({ user_id, role })
             .then((result) => {
-              console.log(result);
             })
             .catch((err) => {});
         } else {
@@ -103,7 +102,6 @@ export default {
       } else {
         this.changeRole({ user_id, role })
           .then((result) => {
-            console.log(result);
           })
           .catch((err) => {});
       }
@@ -111,7 +109,6 @@ export default {
     changedivision(division, user_id) {
       this.changeDivsion({ user_id, division })
         .then((result) => {
-          console.log(result);
         })
         .catch((err) => {});
     },

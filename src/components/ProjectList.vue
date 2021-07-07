@@ -47,10 +47,8 @@ export default {
     deletepro(project_code) {
       this.deleteProject(project_code)
         .then((result) => {
-          console.log(result);
         })
         .catch((err) => {
-          console.log(err);
         });
     },
   },

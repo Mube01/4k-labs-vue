@@ -435,10 +435,8 @@ export default {
         this.$store
           .dispatch("projects/renameTask", reqest_payload)
           .then((result) => {
-            console.log(result);
           })
           .catch((err) => {
-            console.log(err);
           });
       }
     },
@@ -446,10 +444,8 @@ export default {
       this.$store
         .dispatch("projects/completeTask", { task_code, completed })
         .then((result) => {
-          console.log(result);
         })
         .catch((err) => {
-          console.log(err);
         });
     },
     delteTask(task_code) {
@@ -459,10 +455,8 @@ export default {
           project_code: this.project_code,
         })
         .then((result) => {
-          console.log(result);
         })
         .catch((err) => {
-          console.log(err);
         });
     },
   },

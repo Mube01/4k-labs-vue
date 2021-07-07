@@ -64,7 +64,6 @@ export default {
     },
   },
   created(){
-    console.log('loadinf Events')
     this.getEvents().then((result) => {
       this.successAlert('events loaded sucessfully')
     }).catch((err) => {

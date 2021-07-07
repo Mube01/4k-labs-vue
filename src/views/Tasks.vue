@@ -17,7 +17,7 @@
                 class="card-link"
                 :to="{
                   name: 'UpdateProject',
-                  params: { projectCode: project_code },
+                  params: { projectCode: project_code},
                 }"
               >
                 <i
@@ -96,6 +96,8 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
+          <h5>Deadline</h5>
+          <p class="desc">{{ project.deadline }}</p>
           <h5>Tasks</h5>
           <br />
           <br />
@@ -128,7 +130,7 @@ export default {
     return {
       showAddMember: false,
       showAddTask: false,
-      project_code: this.$router.currentRoute._value.params.projectCode,
+      project_code: this.$route.params.projectCode,
       loading: false,
     };
   },

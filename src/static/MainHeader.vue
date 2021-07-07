@@ -123,7 +123,6 @@ slides.forEach((slide)=>{
             i++;
             if(slides.length == i){
                 i=0;
-                console.log(i);
             }
           
         repeater();

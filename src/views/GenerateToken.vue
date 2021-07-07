@@ -65,7 +65,6 @@ export default {
   created() {
     this.fetchToken()
       .then((result) => {
-        console.log(result);
       })
       .catch((err) => {});
   },
