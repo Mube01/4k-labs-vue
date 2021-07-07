@@ -38,6 +38,7 @@
               <ProfilePicture
                 imgWeight="45px"
                 fontSize="20px"
+                top="6px"
                 :name="member.username[0]"
                 :srcText="member['profile_picture']"
               />

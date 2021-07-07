@@ -14,6 +14,7 @@
           <ProfilePicture
             imgWeight="35px"
             fontSize="15px"
+            top="6px"
             :name="option.username[0]"
             :srcText="option['profile_picture']"
           />

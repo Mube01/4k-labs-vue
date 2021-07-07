@@ -66,11 +66,6 @@ const routes = [
     component: () => import('../views/Me.vue')
   },
   {
-    path: '/portal/adminme',
-    name: 'AdminMe',
-    component: () => import('../views/AdminMe.vue')
-  },
-  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
