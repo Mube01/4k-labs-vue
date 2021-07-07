@@ -115,7 +115,7 @@
                       style="float: left; margin-left: 10px; margin-bottom: 5px"
                       imgWeight="30px"
                       fontSize="15px"
-                      top="0%"
+                      top="3px"
                       :name="getMemberInfo[member].username[0]"
                       :srcText="getMemberInfo[member]['profile_picture']"
                     />
@@ -250,10 +250,10 @@
                     }"
                   >
                     <ProfilePicture
-                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      style="float: left; margin-left: 10px; margin-bottom: 2px"
                       imgWeight="30px"
                       fontSize="15px"
-                      top="0%"
+                      top="3px"
                       :name="getMemberInfo[member].username[0]"
                       :srcText="getMemberInfo[member]['profile_picture']"
                     />
@@ -343,7 +343,7 @@
                       style="float: left; margin-left: 10px; margin-bottom: 5px"
                       imgWeight="30px"
                       fontSize="15px"
-                      top="0%"
+                      top="3px"
                       :name="getMemberInfo[member].username[0]"
                       :srcText="getMemberInfo[member]['profile_picture']"
                     />

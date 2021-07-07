@@ -67,6 +67,7 @@
                     imgWeight="45px"
                     fontSize="20px"
                     :name="member.username[0]"
+                     top="6px"
                     :srcText="member['profile_picture']"
                   />
                 </router-link>
@@ -104,7 +105,6 @@
         </div>
       </div>
     </div>
-    <Wave />
   </div>
 </template>
 
@@ -115,7 +115,6 @@ import MultiSelect from "@/components/MultiSelect.vue";
 import ProfilePicture from "@/components/ProfilePicture.vue";
 import AddMember from "@/components/AddMember.vue";
 import Loading from "@/components/Loading.vue";
-import Wave from "@/components/Wave.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -127,7 +126,6 @@ export default {
     ProfilePicture,
     AddMember,
     Loading,
-    Wave,
     Activities,
   },
   data() {
