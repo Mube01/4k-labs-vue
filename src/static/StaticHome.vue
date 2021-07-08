@@ -13,8 +13,8 @@
       <h1 style="text-align: center">Events</h1>
 
     <div id="Events">
-      <div :key="event.event_id" v-for="event in events">
-        <Event :event="event" />
+      <div :key="event.event_id" v-for="(event,  val) in events">
+        <Event :num="val+1" :event="event" />
       </div>
     </div>
     <Footer />
@@ -71,12 +71,9 @@ div{
   color: white;
 }
 #Events{
-    padding:10px;
     width:100%;
-    display: grid;
-    grid-template-columns:49% 49%;
-    grid-gap: 15px;
-    margin:auto;
+    padding:25px;
+  
     margin-top:70px;
 
 }

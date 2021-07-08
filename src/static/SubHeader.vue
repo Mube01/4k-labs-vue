@@ -30,7 +30,7 @@
     </div>
 <div class="container">
      
-<div class="main-holder active" :style="{'background-image': ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' + require('../assets/slide-1.jpg') + ')'}">
+<div class="main-holder active" :style="{'background-image': ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' + require('../assets/slide-1.jpg') + ')'}" >
   
         <div class="img-display">
            <h3>

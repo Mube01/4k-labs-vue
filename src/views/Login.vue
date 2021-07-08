@@ -54,7 +54,7 @@ export default {
         });
     },
     onFailure(err){
-      this.errorAlert(err)
+      this.errorAlert(err.error)
     }
   },
   mounted() {
@@ -65,9 +65,13 @@ export default {
       this.$router.push({ name: "Divisions" });
     }
     else{
+   window.gapi.load("auth2", () => {
+   this.auth2 = window.gapi.auth2.init({
+    scope:'profile email'
+   });
+  });
       const gapi = window.gapi
       gapi.signin2.render('google-signin-button', {
-        'scope':'profile email',
         'onsuccess': this.onSignIn,
         'onfailure': this.onFailure,
         'width': 240,

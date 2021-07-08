@@ -253,7 +253,7 @@ body{
     font-weight:bolder;
     width:450px;
     margin-top:5px;
-    text-align: distribute;
+    /* text-align: distribute; */
 
 }
 .container .navigation{
@@ -517,7 +517,7 @@ border-radius:15px;
         width:auto;
         height:auto;
         margin-left:0;
-        text-align: justify;
+        /* text-align: justify; */
 
     }
 

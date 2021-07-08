@@ -2,7 +2,7 @@
   <div id="header">
     <div class="container">
       <router-link :to="{ name: 'Home' }"
-        ><img class="logo" src="@/assets/logo.png"
+        ><img class="logo" src="@/assets/logo.webp"
       /></router-link>
       <div class="nav">
         <div v-show="isAuthenticated">
@@ -104,9 +104,13 @@ export default {
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
 }
 img.logo {
-  float: left;
-  height: 90px;
-  margin: 5px 0;
+    position: absolute;
+    width:100px;
+    top:25px;
+    left:80px;
+    background:white;
+    border-radius:200px;
+    z-index:100;
 }
 .nav {
   float: right;

@@ -1,122 +1,114 @@
 <template>
 <div>
-    <div class="event"  :style="{'background-image': ' linear-gradient(to right, rgba(51, 44, 42, 0.675), rgba(0, 0, 0, 0.539)),url(/api_v1/get_event/'+`${event['event_image']}`+')'}">
-            <div class="date">
-        <div class="num">
+    <div class="event-contain" v-bind:style="[ num%2==0? {'grid-template-columns':'40% 60%'}:{'grid-template-columns':'60% 35%'}]">
+       
+        <div class="img-container" :style="[num%2==0?{'background-image': 'url(/api_v1/get_event/'+`${event['event_image']}`+')','grid-column':'2'}:{'background-image': 'url(/api_v1/get_event/'+`${event['event_image']}`+')','grid-column':'1'}]">
+        <div class="date-details">
+           
+            <div class="day1">
             {{event['event_start'].split("-")[2]}}
+            </div>
+            <div class="month1">
+                {{month[parseInt(event['event_start'].split("-")[1])]}}
+            </div>
+            <div class="year1">
+              /{{event['event_start'].split("-")[0]}}
+            </div>
         </div>
-        <span class="month">{{event['event_start'].split("-")[1]}}</span>
-        <span class="year">/{{event['event_start'].split("-")[0]}}</span>
-     </div>
-     <span class="description">
-         <h2>{{event['event_title']}}</h2>
-         <p> 
-           {{event['event_description']}}</p>
-     </span>
+ 
     </div>
+    <div class="event-information" :style="[num%2==0?{'grid-column':'1'}:{'grid-column':'2'}]">
+    <h2>{{event['event_title']}}</h2>
+    <p>
+    {{event['event_description']}}
+    </p>
+    </div>
+    </div>
+     
     </div>
 </template>
 <script>
+ 
 export default {
     name:"Event",
       props: {
     event:{
       required:true,
       type:Object
+    },
+    num:{
+        requried:true,
+        type:Number
     }
   },
+  data:function (){
+
+      return {
+          month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+          }
+  }
 }
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
-    .event{
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: bolder;
-    margin:auto;
-    height:auto;
+ 
+.event-contain{
     width:100%;
-    padding:20px;
-    position:relative;
+    padding:25px;
     display: grid;
-    grid-gap: 15px;
-    grid-template-columns:150px 400px;
-    grid-template-rows: 200px 200px;
-    background-position: center;
-    background-size: cover;
-    place-items: center;    
+    grid-template-columns:60% 35%;
+    grid-template-rows:  300px 250px;
+    grid-column-gap:20px;
     cursor:pointer;
-
 }
- .date{
-    grid-column: 1;
-    grid-row:1;
-    width: 150px;
-    height: 200px;
-    background: black;
-    border-radius:15px;
-}
-
-.num{
-    grid-row:1;
-    font-size:50px;
-    background-color: rgb(233, 112, 14);
-    color:white;
-    padding:20px;
-    width:150px;
-    border-radius:15px;
-    text-align: center;
-}
-.month{
-    font-size:50px;
-    margin-left:10px;
-    color:white;
-    grid-row:1;
-
-}
-.year{
-    grid-row:1;
-
-    color:white;
-}
-.description{
-
-    grid-column: 1/span all;
-    grid-row:2;
-    font-size:20px;
-    color:white;
-}
-.description p{
-  text-align: justify;
-  font-size:17px;
-}
-.event-image{
-    grid-column:3;
-    background-position: center;
+.img-container{
+    grid-column:1;
+    grid-row:1/span all;
+    width:100%;
     background-size: cover;
-    
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    display: grid;
+    grid-template-rows:300px 250px;
+}
+.event-information{
+    grid-column: 2;
+    padding:25px;
+}
+.event-information h2{
+text-align:center;
+}
+.event-information p{
+    padding:25px;
+}
+.date-details{
+grid-row:2; 
+grid-column: 2;
+width:100px;
+height:100px;
+padding:10px;
+background:rgb(233, 112, 14);
+margin-left:80%;
+margin-top:15%;
+border-radius:15px;
+color:white;
+display: grid;
+place-items: center;
+border:1px  solid  white;
+font-family: 'Courier New', Courier, monospace;
 }
 @media (max-width:750px){
- .event{
-     grid-template-columns:100px 250px;
-    grid-template-rows: 100px 300px;
-    grid-gap:5px;
-    padding:5px;
-    margin-top:10px;
 
- }
- .date{
-    width:auto;
-    height: 100px;
- }
- .description{
-     width:auto;
- }
- .num{
-     font-size:20px;
-     width:70px;
- }
-.month{
-    font-size:15px;
-}
+    .event-contain{
+        display: block;
+    }
+    .img-container{
+        width:100%;
+        height:450px;
+    }
+    .date-details{
+        margin-top:0;
+    }
 }
 </style>
