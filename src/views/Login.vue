@@ -67,6 +67,7 @@ export default {
     else{
       const gapi = window.gapi
       gapi.signin2.render('google-signin-button', {
+        'scope':'profile email',
         'onsuccess': this.onSignIn,
         'onfailure': this.onFailure,
         'width': 240,
