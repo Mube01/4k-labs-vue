@@ -1,18 +1,18 @@
 <template>
   <div>
     <MainHeader />
-  
-      <p style="text-align:center">
-     4k labs is a research lab based in Addis Ababa University
-      </p>
 
-<div  id="divisions" >
-    <div id="Teams">
-      <h1 style="text-align: center">Divisions</h1>
-      <Teams />
+    <p style="text-align:center">
+      4k labs is a research lab based in Addis Ababa University
+    </p>
+
+    <div id="divisions">
+      <div id="Teams">
+        <h1 style="text-align: center">Specialization</h1>
+        <Teams />
+      </div>
     </div>
-    </div>
-      <h1 style="text-align: center">Events</h1>
+    <h1 style="text-align: center">Events</h1>
 
     <div id="Events">
       <div :key="event.event_id" v-for="event in events">
@@ -56,14 +56,14 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-*{
-  padding:0;
-  margin:0;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+* {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
-div{
-  font-family: 'Poppins', sans-serif;
+div {
+  font-family: "Poppins", sans-serif;
 }
 .prompt {
   padding: 50px;
@@ -72,32 +72,32 @@ div{
   background: #a97c50;
   color: white;
 }
-#Events{
-    padding:10px;
-    width:100%;
-    display: grid;
-    grid-template-columns:49% 49%;
-    grid-gap: 15px;
-    margin:auto;
-    margin-top:70px;
-
+#Events {
+  padding: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-gap: 15px;
+  margin: auto;
+  margin-top: 70px;
 }
 @media screen and (max-width: 700px) {
-  #Events{
+  #Events {
     display: block;
   }
   .prompt {
     margin-top: 45px;
   }
   #Teams {
-  height:1250px;
-  margin: 40px 0;
+    height: 1250px;
+    margin: 40px 0;
+  }
 }
+#divisions {
+  padding: 20px;
 }
-#divisions{
-padding: 20px;}
-#Teams{
-  margin-top:50px;
+#Teams {
+  margin-top: 50px;
 }
 #Teams h1 {
   margin-bottom: 20px;
