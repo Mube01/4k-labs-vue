@@ -22,7 +22,6 @@ export default {
             })
         },
         divisionProjectGetter:(state)=>(division)=>{
-            console.log(division);
             return state.projects.filter((project)=>project.Division===division)
         },
         projectMemberGetter:(state)=>{
