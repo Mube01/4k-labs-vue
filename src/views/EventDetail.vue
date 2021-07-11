@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Header />
       <div class="container">
         <div class="row">
@@ -46,8 +44,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 
@@ -93,13 +89,6 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 .card-link {
   color: #a97c50;
 }

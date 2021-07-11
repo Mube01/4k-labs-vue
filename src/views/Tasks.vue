@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Loading v-show="loading" />
       <div v-show="!loading">
         <Header />
@@ -19,7 +17,7 @@
                 class="card-link"
                 :to="{
                   name: 'UpdateProject',
-                  params: { projectCode: project_code },
+                  params: { projectCode: project_code},
                 }"
               >
                 <i
@@ -98,14 +96,14 @@
 
           <h5>Description</h5>
           <p class="desc">{{ project.description }}</p>
+          <h5>Deadline</h5>
+          <p class="desc">{{ project.deadline }}</p>
           <h5>Tasks</h5>
           <br />
           <br />
           <Activities :project_code="project.project_code" />
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -132,7 +130,7 @@ export default {
     return {
       showAddMember: false,
       showAddTask: false,
-      project_code: this.$router.currentRoute._value.params.projectCode,
+      project_code: this.$route.params.projectCode,
       loading: false,
     };
   },
@@ -184,13 +182,6 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 .status {
   margin: 20px 0px 0px 0px;
   width: 100%;

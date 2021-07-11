@@ -37,19 +37,19 @@ export default {
     return {
       divisions: [
         {
-          name: "BOTS",
+          name: "4K BOTS",
           image: "BOTS.jpg",
           details:
             "4K-Bots is a department in 4K-Labs that works on AI and Robotics.",
         },
         {
-          name: "DEVS",
+          name: "4K DEVS",
           image: "DEVS.jpg",
           details:
             "4K-Devs is a department that works on mobile, desktop & web development.",
         },
         {
-          name: "THINGS",
+          name: "4K THINGS",
           image: "THINGS.jpg",
           details:
             "4K-Things is a department in 4K-Labs that works on IOT(Internet of Things).",
@@ -68,10 +68,10 @@ export default {
     margin-left: 20px;
   }
 }
-#sub{
+#sub {
   height: 150px;
 }
-.row{
+.row {
   margin-top: 100px;
 }
 </style>

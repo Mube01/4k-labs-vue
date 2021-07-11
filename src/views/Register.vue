@@ -2,20 +2,22 @@
 <Header />
   <div class="container text-center">
     <div class="login">
-      <form class="login" @submit.prevent="register">
+      <form class="login" @submit.prevent="false">
         <h2>Register</h2>
-
-        <div class="full col-md-12">
-              <div id="customBtn">
-                <span class="buttonText">Register With Gmail</span>
-              </div>
-        </div>
+        <div v-if="!toggleForm" class="full col-md-12">
+            <div id="LoginButton">
+              <button  @click="googleSignIn" class="buttonText">
+                <i class="fab fa-google"></i> Sigup With Gmail
+              </button>
+            </div>
+          </div>
 
         <div v-if="toggleForm" class="full col-md-12">
 
           <label for="email">Gmail Address</label><br />
           <input
             required
+            disabled=true
             v-model="gmail_address"
             type="text"
             id="email"
@@ -45,8 +47,9 @@
             id="token"
             autocomplete="off"
           />
+          <button @click="register" type="submit">Register</button>
         </div>
-        <button type="submit">Register</button>
+        
       </form>
     </div>
   </div>
@@ -55,6 +58,7 @@
 <script>
 import Header from "@/static/SubHeader.vue";
 import { mapActions } from "vuex";
+import firebase from 'firebase';
 
 export default {
   name: "Register",
@@ -76,29 +80,22 @@ export default {
       errorAlert: "errorAlert",
       successAlert: "successAlert",
     }),
-
-    getGmail() {
-    var gapi = window.gapi;
-    var auth2 = ""
-    gapi.load('auth2', ()=>{
-        auth2 = gapi.auth2.init({
-          client_id: '843154350382-qvjkg63v1m17g3tp722e5va4v77o011h.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin',
-        })
-        var elemnt = document.getElementById('customBtn');
-        auth2.attachClickHandler(elemnt,{},(user)=>{
+    googleSignIn: function () {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          let user = result.user;
           this.toggleForm = true
-          this.gmail_address = user.getBasicProfile().getEmail()
-          this.fullname = user.getBasicProfile().getName()
-          this.username = user.getBasicProfile().getGivenName()
-        },
-        (err)=>{
-          this.errorAlert(JSON.stringify(err, undefined, 2));
-        }
-      )
-    });
-  },
-
+          this.gmail_address = user.email;
+          this.fullname = user.displayName;
+          this.username = "";
+        })
+        .catch((err) => {
+          this.onFailure(err);
+        });
+    },
     // send user name and password by reading from the form
     register() {
       //check if ther is space on the user name
@@ -128,9 +125,6 @@ export default {
       }
     },
   },
-  mounted(){
-    this.getGmail();
-  },
   created() {
     this.logoutUser()
       .then((result) => {
@@ -142,26 +136,37 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 480px) {
-  .left,
-  .right {
-    clear: both;
-  }
+.fab {
+  color: white;
+  font-size: 25px;
+  float: left;
+  margin-top: 2px;
 }
 .login {
-  padding: 50px 40px;
-  width: max-content;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 60px 50px;
+  width: 450px;
   background-color: white;
   box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -webkit-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   -moz-box-shadow: 3px 2px 9px 1px rgba(67, 65, 65, 0.17);
   border-radius: 15px;
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
+  z-index: 10;
   transform: translate(-50%, -50%);
 }
-
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 100%;
+  }
+}
+.logo {
+  height: 100px;
+  margin-bottom: 50px;
+}
 h2 {
   font-weight: 700;
   margin-bottom: 20px;
@@ -171,20 +176,8 @@ label {
   font-weight: 600;
   float: left;
 }
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-.full {
-  clear: both;
-}
-.full input {
-  width: 100%;
-}
 input {
-  width: 100%;
+  width: 300px;
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #666;
@@ -194,10 +187,13 @@ input:focus {
   outline: none;
   border: 2px solid #177f75;
 }
+.LoginButton {
+  width: 100%;
+}
 button {
   padding: 10px 45px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   margin: 25px 0 7px 0;
   opacity: 0.8;
@@ -210,51 +206,28 @@ button {
 button:hover {
   opacity: 1;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin-top: 200px;
+
+span.label {
+  font-family: serif;
+  font-weight: normal;
 }
-.footer p {
-  font-size: 17px;
-  color: #333;
+span.icon {
+  background: url("/identity/sign-in/g-normal.png") transparent 5px 50%
+    no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
 }
-
-
- #customBtn {
-      display: inline-block;
-      background: white;
-      color: #444;
-      width: 190px;
-      border-radius: 5px;
-      border: thin solid #888;
-      box-shadow: 1px 1px 1px grey;
-      white-space: nowrap;
-    }
-    #customBtn:hover {
-      cursor: pointer;
-    }
-    span.label {
-      font-family: serif;
-      font-weight: normal;
-    }
-    span.icon {
-      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-      display: inline-block;
-      vertical-align: middle;
-      width: 42px;
-      height: 42px;
-    }
-    span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 42px;
-      padding-right: 42px;
-      font-size: 14px;
-      font-weight: bold;
-      /* Use the Roboto font that is loaded in the <head> */
-      font-family: 'Roboto', sans-serif;
-    }
-
+span.buttonText {
+  border: 1px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: "Roboto", sans-serif;
+}
 </style>

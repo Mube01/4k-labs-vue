@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Header />
       <div class="container">
         <router-link :to="{ name: 'Admin' }"><h4>Members</h4></router-link>
@@ -17,8 +15,6 @@
           <ProjectList :project="project" />
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -42,13 +38,6 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 h4 {
   float: left;
   font-weight: 700;

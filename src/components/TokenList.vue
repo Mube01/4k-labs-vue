@@ -45,7 +45,6 @@ export default {
     DeleteToken(token) {
       this.deleteToken(token)
         .then((result) => {
-          console.log(result);
         })
         .catch((err) => {});
     },

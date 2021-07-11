@@ -87,11 +87,9 @@ export default {
         if (this.newpassword.length >= 3) {
           data["newpassword"] = this.newpassword;
         }
-        console.log("update the data ");
         this.$store
           .dispatch("profile/updateAdminProfile", data)
           .then((result) => {
-            console.log("profile updated succesfully");
             this.$router.push({ name: "AdminMe" });
           })
           .catch((err) => {});

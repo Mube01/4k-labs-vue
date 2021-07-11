@@ -8,7 +8,10 @@
           <h2>Login</h2>
           <div class="full col-md-12">
             <div id="LoginButton">
-              <button class="buttonText"><i class="fab fa-google"></i> Login With Gmail</button>
+            
+              <button  @click="googleSignIn" :disabled="isDisabled" id="signinbtn" class="buttonText">
+                <i class="fab fa-google"></i> signin with Google
+              </button>
             </div>
           </div>
         </form>
@@ -22,6 +25,7 @@
 import Header from "@/static/SubHeader.vue";
 import Footer from "@/static/Footer.vue";
 import { mapGetters, mapActions } from "vuex";
+import firebase from "firebase";
 
 export default {
   name: "Login",
@@ -30,6 +34,7 @@ export default {
     return {
       password: "",
       username: "",
+      isDisabled:false,
     };
   },
   computed: {
@@ -45,31 +50,28 @@ export default {
       loginUser: "auth/loginUser",
       logoutUser: "auth/logoutUser2",
     }),
-    getGmail() {
-      var gapi = window.gapi;
-      var auth2 = "";
-      gapi.load("auth2", () => {
-        auth2 = gapi.auth2.init({
-          client_id:
-            "843154350382-qvjkg63v1m17g3tp722e5va4v77o011h.apps.googleusercontent.com",
-          cookiepolicy: "single_host_origin",
+    googleSignIn: function () {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          let user = result.user;
+          this.isDisabled = true;
+          this.changeText();
+          user.getIdToken(true).then((id_token)=>{
+            this.onSignIn(id_token);
+          });
+        })
+        .catch((err) => {
+          this.onFailure(err);
         });
-        var elemnt = document.getElementById("LoginButton");
-        auth2.attachClickHandler(
-          elemnt,
-          {},
-          (user) => {
-            this.onSignIn(user);
-          },
-          (err) => {
-            this.errorAlert(JSON.stringify(err, undefined, 2));
-          }
-        );
-      });
+    },
+    changeText(){
+      document.getElementById("signinbtn").innerText = `signin with Google`
     },
     // send user name and password by reading from the form
-    onSignIn(user) {
-      var id_token = user.getAuthResponse().id_token;
+    onSignIn(id_token) {
       this.loginUser(id_token)
         .then((result) => {
           this.successAlert("login successfull");
@@ -89,7 +91,7 @@ export default {
     } else if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
     } else {
-      this.getGmail();
+      // this.getGmail();
     }
   },
 };
@@ -100,7 +102,7 @@ export default {
   color: white;
   font-size: 25px;
   float: left;
-  margin-top:2px; 
+  margin-top: 2px;
 }
 .login {
   margin: 0 auto;
@@ -119,8 +121,9 @@ export default {
   transform: translate(-50%, -50%);
 }
 @media only screen and (max-width: 600px) {
-  .login{
-  width: 100%;}
+  .login {
+    width: 100%;
+  }
 }
 .logo {
   height: 100px;
@@ -146,8 +149,9 @@ input:focus {
   outline: none;
   border: 2px solid #177f75;
 }
-.LoginButton{
-width:100%}
+.LoginButton {
+  width: 100%;
+}
 button {
   padding: 10px 45px;
   border-radius: 5px;
@@ -165,19 +169,6 @@ button:hover {
   opacity: 1;
 }
 
-#customBtn {
-  display: inline-block;
-  background: white;
-  color: #444;
-  width: 190px;
-  border-radius: 5px;
-  border: thin solid #888;
-  box-shadow: 1px 1px 1px grey;
-  white-space: nowrap;
-}
-#customBtn:hover {
-  cursor: pointer;
-}
 span.label {
   font-family: serif;
   font-weight: normal;

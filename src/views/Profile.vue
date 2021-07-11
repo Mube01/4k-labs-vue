@@ -1,6 +1,4 @@
 <template>
-  <div class="page-container">
-    <div class="content-wrap">
       <Header />
       <div class="container">
         <div class="row">
@@ -56,8 +54,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -90,31 +86,13 @@ export default {
   },
   created() {
     
-    // console.log("reloading state");
     this.user_code = this.$route.params.user_code,
     this.user_info = this.getMemberInfo(this.user_code)[0]
-    
-
-    // this.user_info = 
-
-    // this.$store
-    //   .dispatch("profile/getUserInformation", this.user_code)
-    //   .then((result) => {
-    //     this.user_info = result;
-    //   })
-    //   .catch((err) => {});
   },
 };
 </script>
 
 <style scoped>
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 26.5rem;
-}
 p {
   font-size: 20px;
 }

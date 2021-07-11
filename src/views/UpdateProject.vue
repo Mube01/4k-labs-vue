@@ -4,15 +4,28 @@
     <div class="container text-center">
       <form class="login" @submit.prevent="UpdateProject">
         <h2>Edit Project</h2>
-        <div class="full">
-          <label for="title">Project Title</label><br />
-          <input
-            required
-            v-model="project.project_title"
-            type="text"
-            id="title"
-            autocomplete="off"
-          />
+        <div class="row">
+          <div class="col-md-6">
+            <label for="title">Project Title</label><br />
+            <input
+              required
+              v-model="project.project_title"
+              type="text"
+              id="title"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label>Deadline</label>
+            <input
+              type="date"
+              v-model="project.deadline"
+              name="text"
+              placeholder="Project Deadline"
+              required
+            />
+          </div>
         </div>
 
         <div class="full">
@@ -76,11 +89,10 @@ export default {
         docs: this.project.docs,
         description: this.project.description,
         project_code: this.project.project_code,
+        deadline:this.project.deadline,
       };
-      console.log(data);
       this.updateProject(data)
         .then((result) => {
-          console.log(result);
           this.$router.push({
             name: "Tasks",
             params: { projectCode: this.project.project_code },
@@ -90,9 +102,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      project: "projects/getProject",
-    }),
+    project() {
+      return this.$store.getters["projects/getProjectByProjectCode"](
+        this.project_code
+      );
+    },
   },
 };
 </script>
@@ -101,9 +115,6 @@ export default {
 h2 {
   font-weight: 700;
   margin: 25px 0;
-}
-.full input {
-  width: 100%;
 }
 label {
   font-size: 17px;
@@ -115,6 +126,7 @@ input {
   border-radius: 5px;
   border: 2px solid #666;
   margin: 5px 0 15px 0;
+  width: 100%;
 }
 input[type="file"] {
   padding: 6px;

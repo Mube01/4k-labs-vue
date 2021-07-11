@@ -3,9 +3,12 @@
     <div class="container text-center">
     <div class="login">
       <form class="login" onsubmit="return false">
+      <h2>Admin-Login</h2>
        <div class="full col-md-12">
           <div id="LoginButton">
-            <button class="buttonText"><i class="fab fa-google"></i> Login With Gmail</button>
+            <button :disabled="isDisabled" id="signinbtn" @click="googleSignIn" class="buttonText">
+              <i class="fab fa-google"></i> Login With Gmail
+            </button>
           </div>
         </div>
       </form>
@@ -19,6 +22,7 @@
 <script>
 import Header from "@/static/SubHeader.vue";
 import { mapGetters, mapActions } from "vuex";
+import firebase from "firebase";
 
 export default {
   name: "AdminLogin",
@@ -27,6 +31,7 @@ export default {
     return {
       password: "",
       username: "",
+      isDisabled:false,
     };
   },
   computed: {
@@ -44,30 +49,27 @@ export default {
       logoutUser:"auth/logoutUser2"
 
     }),
-    getGmail() {
-      var gapi = window.gapi;
-      var auth2 = "";
-      gapi.load("auth2", () => {
-        auth2 = gapi.auth2.init({
-          client_id:
-            "843154350382-qvjkg63v1m17g3tp722e5va4v77o011h.apps.googleusercontent.com",
-          cookiepolicy: "single_host_origin",
+    googleSignIn: function () {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          let user = result.user;
+          this.isDisabled = true;
+          this.changeText();
+          user.getIdToken(true).then((id_token)=>{
+            this.onSignIn(id_token);
+          });
+        })
+        .catch((err) => {
+          this.onFailure(err);
         });
-        var elemnt = document.getElementById("LoginButton");
-        auth2.attachClickHandler(
-          elemnt,
-          {},
-          (user) => {
-            this.onSignIn(user);
-          },
-          (err) => {
-            this.errorAlert(JSON.stringify(err, undefined, 2));
-          }
-        );
-      });
     },
-    onSignIn (user) {
-      var id_token = user.getAuthResponse().id_token;
+    changeText(){
+      document.getElementById("signinbtn").innerText = `signin with Google`
+    },
+    onSignIn (id_token) {
       this.login_admin(id_token).then((result) => {
           this.successAlert("login successfull");
           this.$router.push({ name: "Divisions" });
@@ -89,7 +91,7 @@ export default {
       this.$router.push({ name: "Divisions" });
     }
     else{
-      this.getGmail(); 
+      // this.getGmail(); 
     }
   },
 };
