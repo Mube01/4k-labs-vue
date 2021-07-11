@@ -58,8 +58,8 @@
 <script>
 import Header from "@/static/SubHeader.vue";
 import { mapActions } from "vuex";
-import firebase from 'firebase';
-
+import { firebase } from '@firebase/app'
+import '@firebase/auth'
 export default {
   name: "Register",
   components:{
@@ -120,7 +120,8 @@ export default {
             this.$router.push({ name: "Login" });
           })
           .catch((err) => {
-            this.errorAlert(err.message);
+            console.log("the error is ",err);
+            alert(err.message);
           });
       }
     },

@@ -22,8 +22,8 @@
 <script>
 import Header from "@/static/SubHeader.vue";
 import { mapGetters, mapActions } from "vuex";
-import firebase from "firebase";
-
+import { firebase } from '@firebase/app'
+import '@firebase/auth'
 export default {
   name: "AdminLogin",
   components:{Header},

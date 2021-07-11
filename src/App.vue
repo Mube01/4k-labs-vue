@@ -9,7 +9,9 @@
 <script>
 import Alert from "@/components/Alert.vue";
 import {mapActions,mapGetters} from 'vuex';
-import firebase from 'firebase';
+import { firebase } from '@firebase/app'
+import '@firebase/auth'
+
 export default {
   components: {
     Alert,
