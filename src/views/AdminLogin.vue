@@ -75,6 +75,8 @@ export default {
           this.$router.push({ name: "Divisions" });
         })
         .catch((err) => {
+          this.isDisabled = false;
+          document.getElementById("signinbtn").innerHTML = `<i class="fab fa-google" data-v-26084dc2=""></i> singin in with Google`;
           this.errorAlert(err.message);
         });
     },
@@ -97,15 +99,17 @@ export default {
 };
 </script>
 
+
 <style scoped>
-.fab{
-color:white;
-font-size: 25px;
-float: left;
-margin-top: 2px;
+.fab {
+  color: white;
+  font-size: 25px;
+  float: left;
+  margin-top: 2px;
 }
 .login {
   margin: 0 auto;
+  margin-top: 50px;
   padding: 60px 50px;
   width: 450px;
   background-color: white;
@@ -116,7 +120,13 @@ margin-top: 2px;
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 10;
   transform: translate(-50%, -50%);
+}
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 100%;
+  }
 }
 .logo {
   height: 100px;
@@ -142,10 +152,13 @@ input:focus {
   outline: none;
   border: 2px solid #177f75;
 }
+.LoginButton {
+  width: 100%;
+}
 button {
   padding: 10px 45px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   margin: 25px 0 7px 0;
   opacity: 0.8;
@@ -158,13 +171,28 @@ button {
 button:hover {
   opacity: 1;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+
+span.label {
+  font-family: serif;
+  font-weight: normal;
 }
-.footer p {
-  font-size: 17px;
-  color: #333;
+span.icon {
+  background: url("/identity/sign-in/g-normal.png") transparent 5px 50%
+    no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+span.buttonText {
+  border: 1px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: "Roboto", sans-serif;
 }
 </style>

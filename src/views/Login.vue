@@ -68,7 +68,7 @@ export default {
         });
     },
     changeText(){
-      document.getElementById("signinbtn").innerText = `signin with Google`
+      document.getElementById("signinbtn").innerHTML = `<i class="fab fa-google" data-v-26084dc2=""></i> signing in`;
     },
     // send user name and password by reading from the form
     onSignIn(id_token) {
@@ -78,6 +78,8 @@ export default {
           this.$router.push({ name: "Divisions" });
         })
         .catch((err) => {
+          this.isDisabled = false;
+          document.getElementById("signinbtn").innerHTML = `<i class="fab fa-google" data-v-26084dc2=""></i> singin in with Google`;
           this.errorAlert(err.message);
         });
     },

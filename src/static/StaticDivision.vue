@@ -2,16 +2,15 @@
   <div class="page-container">
     <div class="content-wrap">
       <!-- <Loading v-show="loading" /> -->
-      <SubHeader/>
-      <div class="container" >
+      <SubHeader />
+      <div class="container">
         <div class="row">
-       
           <div
             class="col-md-6"
             :key="project.project_code"
-            v-for="project in projecto"
+            v-for="project in projects"
           >
-          <StaticProject :project="project" />
+            <StaticProject :project="project" />
           </div>
         </div>
       </div>
@@ -22,7 +21,6 @@
 <script>
 import SubHeader from "./SubHeader";
 import StaticProject from "./StaticProject";
-// import Loading from "@/components/Loading.vue";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -30,7 +28,6 @@ export default {
   name: "StaticDivision",
   components: {
     StaticProject,
-    // Loading,
     SubHeader,
   },
   props: {
@@ -43,7 +40,7 @@ export default {
     return {
       showAddProject: false,
       loading: false,
-      projecto:[]
+      projecto: [],
     };
   },
   methods: {
@@ -56,31 +53,26 @@ export default {
     ...mapActions({
       fetchProjects: "projects/getAllProjects",
     }),
-        projects() {
-       this.projecto =  (this.$store.getters["projects/divisionProjectGetter"](
-        this.division)
-      );
-    }
-  
   },
-  created(){
+  created() {
     this.fetchProjects();
-    this.projects()
-      
   },
   computed: {
     ...mapGetters({
       user_info: "user/getUserInformation",
     }),
-
-
+    projects() {
+      return this.$store.getters["projects/divisionProjectGetter"](
+        this.division
+      );
+    },
   },
 };
 </script>
 
 <style scoped>
-.row{
-  margin-top:150px;
+.row {
+  margin-top: 150px;
 }
 .page-container {
   position: relative;

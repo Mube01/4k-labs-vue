@@ -12,7 +12,7 @@
             <router-link
               :to="{
                 name: 'StaticDivision',
-                params: { division: division.name },
+                params: { division: division.div_id },
               }"
             >
               <Team
@@ -37,18 +37,21 @@ export default {
     return {
       divisions: [
         {
+          div_id:"BOTS",
           name: "4K BOTS",
           image: "BOTS.jpg",
           details:
             "4K-Bots is a department in 4K-Labs that works on AI and Robotics.",
         },
         {
+          div_id:"DEVS",
           name: "4K DEVS",
           image: "DEVS.jpg",
           details:
             "4K-Devs is a department that works on mobile, desktop & web development.",
         },
         {
+          div_id:"THINGS",
           name: "4K THINGS",
           image: "THINGS.jpg",
           details:
