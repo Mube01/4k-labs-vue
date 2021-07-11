@@ -9,6 +9,7 @@
 <script>
 import Alert from "@/components/Alert.vue";
 import {mapActions,mapGetters} from 'vuex';
+import firebase from 'firebase';
 export default {
   components: {
     Alert,
@@ -25,6 +26,17 @@ export default {
     }),
   },
   mounted() {
+    var firebaseConfig = {
+      apiKey: "AIzaSyCnDGgPEQBPHolzsnIkiEhZrR3d55AXz7Q",
+      authDomain: "k-lab-317405.firebaseapp.com",
+      projectId: "k-lab-317405",
+      storageBucket: "k-lab-317405.appspot.com",
+      messagingSenderId: "843154350382",
+      appId: "1:843154350382:web:0f62cbde2bca5d47c89abf",
+      measurementId: "G-Q0C5H1HX0L",
+    };
+    
+    firebase.initializeApp(firebaseConfig);
     setInterval(()=>{
       if(this.isAuthenticated){
         this.getAllPortalInfo()

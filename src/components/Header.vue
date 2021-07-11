@@ -17,7 +17,6 @@
               />
             </router-link>
           </div>
-          
         </div>
 
         <router-link v-show="!isAuthenticated" class="link_class" to="/login">
@@ -28,9 +27,6 @@
           >| Register
         </router-link>
 
-        
-        
-
         <i class="fa fa-bell" aria-hidden="true"></i>
 
         <router-link
@@ -39,12 +35,9 @@
           :to="{ name: 'Admin' }"
           >Admin</router-link
         >
-        <router-link
-          class="link_class"
-          :to="{ name: 'Divisions' }"
-          >
-            Divisions
-          </router-link>
+        <router-link class="link_class" :to="{ name: 'Divisions' }">
+          Divisions
+        </router-link>
 
         <a class="link_class" @click="logout"
           ><i title="Logout" class="fas fa-sign-out-alt"></i
@@ -56,29 +49,37 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
-import {mapGetters} from "vuex";
+import { mapGetters,mapActions } from "vuex";
 import { reject } from "q";
+import firebase from "firebase";
 export default {
   name: "Header",
   components: {
     ProfilePicture,
   },
   methods: {
+    ...mapActions({
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+      logoutUser: "auth/logoutUser",
+    }),
     logout() {
-     this.$store.dispatch("auth/logoutUser")
+      firebase
+        .auth()
+        .signOut()
         .then(() => {
-          this.$router.push({ name: "Home" });
-        })
-        .catch((err) => {
-          reject(err);
+          this.successAlert("Successfully signed out.");
+          this.logoutUser();
+        }).catch((err)=>{
+          this.errorAlert(err);
         });
     },
   },
   computed: {
     ...mapGetters({
-      isAuthenticated:'auth/isAuthenticated',
-      user_info:'user/getUserInformation',
-      isSuperAdmin:'user/isSuperAdmin'
+      isAuthenticated: "auth/isAuthenticated",
+      user_info: "user/getUserInformation",
+      isSuperAdmin: "user/isSuperAdmin",
     }),
     isAuthenticated() {
       return this.$store.getters["auth/isAuthenticated"];
@@ -107,12 +108,12 @@ export default {
 img.logo {
   float: left;
   position: absolute;
-  width:100px;
-  top:15px;
-  left:80px;
-  background:white;
-  border-radius:200px;
-  z-index:100;
+  width: 100px;
+  top: 15px;
+  left: 80px;
+  background: white;
+  border-radius: 200px;
+  z-index: 100;
 }
 .nav {
   float: right;
