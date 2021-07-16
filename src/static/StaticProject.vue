@@ -5,12 +5,10 @@
         {{ project.project_title }}
         <p>Division: {{ project.Division }}</p>
       </h3>
-      <div class="links">
-        
-      </div>
+      <div class="links"></div>
       <p style="clear: both">
         <span style="float: left">Description:</span>
-        <br>
+        <br />
         <span style="float: left">{{ project.Description }}</span>
       </p>
       <hr />
@@ -19,7 +17,10 @@
         <ul>
           <li :key="member.user_id" v-for="member in project.team_members">
             <router-link
-              :to="{ name: 'StaticProfile', params: { user_code: member.user_id } }"
+              :to="{
+                name: 'StaticProfile',
+                params: { user_code: member.user_id },
+              }"
             >
               <ProfilePicture
                 imgWeight="45px"
@@ -65,8 +66,7 @@ export default {
 .member_class {
   font-size: 17px;
   padding-top: 5px;
-  display: inline;
-  float: left;
+  display: block;
 }
 .card-title {
   float: left;
@@ -112,8 +112,8 @@ hr {
 li {
   display: inline;
   list-style: none;
-  float: right;
-  margin: 0 0 2px 10px;
+  float: left;
+  margin: 0 0 5px 10px;
 }
 .far,
 .fab {

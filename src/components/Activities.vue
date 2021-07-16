@@ -95,7 +95,6 @@
               <ul
                 style="
                   width: 100%;
-                  float: left;
                   margin-top: 10px;
                   margin-bottom: -5px;
                 "
@@ -103,7 +102,7 @@
                 <li
                   :key="member"
                   v-for="member in element.assigned_to"
-                  style="margin-left: 10px; list-style-type: none; float: left"
+                  style="margin-right: 5px; list-style-type: none; float: left"
                 >
                   <router-link
                     :to="{
@@ -112,7 +111,7 @@
                     }"
                   >
                     <ProfilePicture
-                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      style="margin-right: 5px; margin-bottom: 2px"
                       imgWeight="30px"
                       fontSize="15px"
                       top="3px"
@@ -233,7 +232,6 @@
               <ul
                 style="
                   width: 100%;
-                  float: left;
                   margin-top: 10px;
                   margin-bottom: -5px;
                 "
@@ -241,7 +239,7 @@
                 <li
                   :key="member"
                   v-for="member in element.assigned_to"
-                  style="margin-left: 10px; list-style-type: none; float: left"
+                  style="margin-right: 5px; list-style-type: none; float: left"
                 >
                   <router-link
                     :to="{
@@ -250,7 +248,7 @@
                     }"
                   >
                     <ProfilePicture
-                      style="float: left; margin-left: 10px; margin-bottom: 2px"
+                      style="margin-right: 5px; margin-bottom: 2px"
                       imgWeight="30px"
                       fontSize="15px"
                       top="3px"
@@ -323,7 +321,6 @@
               <ul
                 style="
                   width: 100%;
-                  float: left;
                   margin-top: 10px;
                   margin-bottom: -5px;
                 "
@@ -331,7 +328,7 @@
                 <li
                   :key="member"
                   v-for="member in element.assigned_to"
-                  style="margin-left: 10px; list-style-type: none; float: left"
+                  style="margin-right: 5px; list-style-type: none; float: left"
                 >
                   <router-link
                     :to="{
@@ -340,7 +337,7 @@
                     }"
                   >
                     <ProfilePicture
-                      style="float: left; margin-left: 10px; margin-bottom: 5px"
+                      style="margin-right: 5px; margin-bottom: 2px"
                       imgWeight="30px"
                       fontSize="15px"
                       top="3px"
@@ -434,19 +431,15 @@ export default {
         this.hideRename(task_code);
         this.$store
           .dispatch("projects/renameTask", reqest_payload)
-          .then((result) => {
-          })
-          .catch((err) => {
-          });
+          .then((result) => {})
+          .catch((err) => {});
       }
     },
     completeTask(task_code, completed) {
       this.$store
         .dispatch("projects/completeTask", { task_code, completed })
-        .then((result) => {
-        })
-        .catch((err) => {
-        });
+        .then((result) => {})
+        .catch((err) => {});
     },
     delteTask(task_code) {
       this.$store
@@ -454,10 +447,8 @@ export default {
           task_code: task_code,
           project_code: this.project_code,
         })
-        .then((result) => {
-        })
-        .catch((err) => {
-        });
+        .then((result) => {})
+        .catch((err) => {});
     },
   },
 

@@ -1,109 +1,109 @@
 <template>
-      <Loading v-show="loading" />
-      <div v-show="!loading">
-        <Header />
-        <div class="container">
-          <div class="status">
-            <h3>{{ project.project_title }}</h3>
-            <div class="links">
-              <a target="_blank" :href="project.github || '#'" class="card-link"
-                ><i title="Github link" class="fab fa-github"></i
-              ></a>
-              <a target="_blank" :href="project.docs || '#'" class="card-link"
-                ><i title="Google Docs link" class="far fa-file-alt"></i
-              ></a>
+  <Loading v-show="loading" />
+  <div v-show="!loading">
+    <Header />
+    <div class="container">
+      <div class="status">
+        <h3>{{ project.project_title }}</h3>
+        <div class="links">
+          <a target="_blank" :href="project.github || '#'" class="card-link"
+            ><i title="Github link" class="fab fa-github"></i
+          ></a>
+          <a target="_blank" :href="project.docs || '#'" class="card-link"
+            ><i title="Google Docs link" class="far fa-file-alt"></i
+          ></a>
 
-              <router-link
-                class="card-link"
-                :to="{
-                  name: 'UpdateProject',
-                  params: { projectCode: project_code},
-                }"
-              >
-                <i
-                  v-if="project.members.includes(user_info.user_id)"
-                  title="Edit Project"
-                  class="far fa-edit"
-                ></i>
-              </router-link>
-            </div>
-            <div class="left">
-              <p>Division:</p>
-              <p>Progress:</p>
-            </div>
-            <div class="right">
-              <p>{{ project.Division }}</p>
-              <p>{{ project.progress || "0" }}%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                :style="{ width: new String(project.progress + '%') }"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-          <br />
-
-          <div class="members">
-            <h5 class="member_class">Members</h5>
-            <ul v-show="!showAddMember">
-              <li
-                :key="member.user_id"
-                v-for="member in project.team_members"
-                style="margin-left: 10px"
-              >
-                <router-link
-                  :to="{
-                    name: 'Profile',
-                    params: { user_code: member.user_id },
-                  }"
-                >
-                  <ProfilePicture
-                    imgWeight="45px"
-                    fontSize="20px"
-                    :name="member.username[0]"
-                     top="6px"
-                    :srcText="member['profile_picture']"
-                  />
-                </router-link>
-              </li>
-            </ul>
-          </div>
-
-          <AddMember
-            v-if="project.members.includes(user_info.user_id)"
-            style="float: right"
-            @toggle-add="toggleAddMember"
-            :text="showAddMember ? 'Close' : 'Add Members'"
-            :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
-            color="white"
-            border="none"
-          />
-          <div class="text-center" v-show="showAddMember">
-            <MultiSelect
-              ref="selected_members"
-              :memberIds="project.members"
-              :allMembers="allMembers"
-              style="margin-top: 70px"
-            />
-            <button @click="updateMembers()" style="margin-top: 10px">
-              Update Members
-            </button>
-          </div>
-
-          <h5>Description</h5>
-          <p class="desc">{{ project.description }}</p>
-          <h5>Deadline</h5>
-          <p class="desc">{{ project.deadline }}</p>
-          <h5>Tasks</h5>
-          <br />
-          <br />
-          <Activities :project_code="project.project_code" />
+          <router-link
+            class="card-link"
+            :to="{
+              name: 'UpdateProject',
+              params: { projectCode: project_code },
+            }"
+          >
+            <i
+              v-if="project.members.includes(user_info.user_id)"
+              title="Edit Project"
+              class="far fa-edit"
+            ></i>
+          </router-link>
+        </div>
+        <div class="left">
+          <p>Division:</p>
+          <p>Progress:</p>
+        </div>
+        <div class="right">
+          <p>{{ project.Division }}</p>
+          <p>{{ project.progress || "0" }}%</p>
+        </div>
+        <div class="progress">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            :style="{ width: new String(project.progress + '%') }"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
         </div>
       </div>
+      <br />
+
+      <div class="members">
+        <h5 class="member_class">Members</h5>
+        <ul v-show="!showAddMember">
+          <li
+            :key="member.user_id"
+            v-for="member in project.team_members"
+            style="margin-left: 10px; margin-bottom:5px"
+          >
+            <router-link
+              :to="{
+                name: 'Profile',
+                params: { user_code: member.user_id },
+              }"
+            >
+              <ProfilePicture
+                imgWeight="45px"
+                fontSize="20px"
+                :name="member.username[0]"
+                top="6px"
+                :srcText="member['profile_picture']"
+              />
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
+      <AddMember
+        v-if="project.members.includes(user_info.user_id)"
+        style="float: right"
+        @toggle-add="toggleAddMember"
+        :text="showAddMember ? 'Close' : 'Add Members'"
+        :bgColor="showAddMember ? '#B6212D ' : '#177F75'"
+        color="white"
+        border="none"
+      />
+      <div class="text-center" v-show="showAddMember">
+        <MultiSelect
+          ref="selected_members"
+          :memberIds="project.members"
+          :allMembers="allMembers"
+          style="margin-top: 70px"
+        />
+        <button @click="updateMembers()" style="margin-top: 10px">
+          Update Members
+        </button>
+      </div>
+
+      <h5>Description</h5>
+      <p class="desc">{{ project.description }}</p>
+      <h5>Deadline</h5>
+      <p class="desc">{{ project.deadline }}</p>
+      <h5>Tasks</h5>
+      <br />
+      <br />
+      <Activities :project_code="project.project_code" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -160,10 +160,10 @@ export default {
       this.updatemembers(data)
         .then((result) => {
           this.updateProjectMembers(data);
-          this.successAlert(result.msg)
+          this.successAlert(result.msg);
         })
         .catch((err) => {
-          this.errorAlert(err.message)
+          this.errorAlert(err.message);
         });
     },
   },

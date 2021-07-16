@@ -6,11 +6,18 @@
         <p>Division: {{ project.Division }}</p>
       </h3>
       <div class="links">
-        <router-link :to="{name:'External-Link' ,  params: { url: project.github || '#' } }"  class="card-link"
+        <router-link
+          :to="{
+            name: 'External-Link',
+            params: { url: project.github || '#' },
+          }"
+          class="card-link"
           ><i title="Github link" class="fab fa-github"></i
         ></router-link>
 
-        <router-link :to="{name:'External-Link',  params: { url : project.docs || '#' } }"  class="card-link"
+        <router-link
+          :to="{ name: 'External-Link', params: { url: project.docs || '#' } }"
+          class="card-link"
           ><i title="Google Docs link" class="far fa-file-alt"></i
         ></router-link>
       </div>
@@ -79,8 +86,7 @@ export default {
 .member_class {
   font-size: 17px;
   padding-top: 5px;
-  display: inline;
-  float: left;
+  display: block;
 }
 .card-title {
   float: left;
@@ -126,8 +132,8 @@ hr {
 li {
   display: inline;
   list-style: none;
-  float: right;
-  margin: 0 0 2px 10px;
+  float: left;
+  margin: 0 0 5px 10px;
 }
 .far,
 .fab {
