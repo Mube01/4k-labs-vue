@@ -86,6 +86,13 @@ export default {
       );
     },
   },
+  mounted(){
+    this.fetchProjects().then((result) => {
+      
+    }).catch((err) => {
+      
+    });
+  }
 
 };
 </script>

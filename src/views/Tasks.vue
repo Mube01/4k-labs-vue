@@ -178,6 +178,11 @@ export default {
       user_info: "user/getUserInformation",
     }),
   },
+  mounted(){
+    this.fetchProject(this.project_code).then((result) => {
+    }).catch((err) => {
+    });
+  },
 };
 </script>
 

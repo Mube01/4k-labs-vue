@@ -11,7 +11,7 @@
     <div id="bio">
       <h4>{{ member["fullname"] }}</h4>
       <h3>Specialization: {{ member["Division"] }}</h3>
-      <span>Role: {{ getRole(member["Role"]) }}</span>
+      <span>Position: {{ getRole(member["Role"])!='Admin'?getRole(member["Role"]):"Manager" }}</span>
       <div class="text-center">
         <router-link
           :to="{ name: 'StaticProfile', params: { user_code: member.user_id } }"

@@ -54,6 +54,20 @@ export default {
     SubHeader,
     Member,
   },
+  methods:{
+    compare( a, b ) {
+      if ( a.Role < b.Role ){
+        return 1;
+      }
+      if ( a.Role > b.Role ){
+        return -1;
+      }
+      return 0;
+    }
+  },
+  created(){
+    this.getMembers.sort(this.compare);
+  },
   computed: {
     ...mapGetters({
       getMembers: "home/getMembers",
