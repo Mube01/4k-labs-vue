@@ -36,7 +36,7 @@
           >Admin</router-link
         >
         <router-link class="link_class" :to="{ name: 'Divisions' }">
-          Divisions
+          Specialization
         </router-link>
 
         <a class="link_class" @click="logout"
@@ -49,10 +49,10 @@
 
 <script>
 import ProfilePicture from "./ProfilePicture";
-import { mapGetters,mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { reject } from "q";
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
+import { firebase } from "@firebase/app";
+import "@firebase/auth";
 export default {
   name: "Header",
   components: {
@@ -71,7 +71,8 @@ export default {
         .then(() => {
           this.successAlert("Successfully signed out.");
           this.logoutUser();
-        }).catch((err)=>{
+        })
+        .catch((err) => {
           this.errorAlert(err);
         });
     },

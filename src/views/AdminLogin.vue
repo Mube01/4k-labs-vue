@@ -1,12 +1,17 @@
 <template>
-<Header />
-    <div class="container text-center">
+  <Header />
+  <div class="container text-center">
     <div class="login">
       <form class="login" onsubmit="return false">
-      <h2>Admin-Login</h2>
-       <div class="full col-md-12">
+        <h2>Admin-Login</h2>
+        <div class="full col-md-12">
           <div id="LoginButton">
-            <button :disabled="isDisabled" id="signinbtn" @click="googleSignIn" class="buttonText">
+            <button
+              :disabled="isDisabled"
+              id="signinbtn"
+              @click="googleSignIn"
+              class="buttonText"
+            >
               <i class="fab fa-google"></i> Login With Gmail
             </button>
           </div>
@@ -14,42 +19,39 @@
       </form>
     </div>
   </div>
-    <div class="footer text-center">
-      <p>4K Labs - 2021</p>
-    </div>
+  <Footer />
 </template>
 
 <script>
 import Header from "@/static/SubHeader.vue";
+import Footer from "@/static/Footer.vue";
 import { mapGetters, mapActions } from "vuex";
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
+import { firebase } from "@firebase/app";
+import "@firebase/auth";
 export default {
   name: "AdminLogin",
-  components:{Header},
+  components: { Header, Footer },
   data() {
     return {
       password: "",
       username: "",
-      isDisabled:false,
+      isDisabled: false,
     };
   },
   computed: {
     ...mapGetters({
       isAuthenticated: ["auth/isAuthenticated"],
-      isSuperAdmin:['user/isSuperAdmin']
-
+      isSuperAdmin: ["user/isSuperAdmin"],
     }),
   },
   methods: {
     ...mapActions({
-      errorAlert:   "errorAlert",
+      errorAlert: "errorAlert",
       successAlert: "successAlert",
-      login_admin:  "auth/adminLogin",
-      logoutUser:"auth/logoutUser2"
-
+      login_admin: "auth/adminLogin",
+      logoutUser: "auth/logoutUser2",
     }),
-    googleSignIn: function () {
+    googleSignIn: function() {
       let provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
@@ -58,7 +60,7 @@ export default {
           let user = result.user;
           this.isDisabled = true;
           this.changeText();
-          user.getIdToken(true).then((id_token)=>{
+          user.getIdToken(true).then((id_token) => {
             this.onSignIn(id_token);
           });
         })
@@ -66,39 +68,39 @@ export default {
           this.onFailure(err);
         });
     },
-    changeText(){
-      document.getElementById("signinbtn").innerText = `signin with Google`
+    changeText() {
+      document.getElementById("signinbtn").innerText = `signin with Google`;
     },
-    onSignIn (id_token) {
-      this.login_admin(id_token).then((result) => {
+    onSignIn(id_token) {
+      this.login_admin(id_token)
+        .then((result) => {
           this.successAlert("login successfull");
           this.$router.push({ name: "Divisions" });
         })
         .catch((err) => {
           this.isDisabled = false;
-          document.getElementById("signinbtn").innerHTML = `<i class="fab fa-google" data-v-26084dc2=""></i> singin in with Google`;
+          document.getElementById(
+            "signinbtn"
+          ).innerHTML = `<i class="fab fa-google" data-v-26084dc2=""></i> singin in with Google`;
           this.errorAlert(err.message);
         });
     },
-    onFailure(err){
-      this.errorAlert(err)
-    }
+    onFailure(err) {
+      this.errorAlert(err);
+    },
   },
   mounted() {
-
-    if(this.isSuperAdmin!=true){
-      this.logoutUser()
+    if (this.isSuperAdmin != true) {
+      this.logoutUser();
     }
     if (this.isAuthenticated) {
       this.$router.push({ name: "Divisions" });
-    }
-    else{
-      // this.getGmail(); 
+    } else {
+      // this.getGmail();
     }
   },
 };
 </script>
-
 
 <style scoped>
 .fab {

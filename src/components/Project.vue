@@ -101,6 +101,7 @@ export default {
 }
 .links {
   float: right;
+  display: none;
   padding: 25px 0;
 }
 .card-link {
