@@ -20,7 +20,8 @@
               Full name: <span class="value">{{ user_info.fullname }}</span>
             </p>
             <p>
-              Division: <span class="value">{{ user_info.Division }}</span>
+              Specialization:
+              <span class="value">{{ user_info.Division }}</span>
             </p>
             <p>
               Discription:
@@ -83,8 +84,8 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  margin-top:150px;
+.container {
+  margin-top: 150px;
 }
 .page-container {
   position: relative;

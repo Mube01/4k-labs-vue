@@ -24,7 +24,7 @@
           </span>
         </p>
         <p>
-          Division:
+          Specialization:
           <span class="value">
             <label>{{ user_info.Division }}</label>
           </span>

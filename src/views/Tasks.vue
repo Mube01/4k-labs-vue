@@ -28,7 +28,7 @@
           </router-link>
         </div>
         <div class="left">
-          <p>Division:</p>
+          <p>Specialization:</p>
           <p>Progress:</p>
         </div>
         <div class="right">

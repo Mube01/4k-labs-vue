@@ -10,7 +10,7 @@
     </div>
     <div id="bio">
       <h4>{{ member["fullname"] }}</h4>
-      <h3>Division: {{ member["Division"] }}</h3>
+      <h3>Specialization: {{ member["Division"] }}</h3>
       <span>Role: {{ getRole(member["Role"]) }}</span>
       <div class="text-center">
         <router-link

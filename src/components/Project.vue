@@ -3,7 +3,7 @@
     <div class="card-body">
       <h3 class="card-title">
         {{ project.project_title }}
-        <p>Division: {{ project.Division }}</p>
+        <p>Specialization: {{ project.Division }}</p>
       </h3>
       <div class="links">
         <router-link
