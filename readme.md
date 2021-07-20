@@ -29,9 +29,15 @@ TODOS<br/>
     [x] remove image reloading in every request\
     [x] less api requests\
     [x] page resonsiveness\
-    [ ] event image scale\
+    [x] event image scale\
     [x] login with gmail is not working for MAC and Kali linux Os.\
-    [ ] remove the video on the front page\
+    [x] remove the video on the front page\
     [x] for updating task progress first update the ui and validate at the backend later\ 
+    [] multiple images for gallery inside events
+    
+    ### backend 
+    ```
+    https://github.com/abelkm99/4k-labs
+    ```
     
     
