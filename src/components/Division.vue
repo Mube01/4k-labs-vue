@@ -4,10 +4,10 @@
       class="card-img-top"
       :src="require('@/assets/' + background)"
       alt="Card image"
-    />
+    /> 
     <div class="card-body">
       <h3 class="card-title">
-        {{ name }}
+        {{ name }} 
       </h3>
       <p class="card-text">{{ details }}</p>
     </div>
@@ -26,7 +26,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 .card {
+  font-family: 'Roboto Condensed', sans-serif;
   width: 350px;
   border-radius: 10px;
   margin: 20px 5px 0 5px;
@@ -46,13 +49,17 @@ export default {
   height: 230px;
 }
 h3 {
+  font-family: 'Roboto Condensed', sans-serif;
+
   font-weight: 700;
   font-size: 28px;
   margin: 5px 0 15px 0;
   float: left;
   color: #a97c50;
+  
 }
 p {
+  font-family: 'Roboto Condensed', sans-serif;
   clear: both;
   color: #333;
   font-size: 16px;

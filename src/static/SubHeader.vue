@@ -25,58 +25,7 @@
         </router-link>
       </ul>
     </div>
-    <div class="container">
-      <div
-        class="main-holder active"
-        :style="{
-          'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
-            require('../assets/slide-1.jpg') +
-            ')',
-        }"
-      >
-        <div class="img-display">
-          <h3>
-            Knowledge
-          </h3>
-        </div>
-      </div>
-      <div
-        class="main-holder"
-        :style="{
-          'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
-            require('../assets/slide-2.jpg') +
-            ')',
-        }"
-      >
-        <div class="img-display">
-          <h3>
-            Innovation
-          </h3>
-        </div>
-      </div>
-      <div
-        class="main-holder"
-        :style="{
-          'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
-            require('../assets/slide-3.jpg') +
-            ')',
-        }"
-      >
-        <div class="img-display">
-          <h3>
-            Change
-          </h3>
-        </div>
-      </div>
-      <div class="navigation active">
-        <div class="btn"></div>
-        <div class="btn"></div>
-        <div class="btn"></div>
-      </div>
-    </div>
+  
   </div>
 </template>
 <script>
@@ -131,27 +80,30 @@ export default {
 };
 </script>
 <style scoped>
-.SubHeader {
+/* .SubHeader {
   height: 150px;
-}
+} */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 .container {
   width: 100%;
   height: 150px;
   border-radius: 15px;
+  overflow: hidden;
 }
 .logo {
-  position: absolute;
-  width: 100px;
-  top: 25px;
-  left: 80px;
-  background: white;
-  border-radius: 200px;
-  z-index: 100;
+ position: absolute;
+    width:150px;
+    top:20px;
+    left:80px;
+    background:#fff;
+    border-radius:200px;
+    z-index:100;
+    cursor:pointer;
+
 }
 .container .main-holder {
   z-index: 1;
@@ -173,23 +125,19 @@ export default {
   transition: clip-path 1s ease-in-out;
 }
 .menu-container {
-  position: absolute;
-  height: 60px;
-  width: 500px;
-  padding: 10px;
-  font-size: 20px;
-  font-weight: bolder;
-  border-radius: 15px;
-  top: 30px;
-  right: 70px;
-  background-color: rgba(0, 0, 0, 0.61);
-  display: grid;
-  place-items: center;
-  z-index: 100;
+  font-family: 'Roboto Condensed', sans-serif;
+    width:100%;
+    padding:50px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row-reverse;
+    z-index:100;
 }
 .menu-container a {
   text-decoration: none;
-  color: white;
+  color: #f47522;
 }
 .menu-container li {
   display: inline-block;
@@ -200,6 +148,7 @@ export default {
   border-left: 2px solid rgb(233, 112, 14);
   border-right: 2px solid rgb(233, 112, 14);
   background-color: rgb(233, 112, 14);
+  color:white;
 }
 .main-holder h3 {
   font-size: 40px;
@@ -242,8 +191,8 @@ export default {
   .click {
     display: block;
     position: absolute;
-    top: 20px;
-    right: 15px;
+    top: 50px;
+    right: 50px;
     color: rgb(219, 114, 28);
     z-index: 1000;
     font-size: 25px;
