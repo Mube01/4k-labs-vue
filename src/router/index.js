@@ -149,13 +149,23 @@ const router = createRouter({
 }
 
 })
-
+var adminPaths = ["Admin","AdminProjects","Events","GenerateToken"]
 var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile','Members']
 router.beforeEach((to, from, next) => {
+  console.log(from.name);
   if(!store.getters['auth/isAuthenticated'] && !staticPages.includes(to.name)){
     next({ name: 'Login' })
   }else{
-    next()
+    if(adminPaths.includes(to.name)){
+      if(store.getters['user/isSuperAdmin']){
+          next()
+      }else{
+        next({ name: 'Divisions' })
+      }
+    }
+    else{
+      next()
+    }
   }
 })
 
