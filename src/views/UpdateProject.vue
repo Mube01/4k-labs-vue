@@ -26,6 +26,15 @@
               required
             />
           </div>
+          <div class="col-md-6">
+            <label>Project Leader</label>
+            <OneSelect
+              ref="selected_leader"
+              :memberIds="[project.project_leader]"
+              :allMembers="allMembers"
+              style="margin-top: 70px"
+            />
+          </div>
         </div>
 
         <div class="full">
@@ -65,12 +74,14 @@
 </template>
 
 <script>
+import OneSelect from "@/components/OneSelect.vue";
 import Header from "@/components/Header.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "UpdateProject",
   components: {
     Header,
+    OneSelect,
   },
   data() {
     return {
@@ -83,13 +94,15 @@ export default {
       updateProject: "projects/updateProject",
     }),
     UpdateProject() {
-      var data = {
+      if(this.$refs.selected_leader.value.length){
+        var data = {
         project_title: this.project.project_title,
         github: this.project.github,
         docs: this.project.docs,
         description: this.project.description,
         project_code: this.project.project_code,
-        deadline:this.project.deadline,
+        deadline: this.project.deadline,
+        project_leader:this.$refs.selected_leader.value[0]
       };
       this.updateProject(data)
         .then((result) => {
@@ -99,6 +112,11 @@ export default {
           });
         })
         .catch((err) => {});
+      }
+      else{
+        console.log("hee");
+        alert("Project LeaderCan't be empty")    
+      }
     },
   },
   computed: {
@@ -107,6 +125,14 @@ export default {
         this.project_code
       );
     },
+    ...mapGetters({
+      allMembers: "members/getMembers",
+      user_info: "user/getUserInformation",
+    }),
+    ...mapActions({
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
   },
 };
 </script>

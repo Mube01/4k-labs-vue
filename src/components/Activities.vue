@@ -22,7 +22,7 @@
                 @keyup.enter="rename(element.task, element.task_code)"
               />
 
-              <div v-if="isProjectMember" class="more">
+              <div v-if="isLeader" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -123,9 +123,10 @@
               </ul>
             </div>
           </template>
+
           v-model="todos" group="people" itemKey="id"<template #header>
             <Add
-              v-if="isProjectMember"
+              v-if="isLeader"
               style="background-color: white; margin-left: 0px"
               @toggle-add="toggleAdd"
               :text="showAddTask ? 'X Close' : '+ Add New Task'"
@@ -160,7 +161,7 @@
                 v-model="element.task"
                 @keyup.enter="rename(element.task, element.task_code)"
               />
-              <div v-if="isProjectMember" class="more">
+              <div v-if="isLeader" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -178,14 +179,14 @@
                     aria-labelledby="dropdownMenuButton"
                   >
                     <li
-                      v-if="isProjectMember"
+                      v-if="isLeader"
                       class="dropdown-item"
                       @click="showRename(element.task_code)"
                     >
                       Rename
                     </li>
                     <li
-                      v-if="isProjectMember"
+                      v-if="isLeader"
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
                     >
@@ -215,7 +216,7 @@
                             </div>
                           </li>
                           <li class="dropdown-item">
-                            <a
+                            <a v-if="isLeader"
                               @click="assignTask(element.task_code)"
                               class="btn"
                             >
@@ -283,7 +284,7 @@
                 v-model="element.task"
                 @keyup.enter="rename(element.task, element.task_code)"
               />
-              <div v-if="isProjectMember" class="more">
+              <div v-if="isLeader" class="more">
                 <div class="dropdown">
                   <i
                     title="More options"
@@ -301,14 +302,14 @@
                     aria-labelledby="dropdownMenuButton"
                   >
                     <li
-                      v-if="isProjectMember"
+                      v-if="isLeader"
                       class="dropdown-item"
                       @click="showRename(element.task_code)"
                     >
                       Rename
                     </li>
                     <li
-                      v-if="isProjectMember"
+                      v-if="isLeader"
                       class="dropdown-item"
                       @click="delteTask(element.task_code)"
                     >
@@ -391,6 +392,7 @@ export default {
     for (let i = 0; i < tasks.length; i++) {
       result[tasks[i].task_code] = false;
     }
+    // this will be used to rename the tasks
     this.toogleRename = result;
   },
   methods: {
@@ -470,6 +472,9 @@ export default {
     },
     user_id() {
       return this.$store.getters["user/getUserId"];
+    },
+    isLeader(){
+      return this.project.project_leader === this.user_id; 
     },
     isProjectMember() {
       return this.project.members.includes(this.user_id);

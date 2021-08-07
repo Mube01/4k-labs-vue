@@ -14,6 +14,7 @@
           ></a>
 
           <router-link
+            v-if="isLeader"
             class="card-link"
             :to="{
               name: 'UpdateProject',
@@ -74,7 +75,7 @@
       </div>
 
       <AddMember
-        v-if="project.members.includes(user_info.user_id)"
+        v-if="isLeader"
         style="float: right"
         @toggle-add="toggleAddMember"
         :text="showAddMember ? 'Close' : 'Add Members'"
@@ -98,6 +99,8 @@
       <p class="desc">{{ project.description }}</p>
       <h5>Deadline</h5>
       <p class="desc">{{ project.deadline }}</p>
+      <h5>Project Leader</h5>
+      <p class="desc">{{ getMemberById(project.project_leader)[0].username }}</p>
       <h5>Tasks</h5>
       <br />
       <br />
@@ -145,7 +148,7 @@ export default {
       }
     },
     ...mapActions({
-      fetchProject: "projects/getProject",
+      fetchProject: "projects/getAllProjects",
       updatemembers: "members/updateProjectMembers",
       updateProjectMembers: "projects/updateProjectMembers",
       errorAlert: "errorAlert",
@@ -153,10 +156,16 @@ export default {
     }),
     updateMembers() {
       this.showAddMember = false;
-      var data = {
+      var updated_members = Object.values(this.$refs.selected_members.value);
+      if(!updated_members.includes(this.project.project_leader)){
+        alert("you can't remove project leader from the list")
+      }
+      else{
+        var data = {
         project_code: this.project_code,
-        team_members: Object.values(this.$refs.selected_members.value),
+        team_members: updated_members,
       };
+      console.log(data);
       this.updatemembers(data)
         .then((result) => {
           this.updateProjectMembers(data);
@@ -165,9 +174,13 @@ export default {
         .catch((err) => {
           this.errorAlert(err.message);
         });
+      }
     },
   },
   computed: {
+    isLeader(){
+      return this.project.project_leader === this.user_info.user_id; 
+    },
     project() {
       return this.$store.getters["projects/getProjectByProjectCode"](
         this.project_code
@@ -176,10 +189,11 @@ export default {
     ...mapGetters({
       allMembers: "members/getMembers",
       user_info: "user/getUserInformation",
+      getMemberById: "members/getMemberById",
     }),
   },
-  mounted(){
-    this.fetchProject(this.project_code).then((result) => {
+  created(){
+    this.fetchProject().then((result) => {
     }).catch((err) => {
     });
   },
