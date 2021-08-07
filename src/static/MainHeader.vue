@@ -22,67 +22,45 @@
         </router-link>
       </ul>
     </div>
+        <div class="img-display">
+        <span>knowledge</span><br>
+        <span>innovation</span><br>
+        <span>change <strong>.</strong></span><br>
+        </div>
     <div class="container">
       <div class="main-display"></div>
       <div
         class="main-holder active"
         :style="{
           'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
+            '  url(' +
             require('../assets/slide-1.jpg') +
             ')',
         }"
       >
-        <div class="img-display">
-          <h3>
-            Knowledge
-          </h3>
-          <p>
-            @4K Labs We focus on developing reconfigurable, Adaptable,
-            environmentally friendly, power efficient hardware & Software
-            systems under the consideration of AI.
-          </p>
-        </div>
+      
       </div>
       <div
         class="main-holder"
         :style="{
           'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
+            'url(' +
             require('../assets/slide-2.jpg') +
             ')',
         }"
       >
-        <div class="img-display">
-          <h3>
-            Innovation
-          </h3>
-          <p>
-            The team of 4K Labs are from a wide variety of disciplines and
-            talent so as to create an Interdisciplinary environment. These have
-            helped us to complete projects in a defined manner.
-          </p>
-        </div>
+ 
       </div>
       <div
         class="main-holder"
         :style="{
           'background-image':
-            ' linear-gradient(to right, rgba(100, 87, 87, 0.52), rgba(0, 0, 0, 0.226)), url(' +
+            ' url(' +
             require('../assets/slide-3.jpg') +
             ')',
         }"
       >
-        <div class="img-display">
-          <h3>
-            Change
-          </h3>
-          <p>
-            @4k we foster Knowledge to impact our society through technology.
-            All our Members are encouraged to experiment and impact with the
-            help of our collaberative divisions we bring ideas to life.
-          </p>
-        </div>
+    
       </div>
       <div class="navigation active">
         <div class="betn"></div>
@@ -143,36 +121,51 @@ export default {
   },
 };
 </script>
-<style>
-body {
-  background: white;
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+*{
+   
+      margin:0;
+    padding:0;
+    box-sizing:border-box;
+   
 }
+ 
 .container {
   width: 100%;
   height: 600px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
+   font-family: 'Roboto Condensed', sans-serif;
+
 }
-.logo {
-  position: absolute;
-  width: 100px;
-  top: 25px;
-  left: 80px;
-  background: white;
-  border-radius: 200px;
-  z-index: 100;
+.logo{
+    position: absolute;
+    width:150px;
+    top:20px;
+    left:80px;
+    background:#fff;
+    border-radius:200px;
+    z-index:100;
+    cursor:pointer;
+
+  
 }
 .container .main-holder {
+   font-family: 'Roboto Condensed', sans-serif;
+
+     height:100vh;
   z-index: 1;
   position: absolute;
   margin: auto;
   padding: 30px;
   display: grid;
   background-position: center;
-  /* background-attachment:fixed; */
+ 
   width: 100%;
   grid-template-columns: 600px 150px 400px;
   grid-template-rows: 50px 450px;
-  /* border-radius: 15px; */
+ 
   left: 50%;
   clip-path: circle(0% at 0 50%);
   transform: translateX(-50%);
@@ -185,30 +178,28 @@ body {
   /* transition-property: clip-path; */
 }
 
-.menu-container {
-  position: absolute;
-  height: 60px;
-  width: 500px;
-  padding: 10px;
-  font-size: 20px;
-  font-weight: bolder;
-  border-radius: 15px;
-  top: 30px;
-  right: 70px;
-  background-color: rgba(0, 0, 0, 0.61);
+.menu-container{
+   font-family: 'Roboto Condensed', sans-serif;
+    width:100%;
+    padding:50px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row-reverse;
+    z-index:100;
 
-  display: grid;
-  place-items: center;
-  z-index: 100;
+    
 }
-.menu-container a {
-  text-decoration: none;
-  color: white;
+.menu-container a{
+    text-decoration: none;
+    color:#f47522;
+    
 }
-.menu-container li {
-  display: inline-block;
-  margin: 5px;
-  padding: 5px;
+.menu-container li{
+    display: inline-block;
+    margin:5px;
+    padding:5px;
 }
 .focus {
   border-left: 2px solid rgb(233, 112, 14);
@@ -218,6 +209,7 @@ body {
   /* padding:50px; */
   /* line-height:30px; */
   /* border-radius: 5px; */
+  color:white;
 }
 .main-holder h3 {
   font-size: 40px;
@@ -227,33 +219,49 @@ body {
   text-align: center;
   text-transform: uppercase;
 }
-.img-display {
-  width: 350px;
-  height: 450px;
-  background-size: contain;
-  background-position: center;
-  grid-column: 1;
-  grid-row: 2;
-  padding: 25px;
-  /* margin-top:50px; */
+.img-display{
+   font-family: 'Roboto Condensed', sans-serif;
+
+    position: absolute;
+    z-index:1000;
+    margin-top:135px;
+    margin-left:40px;
+    width:400px;
+    height:380px;
+    background-size: contain;
+    background-position:center;
+    padding:20px;
+    padding-top:50px;
+    background:#0f0f0e85;
+ 
 }
-.img-display p {
-  padding: 25px;
-  background: rgba(10, 10, 10, 0.678);
-  color: white;
-  font-size: 25px;
-  font-weight: bolder;
-  width: 450px;
-  margin-top: 5px;
-  text-align: distribute;
+.img-display > span{
+   
+    padding:10px;
+     font-size:75px;
+     font-weight:bolder;
+     color:white;
+     text-transform: capitalize;
+     margin-left:10px;
+
 }
-.container .navigation {
+.img-display p{
+    padding:25px;
+    background:rgba(10, 10, 10, 0.678);
+    color:white;
+    font-size:25px; 
+    font-weight:bolder;
+    width:450px;
+    margin-top:5px;
+}
+.container .navigation{
   position: absolute;
-  z-index: 10;
+  z-index: 10; 
   display: flex;
-  top: 500px;
-  left: 50%;
+  bottom:-10px;
+  left:50%;
   transform: translateX(-50%);
+ 
 }
 .container .navigation .betn {
   background: white;
@@ -283,6 +291,7 @@ body {
   color: black;
 }
 .main-display {
+  height: 100vh;
   z-index: 0;
   position: absolute;
   margin: auto;
@@ -498,16 +507,22 @@ body {
     display: block;
     padding: 0;
   }
-  .img-display {
-    padding: 0;
-    margin-left: -20px;
-  }
-  .img-display p {
-    width: auto;
-    height: auto;
-    margin-left: 0;
-    text-align: justify;
-  }
+    .img-display{
+       padding:10px;
+       top:20px;
+       left:-30px;
+       width:350px;
+       height:300px;
+       border-radius:10px;
+    }
+    .img-display p{
+        width:auto;
+        height:auto;
+        margin-left:0;
+
+    }.img-display >span{
+        font-size:60px;
+    }
 
   .events {
     display: block;
@@ -535,5 +550,15 @@ body {
   .footer {
     display: block;
   }
+     .main-holder{
+       height:50vh;
+   }
+    .main-holder.active , .main-display{
+        height:65vh;
+ 
+        display: block;
+ 
+     
+    }
 }
 </style>

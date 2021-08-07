@@ -107,8 +107,9 @@ export default {
   margin-top: 2px;
 }
 .login {
+  position:relative ;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 60px 50px;
   width: 450px;
   background-color: white;
@@ -121,6 +122,9 @@ export default {
   left: 50%;
   z-index: 10;
   transform: translate(-50%, -50%);
+}
+#footer{
+  margin-top:650px;
 }
 @media only screen and (max-width: 600px) {
   .login {

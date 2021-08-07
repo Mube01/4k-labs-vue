@@ -143,7 +143,11 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: routes
+  routes: routes,
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView();
+}
+
 })
 
 var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile','Members']

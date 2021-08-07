@@ -1,8 +1,10 @@
 <template>
+<div>
+  <SubHeader v-show="!loading" />
   <div class="page-container">
     <div class="content-wrap">
       <Loading v-show="loading" />
-      <SubHeader v-show="!loading" />
+    
       <div class="container" v-show="!loading" id="prjct">
         <div class="row">
           <div
@@ -15,6 +17,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
