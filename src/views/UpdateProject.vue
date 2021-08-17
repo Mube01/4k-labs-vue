@@ -114,7 +114,6 @@ export default {
         .catch((err) => {});
       }
       else{
-        console.log("hee");
         alert("Project LeaderCan't be empty")    
       }
     },

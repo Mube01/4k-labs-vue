@@ -133,7 +133,6 @@ export default {
         description: this.description,
         project_leader:leader
       };
-      console.log(data)
       this.createProject(data)
         .then((result) => {
           this.successAlert("Project have been created succesdully");

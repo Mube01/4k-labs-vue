@@ -201,9 +201,6 @@ export default {
         },
         saveProject(state, project) {
             var i = state.projects.findIndex((pro)=>pro.project_code === project.project_code);
-            // console.log("the value is ",i);
-            // state.projects[i] = project;
-            // state.project = project
         },
         /**
          * 

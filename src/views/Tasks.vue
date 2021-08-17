@@ -165,7 +165,6 @@ export default {
         project_code: this.project_code,
         team_members: updated_members,
       };
-      console.log(data);
       this.updatemembers(data)
         .then((result) => {
           this.updateProjectMembers(data);

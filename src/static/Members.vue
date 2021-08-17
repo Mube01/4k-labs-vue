@@ -101,7 +101,6 @@ export default {
       return 0;
     },
     filterBySpecialization(e){
-      // console.log(e.target.value);
        const Specialization = e.target.value;
       switch(Specialization){
         case 'DEVS':
@@ -130,7 +129,6 @@ export default {
     filterByPosition(e){
 
            const Position = e.target.value;
-           console.log(Position);
           
            if(Position != ''){
           
@@ -141,7 +139,6 @@ export default {
              this.passRole=true;
              this.Filter='';
            }
-           console.log(this.passRole);
 
         
     },

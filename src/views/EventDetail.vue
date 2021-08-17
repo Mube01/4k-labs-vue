@@ -33,15 +33,10 @@
           <h3>Gallery</h3>
         </div>
         <div class="row">
-          <div class="gallery col-md-4">
-            <GalleryImage source="DEVS.jpg" />
-          </div>
-          <div class="gallery col-md-4">
-            <GalleryImage source="DEVS.jpg" />
-          </div>
-          <div class="gallery col-md-4">
-            <GalleryImage source="DEVS.jpg" />
-          </div>
+            <div class="gallery col-md-6" :key="image" v-for="image in event.event_gallery">
+            {{image}}
+              <GalleryImage :source="image" />
+            </div>
         </div>
       </div>
 </template>

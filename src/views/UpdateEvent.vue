@@ -8,7 +8,7 @@
           <label for="pp">Title</label><br />
           <input
             type="text"
-            v-model="event_title"
+            v-model="eventData.event_title"
             name="text"
             placeholder="Event Title"
             required
@@ -29,7 +29,7 @@
           <label for="pp">Starting Date</label><br />
           <input
             type="date"
-            v-model="event_date"
+            v-model="eventData.event_start"
             name="text"
             placeholder="Event Date"
           />
@@ -39,7 +39,7 @@
           <label for="pp">Ending Date</label><br />
           <input
             type="date"
-            v-model="event_date"
+            v-model="eventData.event_end"
             name="text"
             placeholder="Event Date"
           />
@@ -49,7 +49,7 @@
           <label for="description">Description</label><br />
           <textarea
             rows="7"
-            v-model="description"
+            v-model="eventData.event_description"
             type="text"
             id="description"
             autocomplete="off"
@@ -59,25 +59,32 @@
         <section class="container dzone">
           <div class="dropzone" v-bind="getRootProps()">
             <input v-bind="getInputProps()" />
-            <!-- <h1>{{ cx }}</h1> -->
-            <p v-if="isDragActive">Drop the files here ...</p>
-            <p v-else>
-              Drag 'n' drop some files here, or click to select files
-            </p>
+            <p v-if="isDragActive">Drop the Images here ...</p>
+            <p v-else>Drop the Images here</p>
           </div>
-
+          <Button
+            @click="open"
+            type="button"
+            text="Open"
+            color="white"
+            bgColor="#177F75"
+          />
           <aside class="thumbsContainer">
-            <div class="thumb" v-for="(i, index) in loadData" :key="i">
-              <!-- <h1>{{ i.name }}</h1> -->
+            <div class="thumb" v-for="image in eventData.event_gallery" :key="image">
               <div class="thumbInner">
-                <button @click="handleImageLoadDeletion(index)" :key="i">
-                  X
-                </button>
-                <button type="button" class="btn btn-warning btn-circle btn-xl">
-                  <i class="glyphicon glyphicon-remove">asd</i>
+                <button
+                  type="button"
+                  @click="handleOldImageDeletion(image)"
+                  :key="i"
+                  class="btn btn-warning btn-circle btn-xl cancel"
+                >
+                  <i class="glyphicon glyphicon-remove">X</i>
                 </button>
 
-                <img :src="i.photo" class="img" />
+                <img
+                  :src="`http://127.0.0.1:3000/api_v1/get_event_gallery/${image}`"
+                  class="img"
+                />
               </div>
             </div>
 
@@ -86,7 +93,7 @@
                 type="button"
                 @click="handleImageDeletion(index)"
                 :key="i"
-                class="btn btn-warning btn-circle btn-xl cancel"
+                class="btn btn-warning btn-circle btn-xl"
               >
                 <i class="glyphicon glyphicon-remove">X</i>
               </button>
@@ -96,18 +103,12 @@
               </div>
             </div>
           </aside>
-          <Button
-            @click="open"
-            type="button"
-            text="Open"
-            color="white"
-            bgColor="#177F75"
-          />
         </section>
 
         <Button
           type="button"
-          @click="updateEvent"
+          :disabled = "disableButton"
+          @click="update_event"
           text="Update Event"
           color="white"
           bgColor="#177F75"
@@ -118,6 +119,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
 import { useDropzone } from "vue3-dropzone";
@@ -130,35 +132,98 @@ export default {
   },
   data: function () {
     return {
-      loadData: null,
-    }
+      new_event_image: "",
+      tobe_deleted_gallery: [],
+      new_gallery_images: [],
+      disableButton:false,
+    };
   },
-  mounted: function () {
-    // Load the previous Photo from DataBase
-    // console.log(this.loadData)
-    console.log("App Mounted", this.loadData)
+  computed: {
+    eventData() {
+      return this.$store.getters["events/getEventById"](
+        this.$route.params.event_id
+      );
+    },
+  },
+  mounted: function () {},
+  methods: {
+    ...mapActions({
+      getEvents: "events/getEvents",
+      eventUpdate: "events/updateEvent",
+      errorAlert: "errorAlert",
+      successAlert: "successAlert",
+    }),
+    handleOldImageDeletion(image_id) {
+      this.eventData.event_gallery = this.eventData.event_gallery.filter((item) => item !== image_id);
+      this.tobe_deleted_gallery.push(image_id);
+    },
+    get_new_gallery_images() {
+      this.new_gallery_images = [];
+      this.formData.forEach((element) => {
+        this.new_gallery_images.push(element.value.base64);
+      });
+    },
+    uploadProfile(e) {
+      const selecterImage = e.target.files[0];
+      this.createBase64Image(selecterImage);
+    },
+    createBase64Image(fileObject) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileObject);
+      reader.onload = (e) => {
+        var base64result = e.target.result;
+        this.new_event_image = base64result.split(",")[1];
+      };
+    },
+    update_event() {
+      this.disableButton = true
+      this.get_new_gallery_images();
+      let event_data = {
+        event_title: this.eventData.event_title,
+        event_start: this.eventData.event_start,
+        event_end: this.eventData.event_end,
+        event_description: this.eventData.event_description,
+        event_image: this.new_event_image,
+        new_galley_images: this.new_gallery_images,
+        tobe_deleted_images: this.tobe_deleted_gallery,
+      };
+      this.eventUpdate({
+        event_id: this.$route.params.event_id,
+        event_data: event_data,
+      })
+        .then((result) => {
+          this.successAlert(result.message);
+          this.getEvents()
+
+          this.disableButton = false
+          this.$router.push({
+             name: "EventDetail",
+             params: { event_id: this.$route.params.event_id }, 
+          });
+        })
+        .catch((err) => {
+          this.errorAlert(err);
+        });
+    },
   },
   setup() {
-    // console.log(this.loadData)
     const formData = ref([]);
     var cx = ref(0);
-
-    // fetchData()
-    // console.log(loadDa);
-    const saveFiles = (filesTop) => {
-      // const url = "http://localhost:5000/api/image/photos/hir"; // Your url on the server side
-      // console.log(url)
-      // pass data as a form
+    const saveFiles = async (filesTop) => {
       for (var x = 0; x < filesTop.length; x++) {
         Object.assign(filesTop[x], {
-          preview: URL.createObjectURL(filesTop[x])
+          preview: URL.createObjectURL(filesTop[x]),
+          base64: await createBase64Image(filesTop[x]),
         });
         formData.value.push(ref(filesTop[x]));
       }
-      console.log(formData.value);
-      // post the formData to your backend where storage is processed. In the backend, you will need to loop through the array and save each file through the loop.
-      // const hi = { name: 'test', photo: 'hi' }
-
+    };
+    function createBase64Image(fileObject) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(",")[1]);
+        reader.readAsDataURL(fileObject);
+      });
     }
 
     function handleImageDeletion(index) {
@@ -168,18 +233,9 @@ export default {
     }
 
     function onDrop(acceptFiles, rejectReasons) {
-
-      // console.log(acceptFiles);
-      saveFiles(acceptFiles); // saveFiles as callback
-      console.log(rejectReasons);
+      saveFiles(acceptFiles);
       cx.value++;
-
     }
-    // const options = reactive({
-    //   multiple: true,
-    //   onDrop,
-    //   accept: ".jpg",
-    // });
     const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop });
 
     return {
@@ -190,25 +246,7 @@ export default {
       ...rest,
     };
   },
-  methods: {
-    updateEvent() {
-      const newPhoto = [];
-      if (this.loadData !== null)
-        this.loadData.forEach(element => {
-          newPhoto.push({ name: element.name, photo: element.photo })
-        })
-
-      if (this.formData !== null)
-        this.formData.forEach(element => {
-          // console.log(element.name)
-          newPhoto.push({ name: element.value.name, photo: element.value.preview })
-        });
-
-      console.log("New Photo", newPhoto)
-    }
-  }
 };
-
 </script>
 
 <style scoped>
@@ -322,6 +360,7 @@ textarea:focus {
   margin-top: 1;
 }
 .dropzone {
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -345,15 +384,7 @@ textarea:focus {
   opacity: 0.6;
 }
 .cancel {
-  height: 80px;
   background-color: #04aa6d;
   border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
 }
 </style>

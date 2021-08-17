@@ -43,11 +43,29 @@ function deleteEvent(event_id){
     method: 'get',
     url: `/api_v1/delete_event/${event_id}`,
     headers: {
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
      }
     };
 
     return axios(config)
 }
+function updateEvent(event_id,event_data){
 
-export default {addEvent,getEvents,deleteEvent}
+    var token = localStorage.getItem('access_token') || ''
+    token = token.substring(1, token.length - 1)
+
+
+    var config = {
+    method: 'post',
+    url: `/api_v1/update_event/${event_id}`,
+    headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    },
+    data : JSON.stringify(event_data)
+    };
+    return axios(config)
+}
+
+export default {addEvent,getEvents,deleteEvent,updateEvent}

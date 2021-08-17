@@ -122,7 +122,7 @@ const routes = [
     props: true
   },
   {
-    path: '/portal/updateEvent',
+    path: '/portal/events/updateEvent/:event_id',
     name: 'UpdateEvent',
     component: () => import('../views/UpdateEvent.vue')
   },
@@ -152,7 +152,6 @@ const router = createRouter({
 var adminPaths = ["Admin","AdminProjects","Events","GenerateToken"]
 var staticPages = ['Home','Login','Register','AdminLogin','AllProjects','Teams','StaticDivision','StaticProfile','Members']
 router.beforeEach((to, from, next) => {
-  console.log(from.name);
   if(!store.getters['auth/isAuthenticated'] && !staticPages.includes(to.name)){
     next({ name: 'Login' })
   }else{

@@ -1,3 +1,4 @@
+import { Promise } from 'core-js';
 import EventApi from '../../api/EventApi'
 export default {
     namespaced: true,
@@ -50,6 +51,18 @@ export default {
                 });
             })
         },
+        updateEvent({dispatch},data){
+            return new Promise((resolve,reject)=>{
+                EventApi.updateEvent(data.event_id,data.event_data).then((result) => {
+                    resolve(result.data)
+                }).catch((err) => {
+                    if (err.response.status == 401) {
+                        dispatch('auth/logoutUser', err.response.data, { root: true })
+                    }
+                    reject(err.response.data)
+                });
+            })
+        }
     },
     mutations:{
         addEvent(state,event){
