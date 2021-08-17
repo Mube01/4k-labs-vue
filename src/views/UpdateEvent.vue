@@ -25,7 +25,7 @@
           />
         </div>
 
-        <div style="clear:both" class="left col-md-6">
+        <div style="clear: both" class="left col-md-6">
           <label for="pp">Starting Date</label><br />
           <input
             type="date"
@@ -56,24 +56,58 @@
           />
         </div>
 
-        <div class="full col-md-12">
-          <label for="upload_imgs" class="button hollow">Add Gallery</label>
-          <input
-            class="show-for-sr"
-            type="file"
-            id="upload_imgs"
-            name="upload_imgs[]"
-            multiple
+        <section class="container dzone">
+          <div class="dropzone" v-bind="getRootProps()">
+            <input v-bind="getInputProps()" />
+            <!-- <h1>{{ cx }}</h1> -->
+            <p v-if="isDragActive">Drop the files here ...</p>
+            <p v-else>
+              Drag 'n' drop some files here, or click to select files
+            </p>
+          </div>
+
+          <aside class="thumbsContainer">
+            <div class="thumb" v-for="(i, index) in loadData" :key="i">
+              <!-- <h1>{{ i.name }}</h1> -->
+              <div class="thumbInner">
+                <button @click="handleImageLoadDeletion(index)" :key="i">
+                  X
+                </button>
+                <button type="button" class="btn btn-warning btn-circle btn-xl">
+                  <i class="glyphicon glyphicon-remove">asd</i>
+                </button>
+
+                <img :src="i.photo" class="img" />
+              </div>
+            </div>
+
+            <div class="thumb" v-for="(i, index) in formData" :key="i">
+              <button
+                type="button"
+                @click="handleImageDeletion(index)"
+                :key="i"
+                class="btn btn-warning btn-circle btn-xl cancel"
+              >
+                <i class="glyphicon glyphicon-remove">X</i>
+              </button>
+
+              <div class="thumbInner">
+                <img :src="i.value.preview" class="img" />
+              </div>
+            </div>
+          </aside>
+          <Button
+            @click="open"
+            type="button"
+            text="Open"
+            color="white"
+            bgColor="#177F75"
           />
-          <div
-            class="quote-imgs-thumbs quote-imgs-thumbs--hidden"
-            id="img_preview"
-            aria-live="polite"
-          ></div>
-        </div>
+        </section>
 
         <Button
-          type="submit"
+          type="button"
+          @click="updateEvent"
           text="Update Event"
           color="white"
           bgColor="#177F75"
@@ -86,58 +120,95 @@
 <script>
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
+import { useDropzone } from "vue3-dropzone";
+import { ref } from "vue";
 export default {
   name: "UpdateEvent",
   components: {
     Header,
     Button,
   },
+  data: function () {
+    return {
+      loadData: null,
+    }
+  },
+  mounted: function () {
+    // Load the previous Photo from DataBase
+    // console.log(this.loadData)
+    console.log("App Mounted", this.loadData)
+  },
+  setup() {
+    // console.log(this.loadData)
+    const formData = ref([]);
+    var cx = ref(0);
+
+    // fetchData()
+    // console.log(loadDa);
+    const saveFiles = (filesTop) => {
+      // const url = "http://localhost:5000/api/image/photos/hir"; // Your url on the server side
+      // console.log(url)
+      // pass data as a form
+      for (var x = 0; x < filesTop.length; x++) {
+        Object.assign(filesTop[x], {
+          preview: URL.createObjectURL(filesTop[x])
+        });
+        formData.value.push(ref(filesTop[x]));
+      }
+      console.log(formData.value);
+      // post the formData to your backend where storage is processed. In the backend, you will need to loop through the array and save each file through the loop.
+      // const hi = { name: 'test', photo: 'hi' }
+
+    }
+
+    function handleImageDeletion(index) {
+      if (index > -1) {
+        formData.value.splice(index, 1);
+      }
+    }
+
+    function onDrop(acceptFiles, rejectReasons) {
+
+      // console.log(acceptFiles);
+      saveFiles(acceptFiles); // saveFiles as callback
+      console.log(rejectReasons);
+      cx.value++;
+
+    }
+    // const options = reactive({
+    //   multiple: true,
+    //   onDrop,
+    //   accept: ".jpg",
+    // });
+    const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop });
+
+    return {
+      getRootProps,
+      getInputProps,
+      formData,
+      handleImageDeletion,
+      ...rest,
+    };
+  },
+  methods: {
+    updateEvent() {
+      const newPhoto = [];
+      if (this.loadData !== null)
+        this.loadData.forEach(element => {
+          newPhoto.push({ name: element.name, photo: element.photo })
+        })
+
+      if (this.formData !== null)
+        this.formData.forEach(element => {
+          // console.log(element.name)
+          newPhoto.push({ name: element.value.name, photo: element.value.preview })
+        });
+
+      console.log("New Photo", newPhoto)
+    }
+  }
 };
-var imgUpload = document.getElementById("upload_imgs"),
-  imgPreview = document.getElementById("img_preview"),
-  imgUploadForm = document.getElementById("editEvent"),
-  totalFiles,
-  previewTitle,
-  previewTitleText,
-  img;
 
-if (imgUpload) {
-  imgUpload.addEventListener("change", previewImgs(), false);
-}
-if (imgUploadForm) {
-  imgUploadForm.addEventListener(
-    "submit",
-    function (e) {
-      e.preventDefault();
-      alert(
-        "Images Uploaded! (not really, but it would if this was on your website)"
-      );
-    },
-    false
-  );
-}
-
-function previewImgs(event) {
-  totalFiles = imgUpload.files.length;
-
-  if (!totalFiles) {
-    imgPreview.classList.remove("quote-imgs-thumbs--hidden");
-    previewTitle = document.createElement("p");
-    previewTitle.style.fontWeight = "bold";
-    previewTitleText = document.createTextNode(
-      totalFiles + " Total Images Selected"
-    );
-    previewTitle.appendChild(previewTitleText);
-    imgPreview.appendChild(previewTitle);
-  }
-
-  for (var i = 0; i < totalFiles; i++) {
-    img = document.createElement("img");
-    img.src = URL.createObjectURL(event.target.files[i]);
-    img.classList.add("img-preview-thumb");
-    imgPreview.appendChild(img);
-  }
-}
 </script>
 
 <style scoped>
@@ -200,5 +271,89 @@ textarea:focus {
   margin-right: 1rem;
   max-width: 140px;
   padding: 0.25rem;
+}
+.container.dzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #00e676;
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+}
+
+.thumb {
+  position: relative;
+  display: inline-flex;
+  border-radius: 2;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8;
+  margin-right: 8;
+  width: 100;
+  height: 100;
+  padding: 4;
+  box-sizing: border-box;
+}
+
+.thumbInner {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.img {
+  display: block;
+  width: auto;
+  max-height: 150px;
+  height: 100%;
+}
+
+.thumbsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 1;
+}
+.dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #eeeeee;
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+}
+
+.dropzone:focus {
+  border-color: #2196f3;
+}
+
+.dropzone.disabled {
+  opacity: 0.6;
+}
+.cancel {
+  height: 80px;
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
 }
 </style>
