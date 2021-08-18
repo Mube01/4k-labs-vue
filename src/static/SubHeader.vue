@@ -3,6 +3,9 @@
     <router-link to="/">
       <img src="../assets/logo.webp" class="logo" alt="" />
     </router-link>
+        <div class="black-top">
+
+    </div>
     <div class="click" id="button">
       <i class="fas fa-bars"></i>
     </div>
@@ -83,6 +86,9 @@ export default {
 /* .SubHeader {
   height: 150px;
 } */
+.black-top{
+  display:none;
+}
 * {
   margin: 0;
   padding: 0;
@@ -97,7 +103,7 @@ export default {
 .logo {
  position: absolute;
     width:150px;
-    top:20px;
+    top:15px;
     left:80px;
     background:#fff;
     border-radius:200px;
@@ -191,7 +197,7 @@ export default {
   .click {
     display: block;
     position: absolute;
-    top: 50px;
+    top: 30px;
     right: 50px;
     color: rgb(219, 114, 28);
     z-index: 1000;
@@ -212,7 +218,7 @@ export default {
     border-radius: 15px;
   }
   .logo {
-    top: 15px;
+    top: 10px;
     left: 15px;
   }
   .main-holder {
@@ -223,5 +229,16 @@ export default {
     padding: 0;
     margin-left: -20px;
   }
+     .black-top{
+     display: block;
+   width:100%;
+   height:110px;
+   background:black;
+   top:0;
+   left:0;
+   padding:10px;
+   position:absolute;
+   z-index:99;
+ }
 }
 </style>
