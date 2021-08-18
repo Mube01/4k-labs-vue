@@ -37,6 +37,30 @@
         <Teams />
       </div>
     </div>
+      <div class="divider-container specialization">
+    <h2 class="divider">
+        <span> Projects </span>
+    </h2>
+</div> 
+<div id="projects-container">
+   <div class="page-container">
+    <div class="content-wrap">
+    
+    
+      <div class="container" id="prjct">
+        <div class="row">
+          <div
+            class="col-md-6"
+            :key="project.project_code"
+            v-for="project in projects"
+          >
+          <StaticProject :project=project />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       <div class="divider-container specialization ">
     <h2 class="divider">
         <span> Events </span>
@@ -50,11 +74,7 @@
     </div>
   </div>
 
-  <div class="divider-container specialization">
-    <h2 class="divider">
-        <span> Projects </span>
-    </h2>
-</div>
+
  
     <Footer />
   </div>
@@ -66,6 +86,8 @@ import MainHeader from "./MainHeader";
 import Event from "./Event";
 import Teams from "./Teams";
 import Footer from "./Footer";
+import StaticProject from "./StaticProject";
+ 
 export default {
   name: "StaticHome",
   components: {
@@ -73,21 +95,27 @@ export default {
     Event,
     Teams,
     Footer,
+    StaticProject,
+ 
   },
   methods: {
     ...mapActions({
       getAllInfo: "home/getAllInfo",
+      fetchProjects: "projects/getAllProjects",
     }),
   },
   computed: {
     ...mapGetters({
       events: "home/getEvents",
+      projects: "home/getProjects",
     }),
+    
   },
   created() {
     this.getAllInfo()
       .then((result) => {})
       .catch((err) => {});
+      
   },
 };
 </script>

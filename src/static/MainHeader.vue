@@ -1,6 +1,9 @@
 <template>
   <div>
     <img src="../assets/logo.webp" class="logo" alt="" />
+    <div class="black-top">
+
+    </div>
     <div class="click" id="button">
       <i class="fas fa-bars"></i>
     </div>
@@ -131,7 +134,10 @@ export default {
     box-sizing:border-box;
    
 }
- 
+.black-top{
+  display:none;
+}
+
 .container {
   width: 100%;
   height: 600px;
@@ -142,7 +148,7 @@ export default {
 .logo{
     position: absolute;
     width:150px;
-    top:20px;
+    top:5px;
     left:80px;
     background:#fff;
     border-radius:200px;
@@ -181,7 +187,7 @@ export default {
 .menu-container{
    font-family: 'Roboto Condensed', sans-serif;
     width:100%;
-    padding:50px;
+    padding:30px;
     font-size: 20px;
     font-weight: bolder;
     background-color: rgb(0, 0, 0);
@@ -470,6 +476,15 @@ export default {
   display: none;
 }
 @media (max-width: 750px) {
+   .black-top{
+     display: block;
+   width:100%;
+   height:110px;
+   background:black;
+   padding:10px;
+   position:absolute;
+   z-index:99;
+ }
   .menu-container {
     display: none;
   }
