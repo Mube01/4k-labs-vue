@@ -9,6 +9,7 @@
             v-model="project_title"
             name="text"
             placeholder="Project Title"
+            required
           />
         </div>
         <div class="col-md-6">
@@ -22,15 +23,28 @@
           />
         </div>
       </div>
-      <div class="full">
-        <label for="addMembers">Add Members</label><br />
-        <div style="margin-top: -100px; clear: both; background-color: white">
-          <MultiSelect
-            ref="selected_members"
-            :allMembers="allMembers"
-            style="margin-top: 70px"
-          />
+      <div class="row">
+       <div class="col-md-6">
+          <label for="addMembers">Project Leader</label><br />
+          <div style="margin-top: -100px; clear: both; background-color: white">
+            <OneSelect
+              ref="selected_leader"
+              :allMembers="allMembers"
+              style="margin-top: 70px"
+            />
+          </div>
         </div>
+        <div class="col-md-6">
+          <label for="addMembers">Add Members</label><br />
+          <div style="margin-top: -100px; clear: both; background-color: white">
+            <MultiSelect
+              ref="selected_members"
+              :allMembers="allMembers"
+              style="margin-top: 70px"
+            />
+          </div>
+        </div>
+       
       </div>
 
       <div class="full">
@@ -57,6 +71,8 @@
 <script>
 import Button from "./Button.vue";
 import MultiSelect from "./MultiSelect";
+import OneSelect from "./OneSelect.vue";
+
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -78,6 +94,7 @@ export default {
   components: {
     Button,
     MultiSelect,
+    OneSelect
   },
   methods: {
     ...mapActions({
@@ -90,13 +107,22 @@ export default {
       e.preventDefault();
 
       var value = Object.values(this.$refs.selected_members.value) || [];
+      var leader = this.$refs.selected_leader.value[0] || null
 
+      if(!value.includes(leader)){
+        value.push(leader)
+      }
       if (!this.project_title) {
         alert("Please add a project");
-      } else if (value.length < 1) {
+      }
+      else if (value.length < 1) {
         alert("minimum one member have to be adde");
       }
-      var data = {
+      else if (leader==null){
+        alert("project leader is not specified")
+      }
+      else{
+        var data = {
         project_title: this.project_title,
         tasks: [],
         members: value,
@@ -105,6 +131,7 @@ export default {
         docs_link: "",
         deadline : this.dead_line,
         description: this.description,
+        project_leader:leader
       };
       this.createProject(data)
         .then((result) => {
@@ -114,6 +141,8 @@ export default {
         .catch((err) => {
           this.errorAlert(err.message);
         });
+      }
+      
     },
   },
 };

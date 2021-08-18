@@ -1,5 +1,5 @@
 <template>
-  <img :src="require('@/assets/' + source)" />
+  <img :src="`http://127.0.0.1:3000/api_v1/get_event_gallery/${source}`" />
 </template>
 
 <script>

@@ -145,6 +145,7 @@ export default {
         return -1;
       }
       return 0;
+ 
     },filter(){
         this.filterResults = this.getMembers;
         
@@ -162,6 +163,48 @@ export default {
         
       }
     
+ 
+    },
+    filterBySpecialization(e){
+       const Specialization = e.target.value;
+      switch(Specialization){
+        case 'DEVS':
+          this.Bots = false;
+          this.Things = false;
+          this.Devs = true;
+          break;
+        case 'BOTS':
+          this.Devs = false;
+          this.Things = false;
+          this.Bots = true;
+
+          break;
+          case 'THINGS':
+          this.Bots = false;
+          this.Devs = false;
+          this.Things = true;
+          break;
+          default:
+          this.Bots = true;
+          this.Devs = true;
+          this.Things = true;
+          break;
+      }
+    },
+    filterByPosition(e){
+
+           const Position = e.target.value;
+          
+           if(Position != ''){
+          
+           this.Filter = Position;
+           this.passRole = false;
+ 
+           }else{
+             this.passRole=true;
+             this.Filter='';
+           }
+
 
    }else{
       
