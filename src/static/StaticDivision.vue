@@ -35,22 +35,10 @@
 		<div class="relative max-w-6xl mx-auto px-4 sm:px-6">
 			<div class="pt-12 md:pt-20">
 				<div class="max-w-3xl mx-auto text-center pb-1.5 md:pb-16">
-					<span
-						class="
-							inline-block
-							mb-10
-							text- text-4xl
-							bg-clip-text
-							text-transparent
-							bg-gradient-to-r
-							from-blue-500
-							to-teal-400
-							font-black
-						"
-					>
+					<span class="inline-block mb-10 text- text-4xl text-heading">
 						Specialization
 					</span>
-					<p class="text-xl text-primaryOn">{{ DivisionInfo.divisionDesc }}</p>
+					<p class="text-xl text-subHeading">{{ DivisionInfo.divisionDesc }}</p>
 					<!-- <p class="text-xl text-primaryOn">
 						Our team is a combination of Electrical engineers, software
 						engineers, Mechanical engineers, designers and more. 4K Labs- team

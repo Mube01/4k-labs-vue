@@ -46,7 +46,7 @@
 								v-if="!link.isButton"
 								class="
 									font-medium
-									text-primaryOn
+									text-subHeading
 									hover:text-secondaryOn
 									px-5
 									py-3
@@ -62,7 +62,13 @@
 							<router-link
 								to="login"
 								v-else-if="link.isButton"
-								class="btn-sm text-primary bg-secondaryOn ml-3 bg-black"
+								class="
+									btn-sm
+									text-mainButtonText
+									bg-secondaryOn
+									ml-3
+									bg-mainbutton
+								"
 							>
 								{{ link.name }}
 							</router-link>

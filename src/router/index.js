@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Divisions from "../views/Divisions.vue";
 import Home from "../static/StaticHome";
+import HeroSection from "../static/HeroSection";
+import StaticHeader from "../static/StaticHeader";
 
 import store from "../store";
 const routes = [
@@ -161,6 +163,9 @@ var staticPages = [
 	"StaticDivision",
 	"StaticProfile",
 	"Members",
+	"HeroSection",
+	"StaticHeader",
+	"StaticHome",
 ];
 router.beforeEach((to, from, next) => {
 	if (
